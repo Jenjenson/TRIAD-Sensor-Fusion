@@ -1,0 +1,28 @@
+name: Sensor fusion checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: core/pyproject.toml
+      - name: Install core
+        run: python -m pip install -e "./core[test]"
+      - name: Core tests
+        run: python -m unittest discover -s core/tests -p "test_*.py" -v
+      - name: Unreal source-contract tests
+        run: python -m unittest discover -s unreal/Plugins/TRIADSensorFusion/Tests -p "test_*.py" -v
+      - name: Globe-C2 bridge tests
+        working-directory: integrations/globe-c2
+        run: python -m unittest bridge.test_triad_bridge -v

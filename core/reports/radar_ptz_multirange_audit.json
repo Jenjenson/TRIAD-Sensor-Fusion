@@ -1,0 +1,2709 @@
+{
+  "schemaVersion": "triad.radar_ptz_multirange_audit.v1",
+  "generatedAtUtc": "2026-08-03T04:00:00Z",
+  "result": "PASS",
+  "simulationOnly": true,
+  "physicalSensorValidation": false,
+  "learnedModelEvaluation": false,
+  "modelOutputClaimed": false,
+  "scope": "Deterministic Unreal-v3 contract/fusion audit at eight Singapore simulation sites; not evidence of physical radar, optics, thermal, or field range.",
+  "clearConditionReliabilityRequirement": {
+    "rangeMetersInclusive": [
+      25.0,
+      500.0
+    ],
+    "requiredPassRate": 1.0,
+    "siteCountPerRange": 8,
+    "definition": "fresh wideband RF plus accepted search-radar polar measurement and fresh LOS settled radar-cued visual confirmation produces CONFIRMED_TRACK, a map position, and two bridge-ready EO/thermal confirmation frames. EO and thermal remain one VISUAL family; search radar and mmWave remain one ACTIVE_RADAR family.",
+    "passed": true
+  },
+  "preferredOneKilometerSimulationCheckPassed": true,
+  "clearRangeResults": [
+    {
+      "rangeMeters": 25.0,
+      "trialCount": 8,
+      "passCount": 8,
+      "passRate": 1.0,
+      "decisionCounts": {
+        "CONFIRMED_TRACK": 8
+      },
+      "trials": [
+        {
+          "siteId": "West_Sector",
+          "rangeMeters": 25.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 19.474,
+          "nearestSensorDistanceMeters": 25.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Jurong_Sector",
+          "rangeMeters": 25.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 17.104,
+          "nearestSensorDistanceMeters": 25.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "North_Sector",
+          "rangeMeters": 25.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 19.34,
+          "nearestSensorDistanceMeters": 25.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "NorthEast_Sector",
+          "rangeMeters": 25.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 17.104,
+          "nearestSensorDistanceMeters": 25.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "East_Sector",
+          "rangeMeters": 25.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 19.474,
+          "nearestSensorDistanceMeters": 25.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Central_Sector",
+          "rangeMeters": 25.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 17.104,
+          "nearestSensorDistanceMeters": 25.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "City_Sector",
+          "rangeMeters": 25.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 19.34,
+          "nearestSensorDistanceMeters": 25.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "South_Sector",
+          "rangeMeters": 25.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 17.104,
+          "nearestSensorDistanceMeters": 25.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rangeMeters": 100.0,
+      "trialCount": 8,
+      "passCount": 8,
+      "passRate": 1.0,
+      "decisionCounts": {
+        "CONFIRMED_TRACK": 8
+      },
+      "trials": [
+        {
+          "siteId": "West_Sector",
+          "rangeMeters": 100.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 94.564,
+          "nearestSensorDistanceMeters": 100.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Jurong_Sector",
+          "rangeMeters": 100.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 92.006,
+          "nearestSensorDistanceMeters": 100.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "North_Sector",
+          "rangeMeters": 100.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 94.055,
+          "nearestSensorDistanceMeters": 100.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "NorthEast_Sector",
+          "rangeMeters": 100.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 92.006,
+          "nearestSensorDistanceMeters": 100.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "East_Sector",
+          "rangeMeters": 100.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 94.564,
+          "nearestSensorDistanceMeters": 100.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Central_Sector",
+          "rangeMeters": 100.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 92.006,
+          "nearestSensorDistanceMeters": 100.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "City_Sector",
+          "rangeMeters": 100.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 94.054,
+          "nearestSensorDistanceMeters": 100.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "South_Sector",
+          "rangeMeters": 100.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 92.006,
+          "nearestSensorDistanceMeters": 100.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rangeMeters": 250.0,
+      "trialCount": 8,
+      "passCount": 8,
+      "passRate": 1.0,
+      "decisionCounts": {
+        "CONFIRMED_TRACK": 8
+      },
+      "trials": [
+        {
+          "siteId": "West_Sector",
+          "rangeMeters": 250.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 244.744,
+          "nearestSensorDistanceMeters": 250.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Jurong_Sector",
+          "rangeMeters": 250.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 241.811,
+          "nearestSensorDistanceMeters": 250.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "North_Sector",
+          "rangeMeters": 250.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 243.482,
+          "nearestSensorDistanceMeters": 250.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "NorthEast_Sector",
+          "rangeMeters": 250.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 241.811,
+          "nearestSensorDistanceMeters": 250.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "East_Sector",
+          "rangeMeters": 250.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 244.744,
+          "nearestSensorDistanceMeters": 250.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Central_Sector",
+          "rangeMeters": 250.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 241.81,
+          "nearestSensorDistanceMeters": 250.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "City_Sector",
+          "rangeMeters": 250.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 243.48,
+          "nearestSensorDistanceMeters": 250.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "South_Sector",
+          "rangeMeters": 250.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 241.811,
+          "nearestSensorDistanceMeters": 250.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rangeMeters": 500.0,
+      "trialCount": 8,
+      "passCount": 8,
+      "passRate": 1.0,
+      "decisionCounts": {
+        "CONFIRMED_TRACK": 8
+      },
+      "trials": [
+        {
+          "siteId": "West_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 495.043,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Jurong_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.484,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "North_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 492.527,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "NorthEast_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.483,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "East_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 495.043,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Central_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.482,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "City_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 492.523,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "South_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.484,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rangeMeters": 1000.0,
+      "trialCount": 8,
+      "passCount": 8,
+      "passRate": 1.0,
+      "decisionCounts": {
+        "CONFIRMED_TRACK": 8
+      },
+      "trials": [
+        {
+          "siteId": "West_Sector",
+          "rangeMeters": 1000.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 995.637,
+          "nearestSensorDistanceMeters": 1000.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Jurong_Sector",
+          "rangeMeters": 1000.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 990.825,
+          "nearestSensorDistanceMeters": 1000.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "North_Sector",
+          "rangeMeters": 1000.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 990.612,
+          "nearestSensorDistanceMeters": 1000.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "NorthEast_Sector",
+          "rangeMeters": 1000.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 990.823,
+          "nearestSensorDistanceMeters": 1000.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "East_Sector",
+          "rangeMeters": 1000.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 995.636,
+          "nearestSensorDistanceMeters": 1000.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Central_Sector",
+          "rangeMeters": 1000.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 990.82,
+          "nearestSensorDistanceMeters": 1000.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "City_Sector",
+          "rangeMeters": 1000.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 990.605,
+          "nearestSensorDistanceMeters": 1000.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "South_Sector",
+          "rangeMeters": 1000.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 990.825,
+          "nearestSensorDistanceMeters": 1000.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "weatherAt500Meters": [
+    {
+      "weatherId": "CLEAR",
+      "profile": "Clear",
+      "rainRateMillimetersPerHour": 0.0,
+      "visibilityMeters": 30000.0,
+      "trialCount": 8,
+      "confirmedTrackCount": 8,
+      "operatorCueCount": 8,
+      "decisionCounts": {
+        "CONFIRMED_TRACK": 8
+      },
+      "trials": [
+        {
+          "siteId": "West_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 495.043,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Jurong_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.484,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "North_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 492.527,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "NorthEast_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.483,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "East_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 495.043,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Central_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.482,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "City_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 492.523,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "South_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Clear",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.8836,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.484,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "weatherId": "MONSOON",
+      "profile": "Monsoon",
+      "rainRateMillimetersPerHour": 50.0,
+      "visibilityMeters": 1500.0,
+      "trialCount": 8,
+      "confirmedTrackCount": 8,
+      "operatorCueCount": 8,
+      "decisionCounts": {
+        "CONFIRMED_TRACK": 8
+      },
+      "trials": [
+        {
+          "siteId": "West_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Monsoon",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 495.043,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Jurong_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Monsoon",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.484,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "North_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Monsoon",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 492.527,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "NorthEast_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Monsoon",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.483,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "East_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Monsoon",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 495.043,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Central_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Monsoon",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.482,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "City_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Monsoon",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 492.523,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "South_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "Monsoon",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.484,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "weatherId": "DENSE_FOG",
+      "profile": "DenseFog",
+      "rainRateMillimetersPerHour": 5.0,
+      "visibilityMeters": 500.0,
+      "trialCount": 8,
+      "confirmedTrackCount": 8,
+      "operatorCueCount": 8,
+      "decisionCounts": {
+        "CONFIRMED_TRACK": 8
+      },
+      "trials": [
+        {
+          "siteId": "West_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "DenseFog",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 495.043,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Jurong_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "DenseFog",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.484,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "North_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "DenseFog",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 492.527,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "NorthEast_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "DenseFog",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.483,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "East_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "DenseFog",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 495.043,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "Central_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "DenseFog",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.482,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "City_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "DenseFog",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 492.523,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        },
+        {
+          "siteId": "South_Sector",
+          "rangeMeters": 500.0,
+          "weatherProfile": "DenseFog",
+          "pass": true,
+          "decision": "CONFIRMED_TRACK",
+          "confirmationTier": "CONFIRMED",
+          "operatorCueActive": true,
+          "activeModalities": [
+            "EO_PTZ",
+            "SEARCH_RADAR",
+            "THERMAL_PTZ"
+          ],
+          "activeModalityFamilies": [
+            "active_radar",
+            "passive_rf",
+            "visual"
+          ],
+          "fusedEvidenceScore": 0.82,
+          "searchRadarAccepted": true,
+          "ptzConfirmationsAccepted": 2,
+          "rejectedEvidenceCount": 0,
+          "positionMeasurementDerived": true,
+          "approachState": "APPROACHING",
+          "distanceToPerimeterMeters": 491.484,
+          "nearestSensorDistanceMeters": 500.0,
+          "visualBoxProvenance": [
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            },
+            {
+              "kind": "SIMULATED_SENSOR_CONFIRMATION",
+              "source": "SIMULATION_PROJECTION",
+              "modelId": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "negativeCases": {
+    "lowScoreFalseAlarm": {
+      "passed": true,
+      "result": {
+        "siteId": "West_Sector",
+        "rangeMeters": 1000.0,
+        "weatherProfile": "Clear",
+        "pass": false,
+        "decision": "BELOW_DETECTION_THRESHOLD",
+        "confirmationTier": "UNCONFIRMED",
+        "operatorCueActive": false,
+        "activeModalities": [
+          "SEARCH_RADAR"
+        ],
+        "activeModalityFamilies": [],
+        "fusedEvidenceScore": 0.188,
+        "searchRadarAccepted": true,
+        "ptzConfirmationsAccepted": 0,
+        "rejectedEvidenceCount": 0,
+        "positionMeasurementDerived": true,
+        "approachState": "APPROACHING",
+        "distanceToPerimeterMeters": 995.637,
+        "nearestSensorDistanceMeters": 1000.0,
+        "visualBoxProvenance": []
+      }
+    },
+    "staleRadarRejectsDependentPtz": {
+      "passed": true,
+      "result": {
+        "siteId": "Jurong_Sector",
+        "rangeMeters": 1000.0,
+        "weatherProfile": "Clear",
+        "pass": false,
+        "decision": "NO_CURRENT_EVIDENCE",
+        "confirmationTier": "UNCONFIRMED",
+        "operatorCueActive": false,
+        "activeModalities": [],
+        "activeModalityFamilies": [],
+        "fusedEvidenceScore": 0.0,
+        "searchRadarAccepted": false,
+        "ptzConfirmationsAccepted": 0,
+        "rejectedEvidenceCount": 3,
+        "positionMeasurementDerived": false,
+        "approachState": "DEPARTING",
+        "distanceToPerimeterMeters": 946.695,
+        "nearestSensorDistanceMeters": null,
+        "visualBoxProvenance": []
+      }
+    },
+    "occludedPtzCannotConfirm": {
+      "passed": true,
+      "result": {
+        "siteId": "North_Sector",
+        "rangeMeters": 1000.0,
+        "weatherProfile": "Clear",
+        "pass": false,
+        "decision": "HOLD_FOR_CORROBORATION",
+        "confirmationTier": "UNCONFIRMED",
+        "operatorCueActive": false,
+        "activeModalities": [
+          "SEARCH_RADAR"
+        ],
+        "activeModalityFamilies": [
+          "active_radar"
+        ],
+        "fusedEvidenceScore": 0.8836,
+        "searchRadarAccepted": true,
+        "ptzConfirmationsAccepted": 0,
+        "rejectedEvidenceCount": 2,
+        "positionMeasurementDerived": true,
+        "approachState": "APPROACHING",
+        "distanceToPerimeterMeters": 990.612,
+        "nearestSensorDistanceMeters": 1000.0,
+        "visualBoxProvenance": []
+      }
+    }
+  },
+  "provenanceInvariant": {
+    "boxKind": "SIMULATED_SENSOR_CONFIRMATION",
+    "boxSource": "SIMULATION_PROJECTION",
+    "learnedModelOutput": false,
+    "eoFrame": "Unreal rendered RGB pixels; simulated projection confirmation",
+    "thermalFrame": "synthetic Unreal thermal-like pixels; simulated projection confirmation",
+    "eoBoxAndRadarRangeCountedAsSeparateEvidence": false
+  },
+  "limitations": [
+    "Confidence values are declared deterministic audit inputs, not calibrated probabilities.",
+    "The audit verifies software contracts, fusion gates, geometry conversion, provenance, and fail-closed behavior.",
+    "It does not establish physical probability of detection, false-alarm rate, recognition range, atmospheric transfer accuracy, or hardware performance.",
+    "Real acceptance requires measured datasets, calibrated sensors, surveyed geometry, representative backgrounds, and statistically powered trials."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "model_id": "oak_drone_yolo11s_960_best",
+  "modality": "rgb_detector_with_separate_depth_ranging",
+  "class_names": {
+    "0": "drone"
+  },
+  "model_path": "oak_drone_yolo11s_960_best.pt",
+  "model_sha256": "14DD5B34C4A7CCC69E268F417CE6C3A410085E06B6CCDEE9F52597855D8AF4C5",
+  "source_archive": "OAK-Drone-Detector.zip",
+  "source_archive_sha256": "02880436AFAFF6074D56E401CEDF0441700DAD483831EA65D1C7FC9CCB0D6A75",
+  "source_entry": "OAK-Drone-Detector/runs/drone_yolo11s_960/weights/best.pt",
+  "trusted_by": "explicit_user_provided_archive",
+  "inference_contract": {
+    "runtime": "ultralytics_yolo",
+    "input": "BGR uint8 RGB camera image; Ultralytics performs centered letterbox, BGR-to-RGB, BCHW conversion, and 0-to-1 scaling",
+    "image_size": 832,
+    "confidence_threshold": 0.25,
+    "iou_threshold": 0.5,
+    "maximum_detections": 10,
+    "box_convention": "original-image pixel xyxy after Ultralytics postprocessing",
+    "depth_role": "post-detection distance estimation only; depth is not a neural-network input",
+    "depth_estimator": "15 percent inset then full-box fallback; minimum 20 valid pixels; foreground-biased 35th percentile"
+  },
+  "license_note": "The supplied README states that Ultralytics models/code are AGPL-3.0 unless covered by an Ultralytics enterprise license. Confirm licensing before redistribution or commercial deployment."
+}

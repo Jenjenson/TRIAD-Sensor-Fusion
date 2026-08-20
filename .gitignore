@@ -1,0 +1,52 @@
+# Python
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.venv/
+**/*.egg-info/
+.coverage
+htmlcov/
+
+# Model artifacts are distributed separately after license review.
+core/models/*.pt
+core/models/*.pth
+core/models/*.engine
+core/models/*.onnx
+core/models/*.ckpt
+
+# Unreal generated state and large simulation exports
+**/Binaries/
+**/Build/
+**/DerivedDataCache/
+**/Intermediate/
+**/Saved/
+*.sln
+*.VC.db
+*.VC.opendb
+*.opensdf
+*.sdf
+*.suo
+*.xcodeproj
+cesium-request-cache.sqlite*
+
+# Globe-C2 / Node generated state
+**/node_modules/
+**/.next/
+**/*.tsbuildinfo
+**/next-env.d.ts
+**/data/*.db*
+
+# Credentials and local overrides
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+*.p12
+
+# Runtime output
+outputs/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
