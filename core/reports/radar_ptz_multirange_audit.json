@@ -39,7 +39,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -78,7 +79,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -117,7 +119,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -156,7 +159,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -195,7 +199,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -234,7 +239,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -273,7 +279,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -312,7 +319,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -362,7 +370,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -401,7 +410,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -440,7 +450,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -479,7 +490,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -518,7 +530,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -557,7 +570,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -596,7 +610,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -635,7 +650,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -685,7 +701,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -724,7 +741,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -763,7 +781,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -802,7 +821,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -841,7 +861,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -880,7 +901,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -919,7 +941,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -958,7 +981,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1008,7 +1032,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1047,7 +1072,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1086,7 +1112,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1125,7 +1152,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1164,7 +1192,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1203,7 +1232,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1242,7 +1272,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1281,7 +1312,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1331,7 +1363,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1370,7 +1403,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1409,7 +1443,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1448,7 +1483,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1487,7 +1523,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1526,7 +1563,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1565,7 +1603,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1604,7 +1643,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1659,7 +1699,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1698,7 +1739,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1737,7 +1779,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1776,7 +1819,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1815,7 +1859,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1854,7 +1899,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1893,7 +1939,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1932,7 +1979,8 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
@@ -1985,14 +2033,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.807752,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2024,14 +2073,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.807752,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2063,14 +2113,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.807752,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2102,14 +2153,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.807752,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2141,14 +2193,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.807752,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2180,14 +2233,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.807752,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2219,14 +2273,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.807752,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2258,14 +2313,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.807752,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2311,14 +2367,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.8084,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2350,14 +2407,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.8084,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2389,14 +2447,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.8084,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2428,14 +2487,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.8084,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2467,14 +2527,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.8084,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2506,14 +2567,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.8084,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2545,14 +2607,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.8084,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2584,14 +2647,15 @@
           "activeModalities": [
             "EO_PTZ",
             "SEARCH_RADAR",
-            "THERMAL_PTZ"
+            "THERMAL_PTZ",
+            "WIDEBAND_RF"
           ],
           "activeModalityFamilies": [
             "active_radar",
             "passive_rf",
             "visual"
           ],
-          "fusedEvidenceScore": 0.82,
+          "fusedEvidenceScore": 0.8084,
           "searchRadarAccepted": true,
           "ptzConfirmationsAccepted": 2,
           "rejectedEvidenceCount": 0,
@@ -2657,9 +2721,9 @@
         "searchRadarAccepted": false,
         "ptzConfirmationsAccepted": 0,
         "rejectedEvidenceCount": 3,
-        "positionMeasurementDerived": false,
-        "approachState": "DEPARTING",
-        "distanceToPerimeterMeters": 946.695,
+        "positionMeasurementDerived": null,
+        "approachState": null,
+        "distanceToPerimeterMeters": null,
         "nearestSensorDistanceMeters": null,
         "visualBoxProvenance": []
       }

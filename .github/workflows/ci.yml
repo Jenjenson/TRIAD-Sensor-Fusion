@@ -26,3 +26,8 @@ jobs:
       - name: Globe-C2 bridge tests
         working-directory: integrations/globe-c2
         run: python -m unittest bridge.test_triad_bridge -v
+      - name: Install fusion API dependencies
+        run: python -m pip install -r integrations/globe-c2/service/requirements.txt
+      - name: Fusion API contract tests
+        working-directory: integrations/globe-c2
+        run: python -m unittest service.test_fusion_api -v
