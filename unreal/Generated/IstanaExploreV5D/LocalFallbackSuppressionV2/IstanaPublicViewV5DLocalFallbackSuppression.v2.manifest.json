@@ -1,0 +1,47 @@
+{
+  "authorityPolicy": {
+    "collisionEnabled": false,
+    "facadeOrApertureAuthority": false,
+    "localFallbackOnly": true,
+    "measuredHeightClaimed": false,
+    "navigationAuthority": false,
+    "providerOverlapResolved": false,
+    "renderOnly": true,
+    "rfGeometryAuthority": false,
+    "rfMaterialAuthority": false,
+    "sensorOcclusionAuthority": false,
+    "surveyOrAsBuiltAuthority": false
+  },
+  "claimStatus": "PUBLIC_VOLUNTEERED_APPROXIMATION_NOT_SURVEY_NOT_AS_BUILT_NOT_HYPERREAL_NOT_RF_MATERIAL_AUTHORITY",
+  "contract": {
+    "bytes": 6952,
+    "file": "local_fallback_suppression_v2.contract.json",
+    "sha256": "EAA570EC3F6DCA0B47CD4F346E73EE879E9C94AC951CE5FE456E3C4DFCFAB6A6"
+  },
+  "outputSetSha256": "FBE8F7D0C8BB935A3DFC2AE2953B9480902B4CCBFBE7765170FC09AF49081120",
+  "outputs": [
+    {
+      "bytes": 6354063,
+      "file": "SM_IPV5D_OSMCurrentSurroundings_Render_LocalFallbackSuppressed_v2.obj",
+      "sha256": "99175681A1F307D02D8FD01E09850AD017B782BCD4A56043F64B0EA285703110"
+    },
+    {
+      "bytes": 2645,
+      "file": "SM_IPV5D_OSMCurrentSurroundings_Render.mtl",
+      "sha256": "751DE195642892F781731EBD0F9EB3C05F23731CC674F76E7EF335E4F909342A"
+    },
+    {
+      "bytes": 94841,
+      "file": "IstanaPublicViewV5DLocalFallbackSuppression.v2.metadata.json",
+      "sha256": "31A32BCB8DAED756E0B8D90D0EE795A43B389BFB3148322A0FAC761A9BD73477"
+    }
+  ],
+  "schema": "triad.istana_explore_v5d.local_fallback_suppression_manifest.v2",
+  "sourceEpoch": "2026-08-31",
+  "status": "ADDITIVE_RENDER_ONLY_LOCAL_FALLBACK_SUCCESSOR_V2_NOT_LIVE_UE_INTEGRATED",
+  "tool": {
+    "bytes": 5633,
+    "file": "build_local_fallback_suppression_v2.py",
+    "sha256": "C8AD39B8AAA004D114850580F50CF6A8D2D5742A9D03C1E2B5D0A5D1A1A12B88"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "bEnabled": true,
+  "SampleCadenceSeconds": 0.5,
+  "TargetNameRegex": "(?i).*(istana_rf_demo|drone|uav).*",
+  "TargetActorTag": "DroneTarget",
+  "bAlwaysIncludeDrone1": false,
+  "bAttachDefaultEmitterToDiscoveredTargets": true,
+  "DefaultEmitter": {
+    "EmitterId": "IstanaAssumptionBoundEmitter",
+    "CenterFrequenciesGHz": [2.4, 5.8],
+    "TransmitPowerDbm": 20.0,
+    "TransmitAntennaGainDbi": 2.0,
+    "bEnabled": true
+  },
+  "SensorNodes": [
+    {
+      "NodeId": "Istana-South-Public-View-RF",
+      "LongitudeDegrees": 103.84288055,
+      "LatitudeDegrees": 1.3058,
+      "HeightMeters": 55.0,
+      "DetectionRangeMeters": 1000.0,
+      "SupportedFrequenciesGHz": [2.4, 5.8],
+      "ReceiveAntennaGainDbi": 8.0,
+      "ReceiverSensitivityDbm": -98.0,
+      "BandwidthMHz": 20.0,
+      "NoiseFigureDb": 5.0,
+      "SystemLossDb": 2.0,
+      "bEnabled": true,
+      "bEnableSearchRadar": false,
+      "bEnableEOPTZ": false,
+      "bEnableThermalPTZ": false
+    }
+  ],
+  "bSpawnDemoTargets": true,
+  "DemoTargets": [
+    {
+      "ActorName": "Istana_RF_Demo_Direct",
+      "SpawnCount": 1,
+      "StartLongitudeDegrees": 103.84288055,
+      "StartLatitudeDegrees": 1.3062,
+      "StartHeightMeters": 70.0,
+      "Trajectory": "Stationary",
+      "RFEmitter": {
+        "EmitterId": "IstanaAssumptionBoundEmitter",
+        "CenterFrequenciesGHz": [2.4, 5.8],
+        "TransmitPowerDbm": 20.0,
+        "TransmitAntennaGainDbi": 2.0,
+        "bEnabled": true
+      },
+      "bEnabled": true
+    },
+    {
+      "ActorName": "Istana_RF_Demo_Across_Hero",
+      "SpawnCount": 1,
+      "StartLongitudeDegrees": 103.84288055,
+      "StartLatitudeDegrees": 1.308,
+      "StartHeightMeters": 70.0,
+      "Trajectory": "Stationary",
+      "RFEmitter": {
+        "EmitterId": "IstanaAssumptionBoundEmitter",
+        "CenterFrequenciesGHz": [2.4, 5.8],
+        "TransmitPowerDbm": 20.0,
+        "TransmitAntennaGainDbi": 2.0,
+        "bEnabled": true
+      },
+      "bEnabled": true
+    }
+  ],
+  "SimulationPerimeter": {
+    "bEnabled": true,
+    "ReferenceName": "Istana_One_Kilometre_Simulation_Reference",
+    "Shape": "Circle",
+    "CenterLongitudeDegrees": 103.84288055,
+    "CenterLatitudeDegrees": 1.30709615,
+    "RadiusMeters": 1000.0,
+    "PhaseRateDeadbandMetersPerSecond": 0.25
+  },
+  "Weather": {
+    "Profile": "Clear",
+    "bApplyAirSimVisualWeather": false,
+    "bCycleProfiles": false
+  },
+  "LineOfSightTraceChannel": 0,
+  "bTraceComplex": true,
+  "bRequireLineOfSightForDetection": false,
+  "NonLineOfSightAdditionalLossDb": 30.0,
+  "bUseDedicatedRFPropagation": true,
+  "bRequireDedicatedRFReady": true,
+  "bDedicatedRFFrameIsWorldOriginIdentity": true,
+  "DedicatedRFExpectedWorldPackageName": "/Game/Maps/Istana_PublicView_Explore_v5d_hybrid",
+  "DedicatedRFGeometryResourcePath": "Plugin/Resources/RF/IstanaPublicViewRFTightV1.geometry.json",
+  "DedicatedRFMaterialCatalogResourcePath": "Plugin/Resources/RF/istana_rf_materials_tight_v1.catalog.json",
+  "DedicatedRFSceneContractResourcePath": "Plugin/Resources/RF/istana_rf_scene_tight_v1.contract.json",
+  "DedicatedRFExpectedGeometrySha256": "a3705e22b47fbe4fd38936294890e1ad620bb3c618ac3c93ca6c4719c6edc62a",
+  "DedicatedRFExpectedMaterialCatalogSha256": "0089fed936494ecd6938dc14d34ea8d5540e0896c2dc814414e071b6d1081a63",
+  "DedicatedRFExpectedSceneContractSha256": "19002f898c34c23793038c42892f122642f112bd514a0ebb05e4969dcb9ae591",
+  "DedicatedRFExpectedGeometryQueryId": "istana-public-view-rf-tight-v1-main-hero-001@catalog-sha256:0089fed936494ecd6938dc14d34ea8d5540e0896c2dc814414e071b6d1081a63",
+  "DedicatedRFExpectedMaterialCatalogId": "istana-public-view-rf-materials-tight-v1-001",
+  "DedicatedRFExpectedModeledCoverageId": "RF_COVERAGE_ISTANA_MAIN_HERO_TIGHT_V1",
+  "DedicatedRFExpectedModeledCoverageScope": "MAIN_HERO_ONLY_ASSUMPTION_BOUND",
+  "bDedicatedRFExpectedCoverageCoversOneKilometreAoi": false,
+  "bDedicatedRFExpectedCoverageCoversSurroundings": false,
+  "bVisualizeRFLinks": true,
+  "bWriteJsonl": true,
+  "bWriteCsv": true,
+  "bWriteLatestRFSnapshot": true,
+  "MaxTelemetryRecords": 200000,
+  "MaxTelemetryFileBytes": 67108864
+}

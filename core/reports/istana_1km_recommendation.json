@@ -1,0 +1,168 @@
+{
+  "schemaVersion": "triad.placement_recommendation.v1",
+  "requestId": "istana-1km-mvp",
+  "status": "FEASIBLE",
+  "algorithm": "deterministic_greedy_site_selection_v1",
+  "selectedOptions": [
+    {
+      "optionId": "opt-000",
+      "siteId": "site-center",
+      "packageId": "full-stack",
+      "orientationId": "default",
+      "failureDomainId": "istana-main-building",
+      "installedCostUnits": 2.0,
+      "location": {
+        "latitudeDegrees": 1.3070961500000793,
+        "longitudeDegrees": 103.84288055,
+        "heightMeters": 91.99331978132018,
+        "heightReference": "WGS84_ELLIPSOID"
+      }
+    },
+    {
+      "optionId": "opt-037",
+      "siteId": "site-r950-000",
+      "packageId": "full-stack",
+      "orientationId": "default",
+      "failureDomainId": "sector-0",
+      "installedCostUnits": 2.0,
+      "location": {
+        "latitudeDegrees": 1.3156876039555485,
+        "longitudeDegrees": 103.84288054999999,
+        "heightMeters": 55.071225954635096,
+        "heightReference": "WGS84_ELLIPSOID"
+      }
+    },
+    {
+      "optionId": "opt-039",
+      "siteId": "site-r950-002",
+      "packageId": "full-stack",
+      "orientationId": "default",
+      "failureDomainId": "sector-1",
+      "installedCostUnits": 2.0,
+      "location": {
+        "latitudeDegrees": 1.3131712181278303,
+        "longitudeDegrees": 103.8489165629372,
+        "heightMeters": 55.07098798140628,
+        "heightReference": "WGS84_ELLIPSOID"
+      }
+    },
+    {
+      "optionId": "opt-051",
+      "siteId": "site-r950-014",
+      "packageId": "full-stack",
+      "orientationId": "default",
+      "failureDomainId": "sector-7",
+      "installedCostUnits": 2.0,
+      "location": {
+        "latitudeDegrees": 1.3131712181278308,
+        "longitudeDegrees": 103.83684453706275,
+        "heightMeters": 55.07098798161788,
+        "heightReference": "WGS84_ELLIPSOID"
+      }
+    }
+  ],
+  "totalCostUnits": 8.0,
+  "metrics": {
+    "coverageFeasible": true,
+    "weightedCoverageFraction": 0.952380952,
+    "worstScenarioCoverageFraction": 0.952380952,
+    "weightedProgressFraction": 0.976190476,
+    "worstScenarioProgressFraction": 0.976190476,
+    "weightedComponentProgressFraction": 0.992063492,
+    "worstScenarioComponentProgressFraction": 0.992063492,
+    "criticalCoverageFraction": 1.0,
+    "coveredSampleScenarioCount": 620,
+    "sampleScenarioCount": 660,
+    "coveredCriticalSampleScenarioCount": 180,
+    "criticalSampleScenarioCount": 180,
+    "minimumContributingSiteCountAcrossCoveredPairs": 3,
+    "minimumContributingFailureDomainCountAcrossCoveredPairs": 3,
+    "selectedPhysicalSiteCount": 4,
+    "selectedFailureDomainCount": 4,
+    "coverageByScenario": {
+      "clear-rf": {
+        "coverageFraction": 0.952380952,
+        "progressFraction": 0.976190476,
+        "componentProgressFraction": 0.992063492,
+        "coveredSampleCount": 155,
+        "sampleCount": 165
+      },
+      "monsoon-rf": {
+        "coverageFraction": 0.952380952,
+        "progressFraction": 0.976190476,
+        "componentProgressFraction": 0.992063492,
+        "coveredSampleCount": 155,
+        "sampleCount": 165
+      },
+      "haze-rf": {
+        "coverageFraction": 0.952380952,
+        "progressFraction": 0.976190476,
+        "componentProgressFraction": 0.992063492,
+        "coveredSampleCount": 155,
+        "sampleCount": 165
+      },
+      "clear-rf-silent": {
+        "coverageFraction": 0.952380952,
+        "progressFraction": 0.976190476,
+        "componentProgressFraction": 0.992063492,
+        "coveredSampleCount": 155,
+        "sampleCount": 165
+      }
+    },
+    "uncoveredSampleScenarios": [
+      "clear-rf-silent/sample-agl0015-r900-002",
+      "clear-rf-silent/sample-agl0015-r900-006",
+      "clear-rf-silent/sample-agl0030-r900-002",
+      "clear-rf-silent/sample-agl0030-r900-006",
+      "clear-rf-silent/sample-agl0060-r900-002",
+      "clear-rf-silent/sample-agl0060-r900-006",
+      "clear-rf-silent/sample-agl0120-r900-002",
+      "clear-rf-silent/sample-agl0120-r900-006",
+      "clear-rf-silent/sample-agl0200-r900-002",
+      "clear-rf-silent/sample-agl0200-r900-006",
+      "clear-rf/sample-agl0015-r900-002",
+      "clear-rf/sample-agl0015-r900-006",
+      "clear-rf/sample-agl0030-r900-002",
+      "clear-rf/sample-agl0030-r900-006",
+      "clear-rf/sample-agl0060-r900-002",
+      "clear-rf/sample-agl0060-r900-006",
+      "clear-rf/sample-agl0120-r900-002",
+      "clear-rf/sample-agl0120-r900-006",
+      "clear-rf/sample-agl0200-r900-002",
+      "clear-rf/sample-agl0200-r900-006",
+      "haze-rf/sample-agl0015-r900-002",
+      "haze-rf/sample-agl0015-r900-006",
+      "haze-rf/sample-agl0030-r900-002",
+      "haze-rf/sample-agl0030-r900-006",
+      "haze-rf/sample-agl0060-r900-002",
+      "haze-rf/sample-agl0060-r900-006",
+      "haze-rf/sample-agl0120-r900-002",
+      "haze-rf/sample-agl0120-r900-006",
+      "haze-rf/sample-agl0200-r900-002",
+      "haze-rf/sample-agl0200-r900-006",
+      "monsoon-rf/sample-agl0015-r900-002",
+      "monsoon-rf/sample-agl0015-r900-006",
+      "monsoon-rf/sample-agl0030-r900-002",
+      "monsoon-rf/sample-agl0030-r900-006",
+      "monsoon-rf/sample-agl0060-r900-002",
+      "monsoon-rf/sample-agl0060-r900-006",
+      "monsoon-rf/sample-agl0120-r900-002",
+      "monsoon-rf/sample-agl0120-r900-006",
+      "monsoon-rf/sample-agl0200-r900-002",
+      "monsoon-rf/sample-agl0200-r900-006"
+    ],
+    "uncoveredCriticalSampleScenarios": [],
+    "policy": {
+      "minimumFamilyCount": 2,
+      "minimumSiteRedundancy": 2,
+      "minimumFailureDomainRedundancy": 2,
+      "minimumCoverageFraction": 0.95,
+      "coFamilyModalitiesCountOnce": true
+    }
+  },
+  "infeasibilityReasons": [],
+  "inputDigest": "46b1b2b849ca444310c4966509b9599b0ca18f2751fd93a8e751a5e908c5db5e",
+  "recommendationDigest": "147e086b36ae29f2c2b0630161ce9d9bca82b78faba6bae2493d68dc93c4798c",
+  "scoreSemantics": "simulation placement coverage and evidence indexes; not calibrated probabilities, field performance, or site authorization",
+  "reviewRequired": true
+}

@@ -4,6 +4,7 @@
 #include "TRIADSensorFusionWorldSubsystem.generated.h"
 
 class ATRIADSensorFusionScenarioManager;
+class ATRIADAdversarialTrainingManager;
 
 /** PIE/Game-only bootstrap. Its creation is gated by the enabled project JSON config. */
 UCLASS()
@@ -22,4 +23,7 @@ protected:
 private:
     UPROPERTY(Transient)
     TObjectPtr<ATRIADSensorFusionScenarioManager> ScenarioManager;
+
+    UPROPERTY(Transient)
+    TObjectPtr<ATRIADAdversarialTrainingManager> AdversarialTrainingManager;
 };

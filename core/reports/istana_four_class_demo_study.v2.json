@@ -1,0 +1,1903 @@
+{
+  "artifactSha256": "6c6cad94da9ec4578227bfc596b3ea1748243a67d16779c0014772a4ce2e3975",
+  "candidateTrajectoryPrecompute": {
+    "allCandidateTrajectorySensorRowsPresent": true,
+    "artifactSha256": "fa974546812886cc81bfc920686d7c2a863d4d4e5bcb04c810b214f5d573b78a",
+    "bindings": {
+      "calibrationBundleSha256": "b2f3d729886fa1cb9246525ec56ddb50d76c6e81a25f2efb99e6a1450f3f92c5",
+      "inputSha256": "4b8a1ee840a4e74b5a3609b0c7fbf09f4f3fec0209c64a8d12963a85719f7c4c",
+      "rfGeometryReceiptSha256": "9eecabe2296981306ce3015df62f957cb141bec1570b90d1537210d62e27f320"
+    },
+    "candidates": [
+      {
+        "candidateId": "demo-centre",
+        "costUnits": 3.0,
+        "failureDomainId": "demo-domain-centre",
+        "poseEnuMeters": [
+          0.0,
+          0.0,
+          28.0
+        ],
+        "sensorClasses": [
+          "radar",
+          "passive_rf",
+          "rgb",
+          "event_camera"
+        ],
+        "siteId": "demo-site-centre",
+        "yawDegrees": 0.0
+      },
+      {
+        "candidateId": "demo-east",
+        "costUnits": 2.2,
+        "failureDomainId": "demo-domain-east",
+        "poseEnuMeters": [
+          600.0,
+          0.0,
+          18.0
+        ],
+        "sensorClasses": [
+          "radar",
+          "passive_rf",
+          "rgb",
+          "event_camera"
+        ],
+        "siteId": "demo-site-east",
+        "yawDegrees": 180.0
+      },
+      {
+        "candidateId": "demo-north",
+        "costUnits": 2.4,
+        "failureDomainId": "demo-domain-north",
+        "poseEnuMeters": [
+          0.0,
+          600.0,
+          18.0
+        ],
+        "sensorClasses": [
+          "radar",
+          "passive_rf",
+          "rgb",
+          "event_camera"
+        ],
+        "siteId": "demo-site-north",
+        "yawDegrees": -90.0
+      },
+      {
+        "candidateId": "demo-south",
+        "costUnits": 2.3,
+        "failureDomainId": "demo-domain-south",
+        "poseEnuMeters": [
+          0.0,
+          -600.0,
+          18.0
+        ],
+        "sensorClasses": [
+          "radar",
+          "passive_rf",
+          "rgb",
+          "event_camera"
+        ],
+        "siteId": "demo-site-south",
+        "yawDegrees": 90.0
+      },
+      {
+        "candidateId": "demo-west",
+        "costUnits": 2.1,
+        "failureDomainId": "demo-domain-west",
+        "poseEnuMeters": [
+          -600.0,
+          0.0,
+          18.0
+        ],
+        "sensorClasses": [
+          "radar",
+          "passive_rf",
+          "rgb",
+          "event_camera"
+        ],
+        "siteId": "demo-site-west",
+        "yawDegrees": 0.0
+      }
+    ],
+    "exactSimulatorReplayComplete": false,
+    "executionClass": "DEMO_STUDY_ONLY",
+    "fieldPerformanceClaimed": false,
+    "measuredCalibrationUsed": false,
+    "physicalDeploymentAuthorized": false,
+    "results": [
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 0.4,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 4.5,
+        "meanQuality": 0.189438691,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.60325321,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 0.8,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 1.5,
+        "meanQuality": 0.460338932,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 0.4,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 4.5,
+        "meanQuality": 0.182870552,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.641758735,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 0.8,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 1.5,
+        "meanQuality": 0.500368404,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.564747686,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 0.8,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 1.5,
+        "meanQuality": 0.410302091,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 0.8,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 1.5,
+        "meanQuality": 0.500368404,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-centre",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 0.4,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.188146858,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.759697373,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.660868616,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 0.4,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.175278848,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.011521548,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.424516516,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 0.6,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.22722041,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.040941623,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.007519326,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.373574534,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 0.4,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 4.5,
+        "meanQuality": 0.186320736,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.020686294,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 0.2,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 6.0,
+        "meanQuality": 0.098683806,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-east",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.010370218,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.008247003,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.399045525,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 0.6,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.209042777,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.024995938,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 0.4,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.262852228,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.808188695,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.718335452,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 0.4,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.287094665,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 0.6,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.212260341,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 0.2,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 6.0,
+        "meanQuality": 0.080920721,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.005410548,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.01115771,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 0.6,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.22722041,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-north",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.03964873,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.008247003,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.399045525,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 0.6,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.209042777,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.024995938,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 0.6,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.241204933,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 0.2,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 6.0,
+        "meanQuality": 0.098683806,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.010708377,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 0.4,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.171545665,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.711206052,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.589035071,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 0.2,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.145058357,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.01115771,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 0.6,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.22722041,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-south",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.03964873,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 0.6,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.226732637,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 0.2,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 6.0,
+        "meanQuality": 0.090789101,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.006537746,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-haze-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.011521548,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.424516516,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 0.6,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.22722041,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.040941623,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.007519326,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.373574534,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 0.4,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 4.5,
+        "meanQuality": 0.186320736,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.020686294,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 0.4,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.254551632,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "event_camera",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 0.0,
+        "evidenceFamily": "passive_rf",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": null,
+        "meanQuality": 0.0,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "passive_rf",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 1.0,
+        "evidenceFamily": "active_radar",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 0.0,
+        "meanQuality": 0.718335452,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "radar",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      },
+      {
+        "candidateId": "demo-west",
+        "detectionFraction": 0.4,
+        "evidenceFamily": "visual",
+        "exactSimulatorReplay": false,
+        "firstDetectionSeconds": 3.0,
+        "meanQuality": 0.278028518,
+        "measuredCalibration": false,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfGeometryQueried": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorClass": "rgb",
+        "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      }
+    ],
+    "revision": 1,
+    "rfGeometryQueried": false,
+    "schemaVersion": "triad.candidate_trajectory_precompute.v1",
+    "scoreSemantics": "SYNTHETIC_DEMO_EVIDENCE_INDEX_NOT_A_PROBABILITY",
+    "sourceClass": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+    "trajectories": [
+      {
+        "critical": true,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "points": [
+          {
+            "enuMeters": [
+              900.0,
+              0.0,
+              60.0
+            ],
+            "timeSeconds": 0.0
+          },
+          {
+            "enuMeters": [
+              700.0,
+              0.0,
+              60.0
+            ],
+            "timeSeconds": 1.5
+          },
+          {
+            "enuMeters": [
+              500.0,
+              0.0,
+              60.0
+            ],
+            "timeSeconds": 3.0
+          },
+          {
+            "enuMeters": [
+              300.0,
+              0.0,
+              60.0
+            ],
+            "timeSeconds": 4.5
+          },
+          {
+            "enuMeters": [
+              100.0,
+              0.0,
+              60.0
+            ],
+            "timeSeconds": 6.0
+          }
+        ],
+        "rfEmitting": true,
+        "scenarioId": "demo-haze-emitting",
+        "sensorQualityFactors": {
+          "event_camera": 0.68,
+          "passive_rf": 0.94,
+          "radar": 0.92,
+          "rgb": 0.58
+        },
+        "trajectoryId": "demo-ingress-east"
+      },
+      {
+        "critical": true,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "points": [
+          {
+            "enuMeters": [
+              0.0,
+              900.0,
+              60.0
+            ],
+            "timeSeconds": 0.0
+          },
+          {
+            "enuMeters": [
+              0.0,
+              700.0,
+              60.0
+            ],
+            "timeSeconds": 1.5
+          },
+          {
+            "enuMeters": [
+              0.0,
+              500.0,
+              60.0
+            ],
+            "timeSeconds": 3.0
+          },
+          {
+            "enuMeters": [
+              0.0,
+              300.0,
+              60.0
+            ],
+            "timeSeconds": 4.5
+          },
+          {
+            "enuMeters": [
+              0.0,
+              100.0,
+              60.0
+            ],
+            "timeSeconds": 6.0
+          }
+        ],
+        "rfEmitting": true,
+        "scenarioId": "demo-clear-emitting",
+        "sensorQualityFactors": {
+          "event_camera": 0.95,
+          "passive_rf": 1.0,
+          "radar": 1.0,
+          "rgb": 0.95
+        },
+        "trajectoryId": "demo-ingress-north"
+      },
+      {
+        "critical": true,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "points": [
+          {
+            "enuMeters": [
+              0.0,
+              -900.0,
+              60.0
+            ],
+            "timeSeconds": 0.0
+          },
+          {
+            "enuMeters": [
+              0.0,
+              -700.0,
+              60.0
+            ],
+            "timeSeconds": 1.5
+          },
+          {
+            "enuMeters": [
+              0.0,
+              -500.0,
+              60.0
+            ],
+            "timeSeconds": 3.0
+          },
+          {
+            "enuMeters": [
+              0.0,
+              -300.0,
+              60.0
+            ],
+            "timeSeconds": 4.5
+          },
+          {
+            "enuMeters": [
+              0.0,
+              -100.0,
+              60.0
+            ],
+            "timeSeconds": 6.0
+          }
+        ],
+        "rfEmitting": true,
+        "scenarioId": "demo-monsoon-emitting",
+        "sensorQualityFactors": {
+          "event_camera": 0.62,
+          "passive_rf": 0.88,
+          "radar": 0.82,
+          "rgb": 0.48
+        },
+        "trajectoryId": "demo-ingress-south"
+      },
+      {
+        "critical": true,
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "points": [
+          {
+            "enuMeters": [
+              -900.0,
+              0.0,
+              60.0
+            ],
+            "timeSeconds": 0.0
+          },
+          {
+            "enuMeters": [
+              -700.0,
+              0.0,
+              60.0
+            ],
+            "timeSeconds": 1.5
+          },
+          {
+            "enuMeters": [
+              -500.0,
+              0.0,
+              60.0
+            ],
+            "timeSeconds": 3.0
+          },
+          {
+            "enuMeters": [
+              -300.0,
+              0.0,
+              60.0
+            ],
+            "timeSeconds": 4.5
+          },
+          {
+            "enuMeters": [
+              -100.0,
+              0.0,
+              60.0
+            ],
+            "timeSeconds": 6.0
+          }
+        ],
+        "rfEmitting": false,
+        "scenarioId": "demo-clear-rf-silent",
+        "sensorQualityFactors": {
+          "event_camera": 0.92,
+          "passive_rf": 1.0,
+          "radar": 1.0,
+          "rgb": 0.92
+        },
+        "trajectoryId": "demo-ingress-west-rf-silent"
+      }
+    ]
+  },
+  "continuousPoseComparison": {
+    "comparisonSha256": "c42641ef8d5b16e5b5964723eec78e3b712361282d574d202ed80916dfd874ea",
+    "equalEvaluationBudget": true,
+    "evaluationBudgetPerMethod": 48,
+    "exactSimulatorReplayRequiredForAcceptance": true,
+    "physicalDeploymentAuthorized": false,
+    "results": [
+      {
+        "algorithm": "bounded_derivative_free_pattern_search_v1",
+        "bestPose": [
+          11.71875,
+          -7.8125,
+          3.75
+        ],
+        "bestScore": -0.00025225694444444444,
+        "evaluationBudget": 48,
+        "evaluationCount": 48,
+        "seed": null,
+        "traceSha256": "5ac92425c30b0c9853a3b9b9bdd60e652c32307b2a55f89dbca0676c8fc0cf69"
+      },
+      {
+        "algorithm": "seeded_evolutionary_pose_challenger_v1",
+        "bestPose": [
+          10.983165798063602,
+          -9.170219821999472,
+          2.285130441957395
+        ],
+        "bestScore": -0.0071129166295352386,
+        "evaluationBudget": 48,
+        "evaluationCount": 48,
+        "seed": 17,
+        "traceSha256": "cf1203b80b044e7d54b863a50f8786bf2fecbe011b007f0dcb9f2f48fc92cfb8"
+      }
+    ],
+    "schemaVersion": "triad.pose_refinement_comparison.v1",
+    "scope": "CONTINUOUS_POSE_REFINEMENT_ONLY"
+  },
+  "executionClass": "DEMO_STUDY_ONLY",
+  "fieldPerformanceClaimed": false,
+  "limitations": [
+    "All candidate permissions and physical mount suitability remain unresolved.",
+    "Per-trajectory detections are a synthetic kinematic demo surrogate, not Unreal replay or measured performance.",
+    "OneKilometreV2 geometry loads and hash-checks, but this demo surrogate does not query it for propagation.",
+    "Final candidates require exact simulator replay, measured calibration, privacy/RF approval, and independent review."
+  ],
+  "physicalDeploymentAuthorized": false,
+  "rfActualFileLoad": {
+    "authority": "SIMULATION_READY_ASSUMPTION_BOUND",
+    "counts": {
+      "partitionCells": 721,
+      "positiveVolumeOverlapPairs": 0,
+      "solids": 1094,
+      "surfaces": 13936,
+      "triangles": 42700,
+      "vertices": 23496
+    },
+    "coversOneKilometreAoi": true,
+    "externalAcceptanceContextBound": false,
+    "fieldValidated": false,
+    "files": {
+      "geometry": {
+        "name": "IstanaPublicViewRFOneKilometreV2.geometry.json",
+        "sha256": "85e654fba602b2dbc51eb64c6b66ff234c8ea1f948152612c755edc22c65da51"
+      },
+      "materialCatalog": {
+        "name": "istana_rf_materials_one_kilometre_v2.catalog.json",
+        "sha256": "210cb26ddb9b531adeb3c917606a736aefc857eb6696da485a2e63dbb8b31662"
+      },
+      "sceneContract": {
+        "name": "istana_rf_scene_one_kilometre_v2.contract.json",
+        "sha256": "fe509917ae59be0918bcd799f23dc981e00a394c6c328a7342f56b371c40bcc2"
+      }
+    },
+    "geometryAssetId": "istana-public-view-rf-one-kilometre-v2-r24c-001",
+    "materialCalibrationStates": [
+      "UNCALIBRATED_ASSUMPTION"
+    ],
+    "physicalDeploymentAuthorized": false,
+    "receiptSha256": "9eecabe2296981306ce3015df62f957cb141bec1570b90d1537210d62e27f320",
+    "revision": "OneKilometreV2-R24C",
+    "schemaVersion": "triad.rf_actual_file_load_receipt.v1",
+    "surveyControlled": false,
+    "surveyTruthReady": false
+  },
+  "schemaVersion": "triad.four_class_placement_demo_study.v1",
+  "sensorModelCalibration": {
+    "allModelsMeasured": false,
+    "bundleSha256": "b2f3d729886fa1cb9246525ec56ddb50d76c6e81a25f2efb99e6a1450f3f92c5",
+    "calibrations": [
+      {
+        "calibrationId": "demo-event-camera-v1",
+        "datasetSha256": null,
+        "evidenceClass": "SYNTHETIC_DEMO_ASSUMPTION",
+        "evidenceFamily": "visual",
+        "limitations": [
+          "Synthetic deterministic dashboard/replay input only; not fitted to measured sensor data.",
+          "No clutter, false-alarm, calibration-drift, or field-performance claim.",
+          "Does not model physical contrast thresholds, refractory behavior, or event noise."
+        ],
+        "parameters": {
+          "horizontalFovDegrees": 110.0,
+          "maximumRangeMeters": 700.0,
+          "minimumQuality": 0.25,
+          "rangeExponent": 1.45
+        },
+        "sensorClass": "event_camera"
+      },
+      {
+        "calibrationId": "demo-passive-rf-v1",
+        "datasetSha256": null,
+        "evidenceClass": "SYNTHETIC_DEMO_ASSUMPTION",
+        "evidenceFamily": "passive_rf",
+        "limitations": [
+          "Synthetic deterministic dashboard/replay input only; not fitted to measured sensor data.",
+          "No clutter, false-alarm, calibration-drift, or field-performance claim.",
+          "RF-silent targets are always ineligible in this surrogate."
+        ],
+        "parameters": {
+          "horizontalFovDegrees": 360.0,
+          "maximumRangeMeters": 1500.0,
+          "minimumQuality": 0.18,
+          "rangeExponent": 1.1
+        },
+        "sensorClass": "passive_rf"
+      },
+      {
+        "calibrationId": "demo-radar-v1",
+        "datasetSha256": null,
+        "evidenceClass": "SYNTHETIC_DEMO_ASSUMPTION",
+        "evidenceFamily": "active_radar",
+        "limitations": [
+          "Synthetic deterministic dashboard/replay input only; not fitted to measured sensor data.",
+          "No clutter, false-alarm, calibration-drift, or field-performance claim."
+        ],
+        "parameters": {
+          "horizontalFovDegrees": 360.0,
+          "maximumRangeMeters": 1200.0,
+          "minimumQuality": 0.22,
+          "rangeExponent": 1.35
+        },
+        "sensorClass": "radar"
+      },
+      {
+        "calibrationId": "demo-rgb-v1",
+        "datasetSha256": null,
+        "evidenceClass": "SYNTHETIC_DEMO_ASSUMPTION",
+        "evidenceFamily": "visual",
+        "limitations": [
+          "Synthetic deterministic dashboard/replay input only; not fitted to measured sensor data.",
+          "No clutter, false-alarm, calibration-drift, or field-performance claim.",
+          "Line of sight, illumination, privacy masks, and pixels-on-target require exact replay."
+        ],
+        "parameters": {
+          "horizontalFovDegrees": 96.0,
+          "maximumRangeMeters": 850.0,
+          "minimumQuality": 0.28,
+          "rangeExponent": 1.65
+        },
+        "sensorClass": "rgb"
+      }
+    ],
+    "fieldPerformanceClaimed": false,
+    "measuredCalibrationEvidenceBound": false,
+    "physicalDeploymentAuthorized": false,
+    "schemaVersion": "triad.sensor_model_calibration_bundle.v1",
+    "scoreSemantics": "SYNTHETIC_DEMO_EVIDENCE_INDEX_NOT_A_PROBABILITY"
+  },
+  "stage0Readiness": {
+    "blockedGateIds": [
+      "ENVIRONMENT",
+      "EVALUATION_CORPUS",
+      "EVENT_CAMERA_MODEL",
+      "FUSION_POLICY",
+      "MOUNT_PERMISSIONS_AND_RESOURCES",
+      "PASSIVE_RF_MODEL",
+      "PRIVACY",
+      "RADAR_MODEL",
+      "RF_PROPAGATION",
+      "RGB_MODEL"
+    ],
+    "blockers": [
+      "STAGE0_CONTRACT_NOT_FROZEN",
+      "UNVERIFIED_ARTIFACT_BINDINGS",
+      "READINESS_GATES_NOT_PASSED",
+      "NO_ELIGIBLE_MOUNT_REGION",
+      "GOVERNANCE_APPROVALS_INCOMPLETE",
+      "PRODUCTION_OPTIMIZER_NOT_AUTHORIZED",
+      "PHYSICAL_DEPLOYMENT_NOT_AUTHORIZED"
+    ],
+    "contractSha256": "342f6432aed2d0d103a5f1f5e19a0c7d3c6d81e053d536b60af80b9295e425ac",
+    "contractState": "DRAFT",
+    "demoStudyExecutionAllowed": true,
+    "executionClass": "DEMO_STUDY_ONLY",
+    "incompleteApprovalRoles": [
+      "MODEL_VALIDATION_LEAD",
+      "PRIVACY_REVIEWER",
+      "RF_SAFETY_REVIEWER",
+      "SITE_AUTHORITY",
+      "STUDY_OWNER"
+    ],
+    "ineligibleMountRegionIds": [
+      "example-region-pending-survey"
+    ],
+    "physicalDeploymentAuthorized": false,
+    "productionOptimizationAuthorized": false,
+    "receiptSha256": "60cc457ddc6855338ccf0d79ef36721cb425966a17d415153756b3fd647d5971",
+    "schemaVersion": "triad.stage0_readiness_receipt.v1",
+    "studyId": "istana-fixed-site-placement-stage0-example",
+    "unverifiedArtifactIds": [
+      "artifact-collision-geometry",
+      "artifact-critical-zone-catalog",
+      "artifact-event-camera-calibration",
+      "artifact-event-camera-detector",
+      "artifact-event-camera-model",
+      "artifact-fusion-policy",
+      "artifact-maintenance-envelope",
+      "artifact-map",
+      "artifact-mount-region-geometry",
+      "artifact-passive-rf-antenna-pattern",
+      "artifact-passive-rf-calibration",
+      "artifact-passive-rf-model",
+      "artifact-privacy-mask",
+      "artifact-prohibited-view-geometry",
+      "artifact-radar-antenna-pattern",
+      "artifact-radar-calibration",
+      "artifact-radar-model",
+      "artifact-render-geometry",
+      "artifact-rf-geometry",
+      "artifact-rf-materials",
+      "artifact-rf-native-test-receipt",
+      "artifact-rgb-calibration",
+      "artifact-rgb-detector",
+      "artifact-rgb-model",
+      "artifact-solver-candidates",
+      "artifact-target-trajectories",
+      "artifact-test-scenarios",
+      "artifact-train-scenarios",
+      "artifact-validation-scenarios"
+    ]
+  },
+  "staticSolverComparison": {
+    "greedyLocalBaseline": {
+      "absoluteCostOptimalityGapUnits": null,
+      "algorithm": "deterministic_greedy_local_search_v1",
+      "boundSemantics": "NOT_APPLICABLE_TO_HEURISTIC_BASELINE",
+      "exploredNodeCount": 0,
+      "incumbentObjectiveCostUnits": 4.4,
+      "infeasibilityProven": false,
+      "metrics": {
+        "coverageByScenario": {
+          "demo-clear-emitting": {
+            "coverageFraction": 1.0,
+            "progressFraction": 1.0
+          },
+          "demo-clear-rf-silent": {
+            "coverageFraction": 1.0,
+            "progressFraction": 1.0
+          },
+          "demo-haze-emitting": {
+            "coverageFraction": 1.0,
+            "progressFraction": 1.0
+          },
+          "demo-monsoon-emitting": {
+            "coverageFraction": 1.0,
+            "progressFraction": 1.0
+          }
+        },
+        "coverageFeasible": true,
+        "policy": {
+          "budgetUnits": 10.0,
+          "maximumSites": 4,
+          "minimumEvidenceFamilies": 2,
+          "minimumFailureDomainRedundancy": 2,
+          "minimumScenarioCoverageFraction": 1.0,
+          "minimumSiteRedundancy": 2
+        },
+        "selectedFailureDomainCount": 2,
+        "selectedSiteCount": 2,
+        "totalCostUnits": 4.4,
+        "uncoveredCriticalDemandIds": [],
+        "weightedCoverageFraction": 1.0,
+        "weightedProgressFraction": 1.0,
+        "worstScenarioCoverageFraction": 1.0,
+        "worstScenarioProgressFraction": 1.0
+      },
+      "nodeLimit": null,
+      "nodeLimitReached": false,
+      "objective": "MINIMIZE_TOTAL_COST_UNITS_WITH_DETERMINISTIC_LEXICOGRAPHIC_TIE_BREAKS",
+      "objectiveCostLowerBoundUnits": null,
+      "optimalityProven": false,
+      "physicalDeploymentAuthorized": false,
+      "relativeCostOptimalityGap": null,
+      "resultSha256": "e03b64a702126faecc9bce1c56c0ad5d7f5a3ea11c25100c0d58200b290e5bfa",
+      "schemaVersion": "triad.robust_static_solver_result.v2",
+      "scoreSemantics": "PRECOMPUTED_SIMULATION_EVIDENCE_INDEX",
+      "selectedCandidateIds": [
+        "demo-south",
+        "demo-west"
+      ],
+      "status": "FEASIBLE",
+      "terminationReason": "HEURISTIC_FEASIBLE_LOCAL_OPTIMUM"
+    },
+    "robustBranchAndBound": {
+      "absoluteCostOptimalityGapUnits": 0.0,
+      "algorithm": "deterministic_robust_branch_and_bound_v1",
+      "boundSemantics": "MATCHED_INCUMBENT_BY_EXHAUSTIVE_SEARCH",
+      "exploredNodeCount": 17,
+      "incumbentObjectiveCostUnits": 4.4,
+      "infeasibilityProven": false,
+      "metrics": {
+        "coverageByScenario": {
+          "demo-clear-emitting": {
+            "coverageFraction": 1.0,
+            "progressFraction": 1.0
+          },
+          "demo-clear-rf-silent": {
+            "coverageFraction": 1.0,
+            "progressFraction": 1.0
+          },
+          "demo-haze-emitting": {
+            "coverageFraction": 1.0,
+            "progressFraction": 1.0
+          },
+          "demo-monsoon-emitting": {
+            "coverageFraction": 1.0,
+            "progressFraction": 1.0
+          }
+        },
+        "coverageFeasible": true,
+        "policy": {
+          "budgetUnits": 10.0,
+          "maximumSites": 4,
+          "minimumEvidenceFamilies": 2,
+          "minimumFailureDomainRedundancy": 2,
+          "minimumScenarioCoverageFraction": 1.0,
+          "minimumSiteRedundancy": 2
+        },
+        "selectedFailureDomainCount": 2,
+        "selectedSiteCount": 2,
+        "totalCostUnits": 4.4,
+        "uncoveredCriticalDemandIds": [],
+        "weightedCoverageFraction": 1.0,
+        "weightedProgressFraction": 1.0,
+        "worstScenarioCoverageFraction": 1.0,
+        "worstScenarioProgressFraction": 1.0
+      },
+      "nodeLimit": 100000,
+      "nodeLimitReached": false,
+      "objective": "MINIMIZE_TOTAL_COST_UNITS_WITH_DETERMINISTIC_LEXICOGRAPHIC_TIE_BREAKS",
+      "objectiveCostLowerBoundUnits": 4.4,
+      "optimalityProven": true,
+      "physicalDeploymentAuthorized": false,
+      "relativeCostOptimalityGap": 0.0,
+      "resultSha256": "f317112f6587428222447403d50ac03986b459d0cb254bd45cdded991f0f179f",
+      "schemaVersion": "triad.robust_static_solver_result.v2",
+      "scoreSemantics": "PRECOMPUTED_SIMULATION_EVIDENCE_INDEX",
+      "selectedCandidateIds": [
+        "demo-south",
+        "demo-west"
+      ],
+      "status": "OPTIMAL",
+      "terminationReason": "SEARCH_EXHAUSTED_OPTIMAL"
+    },
+    "samePrecomputeArtifactSha256": "fa974546812886cc81bfc920686d7c2a863d4d4e5bcb04c810b214f5d573b78a"
+  }
+}

@@ -1,0 +1,6 @@
+# Runtime API and its contract-test client. Keep major-version ceilings so a
+# fresh clone does not silently cross an incompatible framework API boundary.
+fastapi>=0.115,<1
+pydantic>=2.8,<3
+uvicorn[standard]>=0.30,<1
+httpx>=0.27,<1

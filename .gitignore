@@ -4,6 +4,7 @@
 **/.pytest_cache/
 **/.venv/
 **/*.egg-info/
+**/HeroMaterialsV3_Determinism_*/
 .coverage
 htmlcov/
 
@@ -20,6 +21,7 @@ core/models/*.ckpt
 **/DerivedDataCache/
 **/Intermediate/
 **/Saved/
+/unreal/SourceAssets/
 *.sln
 *.VC.db
 *.VC.opendb

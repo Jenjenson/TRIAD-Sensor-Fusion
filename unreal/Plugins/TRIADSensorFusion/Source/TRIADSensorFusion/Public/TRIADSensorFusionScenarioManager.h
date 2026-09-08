@@ -1,7 +1,10 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
+#include "TRIADRFIndexedGeometryQuery.h"
+#include "TRIADRFInteractionModel.h"
 #include "TRIADSensorFusionTypes.h"
+#include <limits>
 #include "TRIADSensorFusionScenarioManager.generated.h"
 
 class ACesiumGeoreference;
@@ -46,6 +49,11 @@ private:
     void ApplyActiveWeatherProfile();
     void CycleWeatherProfile();
     double GetWeatherSpecificAttenuationDbPerKm(double FrequencyGHz) const;
+    bool InitializeDedicatedRFPropagation(FString& OutError);
+    bool ResolveDedicatedRFResourcePath(
+        const FString& ResourceSpecification,
+        FString& OutResolvedPath,
+        FString& OutError) const;
     void DiscoverTargets(TArray<AActor*>& OutTargets) const;
     bool IsConfiguredTarget(const AActor* Actor) const;
     UTRIADRFEmitterComponent* FindOrAttachEmitter(AActor* Target);
@@ -66,6 +74,35 @@ private:
         double& OutMeasuredElevationDegrees,
         double& OutConfidence);
     bool ComputeLineOfSight(const ATRIADSensorNodeActor* Node, const AActor* Target, FString& OutBlockingActor) const;
+    struct FRFPropagationSample
+    {
+        bool bPathValid = false;
+        bool bDedicated = false;
+        bool bDegraded = false;
+        FTRIADRFPathEvaluation PathEvaluation;
+        FString PropagationMode;
+        FString Readiness;
+        FString FailureReason;
+        bool bAoiAdmissionRequired = false;
+        bool bAoiEndpointsAdmitted = false;
+        FString AoiAdmissionDomainId;
+        double TransmitterAoiSignedDistanceMeters = std::numeric_limits<double>::quiet_NaN();
+        double ReceiverAoiSignedDistanceMeters = std::numeric_limits<double>::quiet_NaN();
+        FVector GeometryTransmitterCentimeters = FVector::ZeroVector;
+        FVector GeometryReceiverCentimeters = FVector::ZeroVector;
+        bool bGeometryFrameTransformValid = false;
+    };
+    bool EvaluateDedicatedRFPath(
+        const FVector& TransmitterWorldCentimeters,
+        const FVector& ReceiverWorldCentimeters,
+        double FrequencyGHz,
+        FRFPropagationSample& OutSample) const;
+    void AddRFPropagationTelemetryFields(
+        const TSharedRef<class FJsonObject>& Json,
+        const FRFPropagationSample& Propagation,
+        double SystemLossDb,
+        double WeatherLossDb) const;
+    TSharedRef<class FJsonObject> MakeRFPropagationStatusJson() const;
     void EmitRFEarlyWarningCue(
         AActor* Target,
         const TMap<FString, double>& ConfirmingNodeDistancesMeters,
@@ -105,6 +142,17 @@ private:
     bool bAirSimVisualWeatherApplied = false;
     bool bAirSimWeatherInitialized = false;
     bool bAirSimWeatherActorsVerified = false;
+    TUniquePtr<FTRIADRFIndexedGeometryQuery> DedicatedRFGeometryQuery;
+    TUniquePtr<FTRIADDeterministicRFInteractionModel> DedicatedRFInteractionModel;
+    FTRIADRFIndexedGeometryMetadata DedicatedRFMetadata;
+    FString ActiveRFPropagationMode = TEXT("LEGACY_VISIBILITY_BINARY_NLOS");
+    FString DedicatedRFReadiness = TEXT("DEDICATED_RF_DISABLED_LEGACY_MODE");
+    FString DedicatedRFFailureReason;
+    FString DedicatedRFGeometrySha256;
+    FString DedicatedRFMaterialCatalogSha256;
+    FString DedicatedRFSceneContractSha256;
+    bool bDedicatedRFReady = false;
+    bool bDedicatedRFDegraded = false;
     FString TelemetryDirectory;
     FString JsonlTelemetryPath;
     FString CsvTelemetryPath;

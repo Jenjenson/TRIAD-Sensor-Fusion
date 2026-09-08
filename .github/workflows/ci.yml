@@ -16,13 +16,33 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-          cache-dependency-path: core/pyproject.toml
+          cache-dependency-path: |
+            core/pyproject.toml
+            integrations/globe-c2/service/requirements.txt
       - name: Install core
         run: python -m pip install -e "./core[test]"
       - name: Core tests
         run: python -m unittest discover -s core/tests -p "test_*.py" -v
-      - name: Unreal source-contract tests
-        run: python -m unittest discover -s unreal/Plugins/TRIADSensorFusion/Tests -p "test_*.py" -v
+      - name: Unreal repository-only source contracts
+        working-directory: unreal/Plugins/TRIADSensorFusion/Tests
+        run: |
+          # The complete Unreal contract directory also contains native-machine,
+          # release-bundle, and visual-acceptance checks. Those intentionally
+          # require ignored SourceAssets and are run by the documented local
+          # validation workflows, not by a source-only GitHub checkout.
+          python -m unittest -v \
+            test_airsim_optical_flow_ue55_repair_contract \
+            test_istana_explore_free_roam_contract \
+            test_istana_explore_v5d_context_policy_successor_contract \
+            test_istana_explore_v5d_current_view_provider_workload_contract \
+            test_istana_explore_v5d_fountain_realism_contract \
+            test_istana_explore_v5d_hybrid_contract \
+            test_istana_explore_v5d_runtime_geospatial_anchor_contract \
+            test_operator_dashboard_launcher_contract \
+            test_rf_one_kilometre_actual_file_native_transaction_contract \
+            test_rf_one_kilometre_v2_runtime_contract \
+            test_rl_source_closure_contract \
+            test_start_istana_simulation_launcher_contract
       - name: Globe-C2 bridge tests
         working-directory: integrations/globe-c2
         run: python -m unittest bridge.test_triad_bridge -v

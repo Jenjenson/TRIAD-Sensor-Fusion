@@ -19,6 +19,7 @@
 #include "Misc/Parse.h"
 #include "Misc/Paths.h"
 #include "TRIADOperatorSlateWidget.h"
+#include "TRIADGeodesy.h"
 #include "TRIADSensorNodeActor.h"
 #include "UnrealClient.h"
 
@@ -377,9 +378,14 @@ void ATRIADOperatorObserverActor::UpdateObserverCamera()
         FVector DirectionToSingapore = (SensorLocation - TargetLocation).GetSafeNormal();
         if (Georeference && SimulationPerimeter.bEnabled)
         {
+            const bool bCirclePerimeter = TRIAD::Geodesy::IsCircle(SimulationPerimeter);
             const FVector SingaporeCenter = Georeference->TransformLongitudeLatitudeHeightPositionToUnreal(FVector(
-                (SimulationPerimeter.MinimumLongitudeDegrees + SimulationPerimeter.MaximumLongitudeDegrees) * 0.5,
-                (SimulationPerimeter.MinimumLatitudeDegrees + SimulationPerimeter.MaximumLatitudeDegrees) * 0.5,
+                bCirclePerimeter
+                    ? SimulationPerimeter.CenterLongitudeDegrees
+                    : (SimulationPerimeter.MinimumLongitudeDegrees + SimulationPerimeter.MaximumLongitudeDegrees) * 0.5,
+                bCirclePerimeter
+                    ? SimulationPerimeter.CenterLatitudeDegrees
+                    : (SimulationPerimeter.MinimumLatitudeDegrees + SimulationPerimeter.MaximumLatitudeDegrees) * 0.5,
                 FMath::Max(Contact->EstimatedHeightMeters, 100.0)));
             const FVector CenterDirection = (SingaporeCenter - TargetLocation).GetSafeNormal();
             if (!CenterDirection.IsNearlyZero())

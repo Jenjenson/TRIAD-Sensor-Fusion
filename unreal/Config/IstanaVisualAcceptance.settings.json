@@ -1,0 +1,42 @@
+{
+  "SeeDocsAt": "https://microsoft.github.io/AirSim/settings/",
+  "SettingsVersion": 1.2,
+  "TRIADProfile": "VISUAL_ACCEPTANCE_ONLY",
+  "TRIADProductionSensorProfile": false,
+  "SimMode": "ComputerVision",
+  "ViewMode": "Manual",
+  "ClockType": "ScalableClock",
+  "ClockSpeed": 1.0,
+  "EnableRpc": false,
+  "RecordUIVisible": false,
+  "LogMessagesVisible": true,
+  "SubWindows": [
+    {
+      "WindowID": 0,
+      "Visible": false,
+      "CameraName": "0",
+      "ImageType": 0
+    },
+    {
+      "WindowID": 1,
+      "Visible": false,
+      "CameraName": "0",
+      "ImageType": 0
+    },
+    {
+      "WindowID": 2,
+      "Visible": false,
+      "CameraName": "0",
+      "ImageType": 0
+    }
+  ],
+  "Vehicles": {
+    "TRIADVisualAcceptanceCamera": {
+      "VehicleType": "ComputerVision",
+      "AutoCreate": true,
+      "IsFpvVehicle": false,
+      "EnableCollisions": false,
+      "Sensors": {}
+    }
+  }
+}

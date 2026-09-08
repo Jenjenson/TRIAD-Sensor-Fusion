@@ -1,0 +1,80 @@
+{
+  "schema": "triad.github_free_release_bundles.v1",
+  "githubRepository": "Jenjenson/TRIAD-Sensor-Fusion",
+  "maximumReleaseAssetBytes": 1900000000,
+  "unrealEngineVersion": "5.5",
+  "bundles": [
+    {
+      "name": "source-assets",
+      "source": "repository",
+      "basePath": "unreal",
+      "destination": "repository-unreal",
+      "includes": [
+        "SourceAssets"
+      ],
+      "excludes": [
+        "SourceAssets/IstanaDigitalTwin/Releases/*",
+        "SourceAssets/IstanaPublicViewExploreV5D/Vegetation/OuterContextVegetationCandidate/*",
+        "SourceAssets/IstanaPublicViewExploreV5D/Vegetation/OuterContextVegetationIntegration/*",
+        "*/.pytest_cache/*",
+        "*/.venv/*",
+        "*/__pycache__/*",
+        "*.pyc",
+        "*.pyo",
+        "*.log",
+        "*.tmp"
+      ]
+    },
+    {
+      "name": "unreal-project-owned",
+      "source": "unreal-project",
+      "basePath": ".",
+      "destination": "unreal-project",
+      "includes": [
+        "TRIAD.uproject",
+        "Build",
+        "Config",
+        "Content/TRIAD",
+        "Content/Maps",
+        "Content/__ExternalActors__",
+        "Content/__ExternalObjects__",
+        "Content/_GENERATED"
+      ],
+      "excludes": [
+        "*/Developers/*",
+        "*/Binaries/*",
+        "*/DerivedDataCache/*",
+        "*/Intermediate/*",
+        "*/Saved/*",
+        "Config/DefaultEngine.ini",
+        "*.pdb",
+        "*.log",
+        "*.tmp",
+        "*.sqlite",
+        "*.sqlite-*",
+        "*.pem",
+        "*.key",
+        "*.p12",
+        ".env",
+        ".env.*"
+      ]
+    },
+    {
+      "name": "portable-default-engine-config",
+      "source": "repository",
+      "basePath": "distribution/portable-unreal-project",
+      "destination": "unreal-project",
+      "includes": [
+        "Config/DefaultEngine.ini"
+      ],
+      "excludes": []
+    }
+  ],
+  "externalPrerequisites": [
+    "Unreal Engine 5.5",
+    "Cesium for Unreal",
+    "A per-device Cesium ion server/token configuration (credentials are never bundled)",
+    "AirSimTriadRuntime",
+    "Any separately licensed Epic Marketplace or Fab content referenced by a host map"
+  ]
+}

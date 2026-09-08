@@ -2,6 +2,22 @@
 
 ## Components
 
+### Istana study-area builder
+
+The `TRIADSensorFusionEditor` module creates a separate
+`/Game/Maps/Istana_1km` level from the host project's `/Game/SDTH` template.
+The builder refuses to overwrite an existing destination, changes only the
+duplicate, recentres its Cesium georeference on the Main Building, creates a
+64-point WGS84 1,000 m cartographic polygon, and configures the polygon overlay
+to cull tiles wholly outside that shape. The runtime scenario perimeter uses
+the same exact geodesic circle; its bounding box is metadata/UI context only.
+
+The custom Istana actor is a deterministic procedural public-exterior and
+collision approximation. It supplies physically open veranda/colonnade gaps,
+walls, floors, columns, stairs, roofs, openings and landscape context for Unreal
+line traces. It contains no interior, restricted-route, or operational-security
+model. The streamed surroundings remain lower fidelity.
+
 ### Unreal producer
 
 `unreal/Plugins/TRIADSensorFusion` runs in UE 5.5 Play in Editor or Game worlds. It creates Cesium-anchored sensor nodes, discovers or spawns simulated drone actors, evaluates RF links and Unreal line of sight, simulates search-radar measurements, cues EO/thermal PTZ captures, and writes bounded telemetry.
@@ -26,6 +42,41 @@ Key modules:
 ### Globe-C2 adapter
 
 `integrations/globe-c2/bridge/triad_bridge.py` validates a fresh layered snapshot, pseudonymizes scenario-bearing identifiers, maps sensors/tracks to the C2 REST contract, retries transient failures, and removes detections that are no longer active. It never regenerates observations or uses scenario truth as evidence.
+
+### Placement recommendation system
+
+`core/src/singapore_sensor_fusion/placement` implements a deterministic,
+review-required recommendation workflow. Geometry ownership is deliberately
+split:
+
+1. Unreal generates candidate mount positions, target samples, collision/LOS
+   results and effective range/FOV metadata from the current map.
+2. Python validates the request and survey, evaluates independent evidence
+   families, and selects a feasible set of physical sites and orientations.
+3. Python writes a recommendation, human-readable report and a separate
+   allow-listed `SensorNodes` patch. It never edits the live scenario config.
+4. An operator reviews the patch, creates a new isolated scenario config, and
+   replays/re-surveys the selected layout in Unreal.
+
+The contracts are:
+
+| Contract | Purpose |
+| --- | --- |
+| `triad.placement_request.v1` | AOI, sampling, sensor packages, scenarios, budget and resilience constraints |
+| `triad.placement_survey.v1` | Unreal-authoritative candidates, samples and per-modality geometry evaluations |
+| `triad.placement_recommendation.v1` | selected sites, solver mode, metrics, digests and infeasibility/unresolved reasons |
+| `triad.unreal_sensor_nodes_patch.v1` | review-only allow-listed Unreal `SensorNodes` values |
+
+Small candidate sets use complete deterministic enumeration. Larger sets use a
+deterministic greedy/pruning heuristic and are labelled as such; a heuristic
+failure is not presented as a mathematical proof of infeasibility.
+
+The lexicographic policy first maximizes worst-scenario independent-family
+coverage, then distinct-site/failure-domain resilience and margin, then
+minimizes declared planning cost and node count. Range, FOV, field of regard,
+orientation and required LOS are fail-closed gates. Visual modalities share one
+family and cannot corroborate each other. Results are simulation coverage
+indexes, not probabilities or permission to install at a site.
 
 ## Runtime order
 

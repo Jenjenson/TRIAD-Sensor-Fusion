@@ -1,6 +1,6 @@
 """Read-only audit for the simulated outside-to-Singapore approach scenario.
 
-The configured rectangle is an explicit simulation evaluation perimeter, not
+The configured shape is an explicit simulation evaluation perimeter, not
 a legal or national boundary.  The audit keeps authored scenario truth
 separate from RF detections and never performs engagement actions.
 """
@@ -16,6 +16,7 @@ from pathlib import Path
 import time
 from typing import Any, Mapping, Sequence
 
+from .geodesy import ENU, Geodetic, enu_to_geodetic, wgs84_surface_distance_m
 from .oak_rgbd import write_json_atomic
 from .paths import DEFAULT_TRIAD_CONFIG, DEFAULT_TRIAD_SENSOR_SAVED_DIR
 
@@ -33,7 +34,7 @@ APPROACH_FIELDS = (
     "ingressCorridorId",
 )
 SUPPORTED_SNAPSHOT_SCHEMAS = frozenset(
-    ("triad.live_rf_snapshot.v1", "triad.live_rf_snapshot.v2")
+    ("triad.live_rf_snapshot.v1", "triad.live_rf_snapshot.v2", "triad.live_rf_snapshot.v3")
 )
 
 
@@ -44,6 +45,14 @@ class Perimeter:
     min_lat: float
     max_lat: float
     deadband_mps: float = 0.25
+    geometry_type: str = "axis_aligned_wgs84_rectangle"
+    center_lon: float | None = None
+    center_lat: float | None = None
+    radius_m: float | None = None
+
+    @property
+    def is_circle(self) -> bool:
+        return self.geometry_type.lower() in {"circle", "wgs84_geodesic_circle"}
 
     @property
     def mid_lat_radians(self) -> float:
@@ -56,6 +65,35 @@ class Perimeter:
     @property
     def meters_per_lat_degree(self) -> float:
         return math.pi * WGS84_RADIUS_M / 180.0
+
+
+def _circle_perimeter(
+    center_lon: float,
+    center_lat: float,
+    radius_m: float,
+    *,
+    deadband_mps: float = 0.25,
+) -> Perimeter:
+    if not -180.0 <= center_lon <= 180.0 or not -90.0 <= center_lat <= 90.0:
+        raise ValueError("circle center must be valid WGS84 longitude/latitude")
+    if radius_m <= 0.0:
+        raise ValueError("circle radius must be > 0")
+    center = Geodetic(center_lat, center_lon, 0.0)
+    east = enu_to_geodetic(ENU(radius_m, 0.0, 0.0), center)
+    west = enu_to_geodetic(ENU(-radius_m, 0.0, 0.0), center)
+    north = enu_to_geodetic(ENU(0.0, radius_m, 0.0), center)
+    south = enu_to_geodetic(ENU(0.0, -radius_m, 0.0), center)
+    return Perimeter(
+        min_lon=west.longitude_deg,
+        max_lon=east.longitude_deg,
+        min_lat=south.latitude_deg,
+        max_lat=north.latitude_deg,
+        deadband_mps=deadband_mps,
+        geometry_type="wgs84_geodesic_circle",
+        center_lon=center_lon,
+        center_lat=center_lat,
+        radius_m=radius_m,
+    )
 
 
 def _finite(value: object) -> float | None:
@@ -79,6 +117,14 @@ def _perimeter_from_config(config: Mapping[str, Any]) -> Perimeter:
     raw = config.get("SimulationPerimeter")
     if not isinstance(raw, Mapping) or raw.get("bEnabled") is not True:
         raise ValueError("SimulationPerimeter must be present and enabled")
+    deadband = max(_finite(raw.get("PhaseRateDeadbandMetersPerSecond")) or 0.0, 0.0)
+    if str(raw.get("Shape") or "Rectangle").strip().lower() == "circle":
+        center_lon = _finite(raw.get("CenterLongitudeDegrees"))
+        center_lat = _finite(raw.get("CenterLatitudeDegrees"))
+        radius_m = _finite(raw.get("RadiusMeters"))
+        if center_lon is None or center_lat is None or radius_m is None:
+            raise ValueError("circular SimulationPerimeter requires a finite center and radius")
+        return _circle_perimeter(center_lon, center_lat, radius_m, deadband_mps=deadband)
     values = (
         _finite(raw.get("MinimumLongitudeDegrees")),
         _finite(raw.get("MaximumLongitudeDegrees")),
@@ -96,7 +142,7 @@ def _perimeter_from_config(config: Mapping[str, Any]) -> Perimeter:
         max_lon=max_lon,
         min_lat=min_lat,
         max_lat=max_lat,
-        deadband_mps=max(_finite(raw.get("PhaseRateDeadbandMetersPerSecond")) or 0.0, 0.0),
+        deadband_mps=deadband,
     )
 
 
@@ -104,6 +150,15 @@ def _perimeter_from_snapshot(snapshot: Mapping[str, Any]) -> Perimeter:
     raw = snapshot.get("simulationPerimeter")
     if not isinstance(raw, Mapping):
         raise ValueError("snapshot simulationPerimeter is missing")
+    geometry_type = str(raw.get("geometryType") or raw.get("shape") or "").strip().lower()
+    if geometry_type in {"circle", "wgs84_geodesic_circle"}:
+        center_lon = _finite(raw.get("centerLongitudeDegrees"))
+        center_lat = _finite(raw.get("centerLatitudeDegrees"))
+        radius_m = _finite(raw.get("radiusMeters"))
+        if center_lon is None or center_lat is None or radius_m is None:
+            raise ValueError("snapshot circular perimeter requires a finite center and radius")
+        deadband = max(_finite(raw.get("phaseRateDeadbandMetersPerSecond")) or 0.0, 0.0)
+        return _circle_perimeter(center_lon, center_lat, radius_m, deadband_mps=deadband)
     aliases = (
         ("minimumLongitudeDegrees", "minLongitudeDegrees", "minLon"),
         ("maximumLongitudeDegrees", "maxLongitudeDegrees", "maxLon"),
@@ -125,7 +180,15 @@ def _perimeter_from_snapshot(snapshot: Mapping[str, Any]) -> Perimeter:
 
 
 def signed_distance_to_perimeter_m(lon: float, lat: float, perimeter: Perimeter) -> float:
-    """Match the plugin's local equirectangular signed rectangle distance."""
+    """Match the plugin's signed rectangle or WGS84 circle distance."""
+
+    if perimeter.is_circle:
+        assert perimeter.center_lon is not None
+        assert perimeter.center_lat is not None
+        assert perimeter.radius_m is not None
+        center = Geodetic(perimeter.center_lat, perimeter.center_lon, 0.0)
+        point = Geodetic(lat, lon, 0.0)
+        return wgs84_surface_distance_m(center, point) - perimeter.radius_m
 
     x = lon * perimeter.meters_per_lon_degree
     west = perimeter.min_lon * perimeter.meters_per_lon_degree
@@ -190,11 +253,15 @@ def audit_config(config: Mapping[str, Any]) -> dict[str, Any]:
     checks.append(_check(
         "config.perimeter",
         "pass",
-        "An explicit enabled rectangular simulation perimeter is configured and labelled separately from legal boundaries.",
+        "An explicit enabled simulation perimeter is configured and labelled separately from legal boundaries.",
+        geometry_type=perimeter.geometry_type,
         min_lon=perimeter.min_lon,
         max_lon=perimeter.max_lon,
         min_lat=perimeter.min_lat,
         max_lat=perimeter.max_lat,
+        center_lon=perimeter.center_lon,
+        center_lat=perimeter.center_lat,
+        radius_m=perimeter.radius_m,
     ))
     raw_targets = config.get("DemoTargets")
     targets = [item for item in raw_targets if isinstance(item, Mapping) and item.get("bEnabled") is not False] if isinstance(raw_targets, list) else []
@@ -261,7 +328,7 @@ def audit_config(config: Mapping[str, Any]) -> dict[str, Any]:
         _check(
             "config.boundary_crossing",
             "pass" if inbound and all(route["crosses_perimeter"] for route in inbound) else "fail",
-            f"{sum(route['crosses_perimeter'] for route in inbound)}/{len(inbound)} inbound routes cross into the configured rectangle.",
+            f"{sum(route['crosses_perimeter'] for route in inbound)}/{len(inbound)} inbound routes cross into the configured perimeter.",
         ),
         _check(
             "config.outside_detection_envelope",
@@ -551,7 +618,7 @@ def render_markdown(report: Mapping[str, Any]) -> str:
         "",
         f"**Result:** `{report['overall_status']}`  ",
         f"**Generated:** {report['generated_at_utc']}  ",
-        "**Scope:** Detection-only simulation. The rectangle is an evaluation perimeter, not a legal or national boundary.",
+        "**Scope:** Detection-only simulation. The configured shape is an evaluation perimeter, not a legal or national boundary.",
         "",
         "## Static route checks",
         "",
@@ -576,7 +643,7 @@ def render_markdown(report: Mapping[str, Any]) -> str:
         "",
         "- `scenarioTargets` is authored/discovered simulation truth. Only `detectedThisSample=true`, `tracks`, and `detectedRFLinks` demonstrate RF detection.",
         "- A configured 20 km geometric range is a hard ceiling, not a promise of detection; sensitivity, frequency, weather, obstruction and link-budget gates can shorten onset range.",
-        "- `APPROACHING` means positive closure on the documented simulation rectangle while still outside. It is not a threat classification or calibrated probability.",
+        "- `APPROACHING` means positive closure on the documented simulation perimeter while still outside. It is not a threat classification or calibrated probability.",
         "- No engagement or effector behavior is present.",
         "",
     ])

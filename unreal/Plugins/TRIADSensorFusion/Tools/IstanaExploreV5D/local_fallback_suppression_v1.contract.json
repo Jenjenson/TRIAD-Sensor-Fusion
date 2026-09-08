@@ -1,0 +1,178 @@
+{
+  "schema": "triad.istana_explore_v5d.local_fallback_suppression_contract.v1",
+  "status": "ADDITIVE_RENDER_ONLY_LOCAL_FALLBACK_SUCCESSOR_NOT_LIVE_UE_INTEGRATED",
+  "claimStatus": "PUBLIC_VOLUNTEERED_APPROXIMATION_NOT_SURVEY_NOT_AS_BUILT_NOT_HYPERREAL_NOT_RF_MATERIAL_AUTHORITY",
+  "sourceEpoch": "2026-08-31",
+  "sourceInputs": [
+    {
+      "role": "canonicalGeometry",
+      "file": "IstanaPublicViewV5DSurroundings.geometry.json",
+      "bytes": 4899394,
+      "sha256": "E1C4432097C4360676E96C4B1ED4672FB5C11E37306544697A4576EC01256D62",
+      "mustRemainByteIdentical": true
+    },
+    {
+      "role": "featureMetadata",
+      "file": "IstanaPublicViewV5DSurroundings.features.json",
+      "bytes": 3248669,
+      "sha256": "6EE2FAC283BC036F1FB67055D7CB9D2613D00C6B6F267D3329C88CCC5A5D7AE6",
+      "mustRemainByteIdentical": true
+    },
+    {
+      "role": "canonicalManifest",
+      "file": "IstanaPublicViewV5DSurroundings.manifest.json",
+      "bytes": 4533,
+      "sha256": "974583C86473D55CFFE3BF8A57660E787A946CD13E688D5DE5779A962DDC40F7",
+      "mustRemainByteIdentical": true
+    },
+    {
+      "role": "canonicalRenderObj",
+      "file": "SM_IPV5D_OSMCurrentSurroundings_Render.obj",
+      "bytes": 6359246,
+      "sha256": "1612461DBC3FE8C7C760517C0A743B631CDFE23307792AEB8BB04E15855B59A3",
+      "mustRemainByteIdentical": true
+    },
+    {
+      "role": "canonicalRenderMtl",
+      "file": "SM_IPV5D_OSMCurrentSurroundings_Render.mtl",
+      "bytes": 2645,
+      "sha256": "751DE195642892F781731EBD0F9EB3C05F23731CC674F76E7EF335E4F909342A",
+      "mustRemainByteIdentical": true
+    },
+    {
+      "role": "canonicalRfObj",
+      "file": "SM_IPV5D_OSMCurrentSurroundings_RFShell.obj",
+      "bytes": 1796000,
+      "sha256": "2B329516E24C081C7773DB984510EBD1E0C87CDB522CB490170B702D5F564324",
+      "mustRemainByteIdentical": true
+    },
+    {
+      "role": "canonicalRfMtl",
+      "file": "SM_IPV5D_OSMCurrentSurroundings_RFShell.mtl",
+      "bytes": 216,
+      "sha256": "107E25A2EEB7DFF92356CFBF8E1DA99C3329CE66F75CD1AE15A6EDD8D74F1A47",
+      "mustRemainByteIdentical": true
+    }
+  ],
+  "suppression": {
+    "mode": "EXACT_RENDER_OBJ_GROUP_BLOCK_OMISSION_ONLY",
+    "reason": "DEDICATED_R24_RENDER_OVERLAY_PRESENT_LOCAL_FALLBACK_DUPLICATE",
+    "sourceKeys": [
+      {
+        "sourceKey": "OSM:way:46521250",
+        "featureIndex": 15,
+        "semanticVisualClass": "GENERIC_BUILDING_HINT",
+        "partId": "OSM:way:46521250:P00",
+        "objGroup": "OSM_way_46521250_P00",
+        "triangleRange": [868, 12],
+        "vertexRange": [464, 8],
+        "surfaceTriangles": {
+          "BOTTOM": 2,
+          "ROOF": 2,
+          "WALL": 8
+        }
+      },
+      {
+        "sourceKey": "OSM:way:1551538490",
+        "featureIndex": 1374,
+        "semanticVisualClass": "COMMERCIAL_HINT",
+        "partId": "OSM:way:1551538490:P00",
+        "objGroup": "OSM_way_1551538490_P00",
+        "triangleRange": [41976, 40],
+        "vertexRange": [23736, 22],
+        "surfaceTriangles": {
+          "BOTTOM": 9,
+          "ROOF": 9,
+          "WALL": 22
+        }
+      }
+    ],
+    "expectedCanonical": {
+      "features": 1389,
+      "polygonParts": 1391,
+      "vertexLines": 24522,
+      "textureCoordinateLines": 130632,
+      "triangles": 43544,
+      "materialTriangles": {
+        "MAT_BOTTOM_HIDDEN": 9457,
+        "MAT_COMMERCIAL_HINT": 2188,
+        "MAT_GENERIC_BUILDING_HINT": 14704,
+        "MAT_HEALTHCARE_HINT": 278,
+        "MAT_HOTEL_HINT": 414,
+        "MAT_INDUSTRIAL_HINT": 8,
+        "MAT_RELIGIOUS_HINT": 150,
+        "MAT_RESIDENTIAL_HINT": 6340,
+        "MAT_ROOF_COMMERCIAL_HINT": 1038,
+        "MAT_ROOF_GENERIC_BUILDING_HINT": 5454,
+        "MAT_ROOF_HEALTHCARE_HINT": 131,
+        "MAT_ROOF_HOTEL_HINT": 169,
+        "MAT_ROOF_INDUSTRIAL_HINT": 2,
+        "MAT_ROOF_RELIGIOUS_HINT": 53,
+        "MAT_ROOF_RESIDENTIAL_HINT": 2694,
+        "MAT_ROOF_TRANSPORT_HINT": 132,
+        "MAT_TRANSPORT_HINT": 332
+      }
+    },
+    "expectedFiltered": {
+      "visibleFeatures": 1387,
+      "visiblePolygonParts": 1389,
+      "vertexLines": 24522,
+      "textureCoordinateLines": 130632,
+      "triangles": 43492,
+      "omittedTriangles": 52,
+      "bytes": 6356433,
+      "sha256": "C4781C95EBE88387A57260BD2D8BBC4CD132BA38D26AE007F862BA81FD9F31E9",
+      "materialTriangles": {
+        "MAT_BOTTOM_HIDDEN": 9446,
+        "MAT_COMMERCIAL_HINT": 2166,
+        "MAT_GENERIC_BUILDING_HINT": 14696,
+        "MAT_HEALTHCARE_HINT": 278,
+        "MAT_HOTEL_HINT": 414,
+        "MAT_INDUSTRIAL_HINT": 8,
+        "MAT_RELIGIOUS_HINT": 150,
+        "MAT_RESIDENTIAL_HINT": 6340,
+        "MAT_ROOF_COMMERCIAL_HINT": 1029,
+        "MAT_ROOF_GENERIC_BUILDING_HINT": 5452,
+        "MAT_ROOF_HEALTHCARE_HINT": 131,
+        "MAT_ROOF_HOTEL_HINT": 169,
+        "MAT_ROOF_INDUSTRIAL_HINT": 2,
+        "MAT_ROOF_RELIGIOUS_HINT": 53,
+        "MAT_ROOF_RESIDENTIAL_HINT": 2694,
+        "MAT_ROOF_TRANSPORT_HINT": 132,
+        "MAT_TRANSPORT_HINT": 332
+      }
+    }
+  },
+  "output": {
+    "directory": "LocalFallbackSuppressionV1",
+    "filteredRenderObj": "SM_IPV5D_OSMCurrentSurroundings_Render_LocalFallbackSuppressed_v1.obj",
+    "renderMtl": "SM_IPV5D_OSMCurrentSurroundings_Render.mtl",
+    "metadata": "IstanaPublicViewV5DLocalFallbackSuppression.v1.metadata.json",
+    "manifest": "IstanaPublicViewV5DLocalFallbackSuppression.v1.manifest.json"
+  },
+  "preservationPolicy": {
+    "canonicalGeometryJsonUnchanged": true,
+    "featureMetadataJsonUnchanged": true,
+    "canonicalRenderObjUnchanged": true,
+    "canonicalRenderMtlUnchanged": true,
+    "canonicalManifestUnchanged": true,
+    "rfObjUnchanged": true,
+    "rfMtlUnchanged": true,
+    "allSourceVertexAndTextureCoordinateLinesRetainedByteForByte": true,
+    "allRemainingFaceLinesRetainedByteForByteAndInSourceOrder": true,
+    "allRemainingObjGroupAndMaterialOrderRetained": true
+  },
+  "authorityPolicy": {
+    "renderOnly": true,
+    "localFallbackOnly": true,
+    "providerOverlapResolved": false,
+    "collisionEnabled": false,
+    "navigationAuthority": false,
+    "sensorOcclusionAuthority": false,
+    "rfGeometryAuthority": false,
+    "rfMaterialAuthority": false,
+    "surveyOrAsBuiltAuthority": false,
+    "facadeOrApertureAuthority": false,
+    "measuredHeightClaimed": false
+  }
+}

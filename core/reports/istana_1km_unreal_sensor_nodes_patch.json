@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "triad.unreal_sensor_nodes_patch.v1",
+  "requestId": "istana-1km-mvp",
+  "sourceRecommendationDigest": "147e086b36ae29f2c2b0630161ce9d9bca82b78faba6bae2493d68dc93c4798c",
+  "SensorNodes": [
+    {
+      "DetectionRangeMeters": 1000,
+      "bCaptureCameraFrames": true,
+      "bTrackNearestTarget": false,
+      "CameraFieldOfViewDegrees": 90,
+      "bEnableSearchRadar": true,
+      "SearchRadarRangeMeters": 5000,
+      "SearchRadarElevationFieldOfRegardDegrees": 60,
+      "bEnableEOPTZ": true,
+      "EOPTZConfirmationRangeMeters": 1000,
+      "EOPTZFieldOfViewDegrees": 30,
+      "bEnableThermalPTZ": true,
+      "ThermalPTZConfirmationRangeMeters": 1000,
+      "ThermalPTZFieldOfViewDegrees": 30,
+      "NodeId": "PLACEMENT_site_center",
+      "LongitudeDegrees": 103.84288055,
+      "LatitudeDegrees": 1.3070961500000793,
+      "HeightMeters": 91.99331978132018,
+      "bEnabled": true,
+      "CameraRelativeRotation": {
+        "Pitch": 0.0,
+        "Yaw": 90.0,
+        "Roll": 0.0
+      }
+    },
+    {
+      "DetectionRangeMeters": 1000,
+      "bCaptureCameraFrames": true,
+      "bTrackNearestTarget": false,
+      "CameraFieldOfViewDegrees": 90,
+      "bEnableSearchRadar": true,
+      "SearchRadarRangeMeters": 5000,
+      "SearchRadarElevationFieldOfRegardDegrees": 60,
+      "bEnableEOPTZ": true,
+      "EOPTZConfirmationRangeMeters": 1000,
+      "EOPTZFieldOfViewDegrees": 30,
+      "bEnableThermalPTZ": true,
+      "ThermalPTZConfirmationRangeMeters": 1000,
+      "ThermalPTZFieldOfViewDegrees": 30,
+      "NodeId": "PLACEMENT_site_r950_000",
+      "LongitudeDegrees": 103.84288054999999,
+      "LatitudeDegrees": 1.3156876039555485,
+      "HeightMeters": 55.071225954635096,
+      "bEnabled": true,
+      "CameraRelativeRotation": {
+        "Pitch": 0.0,
+        "Yaw": 90.0,
+        "Roll": 0.0
+      }
+    },
+    {
+      "DetectionRangeMeters": 1000,
+      "bCaptureCameraFrames": true,
+      "bTrackNearestTarget": false,
+      "CameraFieldOfViewDegrees": 90,
+      "bEnableSearchRadar": true,
+      "SearchRadarRangeMeters": 5000,
+      "SearchRadarElevationFieldOfRegardDegrees": 60,
+      "bEnableEOPTZ": true,
+      "EOPTZConfirmationRangeMeters": 1000,
+      "EOPTZFieldOfViewDegrees": 30,
+      "bEnableThermalPTZ": true,
+      "ThermalPTZConfirmationRangeMeters": 1000,
+      "ThermalPTZFieldOfViewDegrees": 30,
+      "NodeId": "PLACEMENT_site_r950_002",
+      "LongitudeDegrees": 103.8489165629372,
+      "LatitudeDegrees": 1.3131712181278303,
+      "HeightMeters": 55.07098798140628,
+      "bEnabled": true,
+      "CameraRelativeRotation": {
+        "Pitch": 0.0,
+        "Yaw": 135.0,
+        "Roll": 0.0
+      }
+    },
+    {
+      "DetectionRangeMeters": 1000,
+      "bCaptureCameraFrames": true,
+      "bTrackNearestTarget": false,
+      "CameraFieldOfViewDegrees": 90,
+      "bEnableSearchRadar": true,
+      "SearchRadarRangeMeters": 5000,
+      "SearchRadarElevationFieldOfRegardDegrees": 60,
+      "bEnableEOPTZ": true,
+      "EOPTZConfirmationRangeMeters": 1000,
+      "EOPTZFieldOfViewDegrees": 30,
+      "bEnableThermalPTZ": true,
+      "ThermalPTZConfirmationRangeMeters": 1000,
+      "ThermalPTZFieldOfViewDegrees": 30,
+      "NodeId": "PLACEMENT_site_r950_014",
+      "LongitudeDegrees": 103.83684453706275,
+      "LatitudeDegrees": 1.3131712181278308,
+      "HeightMeters": 55.07098798161788,
+      "bEnabled": true,
+      "CameraRelativeRotation": {
+        "Pitch": 0.0,
+        "Yaw": 45.0,
+        "Roll": 0.0
+      }
+    }
+  ],
+  "applySemantics": "review_required_separate_patch; never merged into or written over the live SingaporeSensorFusion.json by this package",
+  "simulationOnly": true,
+  "siteAuthorizationInferred": false
+}

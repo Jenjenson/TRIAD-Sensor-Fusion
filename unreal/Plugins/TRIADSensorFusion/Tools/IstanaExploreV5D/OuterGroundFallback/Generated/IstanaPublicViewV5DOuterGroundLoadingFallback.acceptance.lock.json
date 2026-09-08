@@ -1,0 +1,92 @@
+{
+  "claimStatus": "SYNTHETIC_EDGE_CONTINUATION_FOR_PROVIDER_LOADING_ONLY_NOT_TERRAIN_NOT_SURVEY_NOT_AS_BUILT",
+  "files": [
+    {
+      "bytes": 9600,
+      "path": "outer_ground_loading_fallback_v1.contract.json",
+      "scope": "PACKAGE",
+      "sha256": "595db092f24565faa8b1850f3363f9c33fb3c6fd285705a501c41b7a34dfcab6"
+    },
+    {
+      "bytes": 32494,
+      "path": "build_outer_ground_loading_fallback_v1.py",
+      "scope": "PACKAGE",
+      "sha256": "b582aa05d74dfb3b8f0857e8d8b6a520c3dc9f09a2537a632aa674729b891be6"
+    },
+    {
+      "bytes": 492909,
+      "path": "SM_IPV5D_OuterGroundLoadingFallback_Render.obj",
+      "scope": "GENERATED",
+      "sha256": "13761e4cb255eb94c392f540436da163ac3a3ecab877c1d6f8460e5962a84a8c"
+    },
+    {
+      "bytes": 487,
+      "path": "SM_IPV5D_OuterGroundLoadingFallback_Render.mtl",
+      "scope": "GENERATED",
+      "sha256": "dcfa8a56af148e1d4e4fa4dc2e772d7a3e5767b0f91e07f25b3f87c2586a1a6a"
+    },
+    {
+      "bytes": 5211,
+      "path": "IstanaPublicViewV5DOuterGroundLoadingFallback.audit.json",
+      "scope": "GENERATED",
+      "sha256": "93f414e63e9221a5160b9533155e6535b72be8b9adddc994d74fe50372e5b997"
+    },
+    {
+      "bytes": 11710,
+      "path": "IstanaPublicViewV5DOuterGroundLoadingFallback.manifest.json",
+      "scope": "GENERATED",
+      "sha256": "1adb5810820b75b51c5e8de4e5cd4a181160b0ca9bbd8c75b21a7354b9532320"
+    }
+  ],
+  "geometryMetrics": {
+    "innerAreaOverlapSquareMeters": 0.0,
+    "innerSeamExactSourceCopy": true,
+    "innerSeamPointSetSha256": "e2230cbebf80a2da5b458bd0f47ad3151d226963e6afdeead473b074ba6b8119",
+    "maximumAbsoluteInheritedRadialSlope": 0.006831275,
+    "maximumOuterHeightDeltaMeters": 0.853909351,
+    "minimumOuterHeightDeltaMeters": -0.329302033,
+    "outerBoundaryPointSetSha256": "ce6fb724879e9498bb13fa2a7058faf5add59031999c0dd18cbd9b3645bb49a0",
+    "outerGuardBeyondQaCameraEnvelopeMeters": 50.0,
+    "planAreaSquareMeters": 1766436.275787,
+    "sourceInnerSeamPointSetSha256": "e2230cbebf80a2da5b458bd0f47ad3151d226963e6afdeead473b074ba6b8119",
+    "sourceSlopeSampleDistanceMeters": 25.0
+  },
+  "lockedSetSha256": "99246e8bfc315a4fdfa782d91edebabeb59fdb678ffa1c5ae41328caa41b944f",
+  "renderPolicy": {
+    "affectDistanceFieldLighting": false,
+    "affectDynamicIndirectLighting": false,
+    "castShadow": false,
+    "collisionEnabled": false,
+    "demOrDtmAuthority": false,
+    "geographicSurfaceClassificationAuthority": false,
+    "liveUnrealIntegrationIncluded": false,
+    "navigationRelevant": false,
+    "overlapEventsEnabled": false,
+    "renderOnly": true,
+    "rfGeometryAuthority": false,
+    "rfMaterialAuthority": false,
+    "routeAccessOperationalOrSecurityAuthority": false,
+    "sensorOcclusionAuthority": false,
+    "surveyOrAsBuiltAuthority": false,
+    "terrainAuthority": false
+  },
+  "schema": "triad.istana_explore_v5d.outer_ground_loading_fallback_acceptance_lock.v1",
+  "status": "SOURCE_ONLY_RENDER_FALLBACK_READY_NOT_LIVE_UE_INTEGRATED",
+  "topology": {
+    "angularSectorCount": 128,
+    "duplicatedCornerCount": 3840,
+    "groupTriangleCounts": {
+      "V5D_OUTER_GROUND_PROVIDER_LOADING_VISUAL_ONLY": 1280
+    },
+    "hardTriangleCount": 0,
+    "materialTriangleCounts": {
+      "M_IPV5D_OuterGroundLoadingFallback": 1280
+    },
+    "radialBandCount": 5,
+    "smoothTriangleCount": 1280,
+    "smoothingGroupCount": 1,
+    "triangleCount": 1280,
+    "uniqueInnerSeamPointCount": 128,
+    "uniqueOuterBoundaryPointCount": 128
+  }
+}

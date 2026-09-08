@@ -1,0 +1,11 @@
+# TRIAD Istana V5D outer-ground loading-fallback preview material
+# Synthetic visual edge continuation only; not terrain, survey, as-built, physical material, collision, navigation, sensor, or RF authority
+# Preview only; future Unreal integration requires the separately reviewed provider-loading visibility state machine
+
+newmtl M_IPV5D_OuterGroundLoadingFallback
+Kd 0.190000 0.230000 0.130000
+Ka 0.000000 0.000000 0.000000
+Ks 0.010000 0.010000 0.010000
+Ns 5.000000
+d 1.000000
+illum 2

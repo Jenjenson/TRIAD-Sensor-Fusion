@@ -1109,7 +1109,8 @@ bool ATRIADSensorNodeActor::ComputePTZLineOfSight(
     const FTRIADGeodeticSensorNode& Definition = SensorNode->Definition;
     FCollisionQueryParams QueryParameters(SCENE_QUERY_STAT(TRIADPTZConfirmationLOS), Definition.bPTZTraceComplex);
     QueryParameters.AddIgnoredActor(this);
-    const int32 MaximumChannel = static_cast<int32>(ECC_MAX) - 1;
+    const int32 MaximumChannel =
+        static_cast<int32>(ECC_GameTraceChannel18);
     const ECollisionChannel TraceChannel = static_cast<ECollisionChannel>(
         FMath::Clamp(Definition.PTZLineOfSightTraceChannel, 0, MaximumChannel));
     const FVector CaptureOrigin = Capture->GetComponentLocation();

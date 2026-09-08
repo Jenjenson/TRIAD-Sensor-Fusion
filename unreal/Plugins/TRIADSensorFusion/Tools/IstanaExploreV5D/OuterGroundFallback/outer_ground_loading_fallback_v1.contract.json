@@ -1,0 +1,213 @@
+{
+  "schema": "triad.istana_explore_v5d.outer_ground_loading_fallback_contract.v1",
+  "status": "SOURCE_ONLY_RENDER_FALLBACK_READY_NOT_LIVE_UE_INTEGRATED",
+  "claimStatus": "SYNTHETIC_EDGE_CONTINUATION_FOR_PROVIDER_LOADING_ONLY_NOT_TERRAIN_NOT_SURVEY_NOT_AS_BUILT",
+  "target": {
+    "name": "Istana Explore V5D outer-ground loading fallback",
+    "centerWgs84": {
+      "latitude": 1.30709615,
+      "longitude": 103.84288055
+    },
+    "innerRadiusMeters": 1000.0,
+    "outerRadiusMeters": 1250.0,
+    "qaCameraEnvelopeRadiusMeters": 1200.0,
+    "minimumOuterGuardMeters": 50.0,
+    "purpose": "Cover the finite one-kilometre source-terrain rim beneath supported R24 public-view QA cameras while streamed provider context is unavailable or below its separately validated readiness threshold."
+  },
+  "sourceBindings": {
+    "terrainMesh": {
+      "repositoryRelativePath": "../../../../../SourceAssets/IstanaPublicView/Generated/SM_IstanaPublicView_Terrain.obj",
+      "bytes": 3909911,
+      "sha256": "78AF53572EF53BACB684B5B2103D7BA427999C8223BDDD5C0DE76DEB8B16DD23",
+      "triangleCount": 10112,
+      "angularSectors": 128,
+      "radialRings": 40,
+      "outerRadiusMeters": 1000.0,
+      "radialStepMeters": 25.0,
+      "role": "EXACT_INHERITED_SYNTHETIC_VISUAL_TERRAIN_SEAM_SOURCE_NOT_DTM_NOT_DEM_NOT_SURVEY"
+    },
+    "terrainContract": {
+      "repositoryRelativePath": "../../../../../SourceAssets/IstanaPublicView/istana_public_view.contract.json",
+      "bytes": 5036,
+      "sha256": "C068CF3CEB731C85B28E3C8E6292FE92BB5463E792742DD4A0B81525BD84BAEE",
+      "role": "EXACT_ONE_KILOMETRE_SYNTHETIC_CONTEXT_AND_NEGATIVE_AUTHORITY_RECEIPT"
+    },
+    "sharedObjWriter": {
+      "repositoryRelativePath": "../../../../../SourceAssets/IstanaPublicView/public_view_geometry.py",
+      "bytes": 23852,
+      "sha256": "F46B05C5E5A53A3FCB4392735A9CAB15FEF9DC8F6E8E0D7FB30395B3F8B82023",
+      "role": "DETERMINISTIC_UE55_LEGACY_OBJ_PRECONDITION_AND_EXPLICIT_NORMAL_WRITER"
+    },
+    "macDonaldPlacement": {
+      "repositoryRelativePath": "../../../../../SourceAssets/IstanaPublicViewExploreV5D/Surroundings/R24MacDonaldHouse/macdonald_house_r24.unreal_placement.json",
+      "bytes": 4192,
+      "sha256": "E5B40D02A3D712303A2D99734A42E9ADD68F4E528DED31DD763F37034961ED81",
+      "role": "R24_VISUAL_FIT_TRANSFORM_NOT_SURVEY"
+    },
+    "macDonaldCaptureHarness": {
+      "repositoryRelativePath": "../../../../../../scripts/Capture-IstanaExploreV5DMacDonaldHouseR24Evidence.ps1",
+      "bytes": 68376,
+      "sha256": "2044B6C16610BEE849E4365F9929E0A9BCABE47DA998123D84F8A95AE9E2FFB1",
+      "role": "EXACT_QA_CAMERA_POSE_SOURCE"
+    },
+    "temasekPlacement": {
+      "repositoryRelativePath": "../../../../../SourceAssets/IstanaPublicViewExploreV5D/Surroundings/R24TemasekShophouse/Generated/temasek_shophouse_r24.unreal_placement.json",
+      "bytes": 4517,
+      "sha256": "61C9CFB4D055401B5AE44CBD19A382DD1DCB2516F0766A0E6B928A706EA72987",
+      "role": "R24_VOLUNTEERED_OSM_ORIENTED_VISUAL_FIT_NOT_SURVEY"
+    },
+    "temasekCaptureHarness": {
+      "repositoryRelativePath": "../../../../../../scripts/Capture-IstanaExploreV5DTemasekShophouseR24Evidence.ps1",
+      "bytes": 92280,
+      "sha256": "8B95101C1E5B7B027057E9777652B44BC6D8943AF4C27A6A206B9CFB32BB1B86",
+      "role": "EXACT_QA_CAMERA_POSE_SOURCE"
+    }
+  },
+  "captureGeometryAudit": {
+    "sourceTerrainRadiusMeters": 1000.0,
+    "cameraEnvelopeGuardInCaptureHarnessesMeters": 1200.0,
+    "poseCount": 6,
+    "posesOutsideSourceTerrainCount": 4,
+    "maximumAuditedCameraRadiusMeters": 1135.190795,
+    "maximumAuditedCameraOverrunMeters": 135.190795,
+    "outerFallbackMarginBeyondFarthestAuditedCameraMeters": 114.809205,
+    "poses": [
+      {
+        "id": "MACDONALD_FACADE_CLOSE",
+        "cameraLocalMeters": [0.0, -23.0, 4.5],
+        "cameraWorldCentimeters": [34903.564501, 91486.519391, 585.0],
+        "horizontalRadiusMeters": 979.18548,
+        "outsideSourceTerrain": false
+      },
+      {
+        "id": "MACDONALD_FRONT_CORNER_OBLIQUE",
+        "cameraLocalMeters": [-26.0, -32.0, 9.0],
+        "cameraWorldCentimeters": [38006.221863, 94377.634196, 1170.0],
+        "horizontalRadiusMeters": 1017.428658,
+        "outsideSourceTerrain": true
+      },
+      {
+        "id": "MACDONALD_STREETSCAPE_CONTEXT",
+        "cameraLocalMeters": [-65.0, -85.0, 30.0],
+        "cameraWorldCentimeters": [40226.964024, 106152.591966, 3900.0],
+        "horizontalRadiusMeters": 1135.190795,
+        "outsideSourceTerrain": true
+      },
+      {
+        "id": "TEMASEK_FACADE_CLOSE",
+        "cameraLocalMeters": [0.0, -40.0, 6.2],
+        "cameraWorldCentimeters": [38943.461707, 93085.153854, 620.0],
+        "horizontalRadiusMeters": 1009.031173,
+        "outsideSourceTerrain": true
+      },
+      {
+        "id": "TEMASEK_FRONT_CORNER_OBLIQUE",
+        "cameraLocalMeters": [39.0, -49.0, 10.5],
+        "cameraWorldCentimeters": [34692.84572, 92898.931941, 1050.0],
+        "horizontalRadiusMeters": 991.655439,
+        "outsideSourceTerrain": false
+      },
+      {
+        "id": "TEMASEK_STREETSCAPE_CONTEXT",
+        "cameraLocalMeters": [-72.0, -96.0, 31.0],
+        "cameraWorldCentimeters": [44125.411885, 101890.170314, 3100.0],
+        "horizontalRadiusMeters": 1110.344937,
+        "outsideSourceTerrain": true
+      }
+    ],
+    "visualObservation": "The frozen TelemetryOnly R24 captures show the finite terrain rim as black/void foreground where the QA camera or its near ground footprint is beyond 1000 m. This observation is diagnostic, not provider-readiness proof."
+  },
+  "geometryPolicy": {
+    "shape": "EXACT_128_SECTOR_CONCENTRIC_ANNULUS",
+    "innerSeamRadiusMeters": 1000.0,
+    "innerSlopeSampleRadiusMeters": 975.0,
+    "outerRadiusMeters": 1250.0,
+    "radialBandCount": 5,
+    "radialBandWidthMeters": 50.0,
+    "angularSectorCount": 128,
+    "heightPolicy": "COPY_EXACT_1000M_SOURCE_SEAM_AND_DAMP_LAST_SYNTHETIC_25M_RADIAL_SLOPE_TO_ZERO_AT_1250M",
+    "heightAuthority": "SYNTHETIC_VISUAL_EDGE_CONTINUATION_ONLY",
+    "innerAreaOverlapSquareMeters": 0.0,
+    "sourceTerrainModified": false,
+    "sourceTerrainSkirtModified": false,
+    "buildingsRoadsWaterOrVegetationEncoded": false,
+    "outerBoundarySkirtIncluded": false,
+    "reasonNoOuterSkirt": "This annulus covers the supported 1200 m QA-camera envelope with a 50 m guard; it does not claim or visually close land beyond the bounded 1250 m presentation surface."
+  },
+  "frame": {
+    "coordinateSystem": "right-handed hero-local metres; +X east, +Y ceremonial/south, +Z up",
+    "encodedObjUnits": "centimetres",
+    "unrealLegacyObjExportContract": "UE55_LEGACY_OBJ_Y_MIRROR_WINDING_NORMAL_AND_UV_V_PRECONDITION",
+    "uv0": "continuous hero-local XY metres",
+    "buildScale3D": [1.0, 1.0, 1.0],
+    "negativeBuildScaleForbidden": true
+  },
+  "materialPlan": {
+    "orderedSlots": ["M_IPV5D_OuterGroundLoadingFallback"],
+    "previewBaseColorLinear": [0.19, 0.23, 0.13],
+    "previewOnly": true,
+    "textureCount": 0,
+    "physicalMaterialClaimed": false,
+    "futureUnrealMaterialRequirement": "V5D-owned opaque world-space macro-varied neutral ground; no WPO, PDO, displacement, decals, or physical material."
+  },
+  "providerLifecycleIntegrationSpec": {
+    "liveIntegrationIncluded": false,
+    "defaultBeforePolicyBegins": "VISIBLE_FAIL_CLOSED",
+    "providerFallbackVisible": "VISIBLE",
+    "providerLoadProgressAtOrAbovePercent": 98.0,
+    "providerReadyState": "HIDDEN_ONLY_AFTER_THE_EXISTING_POLICY_PROVES_READY",
+    "providerRestoreBelowPercent": 90.0,
+    "providerRestoredOrUnavailableState": "VISIBLE",
+    "globalProgressIsLandmarkSpecificReadinessProof": false,
+    "requiredFutureIntegration": [
+      "NEW_HASH_PINNED_ASSET_IMPORT_TRANSACTION",
+      "NEW_RENDER_ONLY_COMPONENT_OR_ACTOR_WITH_NO_COLLISION_AND_NO_NAVIGATION",
+      "VISIBILITY_DRIVEN_BY_THE_EXISTING_VALIDATED_PROVIDER_FALLBACK_STATE",
+      "ENDPLAY_RESTORE_AND_FAIL_CLOSED_VISIBILITY",
+      "COLD_MAP_VALIDATION_AND_PROVIDER_READY_PLUS_LOADING_VISUAL_EVIDENCE"
+    ]
+  },
+  "renderPolicy": {
+    "renderOnly": true,
+    "collisionEnabled": false,
+    "overlapEventsEnabled": false,
+    "navigationRelevant": false,
+    "castShadow": false,
+    "affectDistanceFieldLighting": false,
+    "affectDynamicIndirectLighting": false,
+    "sensorOcclusionAuthority": false,
+    "rfGeometryAuthority": false,
+    "rfMaterialAuthority": false,
+    "terrainAuthority": false,
+    "demOrDtmAuthority": false,
+    "surveyOrAsBuiltAuthority": false,
+    "geographicSurfaceClassificationAuthority": false,
+    "routeAccessOperationalOrSecurityAuthority": false,
+    "liveUnrealIntegrationIncluded": false
+  },
+  "expectedTopology": {
+    "triangleCount": 1280,
+    "duplicatedCornerCount": 3840,
+    "smoothTriangleCount": 1280,
+    "hardTriangleCount": 0,
+    "smoothingGroupCount": 1,
+    "angularSectorCount": 128,
+    "radialBandCount": 5,
+    "uniqueInnerSeamPointCount": 128,
+    "uniqueOuterBoundaryPointCount": 128,
+    "materialTriangleCounts": {
+      "M_IPV5D_OuterGroundLoadingFallback": 1280
+    },
+    "groupTriangleCounts": {
+      "V5D_OUTER_GROUND_PROVIDER_LOADING_VISUAL_ONLY": 1280
+    }
+  },
+  "output": {
+    "directory": "Generated",
+    "renderMesh": "SM_IPV5D_OuterGroundLoadingFallback_Render.obj",
+    "materialLibrary": "SM_IPV5D_OuterGroundLoadingFallback_Render.mtl",
+    "audit": "IstanaPublicViewV5DOuterGroundLoadingFallback.audit.json",
+    "manifest": "IstanaPublicViewV5DOuterGroundLoadingFallback.manifest.json",
+    "acceptanceLock": "IstanaPublicViewV5DOuterGroundLoadingFallback.acceptance.lock.json"
+  }
+}

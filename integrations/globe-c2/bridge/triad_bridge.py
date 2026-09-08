@@ -966,6 +966,38 @@ def _simulation_perimeter_payload(snapshot: Mapping[str, Any]) -> dict[str, Any]
     perimeter = snapshot.get("simulationPerimeter")
     if not isinstance(perimeter, Mapping) or perimeter.get("enabled") is not True:
         return None
+    if perimeter.get("legalOrNationalBoundary") is not False:
+        return None
+    geometry_type = str(
+        perimeter.get("geometryType") or perimeter.get("shape") or ""
+    ).strip().lower()
+    common = {
+        "referenceName": _text(perimeter.get("referenceName"))
+        or "Singapore_Simulation_Perimeter",
+        "legalOrNationalBoundary": False,
+        "purpose": _text(perimeter.get("purpose"))
+        or "Simulation approach/inside/departure classification only.",
+    }
+    if geometry_type in {"circle", "wgs84_geodesic_circle"}:
+        center_lat = _number(perimeter.get("centerLatitudeDegrees"))
+        center_lon = _number(perimeter.get("centerLongitudeDegrees"))
+        radius_m = _number(perimeter.get("radiusMeters"))
+        if (
+            center_lat is None
+            or center_lon is None
+            or radius_m is None
+            or not -90.0 <= center_lat <= 90.0
+            or not -180.0 <= center_lon <= 180.0
+            or radius_m <= 0.0
+        ):
+            return None
+        return {
+            **common,
+            "geometryType": "wgs84_geodesic_circle",
+            "centerLat": center_lat,
+            "centerLon": center_lon,
+            "radiusM": radius_m,
+        }
     min_lat = _number(perimeter.get("minimumLatitudeDegrees"))
     max_lat = _number(perimeter.get("maximumLatitudeDegrees"))
     min_lon = _number(perimeter.get("minimumLongitudeDegrees"))
@@ -977,18 +1009,15 @@ def _simulation_perimeter_payload(snapshot: Mapping[str, Any]) -> dict[str, Any]
         or max_lon is None
         or min_lat >= max_lat
         or min_lon >= max_lon
-        or perimeter.get("legalOrNationalBoundary") is not False
     ):
         return None
     return {
-        "referenceName": _text(perimeter.get("referenceName")) or "Singapore_Simulation_Perimeter",
+        **common,
+        "geometryType": "axis_aligned_wgs84_rectangle",
         "minLat": min_lat,
         "maxLat": max_lat,
         "minLon": min_lon,
         "maxLon": max_lon,
-        "legalOrNationalBoundary": False,
-        "purpose": _text(perimeter.get("purpose"))
-        or "Simulation approach/inside/departure classification only.",
     }
 
 

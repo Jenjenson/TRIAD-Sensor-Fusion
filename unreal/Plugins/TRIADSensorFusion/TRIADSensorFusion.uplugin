@@ -3,7 +3,7 @@
   "Version": 1,
   "VersionName": "1.0.0",
   "FriendlyName": "TRIAD Singapore Sensor Fusion",
-  "Description": "Runtime-only Cesium sensor-node, RF link, LOS, and telemetry simulation for Singapore.",
+  "Description": "Cesium sensor-fusion simulation, Istana study-area tooling, and deterministic placement-survey support for Singapore.",
   "Category": "Simulation",
   "CreatedBy": "TRIAD",
   "EnabledByDefault": true,
@@ -13,6 +13,11 @@
     {
       "Name": "TRIADSensorFusion",
       "Type": "Runtime",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "TRIADSensorFusionEditor",
+      "Type": "Editor",
       "LoadingPhase": "Default"
     }
   ],

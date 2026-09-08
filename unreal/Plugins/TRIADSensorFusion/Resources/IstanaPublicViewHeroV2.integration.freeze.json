@@ -1,0 +1,99 @@
+{
+  "schema": "triad.istana_public_view_hero_v2.unreal_freeze.v1",
+  "heroAssetRoot": "/Game/TRIAD/IstanaPublicViewV2",
+  "materialAssetRoot": "/Game/TRIAD/IstanaPublicView/HeroMaterialsV2",
+  "sourceMap": "/Game/Maps/Istana_PublicView_Exterior_v1",
+  "destinationMap": "/Game/Maps/Istana_PublicView_Exterior_v2",
+  "naniteEnabled": false,
+  "sm6Required": false,
+  "reusesV1Collision": true,
+  "changesSurroundings": false,
+  "files": [
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV2/hero_v2.freeze.json",
+      "role": "GEOMETRY_FREEZE",
+      "bytes": 2357,
+      "sha256": "e1cc21ff8ccf7166728d90a1c9d2bc89a073df9b6a9a09c3e6e20b7a89e780f1"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV2/istana_public_view_hero_v2.contract.json",
+      "role": "GEOMETRY_CONTRACT",
+      "bytes": 6129,
+      "sha256": "62ab5dab4e0d61c530ef0bf56a7d3c0d54b445647da6a7e8baf54888f1e90827"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV2/generate_hero_v2.py",
+      "role": "GEOMETRY_GENERATOR",
+      "bytes": 42374,
+      "sha256": "dfa40362e6f1d5b75561b333ac18c8870aec710fc98641543366c7fd4ee9070a"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV2/Generated/IstanaPublicViewV2Building.manifest.json",
+      "role": "GEOMETRY_MANIFEST",
+      "bytes": 7810,
+      "sha256": "8ac73e7a7603c029bc6b95b27b347c223867beb93662defa963f06aacbd5af24"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV2/Generated/SM_IstanaPublicViewV2_Building_Hero.obj",
+      "role": "BUILDING_HERO_VISUAL_V2",
+      "bytes": 198314153,
+      "sha256": "b4d2dee9fe267314f31f72585287a2e66f523adbbe664d5f521917375fbe755f"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV2/hero_materials_v2.contract.json",
+      "role": "HERO_MATERIAL_CONTRACT",
+      "bytes": 10329,
+      "sha256": "65deb423a0e1d7ffda981a4aad3fb80a8cff840a3ca573eab290076f95c49b2c"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV2/unreal_asset_interface.v2.json",
+      "role": "HERO_MATERIAL_UNREAL_INTERFACE",
+      "bytes": 11614,
+      "sha256": "7a0df5e20c47ebed6c5b2299f44f9658aeaeed9747f740038edce6d2e3c46277"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV2/Source/source_manifest.json",
+      "role": "HERO_MATERIAL_SOURCE_MANIFEST",
+      "bytes": 7106,
+      "sha256": "9d9046ceb8cfee17e368e4832ffeaf0ba71194e2ac6797a68c20549409721c83"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV2/Generated/manifest.json",
+      "role": "HERO_MATERIAL_GENERATED_MANIFEST",
+      "bytes": 35207,
+      "sha256": "5946aa371ec1d31711823b310a9619dc65891c5709357c7de8383c7353f7bf21"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV2/build_hero_materials_v2.py",
+      "role": "HERO_MATERIAL_BUILDER",
+      "bytes": 43844,
+      "sha256": "d429b1fcfac20a3cc96f0c64fb82e67adad85b54ee0ba06befbc914e6d69e500"
+    }
+  ],
+  "protectedV1Files": [
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/public_view_geometry.py",
+      "role": "PROTECTED_V1_GEOMETRY_KERNEL",
+      "bytes": 23852,
+      "sha256": "f46b05c5e5a53a3fcb4392735a9cab15fef9dc8f6e8e0d7fb30395b3f8b82023"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/generate_public_view_building.py",
+      "role": "PROTECTED_V1_BUILDING_GENERATOR",
+      "bytes": 14951,
+      "sha256": "fbc11e95d42232d3b7a57fa8e6e5b79248c30e168668ffa10146dad76b309985"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/generate_public_view_context.py",
+      "role": "PROTECTED_V1_CONTEXT_GENERATOR",
+      "bytes": 19320,
+      "sha256": "21681279cb303af143b6e28bb17906becdceda7c4c7d1d154cf8964c11ac0e79"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/istana_public_view.contract.json",
+      "role": "PROTECTED_V1_CONTRACT",
+      "bytes": 5036,
+      "sha256": "c068cf3ceb731c85b28e3c8e6292fe92bb5463e792742dd4a0b81525bd84baee"
+    }
+  ]
+}

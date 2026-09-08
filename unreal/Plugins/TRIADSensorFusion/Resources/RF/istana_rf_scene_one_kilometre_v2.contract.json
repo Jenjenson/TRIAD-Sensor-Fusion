@@ -1,0 +1,301 @@
+{
+  "assetId": "istana-public-view-rf-one-kilometre-v2-r24c-001",
+  "authorityInputs": [
+    {
+      "bytes": 2091703,
+      "inputId": "TIGHT_V1_GEOMETRY",
+      "path": "unreal/SourceAssets/IstanaPublicViewRF/TightV1/Generated/IstanaPublicViewRFTightV1.geometry.json",
+      "pathKind": "REPO_RELATIVE",
+      "role": "exact canonical hero RF geometry retained as the unmodified indexed prefix",
+      "sha256": "a3705e22b47fbe4fd38936294890e1ad620bb3c618ac3c93ca6c4719c6edc62a"
+    },
+    {
+      "bytes": 12554,
+      "inputId": "TIGHT_V1_MATERIAL_CATALOG",
+      "path": "unreal/SourceAssets/IstanaPublicViewRF/TightV1/istana_rf_materials_tight_v1.catalog.json",
+      "pathKind": "REPO_RELATIVE",
+      "role": "0.4-to-6.0 GHz assumption priors retained exactly before separate high-band profiles are appended",
+      "sha256": "0089fed936494ecd6938dc14d34ea8d5540e0896c2dc814414e071b6d1081a63"
+    },
+    {
+      "bytes": 13162,
+      "inputId": "TIGHT_V1_SCENE_CONTRACT",
+      "path": "unreal/SourceAssets/IstanaPublicViewRF/TightV1/istana_rf_scene_tight_v1.contract.json",
+      "pathKind": "REPO_RELATIVE",
+      "role": "predecessor claim boundary and coordinate contract",
+      "sha256": "19002f898c34c23793038c42892f122642f112bd514a0ebb05e4969dcb9ae591"
+    },
+    {
+      "bytes": 4899394,
+      "inputId": "CURRENT_SURROUNDINGS_GEOMETRY",
+      "path": "D:/triad/TRIAD/Saved/TRIAD/IstanaReferences/V5D/Current20260903/GeneratedCurrent/IstanaPublicViewV5DSurroundings.geometry.json",
+      "pathKind": "EXTERNAL_ABSOLUTE",
+      "role": "dated volunteered public 2.5D source mesh from which BOTTOM-triangle footprints are independently reconstructed",
+      "sha256": "e1c4432097c4360676e96c4b1ed4672fb5c11e37306544697a4576ec01256d62"
+    },
+    {
+      "bytes": 3273663,
+      "inputId": "CURRENT_SURROUNDINGS_FEATURES",
+      "path": "D:/triad/TRIAD/Saved/TRIAD/IstanaReferences/V5D/Current20260903/GeneratedCurrent/IstanaPublicViewV5DSurroundings.features.json",
+      "pathKind": "EXTERNAL_ABSOLUTE",
+      "role": "dated OSM identity, height-prior, element-epoch, and source-snapshot metadata",
+      "sha256": "70b9733a56e433e71c1ac387603342c144c57bf3e19a1c7375ca3266ba9ef318"
+    }
+  ],
+  "claimBoundary": {
+    "asBuiltGeometryValidated": false,
+    "deploymentReady": false,
+    "fieldValidated": false,
+    "hyperrealOrOneToOneClaimed": false,
+    "materialCoefficientsCalibrated": false,
+    "publicReferenceApproximationOnly": true,
+    "readyForSurveyTruth": false,
+    "runtimeIntegrated": false,
+    "simulationAssumptionBound": true,
+    "surveyControlled": false
+  },
+  "coordinateContract": {
+    "axisMeaning": {
+      "+X": "approximate east in the inherited public-view frame",
+      "+Y": "south/approach in the inherited surroundings frame",
+      "+Z": "up"
+    },
+    "futureUnrealComponentTransform": "IDENTITY_ONLY",
+    "logicalSystem": "RIGHT_HANDED_Z_UP_LOCAL_METRES_APPROACH_PLUS_Y",
+    "negativeComponentScaleAllowed": false,
+    "objDiskEncoding": "UE55_LEGACY_OBJ_X_CM_Y_NEGATED_CM_Z_CM_FACE_ORDER_REVERSED",
+    "objLogicalToDisk": [
+      "diskX=100*logicalX",
+      "diskY=-100*logicalY",
+      "diskZ=100*logicalZ",
+      "reverse_each_triangle"
+    ],
+    "origin": "inherited procedural public-view origin near the Istana; not survey registered",
+    "quantizationMeters": 1e-06
+  },
+  "explicitLimitations": [
+    "The valid study AOI is the established closed WGS84 Vincenty radius-1000 m circle. Its projected boundary exceeds exact ±1000 m by 0.031233 mm, so the loader-compatible closed ±1000.001 m AABB uses a deterministic 1 mm guard. The four outside-circle corner regions do not carry blocker-completeness claims and must not be used as valid study query endpoints.",
+    "The dated source inventory explicitly excludes the sensitive/hero inner context beyond the exact TightV1 hero and contains only OSM building/building:part records admitted by its upstream public filter.",
+    "Surrounding roofs are conservatively flattened to each source part's declared topHeightMeters and every unresolved elevated base is collapsed to local z=0; both are assumption-bound operations recorded in the partition ledger.",
+    "Footprints and height priors are volunteered or synthetic public approximations, not survey, cadastral, facade, aperture, interior, structural, or as-built truth.",
+    "The ground is a flat 0.5 m engineering-prior slab; terrain, soil layering, utilities, and below-grade construction are excluded.",
+    "Material records are homogeneous isotropic uncalibrated assumptions. The high-band profiles and 9.4/18 GHz knots are separate planning priors, not interpolation, extrapolation, measurement, or calibration claims.",
+    "Foliage, vegetation scattering, weather, transient vehicles and people, street furniture, unmapped objects, coherent phase, polarization validation, diffraction, diffuse scattering, antenna patterns, and near-field effects are excluded.",
+    "The package is source-only and is not wired to runtime resources, imported into Unreal, cold-loaded, field validated, or suitable for deployment decisions."
+  ],
+  "geometryScope": {
+    "canonicalArtifact": "Generated/IstanaPublicViewRFOneKilometreV2.geometry.json",
+    "excluded": [
+      "all public-envelope objects absent from the exact dated OSM-derived inputs",
+      "interiors and facade apertures outside TightV1",
+      "terrain relief and vegetation",
+      "transient and unmapped blockers",
+      "survey or as-built corrections"
+    ],
+    "included": [
+      "the exact TightV1 indexed hero solids and aperture semantics",
+      "an overlap-free maximum-top-height vertical envelope of all 1,391 eligible dated public source parts inside the loader AABB",
+      "one exact closed ±1000.001 m AABB ground-prior slab from z=-0.5 m through z=0 m"
+    ],
+    "objRole": "derived visual inspection artifact only",
+    "separateFromRenderPawnAndNavigationCollision": true
+  },
+  "materialBinding": {
+    "allProfilesMustRemainUncalibrated": true,
+    "catalog": "istana_rf_materials_one_kilometre_v2.catalog.json",
+    "catalogSha256": "210cb26ddb9b531adeb3c917606a736aefc857eb6696da485a2e63dbb8b31662",
+    "coefficientSelection": "SINGLE_EXPLICIT_PROFILE_CLOSED_INTERVAL_NO_INTERPOLATION",
+    "deliberateProfileBoundaryGapGHz": [
+      6.0,
+      6.000001
+    ],
+    "requiredFrequencyKnotsGHz": [
+      0.43392,
+      0.868,
+      0.915,
+      1.28,
+      2.412,
+      2.462,
+      5.765,
+      5.825,
+      9.4,
+      18.0
+    ],
+    "visualMtlIsElectromagneticAuthority": false
+  },
+  "modeledCoverageEnvelope": {
+    "boundaryInclusion": "CLOSED",
+    "boundsMeters": {
+      "max": [
+        1000.001,
+        1000.001,
+        200.0
+      ],
+      "min": [
+        -1000.001,
+        -1000.001,
+        -0.5
+      ]
+    },
+    "coverageId": "RF_COVERAGE_ISTANA_RADIUS_1000M_R24C",
+    "coversCanonicalGeometry": true,
+    "coversOfflineWitnessEndpoints": true,
+    "coversOneKilometreAoi": true,
+    "coversSurroundings": true,
+    "derivation": "MINIMUM_CLOSED_AABB_CONTAINING_CANONICAL_VERTICES_AND_WITNESS_ENDPOINTS",
+    "explicitExclusions": [
+      "real-world completeness outside the admitted dated public-envelope source scope",
+      "the four loader-AABB corner regions outside the closed radius-1000 m study circle; only the ground prior is intentionally continuous there",
+      "the upstream central sensitive-context exclusion except exact TightV1",
+      "terrain relief beyond the flat ground prior",
+      "interiors, true materials, foliage, weather, diffraction, diffuse scattering, transient and unmapped objects",
+      "survey, field, deployment, safety, or security authority"
+    ],
+    "fieldValidated": false,
+    "finiteSegmentPolicy": "BOTH_ENDPOINTS_AND_ENTIRE_FINITE_SEGMENT_MUST_BE_INSIDE_CLOSED_ENVELOPE",
+    "oneKilometreInterpretation": "EXACT_CLOSED_WGS84_VINCENTY_RADIUS_1000_M_CIRCLE_CONTAINED_BY_CLOSED_PLUS_MINUS_1000P001_M_LOADER_AABB",
+    "outsideDomainPolicy": "REJECT_QUERY_NEVER_EMIT_CLEAR_OR_DIRECT_PATH",
+    "scope": "RADIUS_1000_M_STUDY_CIRCLE_IN_LOADER_AABB_PUBLIC_ENVELOPE_ASSUMPTION_BOUND",
+    "shape": "AXIS_ALIGNED_BOX",
+    "studyDomain": {
+      "boundaryInclusion": "CLOSED",
+      "centerWgs84Degrees": {
+        "latitude": 1.30709615,
+        "longitude": 103.84288055
+      },
+      "configurationBinding": {
+        "enabled": true,
+        "jsonPointer": "/SimulationPerimeter",
+        "path": "unreal/Config/IstanaSensorPlacement.base.json",
+        "referenceName": "Istana_1km_Simulation_AOI",
+        "shape": "Circle"
+      },
+      "containsEntireFiniteSegmentWhenBothEndpointsInside": true,
+      "currentRuntimeEnforcement": "SOURCE_ARTIFACT_DECLARATION_ONLY_RUNTIME_ENFORCEMENT_REQUIRES_A_SEPARATELY_HASH_BOUND_AND_VALIDATED_CONSUMER",
+      "distanceMethod": "SIGNED_WGS84_VINCENTY_INVERSE_GEODESIC_CENTER_DISTANCE_MINUS_RADIUS_METERS",
+      "domainId": "Istana_1km_Simulation_AOI",
+      "domainType": "CLOSED_WGS84_GEODESIC_CIRCLE",
+      "frame": {
+        "logicalSystem": "RIGHT_HANDED_Z_UP_LOCAL_METRES_APPROACH_PLUS_Y",
+        "localX": "EPSG3414_EASTING_MINUS_ORIGIN_EASTING",
+        "localY": "NEGATED_EPSG3414_NORTHING_MINUS_ORIGIN_NORTHING",
+        "localZ": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM",
+        "projectedConstructionCrs": "EPSG:3414",
+        "sourceGeodeticCrs": "EPSG:4326",
+        "studyMembershipFrame": "WGS84_GEODETIC_SURFACE_HORIZONTAL_ALTITUDE_IGNORED",
+        "surveyRegistered": false
+      },
+      "finiteSegmentPolicy": "BOTH_ENDPOINTS_MUST_HAVE_SIGNED_WGS84_VINCENTY_DISTANCE_LESS_THAN_OR_EQUAL_TO_ZERO; THE CLOSED 1000_M_GEODESIC_DISK_IS CONVEX FOR THE ADMITTED MINIMIZING SURFACE SEGMENT",
+      "geodesicToLocalRuntimePolicy": "FAIL_CLOSED_RUNTIME MEMBERSHIP USES WGS84 VINCENTY INVERSE CENTER DISTANCE; EPSG3414 IS ONLY THE PINNED PUBLIC-ENVELOPE CONSTRUCTION PROJECTION",
+      "perimeterSampling": {
+        "azimuthConvention": "CLOCKWISE_FROM_TRUE_NORTH",
+        "count": 64,
+        "generationMethod": "WGS84_GEODESIC_DIRECT_AT_EXACT_1000_M_RADIUS",
+        "role": "ACCEPTANCE_WITNESSES_FOR_THE_EXACT_GEODESIC_PERIMETER_NOT_A_POLYGONAL_DOMAIN_APPROXIMATION",
+        "startAzimuthDegrees": 0.0,
+        "stepDegrees": 5.625
+      },
+      "pointMembershipPolicy": "WGS84_VINCENTY_INVERSE_SURFACE_DISTANCE_METERS_FROM_CENTER_TO_ENDPOINT_LESS_THAN_OR_EQUAL_TO_RADIUS_METERS",
+      "projectionContainmentCertificate": {
+        "continuousAbsoluteCoordinateUpperBoundMeters": 1000.0001,
+        "continuousBoundMethod": "ABS_PROJECTED_AXIS_DISPLACEMENT_LE_PROJECTED_PATH_LENGTH_LE_1000_M_TIMES_CONSERVATIVE_EPSG3414_POINT_SCALE_UPPER_BOUND",
+        "conservativeEpsg3414PointScaleUpperBound": 1.0000001,
+        "denseBoundarySweep": {
+          "azimuthCount": 360000,
+          "azimuthStepDegrees": 0.001,
+          "maximumLocalXMeters": 1000.000031233467,
+          "maximumLocalYMeters": 1000.000013961908,
+          "maximumProjectedRadiusMeters": 1000.000031242167,
+          "minimumLocalXMeters": -1000.000004939131,
+          "minimumLocalYMeters": -1000.000013961759
+        },
+        "loaderGuardMarginBeyondContinuousBoundMeters": 0.0009,
+        "loaderHorizontalBoundsMeters": [
+          -1000.001,
+          -1000.001,
+          1000.001,
+          1000.001
+        ],
+        "projectionOriginEpsg3414Meters": [
+          29064.15860639389,
+          32157.571268641685
+        ],
+        "toolchain": {
+          "geodesic": "GeographicLib 2.1 WGS84.Direct",
+          "projection": "pyproj 3.7.2 / PROJ 9.5.1 EPSG:3414"
+        }
+      },
+      "radiusMeters": 1000.0,
+      "shape": "CIRCLE",
+      "truthFlags": {
+        "containedByLoaderCoverageAabb": true,
+        "cornersOutsideCircleExcludedFromStudy": true,
+        "coversEligiblePublicEnvelopeSourceScope": true,
+        "coversEntireRadiusCircle": true,
+        "fieldValidated": false,
+        "surveyControlled": false
+      }
+    },
+    "surveyControlled": false
+  },
+  "outputPolicy": {
+    "cleanRegenerationMustBeByteIdentical": true,
+    "deterministicLfUtf8": true,
+    "liveAssetsModified": false,
+    "manifestHashesEveryGeneratedOutputExceptItself": true,
+    "runtimeResourcesWired": false,
+    "timestampsForbidden": true,
+    "unrealImportPerformed": false
+  },
+  "partitionPolicy": {
+    "aoiBoundsXYMeters": [
+      -1000.001,
+      -1000.001,
+      1000.001,
+      1000.001
+    ],
+    "baseHeightPolicy": "COLLAPSE_EVERY_ADMITTED_NONZERO_SOURCE_BASE_TO_ZERO_AND_LEDGER_ONLY_ACTUAL_ADMITTED_COLLAPSES",
+    "expectedRawBoundaryTouchPairCount": 809,
+    "expectedRawContainmentHeavyConflictCount": 80,
+    "expectedRawPositiveVolumeConflictCount": 88,
+    "expectedSourcePartCount": 1391,
+    "heightPolicy": "POINTWISE_MAXIMUM_OF_SOURCE_PART_TOP_HEIGHT_METERS_AFTER_AOI_CLIP_AND_HERO_SUBTRACTION",
+    "heroFootprintGuardToleranceMeters": 1e-06,
+    "minimumAdmittedAreaSquareMeters": 1e-10,
+    "planarPrecisionGridMeters": 1e-06,
+    "rawConflictContainmentPredicate": "EITHER_RECONSTRUCTED_FOOTPRINT_COVERS_THE_OTHER",
+    "sourceFootprintReconstruction": "UNION_OF_EACH_PART_BOTTOM_TRIANGLES",
+    "sourcePartAdmission": "CLIP_TO_CLOSED_PLUS_MINUS_1000P001_M_LOADER_AABB_THEN_SUBTRACT_EXACT_TIGHTV1_PROJECTED_UNION_EXPANDED_OUTWARD_BY_ONE_PRECISION_GRID_CELL; ALL_1391_ELIGIBLE_SOURCE_PARTS_FIT_THE_AABB"
+  },
+  "readinessSemantics": "SOURCE_ONLY_HASH_BOUND_PUBLIC_ENVELOPE_PARTITION_OFFLINE_VALIDATED_NOT_RUNTIME_OR_FIELD_VALIDATED",
+  "referenceEpoch": {
+    "accessedLocalAsiaSingapore": "2026-09-03T08:26:10+08:00",
+    "accessedUtc": "2026-09-03T00:26:10+00:00",
+    "osmBaseTimestamp": "2026-09-03T00:24:22Z",
+    "policy": "exact dated public snapshot; CURRENT is not a completeness, survey, or as-built claim"
+  },
+  "revision": "OneKilometreV2-R24C",
+  "schemaVersion": "triad.istana_public_view.rf_scene_contract.v2",
+  "sourceAttribution": {
+    "attribution": "© OpenStreetMap contributors",
+    "databaseLicence": "ODbL-1.0",
+    "licenceUrl": "https://www.openstreetmap.org/copyright",
+    "mapImageryTracingOrBakingIncluded": false,
+    "rawSnapshotSha256": "6d385011919d8b188e91e3a62cb67e877a18334414901bf53ce9498db67e86b4"
+  },
+  "status": "SIMULATION_READY_ASSUMPTION_BOUND",
+  "topologyPolicy": {
+    "coincidentDuplicateSolidsAllowed": false,
+    "everySolidConnected": true,
+    "everySolidWatertight": true,
+    "everyUndirectedEdgeIncidentFaceCount": 2,
+    "heroPrimitiveClass": "EXACT_TIGHTV1_AXIS_ALIGNED_BOX_PREFIX",
+    "openSurfaceComponentCount": 0,
+    "positiveVolumeOverlapsAllowed": false,
+    "selfIntersectionsAllowed": false,
+    "surroundingPrimitiveClass": "INDEXED_CLOSED_POLYHEDRON_VERTICAL_EXTRUSION",
+    "surfaceAndMaterialIdsRequired": true,
+    "validationToleranceMeters": 1e-06,
+    "zeroVolumeTouchesAllowed": true
+  }
+}

@@ -1,0 +1,275 @@
+{
+  "schemaVersion": "triad.rf_material_catalog.v1",
+  "catalogId": "istana-public-view-rf-materials-tight-v1-001",
+  "status": "UNCALIBRATED_ASSUMPTION_PRIORS",
+  "frequencyKnotsGHz": [0.43392, 0.868, 0.915, 1.28, 2.412, 2.462, 5.765, 5.825],
+  "modelSemantics": "HOMOGENEOUS_ISOTROPIC_EFFECTIVE_MEDIA_INITIAL_PRIORS_FOR_FINITE_SLAB_AND_CONDUCTOR_MODELS",
+  "globalClaimBoundary": {
+    "laboratoryMeasured": false,
+    "inSituMeasured": false,
+    "calibratedAgainstIstana": false,
+    "polarizationValidated": false,
+    "roughnessValidated": false,
+    "useRequiresAssumptionBoundLabel": true
+  },
+  "materials": [
+    {
+      "materialId": "MAT_RF_RENDERED_MASONRY_ASSUMED",
+      "modelClass": "FINITE_SLAB_DIELECTRIC",
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "provenanceId": "GENERIC_RENDERED_MASONRY_ENGINEERING_PRIOR_V1",
+      "uncertaintyClass": "HIGH",
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "rmsRoughnessMeters": 0.008,
+      "frequencyResponse": {
+        "frequencyGHz": [0.43392, 0.868, 0.915, 1.28, 2.412, 2.462, 5.765, 5.825],
+        "relativePermittivityReal": [5.0, 5.0, 5.0, 4.9, 4.8, 4.8, 4.6, 4.6],
+        "lossTangent": [0.04, 0.04, 0.04, 0.045, 0.05, 0.05, 0.06, 0.06],
+        "conductivitySiemensPerMeter": [0.01, 0.015, 0.015, 0.02, 0.025, 0.025, 0.035, 0.035]
+      },
+      "runtimeInteractionProfileV2": {
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "calibrationState": "UNCALIBRATED",
+        "calibrationProvenanceId": "GENERIC_RENDERED_MASONRY_ENGINEERING_PRIOR_V1",
+        "profiles": [
+          {
+            "profileId": "PROFILE_RENDERED_MASONRY_0P4_TO_6P0_GHZ",
+            "minimumFrequencyGHz": 0.4,
+            "maximumFrequencyGHz": 6.0,
+            "minimumIncidenceCosine": 1e-06,
+            "maximumIncidenceCosine": 1.0,
+            "pairedBoundaryTransmissionLossDb": 3.0,
+            "bulkAttenuationDbPerMeter": 4.0,
+            "reflectionLossDb": 5.0,
+            "empiricalGrazingReflectionLossDb": 3.0,
+            "allowsTransmission": true,
+            "allowsReflection": true
+          }
+        ]
+      },
+      "debugColorRgb": [0.78, 0.73, 0.62]
+    },
+    {
+      "materialId": "MAT_RF_REINFORCED_CONCRETE_ASSUMED",
+      "modelClass": "FINITE_SLAB_DIELECTRIC_EFFECTIVE_REBAR_NOT_RESOLVED",
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "provenanceId": "GENERIC_REINFORCED_CONCRETE_ENGINEERING_PRIOR_V1",
+      "uncertaintyClass": "HIGH",
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "rmsRoughnessMeters": 0.012,
+      "frequencyResponse": {
+        "frequencyGHz": [0.43392, 0.868, 0.915, 1.28, 2.412, 2.462, 5.765, 5.825],
+        "relativePermittivityReal": [6.7, 6.6, 6.6, 6.5, 6.2, 6.2, 5.8, 5.8],
+        "lossTangent": [0.07, 0.075, 0.075, 0.08, 0.09, 0.09, 0.11, 0.11],
+        "conductivitySiemensPerMeter": [0.025, 0.035, 0.035, 0.045, 0.065, 0.065, 0.1, 0.1]
+      },
+      "runtimeInteractionProfileV2": {
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "calibrationState": "UNCALIBRATED",
+        "calibrationProvenanceId": "GENERIC_REINFORCED_CONCRETE_ENGINEERING_PRIOR_V1",
+        "profiles": [
+          {
+            "profileId": "PROFILE_REINFORCED_CONCRETE_0P4_TO_6P0_GHZ",
+            "minimumFrequencyGHz": 0.4,
+            "maximumFrequencyGHz": 6.0,
+            "minimumIncidenceCosine": 1e-06,
+            "maximumIncidenceCosine": 1.0,
+            "pairedBoundaryTransmissionLossDb": 4.0,
+            "bulkAttenuationDbPerMeter": 8.0,
+            "reflectionLossDb": 4.0,
+            "empiricalGrazingReflectionLossDb": 3.0,
+            "allowsTransmission": true,
+            "allowsReflection": true
+          }
+        ]
+      },
+      "debugColorRgb": [0.48, 0.5, 0.52]
+    },
+    {
+      "materialId": "MAT_RF_TIMBER_DOOR_ASSUMED",
+      "modelClass": "FINITE_SLAB_DIELECTRIC",
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "provenanceId": "GENERIC_DRY_TIMBER_ENGINEERING_PRIOR_V1",
+      "uncertaintyClass": "HIGH",
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "rmsRoughnessMeters": 0.002,
+      "frequencyResponse": {
+        "frequencyGHz": [0.43392, 0.868, 0.915, 1.28, 2.412, 2.462, 5.765, 5.825],
+        "relativePermittivityReal": [2.3, 2.3, 2.3, 2.25, 2.2, 2.2, 2.1, 2.1],
+        "lossTangent": [0.06, 0.065, 0.065, 0.07, 0.08, 0.08, 0.1, 0.1],
+        "conductivitySiemensPerMeter": [0.003, 0.004, 0.004, 0.005, 0.008, 0.008, 0.012, 0.012]
+      },
+      "runtimeInteractionProfileV2": {
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "calibrationState": "UNCALIBRATED",
+        "calibrationProvenanceId": "GENERIC_DRY_TIMBER_ENGINEERING_PRIOR_V1",
+        "profiles": [
+          {
+            "profileId": "PROFILE_TIMBER_DOOR_0P4_TO_6P0_GHZ",
+            "minimumFrequencyGHz": 0.4,
+            "maximumFrequencyGHz": 6.0,
+            "minimumIncidenceCosine": 1e-06,
+            "maximumIncidenceCosine": 1.0,
+            "pairedBoundaryTransmissionLossDb": 2.0,
+            "bulkAttenuationDbPerMeter": 2.0,
+            "reflectionLossDb": 7.0,
+            "empiricalGrazingReflectionLossDb": 2.0,
+            "allowsTransmission": true,
+            "allowsReflection": true
+          }
+        ]
+      },
+      "debugColorRgb": [0.24, 0.12, 0.06]
+    },
+    {
+      "materialId": "MAT_RF_ARCHITECTURAL_GLASS_ASSUMED",
+      "modelClass": "FINITE_SLAB_DIELECTRIC",
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "provenanceId": "GENERIC_UNCOATED_ARCHITECTURAL_GLASS_PRIOR_V1",
+      "uncertaintyClass": "HIGH",
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "rmsRoughnessMeters": 0.00002,
+      "frequencyResponse": {
+        "frequencyGHz": [0.43392, 0.868, 0.915, 1.28, 2.412, 2.462, 5.765, 5.825],
+        "relativePermittivityReal": [6.2, 6.2, 6.2, 6.15, 6.1, 6.1, 6.0, 6.0],
+        "lossTangent": [0.008, 0.008, 0.008, 0.009, 0.01, 0.01, 0.012, 0.012],
+        "conductivitySiemensPerMeter": [0.0005, 0.0007, 0.0007, 0.001, 0.0015, 0.0015, 0.0025, 0.0025]
+      },
+      "runtimeInteractionProfileV2": {
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "calibrationState": "UNCALIBRATED",
+        "calibrationProvenanceId": "GENERIC_UNCOATED_ARCHITECTURAL_GLASS_PRIOR_V1",
+        "profiles": [
+          {
+            "profileId": "PROFILE_ARCHITECTURAL_GLASS_0P4_TO_6P0_GHZ",
+            "minimumFrequencyGHz": 0.4,
+            "maximumFrequencyGHz": 6.0,
+            "minimumIncidenceCosine": 1e-06,
+            "maximumIncidenceCosine": 1.0,
+            "pairedBoundaryTransmissionLossDb": 1.5,
+            "bulkAttenuationDbPerMeter": 1.0,
+            "reflectionLossDb": 4.0,
+            "empiricalGrazingReflectionLossDb": 2.0,
+            "allowsTransmission": true,
+            "allowsReflection": true
+          }
+        ]
+      },
+      "debugColorRgb": [0.16, 0.62, 0.78]
+    },
+    {
+      "materialId": "MAT_RF_METAL_LOUVRE_ASSUMED",
+      "modelClass": "BULK_CONDUCTOR",
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "provenanceId": "GENERIC_PAINTED_ALUMINIUM_ENGINEERING_PRIOR_V1",
+      "uncertaintyClass": "HIGH",
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "rmsRoughnessMeters": 0.0003,
+      "frequencyResponse": {
+        "frequencyGHz": [0.43392, 0.868, 0.915, 1.28, 2.412, 2.462, 5.765, 5.825],
+        "relativePermittivityReal": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+        "lossTangent": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "conductivitySiemensPerMeter": [30000000.0, 30000000.0, 30000000.0, 30000000.0, 30000000.0, 30000000.0, 30000000.0, 30000000.0]
+      },
+      "runtimeInteractionProfileV2": {
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "calibrationState": "UNCALIBRATED",
+        "calibrationProvenanceId": "GENERIC_PAINTED_ALUMINIUM_ENGINEERING_PRIOR_V1",
+        "profiles": [
+          {
+            "profileId": "PROFILE_METAL_LOUVRE_0P4_TO_6P0_GHZ",
+            "minimumFrequencyGHz": 0.4,
+            "maximumFrequencyGHz": 6.0,
+            "minimumIncidenceCosine": 1e-06,
+            "maximumIncidenceCosine": 1.0,
+            "pairedBoundaryTransmissionLossDb": 0.0,
+            "bulkAttenuationDbPerMeter": 0.0,
+            "reflectionLossDb": 1.0,
+            "empiricalGrazingReflectionLossDb": 1.0,
+            "allowsTransmission": false,
+            "allowsReflection": true
+          }
+        ]
+      },
+      "debugColorRgb": [0.2, 0.22, 0.24]
+    },
+    {
+      "materialId": "MAT_RF_SLATE_ROOF_ASSUMED",
+      "modelClass": "FINITE_SLAB_DIELECTRIC_EFFECTIVE_ROOF_BUILDUP",
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "provenanceId": "GENERIC_SLATE_ROOF_BUILDUP_ENGINEERING_PRIOR_V1",
+      "uncertaintyClass": "HIGH",
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "rmsRoughnessMeters": 0.006,
+      "frequencyResponse": {
+        "frequencyGHz": [0.43392, 0.868, 0.915, 1.28, 2.412, 2.462, 5.765, 5.825],
+        "relativePermittivityReal": [5.4, 5.4, 5.4, 5.3, 5.1, 5.1, 4.8, 4.8],
+        "lossTangent": [0.025, 0.025, 0.025, 0.03, 0.035, 0.035, 0.045, 0.045],
+        "conductivitySiemensPerMeter": [0.004, 0.005, 0.005, 0.006, 0.009, 0.009, 0.014, 0.014]
+      },
+      "runtimeInteractionProfileV2": {
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "calibrationState": "UNCALIBRATED",
+        "calibrationProvenanceId": "GENERIC_SLATE_ROOF_BUILDUP_ENGINEERING_PRIOR_V1",
+        "profiles": [
+          {
+            "profileId": "PROFILE_SLATE_ROOF_0P4_TO_6P0_GHZ",
+            "minimumFrequencyGHz": 0.4,
+            "maximumFrequencyGHz": 6.0,
+            "minimumIncidenceCosine": 1e-06,
+            "maximumIncidenceCosine": 1.0,
+            "pairedBoundaryTransmissionLossDb": 3.0,
+            "bulkAttenuationDbPerMeter": 5.0,
+            "reflectionLossDb": 4.0,
+            "empiricalGrazingReflectionLossDb": 3.0,
+            "allowsTransmission": true,
+            "allowsReflection": true
+          }
+        ]
+      },
+      "debugColorRgb": [0.08, 0.1, 0.15]
+    },
+    {
+      "materialId": "MAT_RF_STEEL_MAST_ASSUMED",
+      "modelClass": "BULK_CONDUCTOR",
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "provenanceId": "GENERIC_STEEL_ENGINEERING_PRIOR_V1",
+      "uncertaintyClass": "MEDIUM",
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "rmsRoughnessMeters": 0.0005,
+      "frequencyResponse": {
+        "frequencyGHz": [0.43392, 0.868, 0.915, 1.28, 2.412, 2.462, 5.765, 5.825],
+        "relativePermittivityReal": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+        "lossTangent": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "conductivitySiemensPerMeter": [6000000.0, 6000000.0, 6000000.0, 6000000.0, 6000000.0, 6000000.0, 6000000.0, 6000000.0]
+      },
+      "runtimeInteractionProfileV2": {
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "calibrationState": "UNCALIBRATED",
+        "calibrationProvenanceId": "GENERIC_STEEL_ENGINEERING_PRIOR_V1",
+        "profiles": [
+          {
+            "profileId": "PROFILE_STEEL_MAST_0P4_TO_6P0_GHZ",
+            "minimumFrequencyGHz": 0.4,
+            "maximumFrequencyGHz": 6.0,
+            "minimumIncidenceCosine": 1e-06,
+            "maximumIncidenceCosine": 1.0,
+            "pairedBoundaryTransmissionLossDb": 0.0,
+            "bulkAttenuationDbPerMeter": 0.0,
+            "reflectionLossDb": 1.0,
+            "empiricalGrazingReflectionLossDb": 1.0,
+            "allowsTransmission": false,
+            "allowsReflection": true
+          }
+        ]
+      },
+      "debugColorRgb": [0.42, 0.45, 0.48]
+    }
+  ],
+  "limitations": [
+    "All values are uncalibrated priors selected for deterministic simulation bring-up.",
+    "No material record is evidence of the actual Istana substrate, moisture state, reinforcement, coating, laminate, or frequency response.",
+    "Runtime telemetry must retain materialId, provenanceId, calibrationState, uncertaintyClass, catalog hash, and frequency interpolation evidence.",
+    "Promotion from UNCALIBRATED_ASSUMPTION requires an immutable external calibration receipt."
+  ]
+}

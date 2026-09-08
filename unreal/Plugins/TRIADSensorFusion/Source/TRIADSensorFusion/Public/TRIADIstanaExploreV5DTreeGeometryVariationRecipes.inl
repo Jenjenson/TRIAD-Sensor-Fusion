@@ -1,0 +1,17 @@
+// Intentionally no include guard: define TRIAD_TREE_GEOMETRY_VARIATION_RECIPE
+// before inclusion. The row order is form-major and selector A/B/C.
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(Umbrella, "A", "SM_IPV5D_Tree_Umbrella_GV4_A", 0.025f, 0.34f, 0.78f, 1.01f, 0.99f, 1.16f, 1.02f, 0.96f, 0.030f, -0.012f, 4.0f, 0.020f, 5, 18.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(Umbrella, "B", "SM_IPV5D_Tree_Umbrella_GV4_B", 0.025f, 0.39f, 0.82f, 0.99f, 1.01f, 1.03f, 1.14f, 1.02f, -0.017f, 0.026f, -5.5f, 0.026f, 6, 61.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(Umbrella, "C", "SM_IPV5D_Tree_Umbrella_GV4_C", 0.025f, 0.30f, 0.72f, 1.02f, 1.00f, 1.21f, 1.08f, 0.93f, 0.019f, 0.021f, 7.0f, 0.018f, 4, 103.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(Dome, "A", "SM_IPV5D_Tree_Dome_GV4_A", 0.025f, 0.31f, 0.76f, 1.01f, 1.01f, 1.09f, 1.06f, 0.99f, 0.016f, -0.018f, 3.5f, 0.022f, 7, 11.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(Dome, "B", "SM_IPV5D_Tree_Dome_GV4_B", 0.025f, 0.38f, 0.84f, 0.99f, 1.02f, 0.96f, 1.14f, 1.05f, -0.024f, 0.010f, -6.0f, 0.019f, 5, 47.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(Dome, "C", "SM_IPV5D_Tree_Dome_GV4_C", 0.025f, 0.28f, 0.70f, 1.02f, 0.98f, 1.15f, 1.01f, 0.95f, 0.027f, 0.024f, 8.0f, 0.028f, 6, 89.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(HighForkRounded, "A", "SM_IPV5D_Tree_HighForkRounded_GV4_A", 0.025f, 0.48f, 0.82f, 0.98f, 1.02f, 1.13f, 1.04f, 1.01f, 0.022f, -0.016f, 6.0f, 0.020f, 5, 24.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(HighForkRounded, "B", "SM_IPV5D_Tree_HighForkRounded_GV4_B", 0.025f, 0.43f, 0.78f, 1.02f, 1.00f, 1.06f, 1.11f, 0.98f, -0.019f, 0.025f, -7.0f, 0.024f, 7, 70.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(HighForkRounded, "C", "SM_IPV5D_Tree_HighForkRounded_GV4_C", 0.025f, 0.52f, 0.86f, 0.99f, 0.98f, 1.17f, 0.98f, 1.04f, 0.038f, 0.008f, 9.0f, 0.017f, 4, 132.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(Columnar, "A", "SM_IPV5D_Tree_Columnar_GV4_A", 0.025f, 0.36f, 0.74f, 0.98f, 0.98f, 0.91f, 0.96f, 1.07f, 0.012f, -0.014f, 4.5f, 0.018f, 6, 7.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(Columnar, "B", "SM_IPV5D_Tree_Columnar_GV4_B", 0.025f, 0.42f, 0.80f, 1.00f, 0.97f, 0.97f, 0.88f, 1.04f, -0.026f, 0.017f, -8.0f, 0.021f, 5, 52.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(Columnar, "C", "SM_IPV5D_Tree_Columnar_GV4_C", 0.025f, 0.32f, 0.72f, 1.01f, 1.01f, 1.02f, 0.94f, 1.02f, 0.018f, 0.028f, 7.0f, 0.025f, 7, 117.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(Palm, "A", "SM_IPV5D_Tree_Palm_GV4_A", 0.025f, 0.62f, 0.87f, 0.99f, 1.01f, 1.12f, 0.94f, 1.03f, 0.034f, -0.010f, 8.0f, 0.016f, 7, 20.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(Palm, "B", "SM_IPV5D_Tree_Palm_GV4_B", 0.025f, 0.68f, 0.90f, 1.01f, 0.99f, 0.98f, 1.09f, 1.06f, -0.018f, 0.022f, -10.0f, 0.020f, 8, 64.0f)
+TRIAD_TREE_GEOMETRY_VARIATION_RECIPE(Palm, "C", "SM_IPV5D_Tree_Palm_GV4_C", 0.025f, 0.58f, 0.84f, 0.98f, 1.02f, 1.15f, 1.03f, 0.98f, 0.041f, 0.016f, 12.0f, 0.018f, 6, 109.0f)

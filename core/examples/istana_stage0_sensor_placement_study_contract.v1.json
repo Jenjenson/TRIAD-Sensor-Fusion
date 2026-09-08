@@ -1,0 +1,941 @@
+{
+  "schemaVersion": "triad.sensor_placement_stage0_study_contract.v1",
+  "studyId": "istana-fixed-site-placement-stage0-example",
+  "studyRevision": 1,
+  "contractState": "DRAFT",
+  "referenceEpochUtc": "2026-08-30T00:00:00Z",
+  "scope": {
+    "studyType": "STATIC_FIXED_SITE_PLACEMENT",
+    "allowedSensorClasses": [
+      "radar",
+      "passive_rf",
+      "rgb",
+      "event_camera"
+    ],
+    "prohibitedDeployedModalities": [
+      "thermal",
+      "depth"
+    ],
+    "thermalPolicy": "PROHIBITED_DEPLOYED_MODALITY",
+    "depthPolicy": "EVALUATOR_TRUTH_OR_DIAGNOSTIC_ONLY_NOT_DEPLOYED",
+    "productionOptimizerImplementationAuthorized": false,
+    "physicalDeploymentAuthorized": false
+  },
+  "requirements": {
+    "objectives": {
+      "policy": "CONSTRAINT_FIRST_PARETO",
+      "primary": "MINIMIZE_LIFECYCLE_COST_UNITS",
+      "paretoMetrics": [
+        "LIFECYCLE_COST",
+        "DETECTION_AND_TRACK_LATENCY",
+        "LOCALIZATION_ERROR",
+        "OUTAGE_RESILIENCE",
+        "RESOURCE_USE",
+        "OPERATOR_CUE_LOAD"
+      ],
+      "hardConstraintsPrecedeRanking": true,
+      "uncalibratedScoreLabel": "SIMULATION_EVIDENCE_INDEX"
+    },
+    "thresholds": {
+      "minimumWorstScenarioFusedDetectionFraction": 0.95,
+      "maximumCvarTimeToLocalizedTrackSeconds": 12.0,
+      "maximumP95TimeToFirstDetectionSeconds": 5.0,
+      "minimumTrackContinuityFraction": 0.9,
+      "maximumTrackBreakRate": 0.05,
+      "maximumPositionRmseMeters": 15.0,
+      "maximumVelocityRmseMetersPerSecond": 3.0,
+      "maximumFalseDetectionsPerSensorHour": 2.0,
+      "maximumFalseFusedTracksPerScenarioHour": 0.1,
+      "minimumSingleNodeOutageCoverageFraction": 0.85,
+      "minimumFailureDomainOutageCoverageFraction": 0.75,
+      "confidenceLevel": 0.95,
+      "cvarAlpha": 0.95
+    },
+    "hardConstraints": {
+      "maximumSites": 8,
+      "maximumTotalSensors": 12,
+      "maximumSensorsPerClass": {
+        "radar": 6,
+        "passive_rf": 6,
+        "rgb": 6,
+        "event_camera": 6
+      },
+      "minimumIndependentEvidenceFamilies": 2,
+      "minimumDistinctSites": 2,
+      "minimumFailureDomains": 2,
+      "minimumRfLocalizationBaselineMeters": 50.0,
+      "lifecycleBudgetUnits": 100.0,
+      "powerBudgetWatts": 4000.0,
+      "backhaulBudgetMbps": 5000.0,
+      "computeBudgetUnits": 100.0,
+      "storageBudgetGbPerDay": 5000.0,
+      "operatorCueBudgetPerMinute": 20.0
+    },
+    "criticalZoneIds": [
+      "istana-study-aoi",
+      "public-road-boundary"
+    ],
+    "criticalTrajectoryIds": [
+      "trajectory-ingress-north",
+      "trajectory-ingress-south"
+    ]
+  },
+  "criticalZoneCatalog": {
+    "artifactId": "artifact-critical-zone-catalog",
+    "coordinateFrame": "WGS84_WITH_LOCAL_ENU_AT_STUDY_ORIGIN",
+    "zoneIds": [
+      "istana-study-aoi",
+      "public-road-boundary"
+    ]
+  },
+  "hardwareInventory": [
+    {
+      "hardwareId": "radar-example-xband-v1",
+      "sensorClass": "radar",
+      "manufacturer": "TBD_BY_STAKEHOLDER",
+      "model": "X_BAND_SEARCH_RADAR_EXAMPLE",
+      "hardwareRevision": "UNSELECTED",
+      "quantityAvailable": 4,
+      "lifecycleCostUnits": 12.0,
+      "massKg": 45.0,
+      "powerWatts": 650.0,
+      "backhaulMbps": 25.0,
+      "computeUnits": 8.0,
+      "storageGbPerDay": 50.0,
+      "modelArtifactId": "artifact-radar-model",
+      "calibrationArtifactId": "artifact-radar-calibration",
+      "configuration": {
+        "frequencyBands": [
+          {
+            "bandId": "radar-x-band",
+            "minimumFrequencyHz": 9200000000.0,
+            "maximumFrequencyHz": 9500000000.0
+          }
+        ],
+        "waveformIds": [
+          "search-waveform-example"
+        ],
+        "antennaPatternArtifactId": "artifact-radar-antenna-pattern",
+        "updateRateHz": 10.0,
+        "azimuthFieldOfRegardDegrees": 360.0,
+        "elevationFieldOfRegardDegrees": 60.0,
+        "detectionModelId": "radar-pd-example-v1",
+        "falseAlarmModelId": "radar-pfa-example-v1"
+      }
+    },
+    {
+      "hardwareId": "passive-rf-example-v1",
+      "sensorClass": "passive_rf",
+      "manufacturer": "TBD_BY_STAKEHOLDER",
+      "model": "WIDEBAND_RECEIVER_EXAMPLE",
+      "hardwareRevision": "UNSELECTED",
+      "quantityAvailable": 6,
+      "lifecycleCostUnits": 5.0,
+      "massKg": 8.0,
+      "powerWatts": 80.0,
+      "backhaulMbps": 40.0,
+      "computeUnits": 4.0,
+      "storageGbPerDay": 100.0,
+      "modelArtifactId": "artifact-passive-rf-model",
+      "calibrationArtifactId": "artifact-passive-rf-calibration",
+      "configuration": {
+        "frequencyBands": [
+          {
+            "bandId": "rf-2_4-ghz",
+            "minimumFrequencyHz": 2400000000.0,
+            "maximumFrequencyHz": 2500000000.0
+          },
+          {
+            "bandId": "rf-5_8-ghz",
+            "minimumFrequencyHz": 5725000000.0,
+            "maximumFrequencyHz": 5875000000.0
+          }
+        ],
+        "antennaPatternArtifactId": "artifact-passive-rf-antenna-pattern",
+        "polarizations": [
+          "DUAL_LINEAR"
+        ],
+        "instantaneousBandwidthHz": 100000000.0,
+        "dwellSeconds": 0.05,
+        "clockClass": "GNSS_DISCIPLINED_EXAMPLE",
+        "supportsAoa": true,
+        "supportsTdoa": true,
+        "detectionModelId": "passive-rf-energy-detector-example-v1"
+      }
+    },
+    {
+      "hardwareId": "rgb-example-v1",
+      "sensorClass": "rgb",
+      "manufacturer": "TBD_BY_STAKEHOLDER",
+      "model": "VISIBLE_PTZ_EXAMPLE",
+      "hardwareRevision": "UNSELECTED",
+      "quantityAvailable": 6,
+      "lifecycleCostUnits": 4.0,
+      "massKg": 6.0,
+      "powerWatts": 60.0,
+      "backhaulMbps": 50.0,
+      "computeUnits": 5.0,
+      "storageGbPerDay": 200.0,
+      "modelArtifactId": "artifact-rgb-model",
+      "calibrationArtifactId": "artifact-rgb-calibration",
+      "configuration": {
+        "lensOptions": [
+          {
+            "lensId": "rgb-lens-35mm-example",
+            "focalLengthMm": 35.0,
+            "horizontalFovDegrees": 54.0,
+            "verticalFovDegrees": 37.0,
+            "apertureFNumber": 2.8
+          }
+        ],
+        "resolution": {
+          "widthPixels": 3840,
+          "heightPixels": 2160
+        },
+        "frameRateHz": 30.0,
+        "exposurePolicy": "AUTO_BOUNDED",
+        "detectorArtifactId": "artifact-rgb-detector",
+        "imagingModelId": "rgb-renderer-camera-chain-example-v1"
+      }
+    },
+    {
+      "hardwareId": "event-camera-example-v1",
+      "sensorClass": "event_camera",
+      "manufacturer": "TBD_BY_STAKEHOLDER",
+      "model": "EVENT_CAMERA_EXAMPLE",
+      "hardwareRevision": "UNSELECTED",
+      "quantityAvailable": 6,
+      "lifecycleCostUnits": 7.0,
+      "massKg": 2.0,
+      "powerWatts": 25.0,
+      "backhaulMbps": 80.0,
+      "computeUnits": 6.0,
+      "storageGbPerDay": 300.0,
+      "modelArtifactId": "artifact-event-camera-model",
+      "calibrationArtifactId": "artifact-event-camera-calibration",
+      "configuration": {
+        "lensOptions": [
+          {
+            "lensId": "event-lens-16mm-example",
+            "focalLengthMm": 16.0,
+            "horizontalFovDegrees": 60.0,
+            "verticalFovDegrees": 45.0,
+            "apertureFNumber": 1.8
+          }
+        ],
+        "resolution": {
+          "widthPixels": 1280,
+          "heightPixels": 720
+        },
+        "temporalParameters": {
+          "positiveContrastThreshold": 0.2,
+          "negativeContrastThreshold": 0.2,
+          "refractoryPeriodMicroseconds": 100.0,
+          "timestampResolutionMicroseconds": 1.0,
+          "noiseRateEventsPerPixelSecond": 0.01,
+          "maximumEventRatePerSecond": 50000000.0
+        },
+        "detectorArtifactId": "artifact-event-camera-detector",
+        "eventRepresentation": "RAW_EVENTS",
+        "imagingModelId": "physical-event-camera-example-v1"
+      }
+    }
+  ],
+  "targetAndTrajectoryEnvelope": {
+    "targetClasses": [
+      {
+        "targetClassId": "small-low-altitude-aircraft",
+        "lengthMeters": {
+          "minimum": 0.25,
+          "maximum": 2.0
+        },
+        "widthMeters": {
+          "minimum": 0.25,
+          "maximum": 2.0
+        },
+        "heightMeters": {
+          "minimum": 0.1,
+          "maximum": 0.8
+        },
+        "speedMetersPerSecond": {
+          "minimum": 0.0,
+          "maximum": 45.0
+        },
+        "accelerationMetersPerSecondSquared": {
+          "minimum": 0.0,
+          "maximum": 12.0
+        },
+        "altitudeAglMeters": {
+          "minimum": 5.0,
+          "maximum": 300.0
+        },
+        "radarCrossSectionSquareMeters": {
+          "minimum": 0.001,
+          "maximum": 0.2
+        },
+        "aspectDegrees": {
+          "minimum": 0.0,
+          "maximum": 360.0
+        },
+        "rfEmissionStates": [
+          "EMITTING",
+          "SILENT"
+        ],
+        "rfBandIds": [
+          "rf-2_4-ghz",
+          "rf-5_8-ghz"
+        ],
+        "transmitPowerDbm": {
+          "minimum": -10.0,
+          "maximum": 30.0
+        },
+        "dutyCycleFraction": {
+          "minimum": 0.01,
+          "maximum": 1.0
+        }
+      }
+    ],
+    "trajectoryCorpus": {
+      "artifactId": "artifact-target-trajectories",
+      "trajectoryIds": [
+        "trajectory-ingress-north",
+        "trajectory-ingress-south",
+        "trajectory-ingress-east",
+        "trajectory-ingress-west"
+      ],
+      "coordinateFrame": "WGS84_WITH_LOCAL_ENU_AT_STUDY_ORIGIN",
+      "trajectoryTypes": [
+        "STRAIGHT_INGRESS_EGRESS",
+        "ACCELERATING_TURN",
+        "LOITER_AND_DEPART"
+      ],
+      "timeHorizonSeconds": {
+        "minimum": 30.0,
+        "maximum": 300.0
+      },
+      "samplePeriodSeconds": 0.01,
+      "containsCompleteIngressAndEgress": true
+    }
+  },
+  "scenarioCorpus": {
+    "requiredDimensions": [
+      "TARGET_KINEMATICS_SIZE_ASPECT_AND_RCS",
+      "RF_EMITTING_AND_RF_SILENT",
+      "WEATHER_ILLUMINATION_AND_WIND_VEGETATION",
+      "APERTURE_STATE_AND_RF_MATERIAL_REALIZATION",
+      "SENSOR_NOISE_CALIBRATION_CLOCK_AND_DROPS",
+      "NETWORK_COMPUTE_AND_FAILURE_DOMAIN_OUTAGE",
+      "CLUTTER_AND_NON_TARGET_TRAFFIC"
+    ],
+    "commonRandomSeeds": [
+      1103,
+      2207,
+      3301,
+      4409
+    ],
+    "partitions": {
+      "train": {
+        "partitionId": "scenario-partition-train-v1",
+        "scenarioSetArtifactId": "artifact-train-scenarios",
+        "scenarioIds": [
+          "train-clear-emitting",
+          "train-rain-silent"
+        ],
+        "purpose": "TRAINING_AND_TUNING",
+        "frozen": true
+      },
+      "validation": {
+        "partitionId": "scenario-partition-validation-v1",
+        "scenarioSetArtifactId": "artifact-validation-scenarios",
+        "scenarioIds": [
+          "validation-haze-emitting",
+          "validation-night-silent"
+        ],
+        "purpose": "MODEL_AND_SOLVER_SELECTION",
+        "frozen": true
+      },
+      "test": {
+        "partitionId": "scenario-partition-test-v1",
+        "scenarioSetArtifactId": "artifact-test-scenarios",
+        "scenarioIds": [
+          "test-monsoon-emitting",
+          "test-backlit-silent-outage"
+        ],
+        "purpose": "FINAL_HELD_OUT_EVALUATION_ONLY",
+        "frozen": true
+      }
+    }
+  },
+  "fusionPolicy": {
+    "policyId": "triad-three-family-fusion-example",
+    "policyVersion": "v1",
+    "policyArtifactId": "artifact-fusion-policy",
+    "decisionRule": "MINIMUM_INDEPENDENT_EVIDENCE_FAMILIES",
+    "minimumIndependentFamilies": 2,
+    "familyAssignments": {
+      "active_radar": [
+        "radar"
+      ],
+      "passive_rf": [
+        "passive_rf"
+      ],
+      "visual": [
+        "rgb",
+        "event_camera"
+      ]
+    },
+    "rgbEventCorrelationTreatment": "CORRELATED_SINGLE_VISUAL_FAMILY",
+    "sameFamilyEvidenceMayCorroborate": false,
+    "sameFamilyScoresMayBeSummed": false,
+    "simulatorTruthMaySeedOperationalTracks": false
+  },
+  "mountRegionPolicy": {
+    "coordinateFrame": "WGS84_WITH_LOCAL_ENU_AT_STUDY_ORIGIN",
+    "candidateGeometryArtifactId": "artifact-mount-region-geometry",
+    "selectionRule": "ONLY_ELIGIBLE_REGIONS_MAY_ENTER_CANDIDATE_GENERATION",
+    "regions": [
+      {
+        "regionId": "example-region-pending-survey",
+        "geometryElementIds": [
+          "mount-polygon-example-001"
+        ],
+        "allowedSensorClasses": [
+          "radar",
+          "passive_rf",
+          "rgb",
+          "event_camera"
+        ],
+        "heightAglMeters": {
+          "minimum": 4.0,
+          "maximum": 15.0
+        },
+        "azimuthDegrees": {
+          "minimum": 0.0,
+          "maximum": 360.0
+        },
+        "permissions": {
+          "siteAuthority": "TBD_BY_AUTHORIZED_SITE_OWNER",
+          "status": "PENDING",
+          "evidenceArtifactId": null,
+          "accessApproved": false,
+          "structuralApproved": false,
+          "radarEmissionApproved": false
+        },
+        "resources": {
+          "maximumSensorCount": 4,
+          "maximumInstalledMassKg": 150.0,
+          "availablePowerWatts": 1500.0,
+          "availableBackhaulMbps": 1000.0,
+          "availableComputeUnits": 25.0,
+          "availableStorageGbPerDay": 1200.0,
+          "failureDomainId": "failure-domain-example-a",
+          "powerDomainId": "power-domain-example-a",
+          "backhaulDomainId": "backhaul-domain-example-a",
+          "maintenanceEnvelopeArtifactId": "artifact-maintenance-envelope"
+        },
+        "privacy": {
+          "reviewStatus": "PENDING",
+          "privacyMaskArtifactId": "artifact-privacy-mask",
+          "prohibitedViewGeometryArtifactId": "artifact-prohibited-view-geometry",
+          "rawImageryExportAllowed": false,
+          "maximumRetentionHours": 24.0
+        },
+        "eligibleForCandidateGeneration": false
+      }
+    ]
+  },
+  "artifactBindings": [
+    {
+      "artifactId": "artifact-map",
+      "role": "MAP",
+      "sha256": "16cfaaa83282172c8ad55aa9b529d3f2cf5007053e85efda7fa3bd587c98017c",
+      "uri": "unresolved://replace-with-cold-loaded-map-package",
+      "provenance": "Illustrative placeholder; replace with the hash of the accepted artifact before freeze.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-critical-zone-catalog",
+      "role": "AOI_ZONE_CATALOG",
+      "sha256": "dad1667cb8fc90c3328d1e8d7ef1fae875a6f94c2109a270f6226d6fb5c8348a",
+      "uri": "unresolved://replace-with-critical-zone-catalog",
+      "provenance": "Illustrative declared zone IDs only; replace with an accepted hash-bound AOI/zone catalog.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-render-geometry",
+      "role": "RENDER_GEOMETRY",
+      "sha256": "64aa01a70281b0f84279b4709defc1097599158eb35dab240ed02a360cfbe321",
+      "uri": "unresolved://replace-with-render-geometry",
+      "provenance": "Illustrative placeholder; not visual-fidelity evidence.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-collision-geometry",
+      "role": "COLLISION_GEOMETRY",
+      "sha256": "0309a0b79302c7c73da7da3e33a0b196ce1e1c9863c9d263647d02ee48321223",
+      "uri": "unresolved://replace-with-collision-geometry",
+      "provenance": "Illustrative placeholder; not a survey claim.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-rf-geometry",
+      "role": "RF_GEOMETRY",
+      "sha256": "73412a3856a9c72a54371e38b221ddbcf5fcf6796d9e8c406074a7ac5c2d9391",
+      "uri": "unresolved://replace-with-dedicated-rf-geometry",
+      "provenance": "Illustrative placeholder; not field-validated RF geometry.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-rf-materials",
+      "role": "RF_MATERIAL_CATALOG",
+      "sha256": "39d98c69623dfc7f890de1786f04da780303c7620875154cf0d8ec5ee7fcadac",
+      "uri": "unresolved://replace-with-rf-material-catalog",
+      "provenance": "Illustrative placeholder; replace with measured band-scoped material data.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-rf-native-test-receipt",
+      "role": "RF_NATIVE_TEST_RECEIPT",
+      "sha256": "1e7856c2435f6eebbcb362b4b09c4df19e8964544528f6204cc64a8a6690f0e2",
+      "uri": "unresolved://bind-approved-copy-of-exact-native-rf-v3-receipt",
+      "provenance": "The known v3 PASS receipt hash is recorded, but an approved-root copy is not yet bound; this proves native actual-file load/query mechanics only, not field calibration.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-radar-model",
+      "role": "RADAR_SENSOR_MODEL",
+      "sha256": "aee3525a11a9b31a6be037c7cbb7326d88f32d66c69b23679f1089f44a53d9d3",
+      "uri": "unresolved://replace-with-calibrated-radar-model",
+      "provenance": "Illustrative model binding only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-passive-rf-model",
+      "role": "PASSIVE_RF_SENSOR_MODEL",
+      "sha256": "43e16c2b20993ed606003ddb3c6773e003341e614f74aebf212c87fc544d9cdf",
+      "uri": "unresolved://replace-with-calibrated-passive-rf-model",
+      "provenance": "Illustrative model binding only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-rgb-model",
+      "role": "RGB_SENSOR_MODEL",
+      "sha256": "59cc94b93f2feea308bf1fcfc791e985c6b59819e11ae871e8ed4cbedf5d0c07",
+      "uri": "unresolved://replace-with-calibrated-rgb-model",
+      "provenance": "Illustrative model binding only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-event-camera-model",
+      "role": "EVENT_CAMERA_SENSOR_MODEL",
+      "sha256": "ad4c2f3f4a1ff07815d5050322157fcbfec9d961f945820ae17b53020e7085e1",
+      "uri": "unresolved://replace-with-physical-event-camera-model",
+      "provenance": "Illustrative model binding; an RGB frame-difference proxy cannot satisfy this role.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-rgb-detector",
+      "role": "RGB_DETECTOR",
+      "sha256": "dfef3c3216929d4aaae746d6ffd5b0b2d16deec2bb84d1c7c2861b235f367684",
+      "uri": "unresolved://replace-with-pinned-rgb-detector",
+      "provenance": "Illustrative detector binding only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-event-camera-detector",
+      "role": "EVENT_CAMERA_DETECTOR",
+      "sha256": "2277c24a05bbe94dfb93fe4429e805685533d3b07ede29df9c3f8510a85edbab",
+      "uri": "unresolved://replace-with-pinned-event-detector",
+      "provenance": "Illustrative detector binding only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-fusion-policy",
+      "role": "FUSION_POLICY",
+      "sha256": "980da34c19c70133de7f7be347893396dfda98d930b99637ab3591ff2b13d6af",
+      "uri": "unresolved://replace-with-versioned-fusion-policy",
+      "provenance": "Illustrative policy binding only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-target-trajectories",
+      "role": "TARGET_TRAJECTORIES",
+      "sha256": "8981189a4bb9bfa3218f9bb82624af936f648129610868200007142c59336e0b",
+      "uri": "unresolved://replace-with-approved-trajectory-corpus",
+      "provenance": "Illustrative trajectory envelope only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-train-scenarios",
+      "role": "TRAIN_SCENARIOS",
+      "sha256": "0d05ba03c9adff09b9b24b6ef8e22aed7835f7dbbfdc749ccfd0137704826a7b",
+      "uri": "unresolved://replace-with-frozen-training-scenarios",
+      "provenance": "Illustrative disjoint partition.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-validation-scenarios",
+      "role": "VALIDATION_SCENARIOS",
+      "sha256": "0400a6c5dda76a5b05b5115d2359362bbc41b38ab3881a01f4a925b1b2061b39",
+      "uri": "unresolved://replace-with-frozen-validation-scenarios",
+      "provenance": "Illustrative disjoint partition.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-test-scenarios",
+      "role": "TEST_SCENARIOS",
+      "sha256": "e80e8a5dc1ce2bdd06dfcc412375d49d06f4c52fb81aed142e1b8ff9a9fd1a0e",
+      "uri": "unresolved://replace-with-sealed-test-scenarios",
+      "provenance": "Illustrative held-out partition; never tune against this set.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-mount-region-geometry",
+      "role": "MOUNT_REGION_GEOMETRY",
+      "sha256": "a5a19f337b517924a43cc59f8dc8bafd7e238dbc338a3cc263a4c7554feb77f1",
+      "uri": "unresolved://replace-with-surveyed-mount-regions",
+      "provenance": "Illustrative region only; no permission or structural suitability is inferred.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-solver-candidates",
+      "role": "SOLVER_CANDIDATES",
+      "sha256": "8f1e26bdbc293b938e31ba7f8fba0aa7ca04c654996cd6953db5221f1cc400fa",
+      "uri": "unresolved://replace-with-common-candidate-set",
+      "provenance": "Illustrative common benchmark input only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-radar-calibration",
+      "role": "SENSOR_CALIBRATION",
+      "sha256": "caabd5473c241d230e98359e67984e72dfa09b583bc2b0c580f9d97d9432b348",
+      "uri": "unresolved://replace-with-radar-calibration",
+      "provenance": "Illustrative calibration binding only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-passive-rf-calibration",
+      "role": "SENSOR_CALIBRATION",
+      "sha256": "a55d2ca0a1bdb7b9c2534df27a18a23d618b316d94cbbf6a2febc2a4cd0d079e",
+      "uri": "unresolved://replace-with-passive-rf-calibration",
+      "provenance": "Illustrative calibration binding only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-rgb-calibration",
+      "role": "SENSOR_CALIBRATION",
+      "sha256": "4ec8cb38ad625c92a4c7335ebf1ca53117e182d748d9673652727d5d7bbaf031",
+      "uri": "unresolved://replace-with-rgb-chain-calibration",
+      "provenance": "Illustrative calibration binding only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-event-camera-calibration",
+      "role": "SENSOR_CALIBRATION",
+      "sha256": "c48761362cfda8c2d2199f10d09e86b8349fb97d8621c9108c85d824848ddc50",
+      "uri": "unresolved://replace-with-event-camera-calibration",
+      "provenance": "Illustrative calibration binding only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-radar-antenna-pattern",
+      "role": "ANTENNA_PATTERN",
+      "sha256": "27a7c808f18a08a240d329095367d789748fee7f2e9395556f1a9750d9295edc",
+      "uri": "unresolved://replace-with-radar-antenna-pattern",
+      "provenance": "Illustrative antenna pattern binding only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-passive-rf-antenna-pattern",
+      "role": "ANTENNA_PATTERN",
+      "sha256": "67dc25e8baad3c61fc0f44f1b314d1a65c692673fa0a70b7d24de0a4b7e7b28e",
+      "uri": "unresolved://replace-with-receiver-antenna-pattern",
+      "provenance": "Illustrative antenna pattern binding only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-privacy-mask",
+      "role": "PRIVACY_MASK",
+      "sha256": "8a2c1375b88dc776ace9306b2affc3a1c62ee9abc808db1025cec477459af2f7",
+      "uri": "unresolved://replace-with-reviewed-privacy-mask",
+      "provenance": "Illustrative mask; privacy review remains pending.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-prohibited-view-geometry",
+      "role": "PROHIBITED_VIEW_GEOMETRY",
+      "sha256": "6a382504616bb55558af308b9c832c38cf069ca967ac074de8e127871e122e26",
+      "uri": "unresolved://replace-with-prohibited-view-geometry",
+      "provenance": "Illustrative prohibited-view geometry only.",
+      "readiness": "UNVERIFIED"
+    },
+    {
+      "artifactId": "artifact-maintenance-envelope",
+      "role": "MAINTENANCE_ENVELOPE",
+      "sha256": "e01e34504a6d79934c6e935419d328408cd84cbb3230aec2db2defa28d2d6886",
+      "uri": "unresolved://replace-with-maintenance-envelope",
+      "provenance": "Illustrative maintenance envelope only.",
+      "readiness": "UNVERIFIED"
+    }
+  ],
+  "readiness": {
+    "gates": [
+      {
+        "gateId": "ENVIRONMENT",
+        "status": "BLOCKED",
+        "evidenceArtifactIds": [
+          "artifact-map",
+          "artifact-critical-zone-catalog",
+          "artifact-render-geometry",
+          "artifact-collision-geometry"
+        ],
+        "blockingReasons": [
+          "Cold-loaded hash-bound environment acceptance is not attached."
+        ]
+      },
+      {
+        "gateId": "RF_PROPAGATION",
+        "status": "BLOCKED",
+        "evidenceArtifactIds": [
+          "artifact-rf-geometry",
+          "artifact-rf-materials",
+          "artifact-rf-native-test-receipt"
+        ],
+        "blockingReasons": [
+          "Band-scoped controlled or field validation is not attached."
+        ]
+      },
+      {
+        "gateId": "RADAR_MODEL",
+        "status": "BLOCKED",
+        "evidenceArtifactIds": [
+          "artifact-radar-model",
+          "artifact-radar-calibration",
+          "artifact-radar-antenna-pattern"
+        ],
+        "blockingReasons": [
+          "Probability-of-detection, false-alarm, clutter, and covariance calibration are pending."
+        ]
+      },
+      {
+        "gateId": "PASSIVE_RF_MODEL",
+        "status": "BLOCKED",
+        "evidenceArtifactIds": [
+          "artifact-passive-rf-model",
+          "artifact-passive-rf-calibration",
+          "artifact-passive-rf-antenna-pattern"
+        ],
+        "blockingReasons": [
+          "Receiver and localization-observable calibration are pending."
+        ]
+      },
+      {
+        "gateId": "RGB_MODEL",
+        "status": "BLOCKED",
+        "evidenceArtifactIds": [
+          "artifact-rgb-model",
+          "artifact-rgb-detector",
+          "artifact-rgb-calibration"
+        ],
+        "blockingReasons": [
+          "Renderer, lens, detector, weather, and illumination calibration are pending."
+        ]
+      },
+      {
+        "gateId": "EVENT_CAMERA_MODEL",
+        "status": "BLOCKED",
+        "evidenceArtifactIds": [
+          "artifact-event-camera-model",
+          "artifact-event-camera-detector",
+          "artifact-event-camera-calibration"
+        ],
+        "blockingReasons": [
+          "A physical temporal event model and validated detector chain are pending."
+        ]
+      },
+      {
+        "gateId": "FUSION_POLICY",
+        "status": "BLOCKED",
+        "evidenceArtifactIds": [
+          "artifact-fusion-policy"
+        ],
+        "blockingReasons": [
+          "Policy thresholds and correlation assumptions are not yet approved."
+        ]
+      },
+      {
+        "gateId": "EVALUATION_CORPUS",
+        "status": "BLOCKED",
+        "evidenceArtifactIds": [
+          "artifact-target-trajectories",
+          "artifact-train-scenarios",
+          "artifact-validation-scenarios",
+          "artifact-test-scenarios"
+        ],
+        "blockingReasons": [
+          "The scenario partitions are illustrative and not yet generated or sealed."
+        ]
+      },
+      {
+        "gateId": "MOUNT_PERMISSIONS_AND_RESOURCES",
+        "status": "BLOCKED",
+        "evidenceArtifactIds": [
+          "artifact-mount-region-geometry",
+          "artifact-maintenance-envelope"
+        ],
+        "blockingReasons": [
+          "Site permission, structural, access, power, backhaul, and radar-emission approvals are pending."
+        ]
+      },
+      {
+        "gateId": "PRIVACY",
+        "status": "BLOCKED",
+        "evidenceArtifactIds": [
+          "artifact-privacy-mask",
+          "artifact-prohibited-view-geometry"
+        ],
+        "blockingReasons": [
+          "Privacy masks, prohibited views, retention, and review evidence are pending."
+        ]
+      }
+    ],
+    "productionOptimizerImplementationGate": "BLOCKED",
+    "physicalDeploymentGate": "BLOCKED"
+  },
+  "solverBenchmark": {
+    "benchmarkId": "istana-static-placement-equal-budget-example-v1",
+    "status": "PLANNED",
+    "candidateSetArtifactId": "artifact-solver-candidates",
+    "solverTracks": [
+      {
+        "solverId": "greedy-baseline",
+        "method": "GREEDY_BASELINE",
+        "role": "BASELINE",
+        "stochastic": false,
+        "optimalityEvidence": "NONE_BASELINE_ONLY"
+      },
+      {
+        "solverId": "exact-static-primary",
+        "method": "EXACT_MILP_OR_CP_SAT",
+        "role": "PRIMARY_STATIC_SELECTOR",
+        "stochastic": false,
+        "optimalityEvidence": "BOUND_GAP_OR_INFEASIBILITY_PROOF"
+      },
+      {
+        "solverId": "bayesian-continuous-challenger",
+        "method": "BAYESIAN_CONTINUOUS_REFINEMENT",
+        "role": "CONTINUOUS_REFINEMENT_CHALLENGER",
+        "stochastic": true,
+        "optimalityEvidence": "NONE_CHALLENGER_ONLY"
+      },
+      {
+        "solverId": "evolutionary-pareto-challenger",
+        "method": "EVOLUTIONARY_MULTIOBJECTIVE",
+        "role": "MULTIOBJECTIVE_CHALLENGER",
+        "stochastic": true,
+        "optimalityEvidence": "NONE_CHALLENGER_ONLY"
+      }
+    ],
+    "equalBudget": {
+      "budgetId": "equal-budget-example-v1",
+      "highFidelitySimulatorCalls": 10000,
+      "candidateEvaluations": 100000,
+      "wallClockSeconds": 86400,
+      "cpuCoreHours": 192.0,
+      "gpuHours": 24.0,
+      "randomSeeds": [
+        5011,
+        6011,
+        7013,
+        8017
+      ],
+      "hardwareProfile": "FROZEN_BENCHMARK_HOST_PROFILE_TBD"
+    },
+    "sameBudgetForAllTracks": true,
+    "commonRandomNumbersRequired": true,
+    "selectionPartitionId": "scenario-partition-validation-v1",
+    "finalEvaluationPartitionId": "scenario-partition-test-v1",
+    "requiredOutputs": [
+      "FEASIBILITY_AND_HARD_CONSTRAINTS",
+      "UNWEIGHTED_COMPONENT_METRICS",
+      "PARETO_FRONT",
+      "COST_AND_RESOURCE_ACCOUNTING",
+      "OUTAGE_RESILIENCE",
+      "UNCERTAINTY_INTERVALS",
+      "SOLVER_RUNTIME_BOUNDS_AND_GAPS",
+      "FINAL_EXACT_SIMULATOR_REPLAY"
+    ],
+    "finalExactSimulatorReplayRequired": true,
+    "maximumHardConstraintViolations": 0
+  },
+  "rlGoNoGo": {
+    "decision": "NO_GO_STATIC_PLACEMENT",
+    "problemClass": "STATIC_PLACEMENT",
+    "sequentialUseCaseId": null,
+    "environmentContractArtifactId": null,
+    "justification": "The present output is a fixed-site layout, not a sequential policy; the exact static solver is the auditable primary baseline.",
+    "experimentAuthorized": false,
+    "productionUseAuthorized": false,
+    "deterministicBaselineSolverId": "exact-static-primary",
+    "equalBudgetId": "equal-budget-example-v1",
+    "selectionPartitionId": "scenario-partition-validation-v1",
+    "finalEvaluationPartitionId": "scenario-partition-test-v1",
+    "goCriteria": {
+      "genuineSequentialStateAndActionsRequired": true,
+      "minimumHeldOutRobustImprovementFraction": 0.05,
+      "maximumHardConstraintViolations": 0,
+      "sameBudgetAsDeterministicBaselineRequired": true,
+      "disjointMapGeneralizationRequired": true,
+      "completeAuditTrailRequired": true,
+      "finalExactSimulatorReplayRequired": true
+    }
+  },
+  "governance": {
+    "approvalState": "DRAFT",
+    "requiredApproverRoles": [
+      "STUDY_OWNER",
+      "SITE_AUTHORITY",
+      "PRIVACY_REVIEWER",
+      "RF_SAFETY_REVIEWER",
+      "MODEL_VALIDATION_LEAD"
+    ],
+    "approvals": [
+      {
+        "role": "STUDY_OWNER",
+        "decision": "PENDING",
+        "reviewerId": null,
+        "decidedAtUtc": null,
+        "evidenceArtifactId": null
+      },
+      {
+        "role": "SITE_AUTHORITY",
+        "decision": "PENDING",
+        "reviewerId": null,
+        "decidedAtUtc": null,
+        "evidenceArtifactId": null
+      },
+      {
+        "role": "PRIVACY_REVIEWER",
+        "decision": "PENDING",
+        "reviewerId": null,
+        "decidedAtUtc": null,
+        "evidenceArtifactId": null
+      },
+      {
+        "role": "RF_SAFETY_REVIEWER",
+        "decision": "PENDING",
+        "reviewerId": null,
+        "decidedAtUtc": null,
+        "evidenceArtifactId": null
+      },
+      {
+        "role": "MODEL_VALIDATION_LEAD",
+        "decision": "PENDING",
+        "reviewerId": null,
+        "decidedAtUtc": null,
+        "evidenceArtifactId": null
+      }
+    ],
+    "changeControlPolicy": "MATERIAL_CHANGE_REQUIRES_NEW_STUDY_REVISION_AND_REAPPROVAL"
+  }
+}

@@ -337,8 +337,10 @@ struct TRIADSENSORFUSION_API FTRIADRFEmitterDefinition
 };
 
 /**
- * Deliberately simple WGS84-aligned rectangular scenario perimeter used to describe inbound tracks.
- * It is not a national, FIR, territorial, or restricted-airspace boundary.
+ * Deliberately simple WGS84 scenario perimeter used to describe inbound tracks.
+ * Rectangle remains the backwards-compatible default. Circle uses a WGS84
+ * geodesic distance from CenterLongitudeDegrees/CenterLatitudeDegrees.
+ * Neither shape is a national, FIR, territorial, or restricted-airspace boundary.
  */
 USTRUCT(BlueprintType)
 struct TRIADSENSORFUSION_API FTRIADSimulationPerimeter
@@ -351,6 +353,10 @@ struct TRIADSENSORFUSION_API FTRIADSimulationPerimeter
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|Scenario|Approach")
     FString ReferenceName = TEXT("Singapore_Simulation_Perimeter");
 
+    /** "Rectangle" (default/backwards compatible) or "Circle". */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|Scenario|Approach")
+    FString Shape = TEXT("Rectangle");
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|Scenario|Approach")
     double MinimumLongitudeDegrees = 103.6200;
 
@@ -362,6 +368,18 @@ struct TRIADSENSORFUSION_API FTRIADSimulationPerimeter
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|Scenario|Approach")
     double MaximumLatitudeDegrees = 1.4700;
+
+    /** WGS84 circle center. Used only when Shape is "Circle". */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|Scenario|Approach")
+    double CenterLongitudeDegrees = 103.84288055;
+
+    /** WGS84 circle center. Used only when Shape is "Circle". */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|Scenario|Approach")
+    double CenterLatitudeDegrees = 1.30709615;
+
+    /** Geodesic radius in metres. Used only when Shape is "Circle". */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|Scenario|Approach", meta = (ClampMin = "0.01"))
+    double RadiusMeters = 1000.0;
 
     /** Closing-rate deadband used to distinguish APPROACHING/DEPARTING from OUTSIDE. */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|Scenario|Approach", meta = (ClampMin = "0.0"))
@@ -552,18 +570,165 @@ struct TRIADSENSORFUSION_API FTRIADSensorFusionScenarioConfig
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|Visualization")
     bool bShowNodeRFStatusOnScreen = true;
 
-    /** ECollisionChannel numeric value; 0 is Visibility in standard UE projects. */
+    /**
+     * Legacy diagnostic/optical trace channel.  When dedicated RF propagation
+     * is enabled, this Visibility result is still reported but never supplies
+     * RF path loss or gates an RF detection.
+     */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|Scenario")
     int32 LineOfSightTraceChannel = 0;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|Scenario")
     bool bTraceComplex = true;
 
+    /** Legacy binary-LOS detection gate; ignored by the dedicated RF path. */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|Scenario")
     bool bRequireLineOfSightForDetection = false;
 
+    /** Legacy scalar NLOS loss; ignored by the dedicated RF path. */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|Scenario", meta = (ClampMin = "0.0"))
     double NonLineOfSightAdditionalLossDb = 30.0;
+
+    /**
+     * Opt in to the hash-bound CPU RF geometry and deterministic parametric
+     * interaction model.  This remains false for backwards-compatible generic
+     * scenarios; enabling it does not confer field or survey validation.
+     */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    bool bUseDedicatedRFPropagation = false;
+
+    /** Destroy the scenario manager if the dedicated resources cannot be bound. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    bool bRequireDedicatedRFReady = false;
+
+    /**
+     * Explicit map-composition assertion. TightV1 consumes world coordinates
+     * directly; OneKilometreV2 admits only its separately pinned geodetic and
+     * EPSG:3414 transformation.
+     */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    bool bDedicatedRFFrameIsWorldOriginIdentity = false;
+
+    /**
+     * Exact long package name whose authored RF frame is asserted above.
+     * PIE prefixes are normalized before comparison.
+     */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedWorldPackageName;
+
+    /**
+     * Only Plugin/... and Project/... resource specifications are accepted;
+     * absolute paths and parent traversal are rejected.
+     */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFGeometryResourcePath =
+        TEXT("Plugin/Resources/RF/IstanaPublicViewRFTightV1.geometry.json");
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFMaterialCatalogResourcePath =
+        TEXT("Plugin/Resources/RF/istana_rf_materials_tight_v1.catalog.json");
+
+    /** Scene contract is staged and independently hash-verified at startup. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFSceneContractResourcePath =
+        TEXT("Plugin/Resources/RF/istana_rf_scene_tight_v1.contract.json");
+
+    /** Exact source-file hashes required before the transactional runtime load. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedGeometrySha256 =
+        TEXT("a3705e22b47fbe4fd38936294890e1ad620bb3c618ac3c93ca6c4719c6edc62a");
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedMaterialCatalogSha256 =
+        TEXT("0089fed936494ecd6938dc14d34ea8d5540e0896c2dc814414e071b6d1081a63");
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedSceneContractSha256 =
+        TEXT("19002f898c34c23793038c42892f122642f112bd514a0ebb05e4969dcb9ae591");
+
+    /** Stable semantic IDs checked after the loader has verified the catalog binding. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedGeometryQueryId = TEXT("istana-public-view-rf-tight-v1-main-hero-001@catalog-sha256:0089fed936494ecd6938dc14d34ea8d5540e0896c2dc814414e071b6d1081a63");
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedMaterialCatalogId =
+        TEXT("istana-public-view-rf-materials-tight-v1-001");
+
+    /** Scenario-pinned domain identity; future geometry revisions may differ. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedModeledCoverageId =
+        TEXT("RF_COVERAGE_ISTANA_MAIN_HERO_TIGHT_V1");
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedModeledCoverageScope =
+        TEXT("MAIN_HERO_ONLY_ASSUMPTION_BOUND");
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    bool bDedicatedRFExpectedCoverageCoversOneKilometreAoi = false;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    bool bDedicatedRFExpectedCoverageCoversSurroundings = false;
+
+    /** Empty for TightV1; required when binding a closed geodesic-circle V2. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedStudyDomainId;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedStudyDomainType;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    double DedicatedRFExpectedStudyCenterLongitudeDegrees = 0.0;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    double DedicatedRFExpectedStudyCenterLatitudeDegrees = 0.0;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    double DedicatedRFExpectedStudyRadiusMeters = 0.0;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    int32 DedicatedRFExpectedStudyPerimeterSampleCount = 0;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    double DedicatedRFExpectedStudyPerimeterStartAzimuthDegrees = 0.0;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    double DedicatedRFExpectedStudyPerimeterStepDegrees = 0.0;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedStudySourceGeodeticCrs;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedStudyProjectedConstructionCrs;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedStudyLogicalSystem;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedProjectionId;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    double DedicatedRFExpectedProjectedOriginEastingMeters = 0.0;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    double DedicatedRFExpectedProjectedOriginNorthingMeters = 0.0;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedGeometryAxisPolicy;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    FString DedicatedRFExpectedGeometryVerticalPolicy;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    double DedicatedRFExpectedGeoreferenceOriginHeightMeters = 0.0;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    double DedicatedRFExpectedGeoreferenceScaleCentimetersPerMeter = 0.0;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    bool bDedicatedRFExpectedGeoreferenceCartographicOrigin = false;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TRIAD|RF Propagation")
+    bool bDedicatedRFExpectedGeoreferenceActorTransformIdentity = false;
 
     /**
      * Legacy configuration name retained for JSON/Blueprint compatibility.

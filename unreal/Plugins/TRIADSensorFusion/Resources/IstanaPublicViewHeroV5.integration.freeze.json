@@ -1,0 +1,302 @@
+{
+  "schema": "triad.istana_public_view_hero_v5.unreal_freeze.v1",
+  "heroAssetRoot": "/Game/TRIAD/IstanaPublicViewV5",
+  "materialAssetRoot": "/Game/TRIAD/IstanaPublicView/HeroMaterialsV5",
+  "sourceMap": "/Game/Maps/Istana_PublicView_Exterior_v4",
+  "destinationMap": "/Game/Maps/Istana_PublicView_Exterior_v5",
+  "geometryClaimStatus": "PUBLIC_REFERENCE_VISUAL_RECONSTRUCTION_SELECTED_VIEW_NOT_SURVEY_CONTROLLED",
+  "materialClaimStatus": "PUBLIC_REFERENCE_QUALITATIVE_LOOKDEV_NOT_SITE_MEASURED_OR_COLOR_CALIBRATED",
+  "sourceGeometryGeneration": "ORIGINAL_PROCEDURAL_ADDITIVE_PUBLIC_ARCH_ALL_ELEVATION_UPPER_TOWER_AND_CENTRAL_ROOF_REMEDIATION_DERIVED_FROM_FROZEN_V4_PUBLIC_REFERENCE_BASELINE",
+  "oneToOneDigitalTwinClaimed": false,
+  "surveyAccuracyClaimed": false,
+  "photogrammetryClaimed": false,
+  "naniteEnabled": false,
+  "sm6Required": false,
+  "reusesV1Collision": true,
+  "reusesFrozenV3TextureAssetsInPlace": true,
+  "createdV5TexturePackageCount": 0,
+  "preservesV1V2V3V4Bytes": true,
+  "changesSurroundings": false,
+  "changesWorldLighting": false,
+  "changesRendererOrProjectSettings": false,
+  "qualityCapturePresets": [
+    "HERO_FRONT",
+    "HERO_OBLIQUE_RIGHT",
+    "HERO_OBLIQUE_LEFT",
+    "HERO_FACADE_MACRO",
+    "HERO_GROUND_DETAIL",
+    "HERO_MATERIAL_DETAIL",
+    "HERO_ORBIT_RIGHT",
+    "HERO_ORBIT_LEFT"
+  ],
+  "repositoryScripts": [
+    {
+      "relativePath": "scripts/Capture-IstanaPublicViewHeroV5QualityPreviews.ps1",
+      "role": "V5_QUALITY_CAPTURE_SCRIPT",
+      "bytes": 11893,
+      "sha256": "86f717ad8f76694b0a9a6b8588f68f665f372321476f6df4220e2cd58d879ef7"
+    },
+    {
+      "relativePath": "scripts/Import-IstanaPublicViewHeroV5Assets.ps1",
+      "role": "V5_ASSET_IMPORT_SCRIPT",
+      "bytes": 12718,
+      "sha256": "7f10ddd7de06d121011e5c1a6bdecf3a9510d0250010fc722288ea6e5c37731a"
+    },
+    {
+      "relativePath": "scripts/Install-IstanaPublicViewHeroV5DevelopmentAssets.ps1",
+      "role": "V5_DEVELOPMENT_ASSET_INSTALL_SCRIPT",
+      "bytes": 47209,
+      "sha256": "cbce9ed299061faf751ac8687ea03fd56dda0942520549dbc1e8fba8e9a34a4f"
+    },
+    {
+      "relativePath": "scripts/Migrate-IstanaPublicViewHeroV5Map.ps1",
+      "role": "V5_MAP_MIGRATION_SCRIPT",
+      "bytes": 17254,
+      "sha256": "8222f361e4e134392bc71b4eb683d8886c1558aecdab680378d9799349d194f6"
+    },
+    {
+      "relativePath": "scripts/Set-IstanaPublicViewHeroV5PlayInEditor.ps1",
+      "role": "V5_PIE_SETUP_SCRIPT",
+      "bytes": 14119,
+      "sha256": "d3a21c001f4097e3367e2b7b46efa8d72826a36e6916eb0ae55ae43b2825ab8b"
+    },
+    {
+      "relativePath": "scripts/Start-IstanaPublicViewHeroV5Editor.ps1",
+      "role": "V5_EDITOR_START_SCRIPT",
+      "bytes": 13664,
+      "sha256": "cd48e04fd67bfacaaad623f227bf4a7b80f03dcdfc89cad37e98f76262da8851"
+    }
+  ],
+  "files": [
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV5/hero_v5.freeze.json",
+      "role": "GEOMETRY_FREEZE",
+      "bytes": 4377,
+      "sha256": "653b5f6f73f9b8b6cd277ba1ba42d7863f4616b24d8e7300883e96bc21514928"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV5/istana_public_view_hero_v5.contract.json",
+      "role": "GEOMETRY_CONTRACT",
+      "bytes": 17665,
+      "sha256": "842f4184137eca2a5e515ea0f339411735c10258e49d6673a8799d3b9e2ab9e0"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV5/generate_hero_v5.py",
+      "role": "GEOMETRY_GENERATOR",
+      "bytes": 92361,
+      "sha256": "6526e7c22e1c2e9323bfe942a45bda39761de81fd902bf605c3f7327431ab676"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV5/v5_geometry_audit.py",
+      "role": "GEOMETRY_AUDIT",
+      "bytes": 243136,
+      "sha256": "02fef93ba2b49dc5ad78900adf3be73564a01e0db901366407d1e8313642247b"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV5/v5_whole_shell_audit.py",
+      "role": "GEOMETRY_WHOLE_SHELL_AUDIT",
+      "bytes": 4883,
+      "sha256": "085d0726e79ba8a12d46378b2628ddf79606578c3e30c37e5ce8f785057bb721"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV5/validate_hero_v5.py",
+      "role": "GEOMETRY_VALIDATOR",
+      "bytes": 59575,
+      "sha256": "92dff27ccc281dc3f64f28209f08c7a7693f728eb7937b2f2640989895be1b6d"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV5/README.md",
+      "role": "GEOMETRY_README",
+      "bytes": 5097,
+      "sha256": "64dde0b411f6f1025ac22d51a39c1deb49b1b0715794f4f0297a0f17bf196f1e"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV5/tests/test_hero_v5_contract.py",
+      "role": "GEOMETRY_CONTRACT_TEST",
+      "bytes": 33340,
+      "sha256": "cc563db01ff72c6e30ea10c5072a3c401c2b316d316a8996a5e3dc2fd8f108bb"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV5/tests/test_v5_geometry_audit_mutations.py",
+      "role": "GEOMETRY_MUTATION_TEST",
+      "bytes": 51484,
+      "sha256": "657af42e7930400e20e2fb9c14c008c6ca00aff23e86cfc229ef78de4e7811fc"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV3/facade_closure_audit.py",
+      "role": "PROTECTED_V3_SPARSE_CLOSURE_AUDIT",
+      "bytes": 7627,
+      "sha256": "6bbd4dfb6f7245f97577a28318c204c99aa85fc4fa2f18f736ac66f7ba268839"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV3/dense_facade_closure_audit.py",
+      "role": "PROTECTED_V3_DENSE_CLOSURE_AUDIT",
+      "bytes": 7286,
+      "sha256": "70d31d09d4532a81a7da70f95b7fac31abff1d5e315915846e52d0028cba58f0"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV5/Generated/IstanaPublicViewV5Building.manifest.json",
+      "role": "GEOMETRY_MANIFEST",
+      "bytes": 35793,
+      "sha256": "6a21cc263303b3b415fd6071e3a597a627ee2958e4e61ab81e4701308db64570"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV5/Generated/SM_IstanaPublicViewV5_Building_Hero.obj",
+      "role": "BUILDING_HERO_VISUAL_V5",
+      "bytes": 334592878,
+      "sha256": "d9b37092401a70855d045bf28153293cd876ba748bc6e874096748c78d00eb4c"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV5/hero_materials_v5.freeze.json",
+      "role": "HERO_MATERIAL_FREEZE",
+      "bytes": 5415,
+      "sha256": "1a3ec7696e25eb7da83cd53e60eed67531f6e225c430f189eab51ca37d66d69a"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV5/hero_materials_v5.contract.json",
+      "role": "HERO_MATERIAL_CONTRACT",
+      "bytes": 30825,
+      "sha256": "8ba78534eb7c91ba66815e5456d6b23b138d10961e84a4b35d81fcd3545bcc20"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV5/unreal_asset_interface.v5.json",
+      "role": "HERO_MATERIAL_UNREAL_INTERFACE",
+      "bytes": 42172,
+      "sha256": "f4f606d00d4e2fbf9033117c9e34c768d73287f3dce55ba234b2d905b3a7bb44"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV5/validate_hero_materials_v5.py",
+      "role": "HERO_MATERIAL_VALIDATOR",
+      "bytes": 71330,
+      "sha256": "db6590043aa192d420cdca80cce538cfe725b3a4be0c0b8d1cec70792587ee2d"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV5/evaluate_neutral_captures_v5.py",
+      "role": "HERO_MATERIAL_EVALUATOR",
+      "bytes": 19474,
+      "sha256": "c26e9eec7f8550185d5b70c8d3b07405f8fc66e9fcb62547a029b9be1cdc26ca"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV5/README.md",
+      "role": "HERO_MATERIAL_README",
+      "bytes": 11396,
+      "sha256": "045ecdaaa02e5285037fb4e25f15a233c09bd9f865ca753319a0b0772a124816"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV5/tests/test_hero_materials_v5.py",
+      "role": "HERO_MATERIAL_CONTRACT_TEST",
+      "bytes": 18884,
+      "sha256": "a8cd9f8693a6a322f472460e6d754115399b914f14be4c3316ab7003e4ac5736"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV3/Source/source_manifest.json",
+      "role": "HERO_MATERIAL_SOURCE_MANIFEST_V3",
+      "bytes": 31731,
+      "sha256": "332f543036d0c9c677df46194ff93df7142a5179c79263639f0bf10600482d51"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV3/Generated/manifest.json",
+      "role": "HERO_MATERIAL_GENERATED_MANIFEST_V3",
+      "bytes": 213225,
+      "sha256": "cff3a4a9c105af2bacd8bb8753d6fa5d62ff90c4dc51c899994308d01eca8a36"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV3/build_hero_materials_v3.py",
+      "role": "HERO_MATERIAL_BUILDER_V3",
+      "bytes": 93357,
+      "sha256": "7c760144a6eccfde411204523fd2b641f6ecc0cd54f9c5d0fd400fbf4db14317"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV3/hero_materials_v3.contract.json",
+      "role": "PROTECTED_V3_MATERIAL_CONTRACT",
+      "bytes": 15312,
+      "sha256": "3e96192de4ca19d9e3bc1688472cba2b4d53fc9147379f06dba46adf9b6b4a4f"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV3/unreal_asset_interface.v3.json",
+      "role": "PROTECTED_V3_MATERIAL_UNREAL_INTERFACE",
+      "bytes": 12710,
+      "sha256": "932a0fc58f3106bf9c1b826ce99ed82940fc61a07c9aec400fbed7acc4d28f09"
+    },
+    {
+      "relativePath": "Config/IstanaPublicViewHeroV3VisualAcceptance.settings.json",
+      "role": "HERO_V3_V5_VISUAL_ACCEPTANCE_SETTINGS",
+      "bytes": 1022,
+      "sha256": "6120769876168fe972f11950b72550539ee1fa2ca3cd7e0fab2d0d1a2eabe64c"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaDigitalTwin/IstanaPublicView/manifest.json",
+      "role": "PUBLIC_REFERENCE_MANIFEST",
+      "bytes": 14683,
+      "sha256": "dd179dab0847821cee7eb74281ec5e60948c52777bd8042073b063b0494f8436"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV4/hero_v4.freeze.json",
+      "role": "PROTECTED_V4_GEOMETRY_FREEZE",
+      "bytes": 160244,
+      "sha256": "c31cc1b81d4a7008f69ad84c72795244ef9bc4daf12e29d4ee181bde3f1f75cd"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/HeroMaterialsV4/hero_materials_v4.freeze.json",
+      "role": "PROTECTED_V4_MATERIAL_FREEZE",
+      "bytes": 2954,
+      "sha256": "2459254b4835c0aff123028feb4ed09fe6282bf8cbe07901b4813e89d85300a7"
+    },
+    {
+      "relativePath": "Plugins/TRIADSensorFusion/Resources/IstanaPublicViewHeroV4.integration.freeze.json",
+      "role": "PROTECTED_V4_INTEGRATION_FREEZE",
+      "bytes": 7279,
+      "sha256": "c6afedad2ca868be455a5425ab02114fb1584d237700c9fba489b595be650f12"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV3/hero_v3.freeze.json",
+      "role": "PROTECTED_V3_GEOMETRY_FREEZE",
+      "bytes": 5217,
+      "sha256": "469bd89ec0ed3c8697d421fd4b5d27160e5e3d6718a407f374e119888bff2438"
+    },
+    {
+      "relativePath": "Plugins/TRIADSensorFusion/Resources/IstanaPublicViewHeroV3.integration.freeze.json",
+      "role": "PROTECTED_V3_INTEGRATION_FREEZE",
+      "bytes": 5989,
+      "sha256": "1b7bb1cb876df53e4c672833716d247da46012cdb70436cd791e8947fc8f8cd7"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicViewV2/hero_v2.freeze.json",
+      "role": "PROTECTED_V2_GEOMETRY_FREEZE",
+      "bytes": 2357,
+      "sha256": "e1cc21ff8ccf7166728d90a1c9d2bc89a073df9b6a9a09c3e6e20b7a89e780f1"
+    },
+    {
+      "relativePath": "Plugins/TRIADSensorFusion/Resources/IstanaPublicViewHeroV2.integration.freeze.json",
+      "role": "PROTECTED_V2_INTEGRATION_FREEZE",
+      "bytes": 4014,
+      "sha256": "9b23203d94845e93a7d92b1710cad56964bcd51517153d4bd92a72ed55444501"
+    }
+  ],
+  "protectedV1Files": [
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/public_view_geometry.py",
+      "role": "PROTECTED_V1_GEOMETRY_KERNEL",
+      "bytes": 23852,
+      "sha256": "f46b05c5e5a53a3fcb4392735a9cab15fef9dc8f6e8e0d7fb30395b3f8b82023"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/generate_public_view_building.py",
+      "role": "PROTECTED_V1_BUILDING_GENERATOR",
+      "bytes": 14951,
+      "sha256": "fbc11e95d42232d3b7a57fa8e6e5b79248c30e168668ffa10146dad76b309985"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/generate_public_view_context.py",
+      "role": "PROTECTED_V1_CONTEXT_GENERATOR",
+      "bytes": 19320,
+      "sha256": "21681279cb303af143b6e28bb17906becdceda7c4c7d1d154cf8964c11ac0e79"
+    },
+    {
+      "relativePath": "SourceAssets/IstanaPublicView/istana_public_view.contract.json",
+      "role": "PROTECTED_V1_CONTRACT",
+      "bytes": 5036,
+      "sha256": "c068cf3ceb731c85b28e3c8e6292fe92bb5463e792742dd4a0b81525bd84baee"
+    }
+  ]
+}

@@ -1,0 +1,551 @@
+{
+  "schema": "triad.istana_explore_v5d.visual_quality_successor_promotion.v1",
+  "version": 1,
+  "promotionId": "istana_explore_v5d_visual_quality_successor_2026-09-05",
+  "predecessorMap": {
+    "path": "Content/Maps/Istana_PublicView_Explore_v5d_hybrid.umap",
+    "bytes": 34992354,
+    "sha256": "859734CB9EFCB429AE7D863E677B7B370CC897EB9C100AACA7AAD6F227805815"
+  },
+  "canonicalParentSavedInputs": [
+    {
+      "path": "Saved/TRIAD/IstanaReferences/V5D/Current20260831/GeneratedCurrent/SM_IPV5D_OSMCurrentSurroundings_Render.obj",
+      "bytes": 6359246,
+      "sha256": "1612461DBC3FE8C7C760517C0A743B631CDFE23307792AEB8BB04E15855B59A3"
+    },
+    {
+      "path": "Saved/TRIAD/IstanaReferences/V5D/Current20260831/GeneratedCurrent/SM_IPV5D_OSMCurrentSurroundings_RFShell.obj",
+      "bytes": 1796000,
+      "sha256": "2B329516E24C081C7773DB984510EBD1E0C87CDB522CB490170B702D5F564324"
+    },
+    {
+      "path": "Saved/TRIAD/IstanaReferences/V5D/Current20260831/GeneratedCurrent/SM_IPV5D_OSMCurrentSurroundings_RFShell.mtl",
+      "bytes": 216,
+      "sha256": "107E25A2EEB7DFF92356CFBF8E1DA99C3329CE66F75CD1AE15A6EDD8D74F1A47"
+    }
+  ],
+  "verifiedNoopFiles": [
+    {
+      "area": "editor",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/TRIADSensorFusionEditor.Build.cs",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/TRIADSensorFusionEditor.Build.cs",
+      "bytes": 1229,
+      "sha256": "B7D10EA034A37CB15C9939DADFA1910B229ABA14098F096E21994F7A6D977C1B"
+    }
+  ],
+  "files": [
+    {
+      "area": "runtime",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Public/TRIADIstanaExploreV5DContextPolicyActor.h",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Public/TRIADIstanaExploreV5DContextPolicyActor.h",
+      "bytes": 8694,
+      "sha256": "88A4000BA015308E50C909B333E8337649409179165138E092CA8DE63393C981",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 8465,
+        "sha256": "830323932951AE67928388B5FBE2432C2E99582DDB6F9CE053EE9890E9D896F9"
+      }
+    },
+    {
+      "area": "runtime",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/TRIADIstanaExploreV5DContextPolicyActor.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/TRIADIstanaExploreV5DContextPolicyActor.cpp",
+      "bytes": 86305,
+      "sha256": "75A753072A8914D505314A6AF395AFAD89AA919A0E1C8B6253EEF67B072338D1",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 79676,
+        "sha256": "36C70F7333965E89558A035D7A2483C02E95635A6C71D1737CCB6ADF7853413B"
+      }
+    },
+    {
+      "area": "runtime",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/TRIADIstanaExploreV5AppearanceActor.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/TRIADIstanaExploreV5AppearanceActor.cpp",
+      "bytes": 73834,
+      "sha256": "438E5F981E4639CFD06D866725905522C3582DB30123CB2EF777AB6D23DCA74E",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 73679,
+        "sha256": "4E77FE69F1421DFFCD5F61674EEC6A028A6D472ABD85F21B21BADB3355BA9830"
+      }
+    },
+    {
+      "area": "runtime",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Public/TRIADIstanaExploreV5DLocalFallbackSuppressionV1Provenance.h",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Public/TRIADIstanaExploreV5DLocalFallbackSuppressionV1Provenance.h",
+      "bytes": 4881,
+      "sha256": "9EC71D5EDEB67213CE9314E51672FB84A6F0A0E35C86432AE557E258310F3ED1",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "runtime",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/TRIADIstanaExploreV5DLocalFallbackSuppressionV1Provenance.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/TRIADIstanaExploreV5DLocalFallbackSuppressionV1Provenance.cpp",
+      "bytes": 3640,
+      "sha256": "CF61979FBDC200246FCD822D99F4400EB6F6D405DEE35ACC012FD9C4A8F230A8",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 3640,
+        "sha256": "D8C6775CE125B989E7326721600577616C4A5B02295A2AA1045530D50C023D35"
+      }
+    },
+    {
+      "area": "runtime",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/Tests/TRIADIstanaExploreV5DLocalFallbackSuppressionV1ProvenanceTests.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/Tests/TRIADIstanaExploreV5DLocalFallbackSuppressionV1ProvenanceTests.cpp",
+      "bytes": 3186,
+      "sha256": "442104A037DCE00BC21AF20860DC8202FCD30247782E1DDE99BF321A54928A24",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "runtime",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Public/TRIADIstanaExploreV5DOuterGroundLoadingFallbackProvenance.h",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Public/TRIADIstanaExploreV5DOuterGroundLoadingFallbackProvenance.h",
+      "bytes": 5957,
+      "sha256": "B2D8735BA5229FB62A38F87ABD8DF6D575E035A19E3FFE81B65E8889D5CA48B9",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "runtime",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/TRIADIstanaExploreV5DOuterGroundLoadingFallbackProvenance.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/TRIADIstanaExploreV5DOuterGroundLoadingFallbackProvenance.cpp",
+      "bytes": 4552,
+      "sha256": "A719F492E793CD6CCC983CF0BD0779F7931AFEB63E4DB74A17067639CF9DA501",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "runtime",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/Tests/TRIADIstanaExploreV5DOuterGroundLoadingFallbackProvenanceTests.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/Tests/TRIADIstanaExploreV5DOuterGroundLoadingFallbackProvenanceTests.cpp",
+      "bytes": 2846,
+      "sha256": "0D0159980D6DCA4A12035B37EC121F38CBFFF8EE0E06E4FE6683699D0F5F78C9",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "editor",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DCurrentSurroundingsAssetFactory.h",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DCurrentSurroundingsAssetFactory.h",
+      "bytes": 1850,
+      "sha256": "93AF4E309986404068B358F851424A074E2FAD8432E7ADC1E589F85E793ADC2C",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 1310,
+        "sha256": "AC7E6C6E6B93DEC3F38638B724FFDF0A215CF765B095100F284AC82DF532C984"
+      }
+    },
+    {
+      "area": "editor",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DCurrentSurroundingsAssetFactory.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DCurrentSurroundingsAssetFactory.cpp",
+      "bytes": 45008,
+      "sha256": "4F9ED43F7F85CE662A9285BCBC17F962D6BBAB8C91B84F8D39FCC685721F56BD",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 44868,
+        "sha256": "4FDB6C570AA3EB7A4310821C22B429EE8B9FA339A2A27F144BF37AEEE210A9C2"
+      }
+    },
+    {
+      "area": "editor",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DCurrentSurroundingsSuppressedAssetFactory.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DCurrentSurroundingsSuppressedAssetFactory.cpp",
+      "bytes": 102241,
+      "sha256": "D403D50EB12B684BA1B669A3A3B5AE77D0551870BCB1B13AABA77073C8EE4CFB",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 56123,
+        "sha256": "BD089123A0E8A4B0D842E42C70062C73AB40F4104537A50718371A281070E4BF"
+      }
+    },
+    {
+      "area": "editor",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Public/TRIADIstanaExploreV5DCurrentSurroundingsEditorLibrary.h",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Public/TRIADIstanaExploreV5DCurrentSurroundingsEditorLibrary.h",
+      "bytes": 1722,
+      "sha256": "E752E5767ABBBA900E2957231D8E1FE3CD4E03AAE8180FF08EE85346DE06243F",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 1327,
+        "sha256": "0E1EE7F401B80A64EEA0E16A6ADFA7362D10FF150AB8F054ACD29FD179FC4414"
+      }
+    },
+    {
+      "area": "editor",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DCurrentSurroundingsEditorLibrary.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DCurrentSurroundingsEditorLibrary.cpp",
+      "bytes": 12313,
+      "sha256": "2E52D294F856C00B17ACAE0299447CBC11BA4E423F3D37A25CCC7E2C8300923D",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 7867,
+        "sha256": "DB6098B01FD648D8B5B389467391CECA1FF2172A64B43399B2217951098D1F68"
+      }
+    },
+    {
+      "area": "editor",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DOuterGroundLoadingFallbackAssetFactory.h",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DOuterGroundLoadingFallbackAssetFactory.h",
+      "bytes": 777,
+      "sha256": "D000B14FDC645B4953AF66595E3B32D9A03CD10C7BBD1CEB05874D4E0922260C",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "editor",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DOuterGroundLoadingFallbackAssetFactory.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DOuterGroundLoadingFallbackAssetFactory.cpp",
+      "bytes": 45230,
+      "sha256": "E904391DA4665AF04E77D50287476B5730E62BD38EADE7FE9C55AA58557D16BD",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 44956,
+        "sha256": "1E41C5D6DF08C7BC05873A740A4C06F89841D15905F3FA1F24BEB88BEF6E89CB"
+      }
+    },
+    {
+      "area": "editor",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Public/TRIADIstanaExploreV5DOuterGroundLoadingFallbackEditorLibrary.h",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Public/TRIADIstanaExploreV5DOuterGroundLoadingFallbackEditorLibrary.h",
+      "bytes": 910,
+      "sha256": "30D1B7691FFB2968BAE9B9D34B1099D048EE4F65FC4898AF87446FCE55389412",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "editor",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DOuterGroundLoadingFallbackEditorLibrary.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DOuterGroundLoadingFallbackEditorLibrary.cpp",
+      "bytes": 5112,
+      "sha256": "2B5ADDEF7D1224DF72B77BA8A0DC945B15317DBCA66A46EA4F0392895A1593F1",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "editor",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Public/TRIADIstanaExploreV5DHybridEditorLibrary.h",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Public/TRIADIstanaExploreV5DHybridEditorLibrary.h",
+      "bytes": 9021,
+      "sha256": "950ACEFDAF9EB1B3B21C535DB7E5482C217F1D72C23FF9995CAC9DA1758DFE47",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 8245,
+        "sha256": "69B0E31D9A191279195FE982476D8F742DC1805302F3833ED5F146AF0B81674A"
+      }
+    },
+    {
+      "area": "editor",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DHybridEditorLibrary.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DHybridEditorLibrary.cpp",
+      "bytes": 377184,
+      "sha256": "9490D09F9FC453777F5187C2440F144F01227B5D7E9F079B22D710B403B4F75D",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 351574,
+        "sha256": "707A6A062078D6B2BE838183EB47BF707A740487D718D78F0289DF7894A148B5"
+      }
+    },
+    {
+      "area": "public-realm-lineage",
+      "source": "SourceAssets/IstanaPublicViewExploreV5D/PublicRealm/istana_public_view_v5d_public_realm.contract.json",
+      "destination": "SourceAssets/IstanaPublicViewExploreV5D/PublicRealm/istana_public_view_v5d_public_realm.contract.json",
+      "bytes": 17548,
+      "sha256": "C5B4BFFF1FD90D5A0E7F056CE510CFC76BF3E7914C008F4D0CBCA4852B853C28",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 17548,
+        "sha256": "77B437F32F537A0B98C62FBBC25124415C2A7764911D7C89532640494999AB63"
+      }
+    },
+    {
+      "area": "public-realm-lineage",
+      "source": "SourceAssets/IstanaPublicViewExploreV5D/PublicRealm/Generated/IstanaPublicViewV5DPublicRealm.manifest.json",
+      "destination": "SourceAssets/IstanaPublicViewExploreV5D/PublicRealm/Generated/IstanaPublicViewV5DPublicRealm.manifest.json",
+      "bytes": 21577,
+      "sha256": "FD5448DEA86724EB1AF611394829B72C543ABAA8D1DF6A4BD275A509F5B70018",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 21577,
+        "sha256": "8497C2A9709ECDCE196CD71FD7FC8606D8E8D2BCD47D137E55EEF25092B9CBFD"
+      }
+    },
+    {
+      "area": "public-realm-lineage",
+      "source": "SourceAssets/IstanaPublicViewExploreV5D/PublicRealm/Generated/IstanaPublicViewV5DPublicRealm.acceptance.lock.json",
+      "destination": "SourceAssets/IstanaPublicViewExploreV5D/PublicRealm/Generated/IstanaPublicViewV5DPublicRealm.acceptance.lock.json",
+      "bytes": 7607,
+      "sha256": "3EF1EA38422505920F920E06B3447D99135A56BC82144CE64946BC025EDBD4FF",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 7607,
+        "sha256": "5D826DAE312644593AE4631DB6CD74AA9977A822734D84F8FAC3E884B8D08032"
+      }
+    },
+    {
+      "area": "public-realm-lineage",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DPublicRealmAssetFactory.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusionEditor/Private/TRIADIstanaExploreV5DPublicRealmAssetFactory.cpp",
+      "bytes": 119458,
+      "sha256": "2C27A58670ED83CE721A6373103A9F550955909E6D5CDBA5D0C66DF0A429A64D",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 119458,
+        "sha256": "70D3A2FD199B7EE50949B5F666D23B8CADAE77890EA30A48E23B45D04BBCC125"
+      }
+    },
+    {
+      "area": "suppression-tool",
+      "source": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/build_local_fallback_suppression_v1.py",
+      "destination": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/build_local_fallback_suppression_v1.py",
+      "bytes": 17594,
+      "sha256": "D8B35571AD49E07FD226D8D65EAD6D7F809E3C347D19D779E5ABBCFA7B6E1B80",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "suppression-tool",
+      "source": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/local_fallback_suppression_v1.contract.json",
+      "destination": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/local_fallback_suppression_v1.contract.json",
+      "bytes": 6284,
+      "sha256": "68D68B4D906076A49AA070C7341D38245100A7577C4AF7C66C2D62C9A12D0BB5",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "suppression-generated",
+      "source": "Generated/IstanaExploreV5D/LocalFallbackSuppressionV1/SM_IPV5D_OSMCurrentSurroundings_Render_LocalFallbackSuppressed_v1.obj",
+      "destination": "Saved/TRIAD/IstanaReferences/V5D/Current20260831/GeneratedCurrent/LocalFallbackSuppressionV1/SM_IPV5D_OSMCurrentSurroundings_Render_LocalFallbackSuppressed_v1.obj",
+      "bytes": 6356433,
+      "sha256": "C4781C95EBE88387A57260BD2D8BBC4CD132BA38D26AE007F862BA81FD9F31E9",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "suppression-generated",
+      "source": "Generated/IstanaExploreV5D/LocalFallbackSuppressionV1/SM_IPV5D_OSMCurrentSurroundings_Render.mtl",
+      "destination": "Saved/TRIAD/IstanaReferences/V5D/Current20260831/GeneratedCurrent/LocalFallbackSuppressionV1/SM_IPV5D_OSMCurrentSurroundings_Render.mtl",
+      "bytes": 2645,
+      "sha256": "751DE195642892F781731EBD0F9EB3C05F23731CC674F76E7EF335E4F909342A",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "suppression-generated",
+      "source": "Generated/IstanaExploreV5D/LocalFallbackSuppressionV1/IstanaPublicViewV5DLocalFallbackSuppression.v1.metadata.json",
+      "destination": "Saved/TRIAD/IstanaReferences/V5D/Current20260831/GeneratedCurrent/LocalFallbackSuppressionV1/IstanaPublicViewV5DLocalFallbackSuppression.v1.metadata.json",
+      "bytes": 93879,
+      "sha256": "154BE543F3E7398900F39658FDE41604ABE4642A11EFE097DF1C9C3F8BF1CC61",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "suppression-generated",
+      "source": "Generated/IstanaExploreV5D/LocalFallbackSuppressionV1/IstanaPublicViewV5DLocalFallbackSuppression.v1.manifest.json",
+      "destination": "Saved/TRIAD/IstanaReferences/V5D/Current20260831/GeneratedCurrent/LocalFallbackSuppressionV1/IstanaPublicViewV5DLocalFallbackSuppression.v1.manifest.json",
+      "bytes": 1761,
+      "sha256": "D8627FECAC184B9B658E8C36048544A026811D56E130336441792FA997A9B88D",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "outer-ground-tool",
+      "source": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/build_outer_ground_loading_fallback_v1.py",
+      "destination": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/build_outer_ground_loading_fallback_v1.py",
+      "bytes": 32494,
+      "sha256": "B582AA05D74DFB3B8F0857E8D8B6A520C3DC9F09A2537A632AA674729B891BE6",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "outer-ground-tool",
+      "source": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/outer_ground_loading_fallback_v1.contract.json",
+      "destination": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/outer_ground_loading_fallback_v1.contract.json",
+      "bytes": 9600,
+      "sha256": "8815790E9BC0D7E4149DF67759F73A9F98738EACED490984B0F5519B883DDE83",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "documentation",
+      "source": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/README.md",
+      "destination": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/README.md",
+      "bytes": 3271,
+      "sha256": "6DE0C1CD42818E26B73EF1FB6A012557EF165FD9A52E15637CF377F7D0A2A242",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "documentation",
+      "source": "Plugins/TRIADSensorFusion/Docs/IstanaExploreV5DProviderQuality.md",
+      "destination": "Plugins/TRIADSensorFusion/Docs/IstanaExploreV5DProviderQuality.md",
+      "bytes": 4661,
+      "sha256": "79A38816CAE908B21434F780DE883331D703BE5236E66729B0D8DBB1C903FB00",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 4113,
+        "sha256": "84F98839D225CCD2AC06F04CF59974ECD25B8C7E5E802B2EC8127FEA648BBE99"
+      }
+    },
+    {
+      "area": "outer-ground-generated",
+      "source": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/Generated/IstanaPublicViewV5DOuterGroundLoadingFallback.acceptance.lock.json",
+      "destination": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/Generated/IstanaPublicViewV5DOuterGroundLoadingFallback.acceptance.lock.json",
+      "bytes": 3478,
+      "sha256": "736785C3AEB8D7D2E2DDC4943314F450DD2DD548C6010E9FBC51D0CEF3C1EBDE",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "outer-ground-generated",
+      "source": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/Generated/IstanaPublicViewV5DOuterGroundLoadingFallback.audit.json",
+      "destination": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/Generated/IstanaPublicViewV5DOuterGroundLoadingFallback.audit.json",
+      "bytes": 5211,
+      "sha256": "93F414E63E9221A5160B9533155E6535B72BE8B9ADDDC994D74FE50372E5B997",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "outer-ground-generated",
+      "source": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/Generated/IstanaPublicViewV5DOuterGroundLoadingFallback.manifest.json",
+      "destination": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/Generated/IstanaPublicViewV5DOuterGroundLoadingFallback.manifest.json",
+      "bytes": 11710,
+      "sha256": "9A9A12D127ED34D227F909F06DB55804B741F9ABBB22814BEF82DDC2301FB959",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "outer-ground-generated",
+      "source": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/Generated/SM_IPV5D_OuterGroundLoadingFallback_Render.mtl",
+      "destination": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/Generated/SM_IPV5D_OuterGroundLoadingFallback_Render.mtl",
+      "bytes": 487,
+      "sha256": "DCFA8A56AF148E1D4E4FA4DC2E772D7A3E5767B0F91E07F25B3F87C2586A1A6A",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "outer-ground-generated",
+      "source": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/Generated/SM_IPV5D_OuterGroundLoadingFallback_Render.obj",
+      "destination": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/OuterGroundFallback/Generated/SM_IPV5D_OuterGroundLoadingFallback_Render.obj",
+      "bytes": 492909,
+      "sha256": "13761E4CB255EB94C392F540436DA163AC3A3ECAB877C1D6F8460E5962A84A8C",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "runtime",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Public/TRIADIstanaExploreV5DLocalFallbackSuppressionV2Provenance.h",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Public/TRIADIstanaExploreV5DLocalFallbackSuppressionV2Provenance.h",
+      "bytes": 4864,
+      "sha256": "98FCDB85DB1B1F0A40656AFB86482BCF089945418F77AE69FFE0CCFF527022F2",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "runtime",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/TRIADIstanaExploreV5DLocalFallbackSuppressionV2Provenance.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/TRIADIstanaExploreV5DLocalFallbackSuppressionV2Provenance.cpp",
+      "bytes": 3702,
+      "sha256": "78C78D9C55900618E766FEFEC7F8555120D6B3C7AD598A7FC1E7656C4CC9EFEA",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "runtime",
+      "source": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/Tests/TRIADIstanaExploreV5DLocalFallbackSuppressionV2ProvenanceTests.cpp",
+      "destination": "Plugins/TRIADSensorFusion/Source/TRIADSensorFusion/Private/Tests/TRIADIstanaExploreV5DLocalFallbackSuppressionV2ProvenanceTests.cpp",
+      "bytes": 3548,
+      "sha256": "580831307282D8529258A485C64D336A01C11EAB86128111DD7A5A72BF372C03",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "suppression-tool",
+      "source": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/build_local_fallback_suppression_v2.py",
+      "destination": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/build_local_fallback_suppression_v2.py",
+      "bytes": 5633,
+      "sha256": "C8AD39B8AAA004D114850580F50CF6A8D2D5742A9D03C1E2B5D0A5D1A1A12B88",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "suppression-tool",
+      "source": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/local_fallback_suppression_v2.contract.json",
+      "destination": "Plugins/TRIADSensorFusion/Tools/IstanaExploreV5D/local_fallback_suppression_v2.contract.json",
+      "bytes": 6952,
+      "sha256": "EAA570EC3F6DCA0B47CD4F346E73EE879E9C94AC951CE5FE456E3C4DFCFAB6A6",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "suppression-generated",
+      "source": "Generated/IstanaExploreV5D/LocalFallbackSuppressionV2/SM_IPV5D_OSMCurrentSurroundings_Render_LocalFallbackSuppressed_v2.obj",
+      "destination": "Saved/TRIAD/IstanaReferences/V5D/Current20260831/GeneratedCurrent/LocalFallbackSuppressionV2/SM_IPV5D_OSMCurrentSurroundings_Render_LocalFallbackSuppressed_v2.obj",
+      "bytes": 6354063,
+      "sha256": "99175681A1F307D02D8FD01E09850AD017B782BCD4A56043F64B0EA285703110",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "suppression-generated",
+      "source": "Generated/IstanaExploreV5D/LocalFallbackSuppressionV2/SM_IPV5D_OSMCurrentSurroundings_Render.mtl",
+      "destination": "Saved/TRIAD/IstanaReferences/V5D/Current20260831/GeneratedCurrent/LocalFallbackSuppressionV2/SM_IPV5D_OSMCurrentSurroundings_Render.mtl",
+      "bytes": 2645,
+      "sha256": "751DE195642892F781731EBD0F9EB3C05F23731CC674F76E7EF335E4F909342A",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "suppression-generated",
+      "source": "Generated/IstanaExploreV5D/LocalFallbackSuppressionV2/IstanaPublicViewV5DLocalFallbackSuppression.v2.metadata.json",
+      "destination": "Saved/TRIAD/IstanaReferences/V5D/Current20260831/GeneratedCurrent/LocalFallbackSuppressionV2/IstanaPublicViewV5DLocalFallbackSuppression.v2.metadata.json",
+      "bytes": 94841,
+      "sha256": "31A32BCB8DAED756E0B8D90D0EE795A43B389BFB3148322A0FAC761A9BD73477",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "suppression-generated",
+      "source": "Generated/IstanaExploreV5D/LocalFallbackSuppressionV2/IstanaPublicViewV5DLocalFallbackSuppression.v2.manifest.json",
+      "destination": "Saved/TRIAD/IstanaReferences/V5D/Current20260831/GeneratedCurrent/LocalFallbackSuppressionV2/IstanaPublicViewV5DLocalFallbackSuppression.v2.manifest.json",
+      "bytes": 1763,
+      "sha256": "7D455FE8C1E057F2380BE4941026F511AE5D5A1817795F238496FCEAD77EDE04",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "contract-test",
+      "source": "Plugins/TRIADSensorFusion/Tests/test_istana_explore_v5d_local_fallback_suppression_v2.py",
+      "destination": "Plugins/TRIADSensorFusion/Tests/test_istana_explore_v5d_local_fallback_suppression_v2.py",
+      "bytes": 12986,
+      "sha256": "F6EAE12A6FE0EA0AB81BEDFF6693228601A9B1C0212273B39E22DC343EAF3305",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    },
+    {
+      "area": "contract-test",
+      "source": "Plugins/TRIADSensorFusion/Tests/test_istana_explore_v5d_local_fallback_suppression_v2_integration.py",
+      "destination": "Plugins/TRIADSensorFusion/Tests/test_istana_explore_v5d_local_fallback_suppression_v2_integration.py",
+      "bytes": 11144,
+      "sha256": "8027A1B176497065042AE28F66045D19B2B05226176C2CBFA590A871206E971E",
+      "destinationPolicy": "exact-old-hash-backup-and-replace",
+      "expectedOld": {
+        "bytes": 9462,
+        "sha256": "5A08A7F26613F8D4BAEF36E70C98210ACDA4EEA0F69500FF695F57A035DEB523"
+      }
+    },
+    {
+      "area": "contract-test",
+      "source": "Plugins/TRIADSensorFusion/Tests/test_istana_explore_v5d_context_policy_successor_contract.py",
+      "destination": "Plugins/TRIADSensorFusion/Tests/test_istana_explore_v5d_context_policy_successor_contract.py",
+      "bytes": 9566,
+      "sha256": "9DE39532B8400FB0CB9CD71DD3240840964EC73A1F391B98CC87537310442F1C",
+      "destinationPolicy": "must-be-missing",
+      "expectedOld": null
+    }
+  ]
+}

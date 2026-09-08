@@ -26,6 +26,10 @@ singapore-c3-bridge = "singapore_sensor_fusion.c3_bridge:main"
 singapore-layered-runtime = "singapore_sensor_fusion.layered_runtime:main"
 singapore-layered-audit = "singapore_sensor_fusion.layered_audit:main"
 singapore-radar-ptz-audit = "singapore_sensor_fusion.radar_ptz_audit:main"
+singapore-placement-recommend = "singapore_sensor_fusion.placement.recommend:main"
+singapore-placement-dashboard = "singapore_sensor_fusion.placement.dashboard_app:main"
+singapore-placement-dashboard-adapt = "singapore_sensor_fusion.placement.dashboard_demo_adapter:main"
+singapore-placement-evidence-intake = "singapore_sensor_fusion.placement.validate_evidence_intake:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

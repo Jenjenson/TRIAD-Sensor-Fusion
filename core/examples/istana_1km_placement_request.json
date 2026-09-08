@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "triad.placement_request.v1",
+  "requestId": "istana-1km-mvp",
+  "randomSeed": 0,
+  "aoi": {
+    "id": "istana-1km",
+    "center": {
+      "latitudeDegrees": 1.30709615,
+      "longitudeDegrees": 103.84288055,
+      "heightMeters": 0.0,
+      "heightReference": "WGS84_ELLIPSOID"
+    },
+    "radiusMeters": 1000.0,
+    "candidateBufferMeters": 0.0,
+    "centerProvenance": "Provisional main-building centre from OpenStreetMap way 41895536; verify against the TRIAD level before operational use.",
+    "surfaceHeightSource": "UNREAL_COLLISION_REQUIRED"
+  },
+  "sampling": {
+    "horizontalSpacingMeters": 50.0,
+    "targetAltitudeBandsAglMeters": [15.0, 30.0, 60.0, 120.0, 200.0],
+    "adaptiveRefinementMeters": 15.0,
+    "maximumSampleCount": 100000
+  },
+  "sensorPackages": [
+    {
+      "packageId": "full-stack",
+      "modalities": [
+        "wideband_rf",
+        "SEARCH_RADAR",
+        "rgb",
+        "EO_PTZ",
+        "THERMAL_PTZ"
+      ],
+      "families": ["passive_rf", "active_radar", "visual"],
+      "costUnits": 1.0,
+      "costSemantics": "Relative planning units only; replace with approved lifecycle costs before procurement decisions.",
+      "maximumConcurrentCues": 1,
+      "unrealNodeTemplate": {
+        "DetectionRangeMeters": 1000.0,
+        "bCaptureCameraFrames": true,
+        "bTrackNearestTarget": false,
+        "CameraFieldOfViewDegrees": 90.0,
+        "bEnableSearchRadar": true,
+        "SearchRadarRangeMeters": 5000.0,
+        "SearchRadarElevationFieldOfRegardDegrees": 60.0,
+        "bEnableEOPTZ": true,
+        "EOPTZConfirmationRangeMeters": 1000.0,
+        "EOPTZFieldOfViewDegrees": 30.0,
+        "bEnableThermalPTZ": true,
+        "ThermalPTZConfirmationRangeMeters": 1000.0,
+        "ThermalPTZFieldOfViewDegrees": 30.0
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "scenarioId": "clear-rf",
+      "weatherProfile": "Clear",
+      "rfEmitting": true,
+      "radarCrossSectionSquareMeters": 0.03,
+      "weight": 0.35
+    },
+    {
+      "scenarioId": "monsoon-rf",
+      "weatherProfile": "Monsoon",
+      "rfEmitting": true,
+      "radarCrossSectionSquareMeters": 0.03,
+      "weight": 0.3
+    },
+    {
+      "scenarioId": "haze-rf",
+      "weatherProfile": "Haze",
+      "rfEmitting": true,
+      "radarCrossSectionSquareMeters": 0.03,
+      "weight": 0.2
+    },
+    {
+      "scenarioId": "clear-rf-silent",
+      "weatherProfile": "Clear",
+      "rfEmitting": false,
+      "radarCrossSectionSquareMeters": 0.03,
+      "weight": 0.15
+    }
+  ],
+  "constraints": {
+    "maximumSites": 6,
+    "minimumFamilyCount": 2,
+    "minimumSiteRedundancy": 2,
+    "minimumFailureDomainRedundancy": 2,
+    "minimumCoverageFraction": 0.95,
+    "budgetUnits": 12.0,
+    "criticalSampleIds": []
+  }
+}

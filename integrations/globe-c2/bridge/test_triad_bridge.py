@@ -1001,5 +1001,43 @@ class TriadMappingTests(unittest.TestCase):
         self.assertTrue(bridge.cleared)
 
 
+class CircularOperatingContextTests(unittest.TestCase):
+    def test_operating_context_preserves_geodesic_circle(self):
+        snapshot = layered_snapshot()
+        snapshot["simulationPerimeter"] = {
+            "enabled": True,
+            "referenceName": "Istana_1km_Simulation_AOI",
+            "geometryType": "wgs84_geodesic_circle",
+            "centerLongitudeDegrees": 103.84288055,
+            "centerLatitudeDegrees": 1.30709615,
+            "radiusMeters": 1000.0,
+            "legalOrNationalBoundary": False,
+            "purpose": "Simulation classification only.",
+        }
+        context = build_operating_context_payload(snapshot)
+        assert context is not None
+        perimeter = context["simulationPerimeter"]
+        self.assertEqual(perimeter["geometryType"], "wgs84_geodesic_circle")
+        self.assertEqual(perimeter["centerLat"], 1.30709615)
+        self.assertEqual(perimeter["centerLon"], 103.84288055)
+        self.assertEqual(perimeter["radiusM"], 1000.0)
+        self.assertNotIn("minLat", perimeter)
+        self.assertFalse(perimeter["legalOrNationalBoundary"])
+
+    def test_invalid_circle_is_omitted_fail_closed(self):
+        snapshot = layered_snapshot()
+        snapshot["simulationPerimeter"] = {
+            "enabled": True,
+            "geometryType": "wgs84_geodesic_circle",
+            "centerLongitudeDegrees": 103.84288055,
+            "centerLatitudeDegrees": 1.30709615,
+            "radiusMeters": 0.0,
+            "legalOrNationalBoundary": False,
+        }
+        context = build_operating_context_payload(snapshot)
+        assert context is not None
+        self.assertNotIn("simulationPerimeter", context)
+
+
 if __name__ == "__main__":
     unittest.main()

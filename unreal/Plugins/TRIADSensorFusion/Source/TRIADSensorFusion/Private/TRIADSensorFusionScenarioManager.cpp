@@ -1,6 +1,7 @@
 #include "TRIADSensorFusionScenarioManager.h"
 
 #include "CesiumGeoreference.h"
+#include "OriginPlacement.h"
 #include "Components/PrimitiveComponent.h"
 #include "Engine/Engine.h"
 #include "EngineUtils.h"
@@ -8,6 +9,7 @@
 #include "GameFramework/Pawn.h"
 #include "HAL/FileManager.h"
 #include "Internationalization/Regex.h"
+#include "Interfaces/IPluginManager.h"
 #include "Json.h"
 #include "JsonObjectConverter.h"
 #include "Kismet/GameplayStatics.h"
@@ -19,7 +21,9 @@
 #include "Misc/Paths.h"
 #include "Serialization/JsonSerializer.h"
 #include "TRIADDemoDroneActor.h"
+#include "TRIADGeodesy.h"
 #include "TRIADLongRangeSensorModel.h"
+#include "TRIADIstanaRuntimePolicyActor.h"
 #include "TRIADOperatorObserverActor.h"
 #include "TRIADRFEmitterComponent.h"
 #include "TRIADSensorNodeActor.h"
@@ -35,6 +39,79 @@
 
 namespace
 {
+    bool IsSha256String(const FString& Value)
+    {
+        if (Value.Len() != 64)
+        {
+            return false;
+        }
+        for (const TCHAR Character : Value)
+        {
+            if (!FChar::IsHexDigit(Character))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    FString NormalizePIEWorldPackageName(const FString& PackageName)
+    {
+        const FString Directory = FPaths::GetPath(PackageName);
+        FString ShortName = FPaths::GetCleanFilename(PackageName);
+        static const FString PIEPrefix = TEXT("UEDPIE_");
+        if (ShortName.StartsWith(PIEPrefix, ESearchCase::CaseSensitive))
+        {
+            const int32 MapNameDelimiter = ShortName.Find(
+                TEXT("_"),
+                ESearchCase::CaseSensitive,
+                ESearchDir::FromStart,
+                PIEPrefix.Len());
+            if (MapNameDelimiter != INDEX_NONE && MapNameDelimiter + 1 < ShortName.Len())
+            {
+                ShortName.RightChopInline(MapNameDelimiter + 1, EAllowShrinking::No);
+            }
+        }
+        return Directory.IsEmpty() ? ShortName : FPaths::Combine(Directory, ShortName);
+    }
+
+    FString RFPathKindToString(ETRIADRFPathKind Kind)
+    {
+        switch (Kind)
+        {
+        case ETRIADRFPathKind::Direct:
+            return TEXT("DIRECT");
+        case ETRIADRFPathKind::Transmitted:
+            return TEXT("STRAIGHT_TRANSMISSION");
+        case ETRIADRFPathKind::SingleReflection:
+            return TEXT("SINGLE_REFLECTION_NOT_ADMITTED_BY_SCENARIO_BINDING");
+        default:
+            return TEXT("UNKNOWN");
+        }
+    }
+
+    FString RFInteractionKindToString(ETRIADRFInteractionKind Kind)
+    {
+        return Kind == ETRIADRFInteractionKind::Transmission
+            ? TEXT("TRANSMISSION")
+            : TEXT("REFLECTION_NOT_ADMITTED_BY_SCENARIO_BINDING");
+    }
+
+    FString RFCalibrationStateToString(ETRIADRFMaterialCalibrationState State)
+    {
+        switch (State)
+        {
+        case ETRIADRFMaterialCalibrationState::NotApplicable:
+            return TEXT("NOT_APPLICABLE");
+        case ETRIADRFMaterialCalibrationState::Uncalibrated:
+            return TEXT("UNCALIBRATED_ASSUMPTION");
+        case ETRIADRFMaterialCalibrationState::Calibrated:
+            return TEXT("CALIBRATED_COEFFICIENT_PROVENANCE_ONLY_NOT_SURVEY_TRUTH");
+        default:
+            return TEXT("UNKNOWN");
+        }
+    }
+
     FString MakeOperatorRFCueTrackId(
         const AActor* Target,
         const UTRIADRFEmitterComponent* Emitter)
@@ -229,7 +306,892 @@ bool ATRIADSensorFusionScenarioManager::LoadScenarioConfig(
         OutError = FString::Printf(TEXT("Invalid config '%s': %s"), *ConfigPath, *FailureReason.ToString());
         return false;
     }
+    FString PerimeterError;
+    if (!TRIAD::Geodesy::ValidatePerimeter(OutConfig.SimulationPerimeter, PerimeterError))
+    {
+        OutError = FString::Printf(
+            TEXT("Invalid SimulationPerimeter in '%s': %s"),
+            *ConfigPath,
+            *PerimeterError);
+        return false;
+    }
     return true;
+}
+
+bool ATRIADSensorFusionScenarioManager::ResolveDedicatedRFResourcePath(
+    const FString& ResourceSpecification,
+    FString& OutResolvedPath,
+    FString& OutError) const
+{
+    OutResolvedPath.Reset();
+    FString Specification = ResourceSpecification;
+    Specification.TrimStartAndEndInline();
+    Specification.ReplaceInline(TEXT("\\"), TEXT("/"));
+    if (Specification.IsEmpty() || Specification.Contains(TEXT("//")) ||
+        !FPaths::IsRelative(Specification))
+    {
+        OutError = TEXT("Dedicated RF resources must use a relative Plugin/... or Project/... specification.");
+        return false;
+    }
+
+    FString Root;
+    FString Relative;
+    if (Specification.StartsWith(TEXT("Plugin/"), ESearchCase::IgnoreCase))
+    {
+        const TSharedPtr<IPlugin> Plugin =
+            IPluginManager::Get().FindPlugin(TEXT("TRIADSensorFusion"));
+        if (!Plugin.IsValid())
+        {
+            OutError = TEXT("Could not resolve the installed TRIADSensorFusion plugin base directory.");
+            return false;
+        }
+        Root = Plugin->GetBaseDir();
+        Relative = Specification.RightChop(7);
+    }
+    else if (Specification.StartsWith(TEXT("Project/"), ESearchCase::IgnoreCase))
+    {
+        Root = FPaths::ProjectDir();
+        Relative = Specification.RightChop(8);
+    }
+    else
+    {
+        OutError = TEXT("Dedicated RF resource specification must begin with Plugin/ or Project/.");
+        return false;
+    }
+
+    TArray<FString> Components;
+    Relative.ParseIntoArray(Components, TEXT("/"), false);
+    if (Components.IsEmpty())
+    {
+        OutError = TEXT("Dedicated RF resource specification has no relative file component.");
+        return false;
+    }
+    for (const FString& Component : Components)
+    {
+        if (Component.IsEmpty() || Component == TEXT(".") || Component == TEXT("..") ||
+            Component.Contains(TEXT(":")))
+        {
+            OutError = TEXT("Dedicated RF resource specification contains an unsafe path component.");
+            return false;
+        }
+    }
+
+    FString NormalizedRoot = FPaths::ConvertRelativePathToFull(Root);
+    FString Candidate = FPaths::ConvertRelativePathToFull(FPaths::Combine(Root, Relative));
+    FPaths::NormalizeDirectoryName(NormalizedRoot);
+    FPaths::NormalizeFilename(Candidate);
+    const FString RootPrefix = NormalizedRoot.EndsWith(TEXT("/"))
+        ? NormalizedRoot
+        : NormalizedRoot + TEXT("/");
+    if (!Candidate.StartsWith(RootPrefix, ESearchCase::IgnoreCase))
+    {
+        OutError = TEXT("Dedicated RF resource resolved outside its permitted root.");
+        return false;
+    }
+    if (!IFileManager::Get().FileExists(*Candidate))
+    {
+        OutError = FString::Printf(TEXT("Dedicated RF resource does not exist: %s"), *Candidate);
+        return false;
+    }
+    OutResolvedPath = MoveTemp(Candidate);
+    return true;
+}
+
+bool ATRIADSensorFusionScenarioManager::InitializeDedicatedRFPropagation(FString& OutError)
+{
+    DedicatedRFGeometryQuery.Reset();
+    DedicatedRFInteractionModel.Reset();
+    DedicatedRFMetadata = FTRIADRFIndexedGeometryMetadata();
+    DedicatedRFGeometrySha256.Reset();
+    DedicatedRFMaterialCatalogSha256.Reset();
+    DedicatedRFSceneContractSha256.Reset();
+    DedicatedRFFailureReason.Reset();
+    bDedicatedRFReady = false;
+    bDedicatedRFDegraded = false;
+    ActiveRFPropagationMode = TEXT("LEGACY_VISIBILITY_BINARY_NLOS");
+    DedicatedRFReadiness = TEXT("DEDICATED_RF_DISABLED_LEGACY_MODE");
+    OutError.Reset();
+
+    const auto Fail = [this, &OutError](const FString& Reason)
+    {
+        DedicatedRFGeometryQuery.Reset();
+        DedicatedRFInteractionModel.Reset();
+        DedicatedRFMetadata = FTRIADRFIndexedGeometryMetadata();
+        DedicatedRFGeometrySha256.Reset();
+        DedicatedRFMaterialCatalogSha256.Reset();
+        DedicatedRFSceneContractSha256.Reset();
+        bDedicatedRFReady = false;
+        bDedicatedRFDegraded = true;
+        ActiveRFPropagationMode = ScenarioConfig.bRequireDedicatedRFReady
+            ? TEXT("DEDICATED_RF_REQUIRED_UNAVAILABLE_FAIL_CLOSED")
+            : TEXT("LEGACY_VISIBILITY_BINARY_NLOS_DEGRADED");
+        DedicatedRFReadiness = ScenarioConfig.bRequireDedicatedRFReady
+            ? TEXT("DEDICATED_RF_REQUIRED_LOAD_FAILED_MANAGER_STOPPED")
+            : TEXT("DEDICATED_RF_LOAD_FAILED_OPTIONAL_LEGACY_FALLBACK");
+        DedicatedRFFailureReason = Reason;
+        OutError = Reason;
+        return false;
+    };
+
+    if (!ScenarioConfig.bUseDedicatedRFPropagation)
+    {
+        if (ScenarioConfig.bRequireDedicatedRFReady)
+        {
+            return Fail(TEXT("bRequireDedicatedRFReady cannot be true while dedicated RF propagation is disabled."));
+        }
+        return true;
+    }
+    if (!ScenarioConfig.bDedicatedRFFrameIsWorldOriginIdentity)
+    {
+        return Fail(TEXT(
+            "Dedicated RF requires an explicit authored world-frame assertion; unbound arbitrary offsets are unsupported."));
+    }
+    if (ScenarioConfig.DedicatedRFExpectedWorldPackageName.IsEmpty() || !GetWorld())
+    {
+        return Fail(TEXT("Dedicated RF requires an exact expected world package name."));
+    }
+    const FString CurrentWorldPackage = NormalizePIEWorldPackageName(GetWorld()->GetOutermost()->GetName());
+    const FString ExpectedWorldPackage = NormalizePIEWorldPackageName(
+        ScenarioConfig.DedicatedRFExpectedWorldPackageName);
+    if (!CurrentWorldPackage.Equals(ExpectedWorldPackage, ESearchCase::CaseSensitive))
+    {
+        return Fail(FString::Printf(
+            TEXT("Dedicated RF frame is bound to world '%s', but '%s' is loaded."),
+            *ExpectedWorldPackage,
+            *CurrentWorldPackage));
+    }
+    if (!IsSha256String(ScenarioConfig.DedicatedRFExpectedGeometrySha256) ||
+        !IsSha256String(ScenarioConfig.DedicatedRFExpectedMaterialCatalogSha256) ||
+        !IsSha256String(ScenarioConfig.DedicatedRFExpectedSceneContractSha256))
+    {
+        return Fail(TEXT("Dedicated RF expected SHA-256 values must be complete 64-digit hex strings."));
+    }
+    if (ScenarioConfig.DedicatedRFExpectedGeometryQueryId.IsEmpty() ||
+        ScenarioConfig.DedicatedRFExpectedMaterialCatalogId.IsEmpty() ||
+        ScenarioConfig.DedicatedRFExpectedModeledCoverageId.IsEmpty() ||
+        ScenarioConfig.DedicatedRFExpectedModeledCoverageScope.IsEmpty())
+    {
+        return Fail(TEXT("Dedicated RF expected semantic IDs must be non-empty."));
+    }
+
+    FString GeometryPath;
+    FString CatalogPath;
+    FString ContractPath;
+    FString ResolveError;
+    if (!ResolveDedicatedRFResourcePath(
+            ScenarioConfig.DedicatedRFGeometryResourcePath,
+            GeometryPath,
+            ResolveError))
+    {
+        return Fail(ResolveError);
+    }
+    if (!ResolveDedicatedRFResourcePath(
+            ScenarioConfig.DedicatedRFMaterialCatalogResourcePath,
+            CatalogPath,
+            ResolveError))
+    {
+        return Fail(ResolveError);
+    }
+    if (!ResolveDedicatedRFResourcePath(
+            ScenarioConfig.DedicatedRFSceneContractResourcePath,
+            ContractPath,
+            ResolveError))
+    {
+        return Fail(ResolveError);
+    }
+
+    constexpr int64 MaximumSceneContractBytes = 1024 * 1024;
+    const int64 ContractFileBytes = IFileManager::Get().FileSize(*ContractPath);
+    if (ContractFileBytes <= 0 || ContractFileBytes > MaximumSceneContractBytes)
+    {
+        return Fail(FString::Printf(
+            TEXT("Dedicated RF scene contract must contain 1..%lld bytes; '%s' contains %lld."),
+            MaximumSceneContractBytes,
+            *ContractPath,
+            ContractFileBytes));
+    }
+    FString ContractJson;
+    if (!FFileHelper::LoadFileToString(ContractJson, *ContractPath) ||
+        ContractJson.IsEmpty())
+    {
+        return Fail(TEXT("Dedicated RF scene-contract single-read load failed."));
+    }
+    FString ContractHash;
+    FString ContractHashError;
+    if (!FTRIADRFIndexedGeometryQuery::ComputeCanonicalJsonSha256(
+            ContractJson,
+            ContractHash,
+            ContractHashError))
+    {
+        return Fail(FString::Printf(
+            TEXT("Dedicated RF scene-contract UTF-8 hash failed: %s"),
+            *ContractHashError));
+    }
+    if (!ContractHash.Equals(
+            ScenarioConfig.DedicatedRFExpectedSceneContractSha256,
+            ESearchCase::IgnoreCase))
+    {
+        return Fail(FString::Printf(
+            TEXT("Dedicated RF scene-contract hash mismatch: actual=%s expected=%s."),
+            *ContractHash,
+            *ScenarioConfig.DedicatedRFExpectedSceneContractSha256));
+    }
+
+    TUniquePtr<FTRIADRFIndexedGeometryQuery> CandidateQuery =
+        MakeUnique<FTRIADRFIndexedGeometryQuery>();
+    TUniquePtr<FTRIADDeterministicRFInteractionModel> CandidateModel =
+        MakeUnique<FTRIADDeterministicRFInteractionModel>();
+    FString LoadError;
+    if (!CandidateQuery->LoadFromJsonFiles(
+            GeometryPath,
+            CatalogPath,
+            ScenarioConfig.DedicatedRFExpectedGeometrySha256,
+            ScenarioConfig.DedicatedRFExpectedMaterialCatalogSha256,
+            LoadError) ||
+        !CandidateQuery->IsReady())
+    {
+        return Fail(FString::Printf(TEXT("Dedicated RF transactional load failed: %s"), *LoadError));
+    }
+
+    const FTRIADRFIndexedGeometryMetadata& Metadata = CandidateQuery->GetMetadata();
+    if (!Metadata.GeometryQueryId.Equals(
+            ScenarioConfig.DedicatedRFExpectedGeometryQueryId,
+            ESearchCase::CaseSensitive) ||
+        !Metadata.MaterialCatalogId.Equals(
+            ScenarioConfig.DedicatedRFExpectedMaterialCatalogId,
+            ESearchCase::CaseSensitive) ||
+        !Metadata.GeometrySha256.Equals(
+            ScenarioConfig.DedicatedRFExpectedGeometrySha256,
+            ESearchCase::IgnoreCase) ||
+        !Metadata.MaterialCatalogSha256.Equals(
+            ScenarioConfig.DedicatedRFExpectedMaterialCatalogSha256,
+            ESearchCase::IgnoreCase) ||
+        !Metadata.ContractSha256.Equals(
+            ContractHash,
+            ESearchCase::IgnoreCase) ||
+        !Metadata.ModeledCoverageId.Equals(
+            ScenarioConfig.DedicatedRFExpectedModeledCoverageId,
+            ESearchCase::CaseSensitive) ||
+        !Metadata.ModeledCoverageScope.Equals(
+            ScenarioConfig.DedicatedRFExpectedModeledCoverageScope,
+            ESearchCase::CaseSensitive) ||
+        Metadata.bModeledCoverageCoversOneKilometreAoi !=
+            ScenarioConfig.bDedicatedRFExpectedCoverageCoversOneKilometreAoi ||
+        Metadata.bModeledCoverageCoversSurroundings !=
+            ScenarioConfig.bDedicatedRFExpectedCoverageCoversSurroundings)
+    {
+        return Fail(TEXT("Dedicated RF semantic IDs, independently verified contract, modeled domain, or consumed resource hashes do not match the scenario contract."));
+    }
+
+    if (Metadata.bHasClosedWgs84GeodesicCircleStudyDomain)
+    {
+        const FTRIADSimulationPerimeter& Perimeter = ScenarioConfig.SimulationPerimeter;
+        int32 GeoreferenceCount = 0;
+        ACesiumGeoreference* UniqueGeoreference = nullptr;
+        for (TActorIterator<ACesiumGeoreference> It(GetWorld()); It; ++It)
+        {
+            if (IsValid(*It))
+            {
+                ++GeoreferenceCount;
+                UniqueGeoreference = *It;
+            }
+        }
+        const FVector GeoreferenceOrigin = Georeference
+            ? Georeference->GetOriginLongitudeLatitudeHeight()
+            : FVector(std::numeric_limits<double>::quiet_NaN());
+        FVector2D ProjectedStudyOrigin;
+        FString ProjectionBindingError;
+        const bool bProjectedStudyOriginValid =
+            TRIAD::Geodesy::Wgs84ToSvy21Meters(
+                Metadata.StudyDomainCenterWgs84Degrees.X,
+                Metadata.StudyDomainCenterWgs84Degrees.Y,
+                ProjectedStudyOrigin,
+                ProjectionBindingError);
+        if (ScenarioConfig.DedicatedRFExpectedStudyDomainId.IsEmpty() ||
+            ScenarioConfig.DedicatedRFExpectedStudyDomainType != TEXT("CLOSED_WGS84_GEODESIC_CIRCLE") ||
+            Metadata.StudyDomainId != ScenarioConfig.DedicatedRFExpectedStudyDomainId ||
+            Metadata.StudyDomainType != ScenarioConfig.DedicatedRFExpectedStudyDomainType ||
+            !Metadata.bStudyDomainConfigurationEnabled ||
+            Metadata.StudyDomainConfigurationReferenceName != Perimeter.ReferenceName ||
+            Metadata.StudyDomainConfigurationShape != Perimeter.Shape ||
+            Metadata.StudyDomainCenterWgs84Degrees.X != ScenarioConfig.DedicatedRFExpectedStudyCenterLongitudeDegrees ||
+            Metadata.StudyDomainCenterWgs84Degrees.Y != ScenarioConfig.DedicatedRFExpectedStudyCenterLatitudeDegrees ||
+            Metadata.StudyDomainRadiusMeters != ScenarioConfig.DedicatedRFExpectedStudyRadiusMeters ||
+            Metadata.StudyDomainPerimeterSampleCount != ScenarioConfig.DedicatedRFExpectedStudyPerimeterSampleCount ||
+            Metadata.StudyDomainPerimeterStartAzimuthDegrees != ScenarioConfig.DedicatedRFExpectedStudyPerimeterStartAzimuthDegrees ||
+            Metadata.StudyDomainPerimeterStepDegrees != ScenarioConfig.DedicatedRFExpectedStudyPerimeterStepDegrees ||
+            Metadata.StudyDomainSourceGeodeticCrs != ScenarioConfig.DedicatedRFExpectedStudySourceGeodeticCrs ||
+            Metadata.StudyDomainProjectedConstructionCrs != ScenarioConfig.DedicatedRFExpectedStudyProjectedConstructionCrs ||
+            Metadata.StudyDomainLogicalSystem != ScenarioConfig.DedicatedRFExpectedStudyLogicalSystem ||
+            ScenarioConfig.DedicatedRFExpectedProjectionId != TEXT("EPSG:3414") ||
+            ScenarioConfig.DedicatedRFExpectedProjectedOriginEastingMeters != 29064.15860639389 ||
+            ScenarioConfig.DedicatedRFExpectedProjectedOriginNorthingMeters != 32157.571268641685 ||
+            !bProjectedStudyOriginValid ||
+            !ProjectedStudyOrigin.Equals(
+                FVector2D(
+                    ScenarioConfig.DedicatedRFExpectedProjectedOriginEastingMeters,
+                    ScenarioConfig.DedicatedRFExpectedProjectedOriginNorthingMeters),
+                0.0005) ||
+            ScenarioConfig.DedicatedRFExpectedGeometryAxisPolicy != TEXT("X_EASTING_DELTA_Y_NEGATED_NORTHING_DELTA") ||
+            ScenarioConfig.DedicatedRFExpectedGeometryVerticalPolicy != TEXT("ELLIPSOID_HEIGHT_MINUS_PINNED_ORIGIN_HEIGHT") ||
+            GeoreferenceCount != 1 || UniqueGeoreference != Georeference.Get() ||
+            !ScenarioConfig.bDedicatedRFExpectedGeoreferenceCartographicOrigin ||
+            Georeference->GetOriginPlacement() != EOriginPlacement::CartographicOrigin ||
+            !ScenarioConfig.bDedicatedRFExpectedGeoreferenceActorTransformIdentity ||
+            !Georeference->GetActorTransform().Equals(FTransform::Identity, 1.0e-9) ||
+            GeoreferenceOrigin.Z != ScenarioConfig.DedicatedRFExpectedGeoreferenceOriginHeightMeters ||
+            Georeference->GetScale() != ScenarioConfig.DedicatedRFExpectedGeoreferenceScaleCentimetersPerMeter ||
+            !Perimeter.bEnabled || !TRIAD::Geodesy::IsCircle(Perimeter) ||
+            Perimeter.ReferenceName != Metadata.StudyDomainId ||
+            Perimeter.CenterLongitudeDegrees != Metadata.StudyDomainCenterWgs84Degrees.X ||
+            Perimeter.CenterLatitudeDegrees != Metadata.StudyDomainCenterWgs84Degrees.Y ||
+            Perimeter.RadiusMeters != Metadata.StudyDomainRadiusMeters ||
+            !FMath::IsFinite(GeoreferenceOrigin.X) || !FMath::IsFinite(GeoreferenceOrigin.Y) ||
+            GeoreferenceOrigin.X != Metadata.StudyDomainCenterWgs84Degrees.X ||
+            GeoreferenceOrigin.Y != Metadata.StudyDomainCenterWgs84Degrees.Y ||
+            !Metadata.bModeledCoverageCoversOneKilometreAoi ||
+            !Metadata.bModeledCoverageCoversSurroundings)
+        {
+            return Fail(TEXT("Dedicated RF closed WGS84 circle, perimeter, georeference, frame, or coverage flags do not exactly match the scenario-pinned OneKilometreV2 contract."));
+        }
+    }
+    else if (!ScenarioConfig.DedicatedRFExpectedStudyDomainId.IsEmpty() ||
+             !ScenarioConfig.DedicatedRFExpectedStudyDomainType.IsEmpty())
+    {
+        return Fail(TEXT("Dedicated RF scenario requires a study domain but the loaded geometry has none."));
+    }
+
+    DedicatedRFMetadata = Metadata;
+    DedicatedRFGeometrySha256 = Metadata.GeometrySha256;
+    DedicatedRFMaterialCatalogSha256 = Metadata.MaterialCatalogSha256;
+    DedicatedRFSceneContractSha256 = ContractHash.ToLower();
+    DedicatedRFGeometryQuery = MoveTemp(CandidateQuery);
+    DedicatedRFInteractionModel = MoveTemp(CandidateModel);
+    bDedicatedRFReady = true;
+    bDedicatedRFDegraded = false;
+    ActiveRFPropagationMode = Metadata.bHasClosedWgs84GeodesicCircleStudyDomain
+        ? TEXT("DEDICATED_RF_INDEXED_GEOMETRY_CLOSED_WGS84_CIRCLE_DIRECT_OR_STRAIGHT_TRANSMISSION_V2")
+        : TEXT("DEDICATED_RF_INDEXED_GEOMETRY_DIRECT_OR_STRAIGHT_TRANSMISSION_V1");
+    DedicatedRFReadiness = TEXT("SIMULATION_READY_ASSUMPTION_BOUND_RUNTIME_HASH_BOUND_NOT_FIELD_VALIDATED");
+    UE_LOG(
+        LogTemp,
+        Display,
+        TEXT("TRIAD dedicated RF ready: %s, %d vertices, %d triangles; coverage=%s (%s, coversOneKilometreAoi=%s, coversSurroundings=%s); simulation assumptions only."),
+        *DedicatedRFMetadata.GeometryQueryId,
+        DedicatedRFGeometryQuery->GetVertexCount(),
+        DedicatedRFGeometryQuery->GetTriangleCount(),
+        *DedicatedRFMetadata.ModeledCoverageId,
+        *DedicatedRFMetadata.ModeledCoverageScope,
+        DedicatedRFMetadata.bModeledCoverageCoversOneKilometreAoi
+            ? TEXT("true")
+            : TEXT("false"),
+        DedicatedRFMetadata.bModeledCoverageCoversSurroundings
+            ? TEXT("true")
+            : TEXT("false"));
+    return true;
+}
+
+bool ATRIADSensorFusionScenarioManager::EvaluateDedicatedRFPath(
+    const FVector& TransmitterWorldCentimeters,
+    const FVector& ReceiverWorldCentimeters,
+    double FrequencyGHz,
+    FRFPropagationSample& OutSample) const
+{
+    OutSample = FRFPropagationSample();
+    OutSample.bDedicated = true;
+    OutSample.bDegraded = bDedicatedRFDegraded;
+    OutSample.PropagationMode = ActiveRFPropagationMode;
+    OutSample.Readiness = DedicatedRFReadiness;
+    if (!bDedicatedRFReady || !DedicatedRFGeometryQuery || !DedicatedRFInteractionModel)
+    {
+        OutSample.FailureReason = DedicatedRFFailureReason.IsEmpty()
+            ? TEXT("DEDICATED_RF_RUNTIME_NOT_READY")
+            : DedicatedRFFailureReason;
+        return false;
+    }
+
+    OutSample.bAoiAdmissionRequired =
+        DedicatedRFMetadata.bHasClosedWgs84GeodesicCircleStudyDomain;
+    OutSample.AoiAdmissionDomainId = DedicatedRFMetadata.StudyDomainId.Left(256);
+    FVector GeometryTransmitterCentimeters = TransmitterWorldCentimeters;
+    FVector GeometryReceiverCentimeters = ReceiverWorldCentimeters;
+    OutSample.GeometryTransmitterCentimeters = GeometryTransmitterCentimeters;
+    OutSample.GeometryReceiverCentimeters = GeometryReceiverCentimeters;
+    OutSample.bGeometryFrameTransformValid = true;
+    if (OutSample.bAoiAdmissionRequired)
+    {
+        if (!Georeference ||
+            !FMath::IsFinite(TransmitterWorldCentimeters.X) ||
+            !FMath::IsFinite(TransmitterWorldCentimeters.Y) ||
+            !FMath::IsFinite(TransmitterWorldCentimeters.Z) ||
+            !FMath::IsFinite(ReceiverWorldCentimeters.X) ||
+            !FMath::IsFinite(ReceiverWorldCentimeters.Y) ||
+            !FMath::IsFinite(ReceiverWorldCentimeters.Z))
+        {
+            OutSample.FailureReason =
+                TEXT("DEDICATED_RF_AOI_ADMISSION_FAILED_CLOSED: finite UE endpoints and an exact georeference are required; no direct or legacy fallback is allowed.");
+            return false;
+        }
+        const FVector TransmitterLlh =
+            Georeference->TransformUnrealPositionToLongitudeLatitudeHeight(
+                TransmitterWorldCentimeters);
+        const FVector ReceiverLlh =
+            Georeference->TransformUnrealPositionToLongitudeLatitudeHeight(
+                ReceiverWorldCentimeters);
+        FVector2D TransmitterSvy21;
+        FVector2D ReceiverSvy21;
+        FString ProjectionError;
+        if (!TRIAD::Geodesy::Wgs84ToSvy21Meters(
+                TransmitterLlh.X, TransmitterLlh.Y,
+                TransmitterSvy21, ProjectionError) ||
+            !TRIAD::Geodesy::Wgs84ToSvy21Meters(
+                ReceiverLlh.X, ReceiverLlh.Y,
+                ReceiverSvy21, ProjectionError))
+        {
+            OutSample.FailureReason =
+                TEXT("DEDICATED_RF_AOI_FRAME_TRANSFORM_FAILED_CLOSED: ") +
+                ProjectionError.Left(512);
+            return false;
+        }
+        GeometryTransmitterCentimeters = FVector(
+            (TransmitterSvy21.X - ScenarioConfig.DedicatedRFExpectedProjectedOriginEastingMeters) * 100.0,
+            -(TransmitterSvy21.Y - ScenarioConfig.DedicatedRFExpectedProjectedOriginNorthingMeters) * 100.0,
+            (TransmitterLlh.Z - ScenarioConfig.DedicatedRFExpectedGeoreferenceOriginHeightMeters) * 100.0);
+        GeometryReceiverCentimeters = FVector(
+            (ReceiverSvy21.X - ScenarioConfig.DedicatedRFExpectedProjectedOriginEastingMeters) * 100.0,
+            -(ReceiverSvy21.Y - ScenarioConfig.DedicatedRFExpectedProjectedOriginNorthingMeters) * 100.0,
+            (ReceiverLlh.Z - ScenarioConfig.DedicatedRFExpectedGeoreferenceOriginHeightMeters) * 100.0);
+        OutSample.GeometryTransmitterCentimeters = GeometryTransmitterCentimeters;
+        OutSample.GeometryReceiverCentimeters = GeometryReceiverCentimeters;
+        OutSample.bGeometryFrameTransformValid =
+            FMath::IsFinite(GeometryTransmitterCentimeters.X) &&
+            FMath::IsFinite(GeometryTransmitterCentimeters.Y) &&
+            FMath::IsFinite(GeometryTransmitterCentimeters.Z) &&
+            FMath::IsFinite(GeometryReceiverCentimeters.X) &&
+            FMath::IsFinite(GeometryReceiverCentimeters.Y) &&
+            FMath::IsFinite(GeometryReceiverCentimeters.Z);
+        if (!OutSample.bGeometryFrameTransformValid)
+        {
+            OutSample.FailureReason = TEXT("DEDICATED_RF_AOI_FRAME_TRANSFORM_FAILED_CLOSED: transformed geometry endpoints are non-finite.");
+            return false;
+        }
+        FString AdmissionError;
+        if (!DedicatedRFGeometryQuery->IsFiniteSegmentWithinAdmittedStudyDomain(
+                GeometryTransmitterCentimeters,
+                GeometryReceiverCentimeters,
+                TransmitterLlh,
+                ReceiverLlh,
+                OutSample.TransmitterAoiSignedDistanceMeters,
+                OutSample.ReceiverAoiSignedDistanceMeters,
+                AdmissionError))
+        {
+            OutSample.FailureReason =
+                TEXT("DEDICATED_RF_AOI_ADMISSION_FAILED_CLOSED: ") +
+                AdmissionError.Left(512);
+            return false;
+        }
+        OutSample.bAoiEndpointsAdmitted = true;
+    }
+
+    TArray<FTRIADRFPathCandidate> Candidates;
+    FString QueryError;
+    const FTRIADRFModelLimits& Limits = DedicatedRFInteractionModel->GetLimits();
+    if (!DedicatedRFGeometryQuery->BuildPathCandidates(
+            GeometryTransmitterCentimeters,
+            GeometryReceiverCentimeters,
+            FrequencyGHz,
+            Limits,
+            Candidates,
+            QueryError))
+    {
+        OutSample.FailureReason = FString::Printf(
+            TEXT("DEDICATED_RF_GEOMETRY_QUERY_FAILED_CLOSED: %s"),
+            *QueryError);
+        return false;
+    }
+    if (Candidates.IsEmpty())
+    {
+        OutSample.FailureReason =
+            TEXT("OPAQUE_STRAIGHT_PATH_NO_ADMITTED_DIRECT_OR_TRANSMISSION_CANDIDATE");
+        return false;
+    }
+
+    TArray<FTRIADRFPathCandidate> AdmittedCandidates;
+    AdmittedCandidates.Reserve(Candidates.Num());
+    for (FTRIADRFPathCandidate& Candidate : Candidates)
+    {
+        if (Candidate.Kind == ETRIADRFPathKind::Direct ||
+            Candidate.Kind == ETRIADRFPathKind::Transmitted)
+        {
+            AdmittedCandidates.Add(MoveTemp(Candidate));
+        }
+    }
+    if (AdmittedCandidates.IsEmpty())
+    {
+        OutSample.FailureReason =
+            TEXT("NO_ADMITTED_DIRECT_OR_STRAIGHT_TRANSMISSION_PATH_REFLECTION_IS_NOT_IMPLEMENTED");
+        return false;
+    }
+
+    TArray<FTRIADRFPathEvaluation> Evaluations;
+    FString EvaluationError;
+    if (!DedicatedRFInteractionModel->EvaluatePaths(
+            AdmittedCandidates,
+            FrequencyGHz,
+            Evaluations,
+            EvaluationError))
+    {
+        OutSample.FailureReason = FString::Printf(
+            TEXT("DEDICATED_RF_PATH_EVALUATION_FAILED_CLOSED: %s"),
+            *EvaluationError);
+        return false;
+    }
+
+    const FTRIADRFPathEvaluation* Best = nullptr;
+    FString FirstInvalidEvaluationReason;
+    for (const FTRIADRFPathEvaluation& Evaluation : Evaluations)
+    {
+        if (!Evaluation.bValid || !FMath::IsFinite(Evaluation.TotalPropagationLossDb) ||
+            (Evaluation.PathKind != ETRIADRFPathKind::Direct &&
+                Evaluation.PathKind != ETRIADRFPathKind::Transmitted))
+        {
+            if (FirstInvalidEvaluationReason.IsEmpty() && !Evaluation.Error.IsEmpty())
+            {
+                FirstInvalidEvaluationReason = FString::Printf(
+                    TEXT("%s: %s"),
+                    *Evaluation.PathId,
+                    *Evaluation.Error);
+            }
+            continue;
+        }
+        if (!Best ||
+            Evaluation.TotalPropagationLossDb < Best->TotalPropagationLossDb - UE_DOUBLE_SMALL_NUMBER ||
+            (FMath::IsNearlyEqual(
+                    Evaluation.TotalPropagationLossDb,
+                    Best->TotalPropagationLossDb,
+                    UE_DOUBLE_SMALL_NUMBER) &&
+                Evaluation.PathId < Best->PathId))
+        {
+            Best = &Evaluation;
+        }
+    }
+    if (!Best)
+    {
+        OutSample.FailureReason = FirstInvalidEvaluationReason.IsEmpty()
+            ? TEXT("NO_VALID_DETERMINISTIC_RF_PATH_EVALUATION")
+            : FString::Printf(
+                TEXT("NO_VALID_DETERMINISTIC_RF_PATH_EVALUATION: %s"),
+                *FirstInvalidEvaluationReason);
+        return false;
+    }
+
+    OutSample.bPathValid = true;
+    OutSample.PathEvaluation = *Best;
+    return true;
+}
+
+void ATRIADSensorFusionScenarioManager::AddRFPropagationTelemetryFields(
+    const TSharedRef<FJsonObject>& Json,
+    const FRFPropagationSample& Propagation,
+    double SystemLossDb,
+    double WeatherLossDb) const
+{
+    Json->SetStringField(TEXT("rfPropagationSchemaVersion"), TEXT("triad.rf_link_propagation.v1"));
+    Json->SetStringField(TEXT("propagationMode"), Propagation.PropagationMode);
+    Json->SetStringField(TEXT("rfPropagationReadiness"), Propagation.Readiness);
+    Json->SetBoolField(TEXT("dedicatedRFRequested"), ScenarioConfig.bUseDedicatedRFPropagation);
+    Json->SetBoolField(TEXT("dedicatedRFReady"), bDedicatedRFReady);
+    Json->SetBoolField(TEXT("propagationDegraded"), Propagation.bDegraded);
+    Json->SetBoolField(TEXT("propagationPathValid"), Propagation.bPathValid);
+    Json->SetBoolField(TEXT("rfAoiAdmissionRequired"), Propagation.bAoiAdmissionRequired);
+    Json->SetBoolField(TEXT("rfAoiEndpointsAdmitted"), Propagation.bAoiEndpointsAdmitted);
+    Json->SetStringField(TEXT("rfAoiAdmissionDomainId"), Propagation.AoiAdmissionDomainId.Left(256));
+    Json->SetBoolField(TEXT("rfGeometryFrameTransformValid"), Propagation.bGeometryFrameTransformValid);
+    Json->SetStringField(
+        TEXT("rfGeometryEndpointFrame"),
+        Propagation.bAoiAdmissionRequired
+            ? TEXT("EPSG3414_DELTA_EAST_NEGATED_NORTH_HEIGHT_MINUS_ORIGIN_CENTIMETERS")
+            : TEXT("TIGHT_V1_WORLD_ORIGIN_IDENTITY_CENTIMETERS"));
+    if (Propagation.bGeometryFrameTransformValid)
+    {
+        Json->SetStringField(TEXT("rfGeometryTransmitterCentimeters"),
+            Propagation.GeometryTransmitterCentimeters.ToCompactString().Left(256));
+        Json->SetStringField(TEXT("rfGeometryReceiverCentimeters"),
+            Propagation.GeometryReceiverCentimeters.ToCompactString().Left(256));
+    }
+    if (FMath::IsFinite(Propagation.TransmitterAoiSignedDistanceMeters))
+    {
+        Json->SetNumberField(TEXT("rfTransmitterAoiSignedDistanceMeters"), Propagation.TransmitterAoiSignedDistanceMeters);
+    }
+    else
+    {
+        Json->SetField(TEXT("rfTransmitterAoiSignedDistanceMeters"), MakeShared<FJsonValueNull>());
+    }
+    if (FMath::IsFinite(Propagation.ReceiverAoiSignedDistanceMeters))
+    {
+        Json->SetNumberField(TEXT("rfReceiverAoiSignedDistanceMeters"), Propagation.ReceiverAoiSignedDistanceMeters);
+    }
+    else
+    {
+        Json->SetField(TEXT("rfReceiverAoiSignedDistanceMeters"), MakeShared<FJsonValueNull>());
+    }
+    Json->SetBoolField(TEXT("visibilityLineOfSightControlsRF"), !Propagation.bDedicated);
+    Json->SetBoolField(TEXT("readyForSurveyTruth"), false);
+    Json->SetBoolField(TEXT("fieldValidated"), false);
+    Json->SetBoolField(
+        TEXT("externalAcceptanceContextBound"),
+        Propagation.bPathValid && Propagation.PathEvaluation.bExternalAcceptanceContextBound);
+    Json->SetStringField(TEXT("rfGeometryQueryId"), DedicatedRFMetadata.GeometryQueryId);
+    Json->SetStringField(TEXT("rfGeometryRevision"), DedicatedRFMetadata.GeometryRevision);
+    Json->SetStringField(TEXT("rfGeometryStatus"), DedicatedRFMetadata.GeometryStatus);
+    Json->SetStringField(TEXT("rfGeometrySchemaVersion"), DedicatedRFMetadata.GeometrySchemaVersion);
+    Json->SetStringField(TEXT("rfGeometrySha256"), DedicatedRFGeometrySha256);
+    Json->SetStringField(
+        TEXT("rfResourceHashSemantics"),
+        TEXT("SINGLE_READ_STRICT_UTF8_BUFFERS_HASHED_AND_PARSED_TRANSACTIONALLY"));
+    Json->SetStringField(TEXT("rfContractSha256"), DedicatedRFMetadata.ContractSha256);
+    Json->SetStringField(
+        TEXT("rfVerifiedSceneContractSha256"),
+        DedicatedRFSceneContractSha256);
+    Json->SetStringField(
+        TEXT("rfContractHashSemantics"),
+        TEXT("INDEPENDENT_SINGLE_READ_SCENE_CONTRACT_HASH_MATCHES_SCENARIO_AND_GEOMETRY_BINDING"));
+    Json->SetStringField(TEXT("rfMaterialCatalogId"), DedicatedRFMetadata.MaterialCatalogId);
+    Json->SetStringField(TEXT("rfMaterialCatalogSchemaVersion"), DedicatedRFMetadata.MaterialCatalogSchemaVersion);
+    Json->SetStringField(TEXT("rfMaterialCatalogSha256"), DedicatedRFMaterialCatalogSha256);
+    Json->SetStringField(TEXT("rfCoordinateSemantics"), DedicatedRFMetadata.CoordinateSemantics);
+    Json->SetStringField(TEXT("rfRuntimeSemantics"), DedicatedRFMetadata.RuntimeSemantics);
+    Json->SetStringField(TEXT("rfModeledCoverageId"), DedicatedRFMetadata.ModeledCoverageId);
+    Json->SetStringField(TEXT("rfModeledCoverageScope"), DedicatedRFMetadata.ModeledCoverageScope);
+    Json->SetStringField(TEXT("rfModeledCoverageShape"), DedicatedRFMetadata.ModeledCoverageShape);
+    Json->SetStringField(
+        TEXT("rfModeledCoverageFiniteSegmentPolicy"),
+        DedicatedRFMetadata.ModeledCoverageFiniteSegmentPolicy);
+    Json->SetStringField(
+        TEXT("rfModeledCoverageOutsideDomainPolicy"),
+        DedicatedRFMetadata.ModeledCoverageOutsideDomainPolicy);
+    Json->SetBoolField(
+        TEXT("rfModeledCoverageCoversOneKilometreAoi"),
+        DedicatedRFMetadata.bModeledCoverageCoversOneKilometreAoi);
+    Json->SetBoolField(
+        TEXT("rfModeledCoverageCoversSurroundings"),
+        DedicatedRFMetadata.bModeledCoverageCoversSurroundings);
+    Json->SetBoolField(
+        TEXT("rfModeledCoverageSurveyControlled"),
+        DedicatedRFMetadata.bModeledCoverageSurveyControlled);
+    Json->SetBoolField(
+        TEXT("rfModeledCoverageFieldValidated"),
+        DedicatedRFMetadata.bModeledCoverageFieldValidated);
+    Json->SetStringField(TEXT("pathId"), Propagation.PathEvaluation.PathId);
+    Json->SetStringField(
+        TEXT("pathKind"),
+        Propagation.bPathValid
+            ? RFPathKindToString(Propagation.PathEvaluation.PathKind)
+            : TEXT("NO_ADMITTED_PATH"));
+    Json->SetStringField(
+        TEXT("materialCalibrationState"),
+        RFCalibrationStateToString(Propagation.PathEvaluation.MaterialCalibrationState));
+    Json->SetBoolField(
+        TEXT("friisFarFieldApplicabilityValidated"),
+        Propagation.bPathValid && Propagation.PathEvaluation.bFriisFarFieldApplicabilityValidated);
+    Json->SetStringField(TEXT("propagationFailureReason"), Propagation.FailureReason);
+    Json->SetNumberField(TEXT("systemLossDb"), SystemLossDb);
+    Json->SetNumberField(TEXT("weatherRFLossDb"), WeatherLossDb);
+
+    if (Propagation.bPathValid)
+    {
+        Json->SetNumberField(TEXT("freeSpacePathLossDb"), Propagation.PathEvaluation.FreeSpacePathLossDb);
+        Json->SetNumberField(TEXT("interactionLossDb"), Propagation.PathEvaluation.InteractionLossDb);
+        Json->SetNumberField(TEXT("totalPropagationLossDb"), Propagation.PathEvaluation.TotalPropagationLossDb);
+        Json->SetNumberField(
+            TEXT("totalLinkLossDb"),
+            Propagation.PathEvaluation.TotalPropagationLossDb + SystemLossDb + WeatherLossDb);
+        Json->SetStringField(TEXT("rfModelSemantics"), Propagation.PathEvaluation.ModelSemantics);
+        Json->SetStringField(TEXT("rfReadinessSemantics"), Propagation.PathEvaluation.ReadinessSemantics);
+    }
+    else
+    {
+        Json->SetField(TEXT("freeSpacePathLossDb"), MakeShared<FJsonValueNull>());
+        Json->SetField(TEXT("interactionLossDb"), MakeShared<FJsonValueNull>());
+        Json->SetField(TEXT("totalPropagationLossDb"), MakeShared<FJsonValueNull>());
+        Json->SetField(TEXT("totalLinkLossDb"), MakeShared<FJsonValueNull>());
+    }
+
+    TArray<TSharedPtr<FJsonValue>> ClearWitnessValues;
+    for (const FString& WitnessId : Propagation.PathEvaluation.ClearSegmentWitnessIds)
+    {
+        ClearWitnessValues.Add(MakeShared<FJsonValueString>(WitnessId));
+    }
+    Json->SetArrayField(TEXT("rfClearSegmentWitnessIds"), MoveTemp(ClearWitnessValues));
+
+    TArray<TSharedPtr<FJsonValue>> CalibrationProvenanceValues;
+    for (const FString& ProvenanceId : Propagation.PathEvaluation.CalibrationProvenanceIds)
+    {
+        CalibrationProvenanceValues.Add(MakeShared<FJsonValueString>(ProvenanceId));
+    }
+    Json->SetArrayField(TEXT("rfCalibrationProvenanceIds"), MoveTemp(CalibrationProvenanceValues));
+
+    Json->SetStringField(
+        TEXT("rfInteractionTraceSchemaVersion"),
+        TEXT("triad.rf_interaction_trace.v3"));
+    TArray<TSharedPtr<FJsonValue>> InteractionValues;
+    for (const FTRIADRFInteractionEvaluation& Interaction :
+        Propagation.PathEvaluation.InteractionEvaluations)
+    {
+        TSharedRef<FJsonObject> InteractionJson = MakeShared<FJsonObject>();
+        InteractionJson->SetStringField(TEXT("kind"), RFInteractionKindToString(Interaction.Kind));
+        InteractionJson->SetStringField(TEXT("surfaceId"), Interaction.SurfaceId);
+        InteractionJson->SetStringField(TEXT("solidId"), Interaction.SolidId);
+        InteractionJson->SetStringField(TEXT("materialId"), Interaction.MaterialId);
+        InteractionJson->SetStringField(TEXT("profileId"), Interaction.ProfileId);
+        InteractionJson->SetStringField(TEXT("sourceClass"), Interaction.SourceClass);
+        InteractionJson->SetStringField(TEXT("uncertaintyClass"), Interaction.UncertaintyClass);
+        InteractionJson->SetStringField(
+            TEXT("coefficientSelectionSemantics"),
+            Interaction.CoefficientSelectionSemantics);
+        TArray<TSharedPtr<FJsonValue>> ContributorValues;
+        ContributorValues.Reserve(Interaction.Contributors.Num());
+        for (const FTRIADRFInteractionContributor& Contributor :
+             Interaction.Contributors)
+        {
+            const auto MakePointJson = [](const FVector& Point)
+            {
+                TSharedRef<FJsonObject> PointJson = MakeShared<FJsonObject>();
+                PointJson->SetNumberField(TEXT("x"), Point.X);
+                PointJson->SetNumberField(TEXT("y"), Point.Y);
+                PointJson->SetNumberField(TEXT("z"), Point.Z);
+                return PointJson;
+            };
+            TSharedRef<FJsonObject> ContributorJson = MakeShared<FJsonObject>();
+            ContributorJson->SetStringField(TEXT("solidId"), Contributor.SolidId);
+            ContributorJson->SetStringField(
+                TEXT("entrySurfaceId"),
+                Contributor.EntrySurfaceId);
+            ContributorJson->SetStringField(
+                TEXT("exitSurfaceId"),
+                Contributor.ExitSurfaceId);
+            ContributorJson->SetStringField(
+                TEXT("sourceClass"),
+                Contributor.SourceClass);
+            ContributorJson->SetStringField(
+                TEXT("uncertaintyClass"),
+                Contributor.UncertaintyClass);
+            ContributorJson->SetObjectField(
+                TEXT("entryPointCentimeters"),
+                MakePointJson(Contributor.EntryPointCentimeters));
+            ContributorJson->SetObjectField(
+                TEXT("exitPointCentimeters"),
+                MakePointJson(Contributor.ExitPointCentimeters));
+            ContributorValues.Add(
+                MakeShared<FJsonValueObject>(MoveTemp(ContributorJson)));
+        }
+        InteractionJson->SetArrayField(
+            TEXT("contributors"),
+            MoveTemp(ContributorValues));
+        InteractionJson->SetStringField(
+            TEXT("calibrationState"),
+            RFCalibrationStateToString(Interaction.CalibrationState));
+        InteractionJson->SetStringField(
+            TEXT("calibrationProvenanceId"),
+            Interaction.CalibrationProvenanceId);
+        InteractionJson->SetNumberField(TEXT("segmentIndex"), Interaction.SegmentIndex);
+        InteractionJson->SetNumberField(TEXT("vertexIndex"), Interaction.VertexIndex);
+        InteractionJson->SetNumberField(
+            TEXT("minimumFrequencyGHz"),
+            Interaction.MinimumFrequencyGHz);
+        InteractionJson->SetNumberField(
+            TEXT("maximumFrequencyGHz"),
+            Interaction.MaximumFrequencyGHz);
+        InteractionJson->SetNumberField(
+            TEXT("minimumIncidenceCosine"),
+            Interaction.MinimumIncidenceCosine);
+        InteractionJson->SetNumberField(
+            TEXT("maximumIncidenceCosine"),
+            Interaction.MaximumIncidenceCosine);
+        InteractionJson->SetNumberField(
+            TEXT("pairedBoundaryTransmissionLossDb"),
+            Interaction.PairedBoundaryTransmissionLossDb);
+        InteractionJson->SetNumberField(
+            TEXT("bulkAttenuationDbPerMeter"),
+            Interaction.BulkAttenuationDbPerMeter);
+        InteractionJson->SetNumberField(
+            TEXT("reflectionLossDb"),
+            Interaction.ReflectionLossDb);
+        InteractionJson->SetNumberField(
+            TEXT("empiricalGrazingReflectionLossDb"),
+            Interaction.EmpiricalGrazingReflectionLossDb);
+        InteractionJson->SetNumberField(TEXT("normalThicknessMeters"), Interaction.NormalThicknessMeters);
+        InteractionJson->SetNumberField(TEXT("traversalDistanceMeters"), Interaction.TraversalDistanceMeters);
+        InteractionJson->SetNumberField(TEXT("incidenceCosine"), Interaction.IncidenceCosine);
+        InteractionJson->SetNumberField(TEXT("lossDb"), Interaction.LossDb);
+        InteractionValues.Add(MakeShared<FJsonValueObject>(MoveTemp(InteractionJson)));
+    }
+    Json->SetArrayField(TEXT("rfInteractions"), MoveTemp(InteractionValues));
+}
+
+TSharedRef<FJsonObject> ATRIADSensorFusionScenarioManager::MakeRFPropagationStatusJson() const
+{
+    TSharedRef<FJsonObject> Status = MakeShared<FJsonObject>();
+    Status->SetStringField(TEXT("schemaVersion"), TEXT("triad.rf_propagation_status.v1"));
+    Status->SetBoolField(TEXT("dedicatedRFRequested"), ScenarioConfig.bUseDedicatedRFPropagation);
+    Status->SetBoolField(TEXT("dedicatedRFRequired"), ScenarioConfig.bRequireDedicatedRFReady);
+    Status->SetBoolField(TEXT("dedicatedRFReady"), bDedicatedRFReady);
+    Status->SetBoolField(TEXT("degraded"), bDedicatedRFDegraded);
+    Status->SetStringField(TEXT("mode"), ActiveRFPropagationMode);
+    Status->SetStringField(TEXT("readiness"), DedicatedRFReadiness);
+    Status->SetStringField(TEXT("failureReason"), DedicatedRFFailureReason);
+    Status->SetStringField(
+        TEXT("expectedWorldPackageName"),
+        ScenarioConfig.DedicatedRFExpectedWorldPackageName);
+    Status->SetBoolField(
+        TEXT("worldOriginIdentityFrameAsserted"),
+        ScenarioConfig.bDedicatedRFFrameIsWorldOriginIdentity);
+    Status->SetStringField(TEXT("geometryQueryId"), DedicatedRFMetadata.GeometryQueryId);
+    Status->SetStringField(TEXT("geometryRevision"), DedicatedRFMetadata.GeometryRevision);
+    Status->SetStringField(TEXT("geometryStatus"), DedicatedRFMetadata.GeometryStatus);
+    Status->SetStringField(TEXT("geometrySchemaVersion"), DedicatedRFMetadata.GeometrySchemaVersion);
+    Status->SetStringField(TEXT("geometrySha256"), DedicatedRFGeometrySha256);
+    Status->SetStringField(
+        TEXT("resourceHashSemantics"),
+        TEXT("SINGLE_READ_STRICT_UTF8_BUFFERS_HASHED_AND_PARSED_TRANSACTIONALLY"));
+    Status->SetStringField(TEXT("contractSha256"), DedicatedRFMetadata.ContractSha256);
+    Status->SetStringField(
+        TEXT("verifiedSceneContractSha256"),
+        DedicatedRFSceneContractSha256);
+    Status->SetStringField(
+        TEXT("contractHashSemantics"),
+        TEXT("INDEPENDENT_SINGLE_READ_SCENE_CONTRACT_HASH_MATCHES_SCENARIO_AND_GEOMETRY_BINDING"));
+    Status->SetStringField(TEXT("materialCatalogId"), DedicatedRFMetadata.MaterialCatalogId);
+    Status->SetStringField(TEXT("materialCatalogSchemaVersion"), DedicatedRFMetadata.MaterialCatalogSchemaVersion);
+    Status->SetStringField(TEXT("materialCatalogSha256"), DedicatedRFMaterialCatalogSha256);
+    Status->SetStringField(TEXT("coordinateSemantics"), DedicatedRFMetadata.CoordinateSemantics);
+    Status->SetStringField(TEXT("runtimeSemantics"), DedicatedRFMetadata.RuntimeSemantics);
+    Status->SetStringField(TEXT("modeledCoverageId"), DedicatedRFMetadata.ModeledCoverageId);
+    Status->SetStringField(TEXT("modeledCoverageScope"), DedicatedRFMetadata.ModeledCoverageScope);
+    Status->SetStringField(TEXT("modeledCoverageShape"), DedicatedRFMetadata.ModeledCoverageShape);
+    Status->SetStringField(
+        TEXT("modeledCoverageFiniteSegmentPolicy"),
+        DedicatedRFMetadata.ModeledCoverageFiniteSegmentPolicy);
+    Status->SetStringField(
+        TEXT("modeledCoverageOutsideDomainPolicy"),
+        DedicatedRFMetadata.ModeledCoverageOutsideDomainPolicy);
+    Status->SetBoolField(
+        TEXT("modeledCoverageCoversOneKilometreAoi"),
+        DedicatedRFMetadata.bModeledCoverageCoversOneKilometreAoi);
+    Status->SetBoolField(
+        TEXT("modeledCoverageCoversSurroundings"),
+        DedicatedRFMetadata.bModeledCoverageCoversSurroundings);
+    Status->SetStringField(
+        TEXT("frameBindingSemantics"),
+        TEXT("EXACT_EXPECTED_WORLD_PLUS_EXPLICIT_WORLD_ORIGIN_IDENTITY_ASSERTION_NO_OFFSET_ROTATION_OR_SCALE"));
+    Status->SetBoolField(TEXT("readyForSurveyTruth"), false);
+    Status->SetBoolField(TEXT("fieldValidated"), false);
+    Status->SetBoolField(TEXT("externalAcceptanceContextBound"), false);
+    Status->SetBoolField(TEXT("diffractionImplemented"), false);
+    Status->SetBoolField(TEXT("phaseImplemented"), false);
+    Status->SetBoolField(TEXT("polarizationImplemented"), false);
+    Status->SetBoolField(TEXT("reflectionCandidateEnumerationImplemented"), false);
+    return Status;
 }
 
 void ATRIADSensorFusionScenarioManager::BeginPlay()
@@ -252,6 +1214,26 @@ void ATRIADSensorFusionScenarioManager::BeginPlay()
         return;
     }
 
+    FString DedicatedRFError;
+    if (!InitializeDedicatedRFPropagation(DedicatedRFError))
+    {
+        if (ScenarioConfig.bRequireDedicatedRFReady)
+        {
+            UE_LOG(
+                LogTemp,
+                Error,
+                TEXT("TRIAD Singapore sensor fusion stopped because required dedicated RF did not load: %s"),
+                *DedicatedRFError);
+            Destroy();
+            return;
+        }
+        UE_LOG(
+            LogTemp,
+            Warning,
+            TEXT("TRIAD dedicated RF did not load; using explicit degraded legacy propagation: %s"),
+            *DedicatedRFError);
+    }
+
     if (ScenarioConfig.SimulationPerimeter.bEnabled)
     {
         int32 NodesOutsideReference = 0;
@@ -261,13 +1243,23 @@ void ATRIADSensorFusionScenarioManager::BeginPlay()
                 Node.LongitudeDegrees,
                 Node.LatitudeDegrees) > 0.0 ? 1 : 0;
         }
+        const FTRIADSimulationPerimeter& Perimeter = ScenarioConfig.SimulationPerimeter;
+        const FString GeometryDescription = TRIAD::Geodesy::IsCircle(Perimeter)
+            ? FString::Printf(
+                TEXT("WGS84 geodesic circle centered at (%.8f, %.8f), radius %.1f m"),
+                Perimeter.CenterLongitudeDegrees,
+                Perimeter.CenterLatitudeDegrees,
+                Perimeter.RadiusMeters)
+            : FString::Printf(
+                TEXT("WGS84 rectangle [%.4f, %.4f] lon x [%.4f, %.4f] lat"),
+                FMath::Min(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees),
+                FMath::Max(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees),
+                FMath::Min(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees),
+                FMath::Max(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees));
         const FString PerimeterStatus = FString::Printf(
-            TEXT("TRIAD approach reference '%s' is a non-legal WGS84 rectangle [%.4f, %.4f] lon x [%.4f, %.4f] lat; %d configured node(s) outside."),
-            *ScenarioConfig.SimulationPerimeter.ReferenceName,
-            FMath::Min(ScenarioConfig.SimulationPerimeter.MinimumLongitudeDegrees, ScenarioConfig.SimulationPerimeter.MaximumLongitudeDegrees),
-            FMath::Max(ScenarioConfig.SimulationPerimeter.MinimumLongitudeDegrees, ScenarioConfig.SimulationPerimeter.MaximumLongitudeDegrees),
-            FMath::Min(ScenarioConfig.SimulationPerimeter.MinimumLatitudeDegrees, ScenarioConfig.SimulationPerimeter.MaximumLatitudeDegrees),
-            FMath::Max(ScenarioConfig.SimulationPerimeter.MinimumLatitudeDegrees, ScenarioConfig.SimulationPerimeter.MaximumLatitudeDegrees),
+            TEXT("TRIAD approach reference '%s' is a non-legal %s; %d configured node(s) outside."),
+            *Perimeter.ReferenceName,
+            *GeometryDescription,
             NodesOutsideReference);
         if (NodesOutsideReference == 0)
         {
@@ -321,6 +1313,9 @@ void ATRIADSensorFusionScenarioManager::EndPlay(const EEndPlayReason::Type EndPl
     GetWorldTimerManager().ClearTimer(SampleTimerHandle);
     GetWorldTimerManager().ClearTimer(WeatherCycleTimerHandle);
     FlushTelemetryBuffers();
+    DedicatedRFInteractionModel.Reset();
+    DedicatedRFGeometryQuery.Reset();
+    bDedicatedRFReady = false;
     Super::EndPlay(EndPlayReason);
 }
 
@@ -346,7 +1341,18 @@ void ATRIADSensorFusionScenarioManager::ApplyActiveWeatherProfile()
     bAirSimVisualWeatherApplied = false;
 
     UWorld* World = GetWorld();
-    if (World && ScenarioConfig.Weather.bApplyAirSimVisualWeather)
+    const bool bMapSuppressesAirSimVisualWeather =
+        ATRIADIstanaRuntimePolicyActor::ShouldSuppressAirSimVisualWeather(World);
+    if (World && bMapSuppressesAirSimVisualWeather)
+    {
+        // The Istana runtime map keeps the inherited authored Singapore sky.
+        // Do not instantiate the attachment-based AirSim WeatherActor here: in
+        // PIE it can obscure the scene and depends on AirSim actors that are not
+        // present in ordinary editor viewports.
+        UWeatherLib::setWeatherEnabled(World, false);
+        bAirSimWeatherActorsVerified = false;
+    }
+    else if (World && ScenarioConfig.Weather.bApplyAirSimVisualWeather)
     {
         if (!bAirSimWeatherInitialized)
         {
@@ -427,6 +1433,8 @@ void ATRIADSensorFusionScenarioManager::ApplyActiveWeatherProfile()
 
     const FString VisualStatus = bAirSimVisualWeatherApplied
         ? TEXT("AirSim visual weather verified")
+        : bMapSuppressesAirSimVisualWeather
+            ? TEXT("visual weather suppressed by map runtime policy")
         : ScenarioConfig.Weather.bApplyAirSimVisualWeather
             ? TEXT("visual weather NOT verified; metadata/RF profile only")
             : TEXT("metadata/RF profile only by configuration");
@@ -793,36 +1801,10 @@ double ATRIADSensorFusionScenarioManager::ComputeSignedDistanceToSimulationPerim
     double LongitudeDegrees,
     double LatitudeDegrees) const
 {
-    const FTRIADSimulationPerimeter& Perimeter = ScenarioConfig.SimulationPerimeter;
-    const double MinimumLongitude = FMath::Min(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees);
-    const double MaximumLongitude = FMath::Max(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees);
-    const double MinimumLatitude = FMath::Min(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees);
-    const double MaximumLatitude = FMath::Max(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees);
-    const double MidLatitudeRadians = FMath::DegreesToRadians((MinimumLatitude + MaximumLatitude) * 0.5);
-    constexpr double Wgs84EquatorialRadiusMeters = 6378137.0;
-    const double MetersPerDegreeLatitude = PI * Wgs84EquatorialRadiusMeters / 180.0;
-    const double MetersPerDegreeLongitude = MetersPerDegreeLatitude *
-        FMath::Max(FMath::Abs(FMath::Cos(MidLatitudeRadians)), 0.000001);
-
-    const double X = LongitudeDegrees * MetersPerDegreeLongitude;
-    const double WestX = MinimumLongitude * MetersPerDegreeLongitude;
-    const double EastX = MaximumLongitude * MetersPerDegreeLongitude;
-    const double Y = LatitudeDegrees * MetersPerDegreeLatitude;
-    const double SouthY = MinimumLatitude * MetersPerDegreeLatitude;
-    const double NorthY = MaximumLatitude * MetersPerDegreeLatitude;
-
-    const double OutsideDx = X < WestX ? WestX - X : X > EastX ? X - EastX : 0.0;
-    const double OutsideDy = Y < SouthY ? SouthY - Y : Y > NorthY ? Y - NorthY : 0.0;
-    if (OutsideDx > 0.0 || OutsideDy > 0.0)
-    {
-        return FMath::Sqrt(OutsideDx * OutsideDx + OutsideDy * OutsideDy);
-    }
-
-    // Boundary-inclusive: a target exactly on an edge is inside with signed distance zero.
-    const double NearestInsideEdgeMeters = FMath::Min(
-        FMath::Min(X - WestX, EastX - X),
-        FMath::Min(Y - SouthY, NorthY - Y));
-    return -FMath::Max(NearestInsideEdgeMeters, 0.0);
+    return TRIAD::Geodesy::SignedDistanceToPerimeterMeters(
+        ScenarioConfig.SimulationPerimeter,
+        LongitudeDegrees,
+        LatitudeDegrees);
 }
 
 void ATRIADSensorFusionScenarioManager::UpdateTargetApproachTelemetry(const TArray<AActor*>& Targets)
@@ -1193,18 +2175,73 @@ bool ATRIADSensorFusionScenarioManager::SampleNodeTargetLink(
     for (const double FrequencyGHz : Emitter->Definition.CenterFrequenciesGHz)
     {
         const bool bFrequencySupported = Receiver->SupportsFrequencyGHz(FrequencyGHz);
-        const double FreeSpacePathLossDb = Receiver->ComputeFreeSpacePathLossDb(FrequencyGHz, DistanceMeters);
-        const double ObstructionLossDb = bLineOfSight ? 0.0 : FMath::Max(ScenarioConfig.NonLineOfSightAdditionalLossDb, 0.0);
         const double WeatherSpecificAttenuationDbPerKm = GetWeatherSpecificAttenuationDbPerKm(FrequencyGHz);
         const double WeatherLossDb = WeatherSpecificAttenuationDbPerKm * (DistanceMeters / 1000.0);
-        const double ReceivedPowerDbm = Emitter->Definition.TransmitPowerDbm +
-            Emitter->Definition.TransmitAntennaGainDbi + NodeDefinition.ReceiveAntennaGainDbi -
-            FreeSpacePathLossDb - NodeDefinition.SystemLossDb - ObstructionLossDb - WeatherLossDb;
+        FRFPropagationSample Propagation;
+        if (bDedicatedRFReady)
+        {
+            // TightV1 remains world-origin/identity. OneKilometreV2 performs
+            // its separately pinned WGS84/EPSG:3414 transform inside the
+            // dedicated evaluator immediately before the geometry query.
+            EvaluateDedicatedRFPath(
+                TargetLocation,
+                NodeLocation,
+                FrequencyGHz,
+                Propagation);
+        }
+        else
+        {
+            const double LegacyFreeSpacePathLossDb =
+                Receiver->ComputeFreeSpacePathLossDb(FrequencyGHz, DistanceMeters);
+            const double LegacyObstructionLossDb = bLineOfSight
+                ? 0.0
+                : FMath::Max(ScenarioConfig.NonLineOfSightAdditionalLossDb, 0.0);
+            Propagation.bPathValid = FMath::IsFinite(LegacyFreeSpacePathLossDb);
+            Propagation.bDedicated = false;
+            Propagation.bDegraded = bDedicatedRFDegraded;
+            Propagation.PropagationMode = ActiveRFPropagationMode;
+            Propagation.Readiness = DedicatedRFReadiness;
+            Propagation.FailureReason = DedicatedRFFailureReason;
+            Propagation.PathEvaluation.bValid = Propagation.bPathValid;
+            Propagation.PathEvaluation.PathId = bLineOfSight
+                ? TEXT("legacy-visibility-direct")
+                : TEXT("legacy-visibility-binary-nlos-scalar");
+            Propagation.PathEvaluation.PathKind = ETRIADRFPathKind::Direct;
+            Propagation.PathEvaluation.MaterialCalibrationState =
+                ETRIADRFMaterialCalibrationState::NotApplicable;
+            Propagation.PathEvaluation.FrequencyGHz = FrequencyGHz;
+            Propagation.PathEvaluation.PathLengthMeters = DistanceMeters;
+            Propagation.PathEvaluation.FreeSpacePathLossDb = LegacyFreeSpacePathLossDb;
+            Propagation.PathEvaluation.InteractionLossDb = LegacyObstructionLossDb;
+            Propagation.PathEvaluation.TotalPropagationLossDb =
+                LegacyFreeSpacePathLossDb + LegacyObstructionLossDb;
+            Propagation.PathEvaluation.ModelSemantics =
+                TEXT("LEGACY_FSPL_PLUS_BINARY_VISIBILITY_NLOS_SCALAR");
+            Propagation.PathEvaluation.ReadinessSemantics =
+                TEXT("BACKWARDS_COMPATIBLE_GENERIC_SIMULATION_NOT_DEDICATED_RF_GEOMETRY_OR_FIELD_VALIDATED");
+        }
+        const double FreeSpacePathLossDb = Propagation.bPathValid
+            ? Propagation.PathEvaluation.FreeSpacePathLossDb
+            : 0.0;
+        const double ObstructionLossDb = Propagation.bPathValid
+            ? Propagation.PathEvaluation.InteractionLossDb
+            : 0.0;
+        const double TotalPropagationLossDb = Propagation.bPathValid
+            ? Propagation.PathEvaluation.TotalPropagationLossDb
+            : 0.0;
+        const double ReceivedPowerDbm = Propagation.bPathValid
+            ? Emitter->Definition.TransmitPowerDbm +
+                Emitter->Definition.TransmitAntennaGainDbi + NodeDefinition.ReceiveAntennaGainDbi -
+                TotalPropagationLossDb - NodeDefinition.SystemLossDb - WeatherLossDb
+            : -1000.0;
         const double SnrDb = ReceivedPowerDbm - NoiseFloorDbm;
         const bool bInRange = DistanceMeters <= FMath::Max(NodeDefinition.DetectionRangeMeters, 0.0);
-        const bool bAboveSensitivity = ReceivedPowerDbm >= NodeDefinition.ReceiverSensitivityDbm;
-        const bool bDetected = bFrequencySupported && bInRange && bAboveSensitivity &&
-            (!ScenarioConfig.bRequireLineOfSightForDetection || bLineOfSight);
+        const bool bAboveSensitivity = Propagation.bPathValid &&
+            ReceivedPowerDbm >= NodeDefinition.ReceiverSensitivityDbm;
+        const bool bLegacyLineOfSightGateSatisfied = Propagation.bDedicated ||
+            !ScenarioConfig.bRequireLineOfSightForDetection || bLineOfSight;
+        const bool bDetected = Propagation.bPathValid && bFrequencySupported && bInRange &&
+            bAboveSensitivity && bLegacyLineOfSightGateSatisfied;
         // Legacy field/config names retain JSON and Blueprint compatibility, but
         // cue evidence is now the sensor-derived RF result alone. Scenario truth
         // is deliberately excluded from operator-cue policy.
@@ -1257,6 +2294,16 @@ bool ATRIADSensorFusionScenarioManager::SampleNodeTargetLink(
                 SnapshotLink->SetNumberField(TEXT("noiseFloorDbm"), NoiseFloorDbm);
                 SnapshotLink->SetNumberField(TEXT("snrDb"), SnrDb);
                 SnapshotLink->SetNumberField(TEXT("weatherRFLossDb"), WeatherLossDb);
+                SnapshotLink->SetStringField(
+                    TEXT("lineOfSightSemantics"),
+                    Propagation.bDedicated
+                        ? TEXT("DIAGNOSTIC_VISIBILITY_TRACE_ONLY_NOT_RF_LOSS_OR_DETECTION_GATE")
+                        : TEXT("LEGACY_BINARY_RF_OBSTRUCTION_INPUT"));
+                AddRFPropagationTelemetryFields(
+                    SnapshotLink.ToSharedRef(),
+                    Propagation,
+                    NodeDefinition.SystemLossDb,
+                    WeatherLossDb);
                 if (const FTargetApproachStatus* Approach =
                         CurrentTargetApproachStatusByActor.Find(Target->GetName()))
                 {
@@ -1300,8 +2347,17 @@ bool ATRIADSensorFusionScenarioManager::SampleNodeTargetLink(
         Record->SetNumberField(TEXT("elevationDegrees"), ElevationDegrees);
         Record->SetBoolField(TEXT("lineOfSight"), bLineOfSight);
         Record->SetStringField(TEXT("blockingActor"), BlockingActor);
-        Record->SetNumberField(TEXT("freeSpacePathLossDb"), FreeSpacePathLossDb);
         Record->SetNumberField(TEXT("obstructionLossDb"), ObstructionLossDb);
+        Record->SetStringField(
+            TEXT("obstructionLossSemantics"),
+            Propagation.bDedicated
+                ? TEXT("DEDICATED_PARAMETRIC_MATERIAL_INTERACTION_LOSS_COMPATIBILITY_ALIAS")
+                : TEXT("LEGACY_BINARY_VISIBILITY_NLOS_SCALAR"));
+        Record->SetStringField(
+            TEXT("lineOfSightSemantics"),
+            Propagation.bDedicated
+                ? TEXT("DIAGNOSTIC_VISIBILITY_TRACE_ONLY_NOT_RF_LOSS_OR_DETECTION_GATE")
+                : TEXT("LEGACY_BINARY_RF_OBSTRUCTION_INPUT"));
         Record->SetStringField(TEXT("weatherProfile"), ActiveWeatherProfileName);
         Record->SetBoolField(TEXT("airSimVisualWeatherApplied"), bAirSimVisualWeatherApplied);
         Record->SetNumberField(TEXT("weatherRainRateMillimetersPerHour"), ActiveWeatherRainRateMillimetersPerHour);
@@ -1317,9 +2373,14 @@ bool ATRIADSensorFusionScenarioManager::SampleNodeTargetLink(
         Record->SetBoolField(TEXT("detected"), bDetected);
         Record->SetBoolField(TEXT("preliminaryCueEvidence"), bPreliminaryCueEvidence);
         Record->SetBoolField(TEXT("alertEvidence"), bPreliminaryCueEvidence);
+        AddRFPropagationTelemetryFields(
+            Record,
+            Propagation,
+            NodeDefinition.SystemLossDb,
+            WeatherLossDb);
 
-        const FString CsvRecord = FString::Printf(
-            TEXT("%s,%.6f,%s,%s,%s,%s,%.6f,%.9f,%.9f,%.3f,%.9f,%.9f,%.3f,%.3f,%.3f,%.3f,%s,%s,%.3f,%.3f,%.3f,%.3f,%.3f,%s,%s,%s,%s,%s,%s,%s,%.3f,%.3f,%.6f,%.3f\n"),
+        FString CsvRecord = FString::Printf(
+            TEXT("%s,%.6f,%s,%s,%s,%s,%.6f,%.9f,%.9f,%.3f,%.9f,%.9f,%.3f,%.3f,%.3f,%.3f,%s,%s,%.3f,%.3f,%.3f,%.3f,%.3f,%s,%s,%s,%s,%s,%s,%s,%.3f,%.3f,%.6f,%.3f"),
             *EscapeCsv(TimestampUtc),
             SimulationSeconds,
             *EscapeCsv(NodeDefinition.NodeId),
@@ -1354,6 +2415,65 @@ bool ATRIADSensorFusionScenarioManager::SampleNodeTargetLink(
             ActiveWeatherVisibilityMeters,
             WeatherSpecificAttenuationDbPerKm,
             WeatherLossDb);
+        const FString TotalPropagationLossCsv = Propagation.bPathValid
+            ? FString::Printf(TEXT("%.3f"), Propagation.PathEvaluation.TotalPropagationLossDb)
+            : FString();
+        const FString InteractionLossCsv = Propagation.bPathValid
+            ? FString::Printf(TEXT("%.3f"), Propagation.PathEvaluation.InteractionLossDb)
+            : FString();
+        const FString TotalLinkLossCsv = Propagation.bPathValid
+            ? FString::Printf(
+                TEXT("%.3f"),
+                Propagation.PathEvaluation.TotalPropagationLossDb +
+                    NodeDefinition.SystemLossDb + WeatherLossDb)
+            : FString();
+        FString RFInteractionTraceJson;
+        const TArray<TSharedPtr<FJsonValue>>* RFInteractionTraceValues = nullptr;
+        if (Record->TryGetArrayField(
+                TEXT("rfInteractions"),
+                RFInteractionTraceValues) &&
+            RFInteractionTraceValues)
+        {
+            TSharedRef<
+                TJsonWriter<TCHAR, TCondensedJsonPrintPolicy<TCHAR>>>
+                InteractionWriter =
+                    TJsonWriterFactory<
+                        TCHAR,
+                        TCondensedJsonPrintPolicy<TCHAR>>::Create(
+                            &RFInteractionTraceJson);
+            FJsonSerializer::Serialize(
+                *RFInteractionTraceValues,
+                InteractionWriter);
+        }
+        CsvRecord += FString::Printf(
+            TEXT(",%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%.3f,%s,%s,%s,%s,%s,%s\n"),
+            *EscapeCsv(Propagation.PropagationMode),
+            *EscapeCsv(Propagation.Readiness),
+            Propagation.bDegraded ? TEXT("true") : TEXT("false"),
+            Propagation.bPathValid ? TEXT("true") : TEXT("false"),
+            *EscapeCsv(DedicatedRFMetadata.GeometryQueryId),
+            *EscapeCsv(DedicatedRFGeometrySha256),
+            *EscapeCsv(DedicatedRFMetadata.GeometrySchemaVersion),
+            *EscapeCsv(DedicatedRFMetadata.GeometryStatus),
+            *EscapeCsv(DedicatedRFMetadata.MaterialCatalogId),
+            *EscapeCsv(DedicatedRFMaterialCatalogSha256),
+            *EscapeCsv(DedicatedRFMetadata.MaterialCatalogSchemaVersion),
+            *EscapeCsv(Propagation.PathEvaluation.PathId),
+            *EscapeCsv(
+                Propagation.bPathValid
+                    ? RFPathKindToString(Propagation.PathEvaluation.PathKind)
+                    : TEXT("NO_ADMITTED_PATH")),
+            *EscapeCsv(RFCalibrationStateToString(
+                Propagation.PathEvaluation.MaterialCalibrationState)),
+            *TotalPropagationLossCsv,
+            *InteractionLossCsv,
+            NodeDefinition.SystemLossDb,
+            *TotalLinkLossCsv,
+            *EscapeCsv(Propagation.FailureReason),
+            TEXT("false"),
+            *EscapeCsv(DedicatedRFMetadata.ContractSha256),
+            *EscapeCsv(DedicatedRFMetadata.CoordinateSemantics),
+            *EscapeCsv(RFInteractionTraceJson));
         AppendTelemetryRecord(Record, CsvRecord);
     }
 
@@ -1536,7 +2656,8 @@ bool ATRIADSensorFusionScenarioManager::ComputeLineOfSight(
     QueryParameters.AddIgnoredActor(Node);
 
     FHitResult Hit;
-    const int32 MaximumChannel = static_cast<int32>(ECC_MAX) - 1;
+    const int32 MaximumChannel =
+        static_cast<int32>(ECC_GameTraceChannel18);
     const ECollisionChannel TraceChannel = static_cast<ECollisionChannel>(
         FMath::Clamp(ScenarioConfig.LineOfSightTraceChannel, 0, MaximumChannel));
     const bool bHit = World->LineTraceSingleByChannel(
@@ -2117,19 +3238,32 @@ void ATRIADSensorFusionScenarioManager::WriteLatestRFSnapshot()
     TSharedPtr<FJsonObject> PerimeterJson = MakeShared<FJsonObject>();
     PerimeterJson->SetBoolField(TEXT("enabled"), Perimeter.bEnabled);
     PerimeterJson->SetStringField(TEXT("referenceName"), Perimeter.ReferenceName);
-    PerimeterJson->SetStringField(TEXT("geometryType"), TEXT("axis_aligned_wgs84_rectangle"));
-    PerimeterJson->SetNumberField(
-        TEXT("minimumLongitudeDegrees"),
-        FMath::Min(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees));
-    PerimeterJson->SetNumberField(
-        TEXT("maximumLongitudeDegrees"),
-        FMath::Max(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees));
-    PerimeterJson->SetNumberField(
-        TEXT("minimumLatitudeDegrees"),
-        FMath::Min(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees));
-    PerimeterJson->SetNumberField(
-        TEXT("maximumLatitudeDegrees"),
-        FMath::Max(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees));
+    const bool bCirclePerimeter = TRIAD::Geodesy::IsCircle(Perimeter);
+    PerimeterJson->SetStringField(
+        TEXT("geometryType"),
+        bCirclePerimeter ? TEXT("wgs84_geodesic_circle") : TEXT("axis_aligned_wgs84_rectangle"));
+    PerimeterJson->SetStringField(TEXT("shape"), bCirclePerimeter ? TEXT("Circle") : TEXT("Rectangle"));
+    if (bCirclePerimeter)
+    {
+        PerimeterJson->SetNumberField(TEXT("centerLongitudeDegrees"), Perimeter.CenterLongitudeDegrees);
+        PerimeterJson->SetNumberField(TEXT("centerLatitudeDegrees"), Perimeter.CenterLatitudeDegrees);
+        PerimeterJson->SetNumberField(TEXT("radiusMeters"), Perimeter.RadiusMeters);
+    }
+    else
+    {
+        PerimeterJson->SetNumberField(
+            TEXT("minimumLongitudeDegrees"),
+            FMath::Min(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees));
+        PerimeterJson->SetNumberField(
+            TEXT("maximumLongitudeDegrees"),
+            FMath::Max(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees));
+        PerimeterJson->SetNumberField(
+            TEXT("minimumLatitudeDegrees"),
+            FMath::Min(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees));
+        PerimeterJson->SetNumberField(
+            TEXT("maximumLatitudeDegrees"),
+            FMath::Max(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees));
+    }
     PerimeterJson->SetBoolField(TEXT("boundaryInclusive"), true);
     PerimeterJson->SetBoolField(TEXT("legalOrNationalBoundary"), false);
     PerimeterJson->SetStringField(
@@ -2137,7 +3271,9 @@ void ATRIADSensorFusionScenarioManager::WriteLatestRFSnapshot()
         TEXT("Deterministic simulation approach/inside/departure classification only."));
     PerimeterJson->SetStringField(
         TEXT("distanceMethod"),
-        TEXT("signed horizontal distance to the rectangle using a local equirectangular WGS84 approximation"));
+        bCirclePerimeter
+            ? TEXT("signed WGS84 Vincenty geodesic center distance minus radius")
+            : TEXT("signed horizontal distance to the rectangle using the backwards-compatible local equirectangular WGS84 approximation"));
 
     TSharedPtr<FJsonObject> WeatherJson = MakeShared<FJsonObject>();
     WeatherJson->SetStringField(TEXT("profile"), ActiveWeatherProfileName);
@@ -2201,10 +3337,10 @@ void ATRIADSensorFusionScenarioManager::WriteLatestRFSnapshot()
         TEXT("Authored/discovered target geometry, including undetected targets; detectedThisSample distinguishes RF observations from scenario truth."));
     SemanticsJson->SetStringField(
         TEXT("airspaceState"),
-        TEXT("APPROACHING/DEPARTING/OUTSIDE apply only outside the configured rectangle; boundary and interior use INSIDE."));
+        TEXT("APPROACHING/DEPARTING/OUTSIDE apply only outside the configured perimeter shape; boundary and interior use INSIDE."));
     SemanticsJson->SetStringField(
         TEXT("distanceToPerimeterMeters"),
-        TEXT("Signed horizontal distance to the documented simulation rectangle: positive outside, zero on its inclusive boundary, negative inside."));
+        TEXT("Signed horizontal/geodesic distance to the documented simulation perimeter: positive outside, zero on its inclusive boundary, negative inside."));
     SemanticsJson->SetStringField(
         TEXT("approachRateMetersPerSecond"),
         TEXT("Positive when signed distanceToPerimeterMeters is decreasing (inbound); negative when increasing (outbound)."));
@@ -2220,6 +3356,9 @@ void ATRIADSensorFusionScenarioManager::WriteLatestRFSnapshot()
     SemanticsJson->SetStringField(
         TEXT("thermalPtz"),
         TEXT("Synthetic false-colour thermal proxy with an embedded SIM THERMAL SYNTHETIC label; not a physical radiometric camera."));
+    SemanticsJson->SetStringField(
+        TEXT("rfPropagation"),
+        TEXT("Dedicated mode uses only hash-bound direct or straight-transmission candidates from the admitted CPU RF geometry. OneKilometreV2 additionally requires strict WGS84-circle and EPSG:3414 frame admission. Visibility LOS is diagnostic; weather and receiver-system losses remain separate. Neither mode is field validated."));
 
     TSharedRef<FJsonObject> Root = MakeShared<FJsonObject>();
     Root->SetStringField(TEXT("schemaVersion"), TEXT("triad.live_rf_snapshot.v3"));
@@ -2238,6 +3377,7 @@ void ATRIADSensorFusionScenarioManager::WriteLatestRFSnapshot()
     Root->SetNumberField(TEXT("rfCueMinimumConfirmingNodes"), MinimumConfirmingNodes);
     Root->SetStringField(TEXT("approachTelemetryVersion"), TEXT("triad.approach.v1"));
     Root->SetObjectField(TEXT("weather"), MoveTemp(WeatherJson));
+    Root->SetObjectField(TEXT("rfPropagation"), MakeRFPropagationStatusJson());
     Root->SetObjectField(TEXT("simulationPerimeter"), MoveTemp(PerimeterJson));
     Root->SetObjectField(TEXT("counts"), MoveTemp(CountsJson));
     Root->SetObjectField(TEXT("fieldSemantics"), MoveTemp(SemanticsJson));
@@ -2464,7 +3604,9 @@ void ATRIADSensorFusionScenarioManager::InitializeTelemetry()
     bJsonlActive = ScenarioConfig.bWriteJsonl &&
         FFileHelper::SaveStringToFile(TEXT(""), *JsonlTelemetryPath, FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM);
 
-    const FString CsvHeader = TEXT("timestamp_utc,simulation_seconds,node_id,target_actor,emitter_id,hostile_scenario_truth,frequency_ghz,node_longitude_deg,node_latitude_deg,node_height_m,target_longitude_deg,target_latitude_deg,target_height_m,distance_m,azimuth_deg,elevation_deg,line_of_sight,blocking_actor,fspl_db,obstruction_loss_db,received_power_dbm,noise_floor_dbm,snr_db,frequency_supported,in_range,above_sensitivity,detected,alert_evidence,weather_profile,airsim_visual_weather_applied,weather_rain_rate_mm_per_hour,weather_visibility_m,weather_rf_specific_attenuation_db_per_km,weather_rf_loss_db\n");
+    const FString CsvHeader =
+        TEXT("timestamp_utc,simulation_seconds,node_id,target_actor,emitter_id,hostile_scenario_truth,frequency_ghz,node_longitude_deg,node_latitude_deg,node_height_m,target_longitude_deg,target_latitude_deg,target_height_m,distance_m,azimuth_deg,elevation_deg,line_of_sight,blocking_actor,fspl_db,obstruction_loss_db,received_power_dbm,noise_floor_dbm,snr_db,frequency_supported,in_range,above_sensitivity,detected,alert_evidence,weather_profile,airsim_visual_weather_applied,weather_rain_rate_mm_per_hour,weather_visibility_m,weather_rf_specific_attenuation_db_per_km,weather_rf_loss_db,")
+        TEXT("propagation_mode,rf_propagation_readiness,rf_propagation_degraded,rf_propagation_path_valid,rf_geometry_query_id,rf_geometry_sha256,rf_geometry_schema_version,rf_geometry_status,rf_material_catalog_id,rf_material_catalog_sha256,rf_material_catalog_schema_version,rf_path_id,rf_path_kind,rf_material_calibration_state,total_propagation_loss_db,interaction_loss_db,system_loss_db,total_link_loss_db,propagation_failure_reason,ready_for_survey_truth,rf_contract_sha256,rf_coordinate_semantics,rf_interaction_trace_json\n");
     bCsvActive = ScenarioConfig.bWriteCsv &&
         FFileHelper::SaveStringToFile(CsvHeader, *CsvTelemetryPath, FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM);
     bAlertsActive = ScenarioConfig.bEnableThreatAlerts &&

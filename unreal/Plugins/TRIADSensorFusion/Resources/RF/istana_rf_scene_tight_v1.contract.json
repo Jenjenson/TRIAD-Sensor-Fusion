@@ -1,0 +1,345 @@
+{
+  "schemaVersion": "triad.istana_public_view.rf_scene_contract.v1",
+  "assetId": "istana-public-view-rf-tight-v1-main-hero-001",
+  "revision": "TightV1",
+  "referenceEpoch": "2024-04",
+  "status": "SIMULATION_READY_ASSUMPTION_BOUND",
+  "readinessSemantics": "SOURCE_GEOMETRY_AND_UNCALIBRATED_EM_PRIORS_ARE_HASH_BOUND_AND_OFFLINE_VALIDATED_NOT_LIVE_UNREAL_OR_FIELD_VALIDATED",
+  "claimBoundary": {
+    "simulationAssumptionBound": true,
+    "publicReferenceApproximationOnly": true,
+    "surveyControlled": false,
+    "asBuiltGeometryValidated": false,
+    "apertureStatesSurveyValidated": false,
+    "materialCoefficientsCalibrated": false,
+    "fieldValidated": false,
+    "runtimeSourceWiredOptIn": true,
+    "runtimeIntegrated": false,
+    "runtimeIntegrationSemantics": "FALSE_UNTIL_NATIVE_BUILD_AND_COLD_LOADED_HASH_BOUND_EXECUTION_RECEIPT_SOURCE_WIRING_EXISTS_BEHIND_EXPLICIT_OPT_IN",
+    "liveInstallAuthorized": false,
+    "readyForSurveyTruth": false,
+    "hyperrealOrOneToOneClaimed": false
+  },
+  "coordinateContract": {
+    "logicalSystem": "RIGHT_HANDED_Z_UP_LOCAL_METRES_APPROACH_PLUS_Y",
+    "axisMeaning": {
+      "+X": "approximate east in the inherited public-view frame",
+      "+Y": "ceremonial approach/front",
+      "+Z": "up"
+    },
+    "origin": "inherited procedural public-view origin; not survey registered",
+    "quantizationMeters": 1e-06,
+    "objDiskEncoding": "UE55_LEGACY_OBJ_X_CM_Y_NEGATED_CM_Z_CM_FACE_ORDER_REVERSED",
+    "objLogicalToDisk": [
+      "diskX=100*logicalX",
+      "diskY=-100*logicalY",
+      "diskZ=100*logicalZ",
+      "reverse_each_triangle"
+    ],
+    "futureUnrealComponentTransform": "IDENTITY_ONLY",
+    "negativeComponentScaleAllowed": false
+  },
+  "authorityInputs": [
+    {
+      "path": "unreal/SourceAssets/IstanaPublicViewRF/istana_public_exterior_rf_readiness.v1.json",
+      "role": "fail-closed predecessor and acceptance requirements",
+      "bytes": 10146,
+      "sha256": "d4dd8a7b1d5952ef0a1e9a2f4cc6e2095f352af981b3cc9e2909e8f3b003c683"
+    },
+    {
+      "path": "unreal/SourceAssets/IstanaPublicViewV5/istana_public_view_hero_v5.contract.json",
+      "role": "public-reference visual envelope prior only; no RF authority",
+      "bytes": 17665,
+      "sha256": "842f4184137eca2a5e515ea0f339411735c10258e49d6673a8799d3b9e2ab9e0"
+    },
+    {
+      "path": "unreal/SourceAssets/IstanaPublicViewV5/generate_hero_v5.py",
+      "role": "public-reference procedural dimensions and coordinate prior only",
+      "bytes": 92361,
+      "sha256": "6526e7c22e1c2e9323bfe942a45bda39761de81fd902bf605c3f7327431ab676"
+    },
+    {
+      "path": "unreal/SourceAssets/IstanaPublicViewExploreV5C/Portico/portico_fidelity_v5c.contract.json",
+      "role": "render-only portico feature census prior; no RF or survey authority",
+      "bytes": 2362,
+      "sha256": "e3146deb97167bd31374366d21d6352d25da36c17970acf144bad319cf2c984a"
+    },
+    {
+      "path": "unreal/SourceAssets/IstanaPublicViewV8Portico/build_portico_depth_overlay_v8.py",
+      "role": "render-only three-portal location prior; no RF or survey authority",
+      "bytes": 32518,
+      "sha256": "5df4e4a7b7e9a23dce965a23e29c9bc35277ee7e200bdce07601dc92273b82d8"
+    }
+  ],
+  "geometryScope": {
+    "included": [
+      "finite-thickness cross-plan main-wing exterior shell",
+      "finite-thickness rear and front central-extension exterior shells",
+      "continuous upper-tower foundation plinth",
+      "finite-thickness upper-tower envelope",
+      "stepped effective roof volume and flag mast",
+      "three principal front portal assemblies",
+      "eight front-wing glazed window apertures",
+      "three upper-tower louvre apertures"
+    ],
+    "excluded": [
+      "interior partitions and furnishings",
+      "unresolved side and rear façade apertures",
+      "decorative trim smaller than the declared geometric resolution",
+      "site terrain and ground reflection surface",
+      "surrounding buildings",
+      "vegetation, foliage volume scattering, and transient objects",
+      "below-grade construction"
+    ],
+    "separateFromRenderPawnAndNavigationCollision": true,
+    "canonicalArtifact": "Generated/IstanaPublicViewRFTightV1.geometry.json",
+    "objRole": "derived inspection and future import-parity artifact only"
+  },
+  "modeledCoverageEnvelope": {
+    "coverageId": "RF_COVERAGE_ISTANA_MAIN_HERO_TIGHT_V1",
+    "scope": "MAIN_HERO_ONLY_ASSUMPTION_BOUND",
+    "shape": "AXIS_ALIGNED_BOX",
+    "boundsMeters": {
+      "min": [-57.5, -56.0, 0.0],
+      "max": [57.5, 23.3, 36.0]
+    },
+    "boundaryInclusion": "CLOSED",
+    "finiteSegmentPolicy": "BOTH_ENDPOINTS_AND_ENTIRE_FINITE_SEGMENT_MUST_BE_INSIDE_CLOSED_ENVELOPE",
+    "outsideDomainPolicy": "REJECT_QUERY_NEVER_EMIT_CLEAR_OR_DIRECT_PATH",
+    "derivation": "MINIMUM_CLOSED_AABB_CONTAINING_CANONICAL_VERTICES_AND_WITNESS_ENDPOINTS",
+    "coversCanonicalHeroGeometry": true,
+    "coversOfflineWitnessEndpoints": true,
+    "coversOneKilometreAoi": false,
+    "coversSurroundings": false,
+    "surveyControlled": false,
+    "fieldValidated": false,
+    "explicitExclusions": [
+      "the one-kilometre simulation area of interest",
+      "surrounding buildings, terrain, vegetation, and transient blockers",
+      "survey or field-validated coverage outside this closed hero-only envelope"
+    ]
+  },
+  "designParametersMeters": {
+    "minimumSolidThickness": 0.003,
+    "mainWing": {
+      "x": [-57.5, 57.5],
+      "y": [-7.8, 6.2],
+      "z": [0.0, 14.0]
+    },
+    "rearExtension": {
+      "x": [-14.5, 14.5],
+      "y": [-56.0, -7.8],
+      "z": [0.0, 14.0]
+    },
+    "frontExtension": {
+      "x": [-13.5, 13.5],
+      "y": [6.2, 22.2],
+      "z": [0.0, 14.0]
+    },
+    "shell": {
+      "groundSlabTopZ": 0.35,
+      "roofSlabBottomZ": 13.55,
+      "wallThickness": 0.45
+    },
+    "porticoFacade": {
+      "x": [-13.5, 13.5],
+      "y": [22.2, 22.8],
+      "wallTopZ": 13.55,
+      "architecturalBandTopZ": 7.6,
+      "portalCentersX": [-6.0, 0.0, 6.0],
+      "portalHalfWidth": 1.7,
+      "portalSillZ": 0.45,
+      "portalSpringZ": 4.4,
+      "portalCrownZ": 6.1,
+      "archStepCount": 48,
+      "maximumArchStepDeviation": 0.112
+    },
+    "tower": {
+      "plinthX": [-11.0, 11.0],
+      "plinthY": [-11.5, 12.5],
+      "plinthZ": [14.0, 15.3],
+      "wallZ": [15.3, 21.0],
+      "wallThickness": 0.45,
+      "roofTopZ": 27.72,
+      "mastTopZ": 36.0,
+      "louvreCentersX": [-6.0, 0.0, 6.0],
+      "louvreHalfWidth": 1.6,
+      "louvreZ": [16.2, 19.7],
+      "bladeCountPerBay": 8,
+      "bladeThicknessZ": 0.12,
+      "bladeDepthY": 0.18
+    }
+  },
+  "portalAssemblies": [
+    {
+      "assemblyId": "PORTAL_ASSEMBLY_WEST",
+      "centerX": -6.0,
+      "componentApertureIds": ["AP_PORTAL_WEST_OPEN"]
+    },
+    {
+      "assemblyId": "PORTAL_ASSEMBLY_CENTRE",
+      "centerX": 0.0,
+      "componentApertureIds": ["AP_PORTAL_CENTRE_DOOR", "AP_PORTAL_CENTRE_FANLIGHT"]
+    },
+    {
+      "assemblyId": "PORTAL_ASSEMBLY_EAST",
+      "centerX": 6.0,
+      "componentApertureIds": ["AP_PORTAL_EAST_GLAZED"]
+    }
+  ],
+  "apertures": [
+    {
+      "apertureId": "AP_PORTAL_WEST_OPEN",
+      "kind": "PORTAL",
+      "state": "OPEN",
+      "stateProvenance": "ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": null
+    },
+    {
+      "apertureId": "AP_PORTAL_CENTRE_DOOR",
+      "kind": "DOOR",
+      "state": "CLOSED",
+      "stateProvenance": "ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_TIMBER_DOOR_ASSUMED"
+    },
+    {
+      "apertureId": "AP_PORTAL_CENTRE_FANLIGHT",
+      "kind": "GLASS",
+      "state": "GLAZED",
+      "stateProvenance": "ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_ARCHITECTURAL_GLASS_ASSUMED"
+    },
+    {
+      "apertureId": "AP_PORTAL_EAST_GLAZED",
+      "kind": "GLAZED_PORTAL",
+      "state": "GLAZED",
+      "stateProvenance": "ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_ARCHITECTURAL_GLASS_ASSUMED"
+    },
+    {
+      "apertureId": "AP_TOWER_LOUVRE_WEST",
+      "kind": "LOUVRE",
+      "state": "LOUVERED",
+      "stateProvenance": "STATIC_ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_METAL_LOUVRE_ASSUMED"
+    },
+    {
+      "apertureId": "AP_TOWER_LOUVRE_CENTRE",
+      "kind": "LOUVRE",
+      "state": "LOUVERED",
+      "stateProvenance": "STATIC_ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_METAL_LOUVRE_ASSUMED"
+    },
+    {
+      "apertureId": "AP_TOWER_LOUVRE_EAST",
+      "kind": "LOUVRE",
+      "state": "LOUVERED",
+      "stateProvenance": "STATIC_ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_METAL_LOUVRE_ASSUMED"
+    },
+    {
+      "apertureId": "AP_WINDOW_FRONT_W01",
+      "kind": "WINDOW",
+      "state": "GLAZED",
+      "stateProvenance": "ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_ARCHITECTURAL_GLASS_ASSUMED"
+    },
+    {
+      "apertureId": "AP_WINDOW_FRONT_W02",
+      "kind": "WINDOW",
+      "state": "GLAZED",
+      "stateProvenance": "ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_ARCHITECTURAL_GLASS_ASSUMED"
+    },
+    {
+      "apertureId": "AP_WINDOW_FRONT_W03",
+      "kind": "WINDOW",
+      "state": "GLAZED",
+      "stateProvenance": "ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_ARCHITECTURAL_GLASS_ASSUMED"
+    },
+    {
+      "apertureId": "AP_WINDOW_FRONT_W04",
+      "kind": "WINDOW",
+      "state": "GLAZED",
+      "stateProvenance": "ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_ARCHITECTURAL_GLASS_ASSUMED"
+    },
+    {
+      "apertureId": "AP_WINDOW_FRONT_E01",
+      "kind": "WINDOW",
+      "state": "GLAZED",
+      "stateProvenance": "ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_ARCHITECTURAL_GLASS_ASSUMED"
+    },
+    {
+      "apertureId": "AP_WINDOW_FRONT_E02",
+      "kind": "WINDOW",
+      "state": "GLAZED",
+      "stateProvenance": "ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_ARCHITECTURAL_GLASS_ASSUMED"
+    },
+    {
+      "apertureId": "AP_WINDOW_FRONT_E03",
+      "kind": "WINDOW",
+      "state": "GLAZED",
+      "stateProvenance": "ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_ARCHITECTURAL_GLASS_ASSUMED"
+    },
+    {
+      "apertureId": "AP_WINDOW_FRONT_E04",
+      "kind": "WINDOW",
+      "state": "GLAZED",
+      "stateProvenance": "ENGINEERING_ASSUMPTION_NOT_SURVEYED",
+      "materialId": "MAT_RF_ARCHITECTURAL_GLASS_ASSUMED"
+    }
+  ],
+  "topologyPolicy": {
+    "primitiveClass": "AXIS_ALIGNED_FINITE_THICKNESS_CLOSED_BOX_SOLIDS",
+    "everySolidWatertight": true,
+    "consistentOutwardWinding": true,
+    "everyUndirectedEdgeIncidentFaceCount": 2,
+    "selfIntersectionsAllowed": false,
+    "positiveVolumeOverlapsAllowed": false,
+    "zeroVolumeTouchesAllowed": true,
+    "coincidentDuplicateSolidsAllowed": false,
+    "openApertureBlockingGeometryAllowed": false,
+    "surfaceAndMaterialIdsRequired": true,
+    "validationToleranceMeters": 1e-06
+  },
+  "materialBinding": {
+    "catalog": "istana_rf_materials_tight_v1.catalog.json",
+    "requiredFrequencyKnotsGHz": [0.43392, 0.868, 0.915, 1.28, 2.412, 2.462, 5.765, 5.825],
+    "allProfilesMustRemainUncalibrated": true,
+    "visualMtlIsElectromagneticAuthority": false,
+    "thicknessBinding": "DERIVED_FROM_ORDERED_ENTRY_EXIT_INTERSECTIONS_IN_CANONICAL_GEOMETRY"
+  },
+  "witnessPolicy": {
+    "bidirectional": true,
+    "portalInteriorGridRequired": true,
+    "openPortalExpectedNoHit": true,
+    "closedAndGlazedExpectedOneEntryExitPair": true,
+    "louvreBladeHitAndGapMissRequired": true,
+    "jambAndArchBorderBlockRequired": true,
+    "plinthGapRegressionZ": 14.1,
+    "minimumNonTangentEdgeClearanceMeters": 0.04
+  },
+  "outputPolicy": {
+    "deterministicLfUtf8": true,
+    "timestampsForbidden": true,
+    "manifestHashesEveryGeneratedOutputExceptItself": true,
+    "cleanRegenerationMustBeByteIdentical": true,
+    "unrealImportPerformed": false,
+    "liveAssetsModified": false
+  },
+  "explicitLimitations": [
+    "Dimensions are approximate engineering priors derived from public-reference procedural assets, not a measured as-built envelope.",
+    "Door, glazing, window, and louvre states are frozen simulation assumptions for this revision and may differ from any real operating state.",
+    "EM coefficients are homogeneous isotropic uncalibrated priors and must not be represented as measured material properties.",
+    "The stepped arch and roof approximations intentionally trade decorative detail for bounded deterministic RF topology.",
+    "Opaque treatment of unresolved side and rear apertures is conservative but not field validated.",
+    "No diffraction, diffuse scattering, foliage, coherent multipath, polarization, weather, or antenna near-field validity is established by this package.",
+    "The modeled coverage envelope is limited to the main hero and its offline witness air; it does not cover the one-kilometre area of interest or any surrounding blocker inventory.",
+    "This P0 package is staged and source-wired only behind explicit dedicated-mode opt-in; no native build, cold-loaded hash-bound execution, live deployment, or field-readiness receipt is established."
+  ]
+}

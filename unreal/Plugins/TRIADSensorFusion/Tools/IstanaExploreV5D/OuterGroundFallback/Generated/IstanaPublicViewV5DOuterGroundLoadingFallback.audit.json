@@ -1,0 +1,125 @@
+{
+  "captureGeometryAudit": {
+    "maximumAuditedCameraOverrunMeters": 135.190795,
+    "maximumAuditedCameraRadiusMeters": 1135.190795,
+    "outerFallbackMarginBeyondFarthestAuditedCameraMeters": 114.809205,
+    "poseCount": 6,
+    "poses": [
+      {
+        "horizontalRadiusMeters": 979.18548,
+        "id": "MACDONALD_FACADE_CLOSE",
+        "outsideSourceTerrain": false
+      },
+      {
+        "horizontalRadiusMeters": 1017.428658,
+        "id": "MACDONALD_FRONT_CORNER_OBLIQUE",
+        "outsideSourceTerrain": true
+      },
+      {
+        "horizontalRadiusMeters": 1135.190795,
+        "id": "MACDONALD_STREETSCAPE_CONTEXT",
+        "outsideSourceTerrain": true
+      },
+      {
+        "horizontalRadiusMeters": 1009.031173,
+        "id": "TEMASEK_FACADE_CLOSE",
+        "outsideSourceTerrain": true
+      },
+      {
+        "horizontalRadiusMeters": 991.655439,
+        "id": "TEMASEK_FRONT_CORNER_OBLIQUE",
+        "outsideSourceTerrain": false
+      },
+      {
+        "horizontalRadiusMeters": 1110.344937,
+        "id": "TEMASEK_STREETSCAPE_CONTEXT",
+        "outsideSourceTerrain": true
+      }
+    ],
+    "posesOutsideSourceTerrainCount": 4
+  },
+  "claimStatus": "SYNTHETIC_EDGE_CONTINUATION_FOR_PROVIDER_LOADING_ONLY_NOT_TERRAIN_NOT_SURVEY_NOT_AS_BUILT",
+  "diagnosis": {
+    "auditedPoseCount": 6,
+    "diagnosticConclusion": "The black/void foreground in the frozen TelemetryOnly R24 views is consistent with cameras or their near-ground footprint crossing the exact 1000 m synthetic-terrain rim; it is not evidence that provider terrain failed.",
+    "maximumAuditedCameraOverrunMeters": 135.190795,
+    "maximumAuditedCameraRadiusMeters": 1135.190795,
+    "posesOutsideSourceTerrainCount": 4,
+    "sourceTerrainRadiusMeters": 1000.0
+  },
+  "geometryMetrics": {
+    "innerAreaOverlapSquareMeters": 0.0,
+    "innerSeamExactSourceCopy": true,
+    "innerSeamPointSetSha256": "e2230cbebf80a2da5b458bd0f47ad3151d226963e6afdeead473b074ba6b8119",
+    "maximumAbsoluteInheritedRadialSlope": 0.006831275,
+    "maximumOuterHeightDeltaMeters": 0.853909351,
+    "minimumOuterHeightDeltaMeters": -0.329302033,
+    "outerBoundaryPointSetSha256": "ce6fb724879e9498bb13fa2a7058faf5add59031999c0dd18cbd9b3645bb49a0",
+    "outerGuardBeyondQaCameraEnvelopeMeters": 50.0,
+    "planAreaSquareMeters": 1766436.275787,
+    "sourceInnerSeamPointSetSha256": "e2230cbebf80a2da5b458bd0f47ad3151d226963e6afdeead473b074ba6b8119",
+    "sourceSlopeSampleDistanceMeters": 25.0
+  },
+  "geometryPolicy": {
+    "angularSectorCount": 128,
+    "buildingsRoadsWaterOrVegetationEncoded": false,
+    "heightAuthority": "SYNTHETIC_VISUAL_EDGE_CONTINUATION_ONLY",
+    "heightPolicy": "COPY_EXACT_1000M_SOURCE_SEAM_AND_DAMP_LAST_SYNTHETIC_25M_RADIAL_SLOPE_TO_ZERO_AT_1250M",
+    "innerAreaOverlapSquareMeters": 0.0,
+    "innerSeamRadiusMeters": 1000.0,
+    "innerSlopeSampleRadiusMeters": 975.0,
+    "outerBoundarySkirtIncluded": false,
+    "outerRadiusMeters": 1250.0,
+    "radialBandCount": 5,
+    "radialBandWidthMeters": 50.0,
+    "reasonNoOuterSkirt": "This annulus covers the supported 1200 m QA-camera envelope with a 50 m guard; it does not claim or visually close land beyond the bounded 1250 m presentation surface.",
+    "shape": "EXACT_128_SECTOR_CONCENTRIC_ANNULUS",
+    "sourceTerrainModified": false,
+    "sourceTerrainSkirtModified": false
+  },
+  "integrationDisposition": {
+    "liveUnrealIntegrated": false,
+    "mapOrActorChanged": false,
+    "nativeAssetCreated": false,
+    "providerPolicyChanged": false,
+    "sourceTerrainChanged": false,
+    "visualImprovementClaimedInCurrentMap": false
+  },
+  "providerLifecycleIntegrationSpec": {
+    "defaultBeforePolicyBegins": "VISIBLE_FAIL_CLOSED",
+    "globalProgressIsLandmarkSpecificReadinessProof": false,
+    "liveIntegrationIncluded": false,
+    "providerFallbackVisible": "VISIBLE",
+    "providerLoadProgressAtOrAbovePercent": 98.0,
+    "providerReadyState": "HIDDEN_ONLY_AFTER_THE_EXISTING_POLICY_PROVES_READY",
+    "providerRestoreBelowPercent": 90.0,
+    "providerRestoredOrUnavailableState": "VISIBLE",
+    "requiredFutureIntegration": [
+      "NEW_HASH_PINNED_ASSET_IMPORT_TRANSACTION",
+      "NEW_RENDER_ONLY_COMPONENT_OR_ACTOR_WITH_NO_COLLISION_AND_NO_NAVIGATION",
+      "VISIBILITY_DRIVEN_BY_THE_EXISTING_VALIDATED_PROVIDER_FALLBACK_STATE",
+      "ENDPLAY_RESTORE_AND_FAIL_CLOSED_VISIBILITY",
+      "COLD_MAP_VALIDATION_AND_PROVIDER_READY_PLUS_LOADING_VISUAL_EVIDENCE"
+    ]
+  },
+  "renderPolicy": {
+    "affectDistanceFieldLighting": false,
+    "affectDynamicIndirectLighting": false,
+    "castShadow": false,
+    "collisionEnabled": false,
+    "demOrDtmAuthority": false,
+    "geographicSurfaceClassificationAuthority": false,
+    "liveUnrealIntegrationIncluded": false,
+    "navigationRelevant": false,
+    "overlapEventsEnabled": false,
+    "renderOnly": true,
+    "rfGeometryAuthority": false,
+    "rfMaterialAuthority": false,
+    "routeAccessOperationalOrSecurityAuthority": false,
+    "sensorOcclusionAuthority": false,
+    "surveyOrAsBuiltAuthority": false,
+    "terrainAuthority": false
+  },
+  "schema": "triad.istana_explore_v5d.outer_ground_loading_fallback_audit.v1",
+  "status": "SOURCE_ONLY_RENDER_FALLBACK_READY_NOT_LIVE_UE_INTEGRATED"
+}

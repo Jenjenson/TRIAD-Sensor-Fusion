@@ -590,6 +590,35 @@ def _perimeter_from_live_snapshot(payload: Mapping[str, Any] | None) -> dict[str
     if payload is None or not isinstance(payload.get("simulationPerimeter"), dict):
         return None
     raw = payload["simulationPerimeter"]
+    geometry_type = str(raw.get("geometryType") or raw.get("shape") or "").strip().lower()
+    common = {
+        "boundaryInclusive": raw.get("boundaryInclusive") is True,
+        "legalOrNationalBoundary": raw.get("legalOrNationalBoundary") is True,
+        "distanceMethod": raw.get("distanceMethod"),
+        "distanceSignConvention": raw.get("distanceSignConvention")
+        or "positive outside, zero boundary, negative inside",
+        "scopeNotice": "Scenario evaluation perimeter only; not represented as a legal or national boundary.",
+    }
+    if geometry_type in {"circle", "wgs84_geodesic_circle"}:
+        center_lon = _round(raw.get("centerLongitudeDegrees"), 8)
+        center_lat = _round(raw.get("centerLatitudeDegrees"), 8)
+        radius_m = _round(raw.get("radiusMeters"), 3)
+        if (
+            center_lon is None
+            or center_lat is None
+            or radius_m is None
+            or not -180.0 <= center_lon <= 180.0
+            or not -90.0 <= center_lat <= 90.0
+            or radius_m <= 0.0
+        ):
+            return None
+        return {
+            "geometryType": "wgs84_geodesic_circle",
+            "centerLongitudeDegrees": center_lon,
+            "centerLatitudeDegrees": center_lat,
+            "radiusMeters": radius_m,
+            **common,
+        }
     bounds = {
         "minLongitudeDegrees": _round(raw.get("minimumLongitudeDegrees"), 6),
         "maxLongitudeDegrees": _round(raw.get("maximumLongitudeDegrees"), 6),
@@ -609,14 +638,9 @@ def _perimeter_from_live_snapshot(payload: Mapping[str, Any] | None) -> dict[str
     if any(value is None for value in bounds.values()):
         return None
     return {
-        "geometryType": raw.get("geometryType"),
+        "geometryType": raw.get("geometryType") or "axis_aligned_wgs84_rectangle",
         **bounds,
-        "boundaryInclusive": raw.get("boundaryInclusive") is True,
-        "legalOrNationalBoundary": raw.get("legalOrNationalBoundary") is True,
-        "distanceMethod": raw.get("distanceMethod"),
-        "distanceSignConvention": raw.get("distanceSignConvention")
-        or "positive outside, zero boundary, negative inside",
-        "scopeNotice": "Scenario evaluation perimeter only; not represented as a legal or national boundary.",
+        **common,
     }
 
 

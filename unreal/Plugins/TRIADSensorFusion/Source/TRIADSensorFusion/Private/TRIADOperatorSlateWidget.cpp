@@ -3,6 +3,7 @@
 #include "Engine/TextureRenderTarget2D.h"
 #include "Rendering/DrawElements.h"
 #include "Styling/CoreStyle.h"
+#include "TRIADGeodesy.h"
 #include "TRIADOperatorObserverActor.h"
 #include "TRIADSensorNodeActor.h"
 
@@ -427,10 +428,31 @@ int32 STRIADOperatorSlateWidget::OnPaint(
     }
 
     const FTRIADSimulationPerimeter& Perimeter = ObserverActor->GetSimulationPerimeter();
-    const double MinimumLongitude = FMath::Min(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees) - 0.075;
-    const double MaximumLongitude = FMath::Max(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees) + 0.075;
-    const double MinimumLatitude = FMath::Min(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees) - 0.075;
-    const double MaximumLatitude = FMath::Max(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees) + 0.075;
+    double PerimeterMinimumLongitude = FMath::Min(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees);
+    double PerimeterMaximumLongitude = FMath::Max(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees);
+    double PerimeterMinimumLatitude = FMath::Min(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees);
+    double PerimeterMaximumLatitude = FMath::Max(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees);
+    if (TRIAD::Geodesy::IsCircle(Perimeter))
+    {
+        const FVector2D North = TRIAD::Geodesy::Wgs84DestinationDegrees(
+            Perimeter.CenterLongitudeDegrees, Perimeter.CenterLatitudeDegrees, 0.0, Perimeter.RadiusMeters);
+        const FVector2D East = TRIAD::Geodesy::Wgs84DestinationDegrees(
+            Perimeter.CenterLongitudeDegrees, Perimeter.CenterLatitudeDegrees, 90.0, Perimeter.RadiusMeters);
+        const FVector2D South = TRIAD::Geodesy::Wgs84DestinationDegrees(
+            Perimeter.CenterLongitudeDegrees, Perimeter.CenterLatitudeDegrees, 180.0, Perimeter.RadiusMeters);
+        const FVector2D West = TRIAD::Geodesy::Wgs84DestinationDegrees(
+            Perimeter.CenterLongitudeDegrees, Perimeter.CenterLatitudeDegrees, 270.0, Perimeter.RadiusMeters);
+        PerimeterMinimumLongitude = West.X;
+        PerimeterMaximumLongitude = East.X;
+        PerimeterMinimumLatitude = South.Y;
+        PerimeterMaximumLatitude = North.Y;
+    }
+    const double LongitudePadding = FMath::Max((PerimeterMaximumLongitude - PerimeterMinimumLongitude) * 0.15, 0.0005);
+    const double LatitudePadding = FMath::Max((PerimeterMaximumLatitude - PerimeterMinimumLatitude) * 0.15, 0.0005);
+    const double MinimumLongitude = PerimeterMinimumLongitude - LongitudePadding;
+    const double MaximumLongitude = PerimeterMaximumLongitude + LongitudePadding;
+    const double MinimumLatitude = PerimeterMinimumLatitude - LatitudePadding;
+    const double MaximumLatitude = PerimeterMaximumLatitude + LatitudePadding;
     const auto ToMap = [&](double Longitude, double Latitude)
     {
         const float X = static_cast<float>(FMath::Clamp((Longitude - MinimumLongitude) / (MaximumLongitude - MinimumLongitude), 0.0, 1.0));
@@ -438,21 +460,34 @@ int32 STRIADOperatorSlateWidget::OnPaint(
         return MapOrigin + FVector2f(X * MapSize.X, Y * MapSize.Y);
     };
 
-    const FVector2f PerimeterNorthWest = ToMap(
-        FMath::Min(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees),
-        FMath::Max(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees));
-    const FVector2f PerimeterSouthEast = ToMap(
-        FMath::Max(Perimeter.MinimumLongitudeDegrees, Perimeter.MaximumLongitudeDegrees),
-        FMath::Min(Perimeter.MinimumLatitudeDegrees, Perimeter.MaximumLatitudeDegrees));
-    TArray<FVector2f> PerimeterPoints = {
-        PerimeterNorthWest,
-        FVector2f(PerimeterSouthEast.X, PerimeterNorthWest.Y),
-        PerimeterSouthEast,
-        FVector2f(PerimeterNorthWest.X, PerimeterSouthEast.Y),
-        PerimeterNorthWest};
+    TArray<FVector2f> PerimeterPoints;
+    if (TRIAD::Geodesy::IsCircle(Perimeter))
+    {
+        PerimeterPoints.Reserve(65);
+        for (int32 PointIndex = 0; PointIndex <= 64; ++PointIndex)
+        {
+            const FVector2D Point = TRIAD::Geodesy::Wgs84DestinationDegrees(
+                Perimeter.CenterLongitudeDegrees,
+                Perimeter.CenterLatitudeDegrees,
+                static_cast<double>(PointIndex) * 360.0 / 64.0,
+                Perimeter.RadiusMeters);
+            PerimeterPoints.Add(ToMap(Point.X, Point.Y));
+        }
+    }
+    else
+    {
+        const FVector2f PerimeterNorthWest = ToMap(PerimeterMinimumLongitude, PerimeterMaximumLatitude);
+        const FVector2f PerimeterSouthEast = ToMap(PerimeterMaximumLongitude, PerimeterMinimumLatitude);
+        PerimeterPoints = {
+            PerimeterNorthWest,
+            FVector2f(PerimeterSouthEast.X, PerimeterNorthWest.Y),
+            PerimeterSouthEast,
+            FVector2f(PerimeterNorthWest.X, PerimeterSouthEast.Y),
+            PerimeterNorthWest};
+    }
     PaintPolyline(OutDrawElements, LayerId + 4, AllottedGeometry, PerimeterPoints, Amber, 2.0f * UiScale);
     PaintText(OutDrawElements, LayerId + 5, AllottedGeometry,
-        PerimeterNorthWest + FVector2f(6.0f, 5.0f) * UiScale,
+        PerimeterPoints[0] + FVector2f(6.0f, 5.0f) * UiScale,
         TEXT("SIMULATION PERIMETER"), SmallFont, Amber);
 
     for (const FTRIADGeodeticSensorNode& Node : ObserverActor->GetMinimapNodes())

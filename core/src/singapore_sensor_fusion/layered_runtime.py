@@ -30,7 +30,7 @@ from .fusion_v3 import (
     LayeredModality,
     fuse_layered_evidence,
 )
-from .geodesy import ENU, Geodetic, enu_to_geodetic
+from .geodesy import ENU, Geodetic, enu_to_geodetic, geodetic_to_enu, wgs84_surface_distance_m
 from .paths import DEFAULT_OUTPUT_DIRECTORY, DEFAULT_TRIAD_SENSOR_SAVED_DIR
 from .wideband_rf import WidebandChannel
 
@@ -1266,34 +1266,78 @@ def _estimated_perimeter_state(
     heading_deg: float | None,
     perimeter: object,
 ) -> dict[str, object]:
+    unavailable = {
+        "state": "UNAVAILABLE",
+        "outside": None,
+        "distanceMeters": None,
+        "approachRateMetersPerSecond": None,
+        "timeToPerimeterSeconds": None,
+    }
     if position is None or speed_m_s is None or heading_deg is None:
-        return {
-            "state": "UNAVAILABLE",
-            "outside": None,
-            "distanceMeters": None,
-            "approachRateMetersPerSecond": None,
-            "timeToPerimeterSeconds": None,
-        }
+        return unavailable
     if not isinstance(perimeter, Mapping) or perimeter.get("enabled") is False:
+        return unavailable
+
+    geometry_type = str(perimeter.get("geometryType") or perimeter.get("shape") or "").strip().lower()
+    is_circle = geometry_type in {"wgs84_geodesic_circle", "circle"}
+    deadband = max(0.0, _number(perimeter.get("phaseRateDeadbandMetersPerSecond"), 0.25))
+    velocity_east = speed_m_s * math.sin(math.radians(heading_deg))
+    velocity_north = speed_m_s * math.cos(math.radians(heading_deg))
+
+    if is_circle:
+        center_lon = _number(perimeter.get("centerLongitudeDegrees"), math.nan)
+        center_lat = _number(perimeter.get("centerLatitudeDegrees"), math.nan)
+        radius_m = _number(perimeter.get("radiusMeters"), math.nan)
+        if not all(math.isfinite(value) for value in (center_lon, center_lat, radius_m)) or radius_m <= 0.0:
+            return unavailable
+        try:
+            center = Geodetic(center_lat, center_lon, position.altitude_m)
+            surface_distance = wgs84_surface_distance_m(center, position)
+            radial_enu = geodetic_to_enu(position, center)
+        except (TypeError, ValueError):
+            return unavailable
+        signed_distance = surface_distance - radius_m
+        if signed_distance <= 0.0:
+            return {
+                "state": "INSIDE",
+                "outside": False,
+                "distanceMeters": min(0.0, signed_distance),
+                "approachRateMetersPerSecond": 0.0,
+                "timeToPerimeterSeconds": None,
+            }
+        horizontal_norm = math.hypot(radial_enu.east_m, radial_enu.north_m)
+        if horizontal_norm <= 1e-9:
+            return unavailable
+        # Positive means motion toward the circle centre/boundary.
+        approach_rate = -(
+            velocity_east * radial_enu.east_m
+            + velocity_north * radial_enu.north_m
+        ) / horizontal_norm
+        state = (
+            "APPROACHING"
+            if approach_rate > deadband
+            else "DEPARTING"
+            if approach_rate < -deadband
+            else "OUTSIDE"
+        )
         return {
-            "state": "UNAVAILABLE",
-            "outside": None,
-            "distanceMeters": None,
-            "approachRateMetersPerSecond": None,
-            "timeToPerimeterSeconds": None,
+            "state": state,
+            "outside": True,
+            "distanceMeters": signed_distance,
+            "approachRateMetersPerSecond": approach_rate,
+            "timeToPerimeterSeconds": (
+                signed_distance / approach_rate if approach_rate > deadband else None
+            ),
         }
+
     minimum_lon = _number(perimeter.get("minimumLongitudeDegrees"), math.nan)
     maximum_lon = _number(perimeter.get("maximumLongitudeDegrees"), math.nan)
     minimum_lat = _number(perimeter.get("minimumLatitudeDegrees"), math.nan)
     maximum_lat = _number(perimeter.get("maximumLatitudeDegrees"), math.nan)
     if not all(math.isfinite(value) for value in (minimum_lon, maximum_lon, minimum_lat, maximum_lat)):
-        return {
-            "state": "UNAVAILABLE",
-            "outside": None,
-            "distanceMeters": None,
-            "approachRateMetersPerSecond": None,
-            "timeToPerimeterSeconds": None,
-        }
+        return unavailable
+    if minimum_lon >= maximum_lon or minimum_lat >= maximum_lat:
+        return unavailable
     mid_lat = math.radians((minimum_lat + maximum_lat) * 0.5)
     meters_per_lon_degree = 111_320.0 * max(0.01, math.cos(mid_lat))
     meters_per_lat_degree = 111_132.0
@@ -1323,12 +1367,9 @@ def _estimated_perimeter_state(
             "timeToPerimeterSeconds": None,
         }
     distance = math.hypot(inward_east, inward_north)
-    velocity_east = speed_m_s * math.sin(math.radians(heading_deg))
-    velocity_north = speed_m_s * math.cos(math.radians(heading_deg))
     approach_rate = (
         velocity_east * inward_east + velocity_north * inward_north
     ) / max(distance, 1e-9)
-    deadband = max(0.0, _number(perimeter.get("phaseRateDeadbandMetersPerSecond"), 0.25))
     state = "APPROACHING" if approach_rate > deadband else "DEPARTING" if approach_rate < -deadband else "OUTSIDE"
     return {
         "state": state,

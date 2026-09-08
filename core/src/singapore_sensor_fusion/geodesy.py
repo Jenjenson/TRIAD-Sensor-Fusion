@@ -10,6 +10,7 @@ WGS84_F = 1.0 / 298.257_223_563
 WGS84_B_M = WGS84_A_M * (1.0 - WGS84_F)
 WGS84_E2 = WGS84_F * (2.0 - WGS84_F)
 WGS84_EP2 = (WGS84_A_M**2 - WGS84_B_M**2) / WGS84_B_M**2
+MEAN_EARTH_RADIUS_M = 6_371_008.8
 
 
 def _finite(name: str, value: float) -> float:
@@ -167,3 +168,91 @@ def enu_to_geodetic(point: ENU, origin: Geodetic) -> Geodetic:
     """Convenience composition from local ENU to WGS84 geodetic."""
 
     return ecef_to_geodetic(enu_to_ecef(point, origin))
+
+
+def wgs84_surface_distance_m(left: Geodetic, right: Geodetic) -> float:
+    """Return the WGS84 ellipsoidal surface distance using Vincenty's inverse.
+
+    The rare antipodal non-convergence case falls back to a mean-Earth-radius
+    haversine distance. Altitudes are deliberately ignored.
+    """
+
+    if not isinstance(left, Geodetic) or not isinstance(right, Geodetic):
+        raise TypeError("left and right must be Geodetic")
+    latitude_left = math.radians(left.latitude_deg)
+    latitude_right = math.radians(right.latitude_deg)
+    longitude_delta = math.radians(right.longitude_deg - left.longitude_deg)
+    longitude_delta = (longitude_delta + math.pi) % (2.0 * math.pi) - math.pi
+    reduced_left = math.atan((1.0 - WGS84_F) * math.tan(latitude_left))
+    reduced_right = math.atan((1.0 - WGS84_F) * math.tan(latitude_right))
+    sin_left, cos_left = math.sin(reduced_left), math.cos(reduced_left)
+    sin_right, cos_right = math.sin(reduced_right), math.cos(reduced_right)
+    lambda_value = longitude_delta
+
+    for _ in range(100):
+        sin_lambda = math.sin(lambda_value)
+        cos_lambda = math.cos(lambda_value)
+        term_left = cos_right * sin_lambda
+        term_right = cos_left * sin_right - sin_left * cos_right * cos_lambda
+        sin_sigma = math.hypot(term_left, term_right)
+        if sin_sigma <= 1e-16:
+            return 0.0
+        cos_sigma = sin_left * sin_right + cos_left * cos_right * cos_lambda
+        sigma = math.atan2(sin_sigma, cos_sigma)
+        sin_alpha = cos_left * cos_right * sin_lambda / sin_sigma
+        cos_squared_alpha = 1.0 - sin_alpha * sin_alpha
+        cos_two_sigma_mid = (
+            cos_sigma - 2.0 * sin_left * sin_right / cos_squared_alpha
+            if cos_squared_alpha > 1e-16
+            else 0.0
+        )
+        correction = WGS84_F / 16.0 * cos_squared_alpha * (
+            4.0 + WGS84_F * (4.0 - 3.0 * cos_squared_alpha)
+        )
+        previous = lambda_value
+        lambda_value = longitude_delta + (1.0 - correction) * WGS84_F * sin_alpha * (
+            sigma
+            + correction
+            * sin_sigma
+            * (
+                cos_two_sigma_mid
+                + correction
+                * cos_sigma
+                * (-1.0 + 2.0 * cos_two_sigma_mid * cos_two_sigma_mid)
+            )
+        )
+        if abs(lambda_value - previous) < 1e-12:
+            u_squared = cos_squared_alpha * (
+                WGS84_A_M * WGS84_A_M - WGS84_B_M * WGS84_B_M
+            ) / (WGS84_B_M * WGS84_B_M)
+            coefficient_a = 1.0 + u_squared / 16384.0 * (
+                4096.0
+                + u_squared * (-768.0 + u_squared * (320.0 - 175.0 * u_squared))
+            )
+            coefficient_b = u_squared / 1024.0 * (
+                256.0
+                + u_squared * (-128.0 + u_squared * (74.0 - 47.0 * u_squared))
+            )
+            delta_sigma = coefficient_b * sin_sigma * (
+                cos_two_sigma_mid
+                + coefficient_b
+                / 4.0
+                * (
+                    cos_sigma * (-1.0 + 2.0 * cos_two_sigma_mid**2)
+                    - coefficient_b
+                    / 6.0
+                    * cos_two_sigma_mid
+                    * (-3.0 + 4.0 * sin_sigma**2)
+                    * (-3.0 + 4.0 * cos_two_sigma_mid**2)
+                )
+            )
+            return WGS84_B_M * coefficient_a * (sigma - delta_sigma)
+
+    sin_half_latitude = math.sin((latitude_right - latitude_left) * 0.5)
+    sin_half_longitude = math.sin(longitude_delta * 0.5)
+    haversine = sin_half_latitude**2 + (
+        math.cos(latitude_left) * math.cos(latitude_right) * sin_half_longitude**2
+    )
+    return 2.0 * MEAN_EARTH_RADIUS_M * math.asin(
+        math.sqrt(min(1.0, max(0.0, haversine)))
+    )

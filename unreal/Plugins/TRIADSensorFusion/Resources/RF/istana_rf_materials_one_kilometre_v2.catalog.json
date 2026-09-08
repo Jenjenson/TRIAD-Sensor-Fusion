@@ -1,0 +1,943 @@
+{
+  "catalogId": "istana-public-view-rf-materials-one-kilometre-v2-r24c-001",
+  "derivation": {
+    "calibrationClaimed": false,
+    "highBandSemantics": "SEPARATE_UNCALIBRATED_6P000001_TO_18_GHZ_PLANNING_PROFILES",
+    "interpolationClaimed": false,
+    "lowBandRetention": "EXACT_TIGHTV1_FREQUENCY_ARRAY_PREFIX_AND_RUNTIME_PROFILE_OBJECT",
+    "predecessorCatalogSha256": "d7f9fad2fed93347b1bcc01fd1184181b09d3e8e3eab167dc64f56be28f60e87",
+    "profileBoundaryGapGHz": [
+      6.0,
+      6.000001
+    ]
+  },
+  "frequencyKnotsGHz": [
+    0.43392,
+    0.868,
+    0.915,
+    1.28,
+    2.412,
+    2.462,
+    5.765,
+    5.825,
+    9.4,
+    18.0
+  ],
+  "globalClaimBoundary": {
+    "calibratedAgainstIstana": false,
+    "frequencyInterpolationValidated": false,
+    "highBandMeasured": false,
+    "inSituMeasured": false,
+    "laboratoryMeasured": false,
+    "polarizationValidated": false,
+    "roughnessValidated": false,
+    "useRequiresAssumptionBoundLabel": true
+  },
+  "limitations": [
+    "All values are uncalibrated priors selected for deterministic simulation bring-up.",
+    "No material record is evidence of the actual Istana substrate, moisture state, reinforcement, coating, laminate, or frequency response.",
+    "Runtime telemetry must retain materialId, provenanceId, calibrationState, uncertaintyClass, catalog hash, and frequency interpolation evidence.",
+    "Promotion from UNCALIBRATED_ASSUMPTION requires an immutable external calibration receipt.",
+    "The 9.4 and 18 GHz frequency-response values and all >6 GHz runtime coefficients are explicit planning assumptions, not interpolated, extrapolated, laboratory measured, or in-situ calibrated values.",
+    "A deliberate open interval between 6.0 and 6.000001 GHz avoids closed-interval profile ambiguity in the current runtime selector.",
+    "The public-surrounding and flat-ground materials are generic envelope priors and do not identify any real substrate."
+  ],
+  "materials": [
+    {
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "debugColorRgb": [
+        0.78,
+        0.73,
+        0.62
+      ],
+      "frequencyResponse": {
+        "conductivitySiemensPerMeter": [
+          0.01,
+          0.015,
+          0.015,
+          0.02,
+          0.025,
+          0.025,
+          0.035,
+          0.035,
+          0.035,
+          0.035
+        ],
+        "frequencyGHz": [
+          0.43392,
+          0.868,
+          0.915,
+          1.28,
+          2.412,
+          2.462,
+          5.765,
+          5.825,
+          9.4,
+          18.0
+        ],
+        "knotSemantics": "TIGHTV1_PREFIX_PLUS_DISCRETE_UNCALIBRATED_HIGH_BAND_ASSUMPTIONS_NO_INTERPOLATION_VALIDATION",
+        "lossTangent": [
+          0.04,
+          0.04,
+          0.04,
+          0.045,
+          0.05,
+          0.05,
+          0.06,
+          0.06,
+          0.06,
+          0.06
+        ],
+        "relativePermittivityReal": [
+          5.0,
+          5.0,
+          5.0,
+          4.9,
+          4.8,
+          4.8,
+          4.6,
+          4.6,
+          4.6,
+          4.6
+        ]
+      },
+      "materialId": "MAT_RF_RENDERED_MASONRY_ASSUMED",
+      "modelClass": "FINITE_SLAB_DIELECTRIC",
+      "provenanceId": "GENERIC_RENDERED_MASONRY_ENGINEERING_PRIOR_V1",
+      "rmsRoughnessMeters": 0.008,
+      "runtimeInteractionProfileV2": {
+        "calibrationProvenanceId": "GENERIC_RENDERED_MASONRY_ENGINEERING_PRIOR_V1",
+        "calibrationState": "UNCALIBRATED",
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "profiles": [
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "bulkAttenuationDbPerMeter": 4.0,
+            "empiricalGrazingReflectionLossDb": 3.0,
+            "maximumFrequencyGHz": 6.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 0.4,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 3.0,
+            "profileId": "PROFILE_RENDERED_MASONRY_0P4_TO_6P0_GHZ",
+            "reflectionLossDb": 5.0
+          },
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "assumptionSemantics": "SEPARATE_HIGH_BAND_PLANNING_PRIOR_NOT_INTERPOLATED_OR_CALIBRATED",
+            "bulkAttenuationDbPerMeter": 6.0,
+            "empiricalGrazingReflectionLossDb": 3.3,
+            "maximumFrequencyGHz": 18.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 6.000001,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 3.75,
+            "profileId": "PROFILE_R24C_RENDERED_MASONRY_6P000001_TO_18P0_GHZ_ASSUMED",
+            "reflectionLossDb": 5.5
+          }
+        ]
+      },
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "uncertaintyClass": "HIGH"
+    },
+    {
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "debugColorRgb": [
+        0.48,
+        0.5,
+        0.52
+      ],
+      "frequencyResponse": {
+        "conductivitySiemensPerMeter": [
+          0.025,
+          0.035,
+          0.035,
+          0.045,
+          0.065,
+          0.065,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "frequencyGHz": [
+          0.43392,
+          0.868,
+          0.915,
+          1.28,
+          2.412,
+          2.462,
+          5.765,
+          5.825,
+          9.4,
+          18.0
+        ],
+        "knotSemantics": "TIGHTV1_PREFIX_PLUS_DISCRETE_UNCALIBRATED_HIGH_BAND_ASSUMPTIONS_NO_INTERPOLATION_VALIDATION",
+        "lossTangent": [
+          0.07,
+          0.075,
+          0.075,
+          0.08,
+          0.09,
+          0.09,
+          0.11,
+          0.11,
+          0.11,
+          0.11
+        ],
+        "relativePermittivityReal": [
+          6.7,
+          6.6,
+          6.6,
+          6.5,
+          6.2,
+          6.2,
+          5.8,
+          5.8,
+          5.8,
+          5.8
+        ]
+      },
+      "materialId": "MAT_RF_REINFORCED_CONCRETE_ASSUMED",
+      "modelClass": "FINITE_SLAB_DIELECTRIC_EFFECTIVE_REBAR_NOT_RESOLVED",
+      "provenanceId": "GENERIC_REINFORCED_CONCRETE_ENGINEERING_PRIOR_V1",
+      "rmsRoughnessMeters": 0.012,
+      "runtimeInteractionProfileV2": {
+        "calibrationProvenanceId": "GENERIC_REINFORCED_CONCRETE_ENGINEERING_PRIOR_V1",
+        "calibrationState": "UNCALIBRATED",
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "profiles": [
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "bulkAttenuationDbPerMeter": 8.0,
+            "empiricalGrazingReflectionLossDb": 3.0,
+            "maximumFrequencyGHz": 6.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 0.4,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 4.0,
+            "profileId": "PROFILE_REINFORCED_CONCRETE_0P4_TO_6P0_GHZ",
+            "reflectionLossDb": 4.0
+          },
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "assumptionSemantics": "SEPARATE_HIGH_BAND_PLANNING_PRIOR_NOT_INTERPOLATED_OR_CALIBRATED",
+            "bulkAttenuationDbPerMeter": 12.0,
+            "empiricalGrazingReflectionLossDb": 3.3,
+            "maximumFrequencyGHz": 18.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 6.000001,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 5.0,
+            "profileId": "PROFILE_R24C_REINFORCED_CONCRETE_6P000001_TO_18P0_GHZ_ASSUMED",
+            "reflectionLossDb": 4.4
+          }
+        ]
+      },
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "uncertaintyClass": "HIGH"
+    },
+    {
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "debugColorRgb": [
+        0.24,
+        0.12,
+        0.06
+      ],
+      "frequencyResponse": {
+        "conductivitySiemensPerMeter": [
+          0.003,
+          0.004,
+          0.004,
+          0.005,
+          0.008,
+          0.008,
+          0.012,
+          0.012,
+          0.012,
+          0.012
+        ],
+        "frequencyGHz": [
+          0.43392,
+          0.868,
+          0.915,
+          1.28,
+          2.412,
+          2.462,
+          5.765,
+          5.825,
+          9.4,
+          18.0
+        ],
+        "knotSemantics": "TIGHTV1_PREFIX_PLUS_DISCRETE_UNCALIBRATED_HIGH_BAND_ASSUMPTIONS_NO_INTERPOLATION_VALIDATION",
+        "lossTangent": [
+          0.06,
+          0.065,
+          0.065,
+          0.07,
+          0.08,
+          0.08,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "relativePermittivityReal": [
+          2.3,
+          2.3,
+          2.3,
+          2.25,
+          2.2,
+          2.2,
+          2.1,
+          2.1,
+          2.1,
+          2.1
+        ]
+      },
+      "materialId": "MAT_RF_TIMBER_DOOR_ASSUMED",
+      "modelClass": "FINITE_SLAB_DIELECTRIC",
+      "provenanceId": "GENERIC_DRY_TIMBER_ENGINEERING_PRIOR_V1",
+      "rmsRoughnessMeters": 0.002,
+      "runtimeInteractionProfileV2": {
+        "calibrationProvenanceId": "GENERIC_DRY_TIMBER_ENGINEERING_PRIOR_V1",
+        "calibrationState": "UNCALIBRATED",
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "profiles": [
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "bulkAttenuationDbPerMeter": 2.0,
+            "empiricalGrazingReflectionLossDb": 2.0,
+            "maximumFrequencyGHz": 6.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 0.4,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 2.0,
+            "profileId": "PROFILE_TIMBER_DOOR_0P4_TO_6P0_GHZ",
+            "reflectionLossDb": 7.0
+          },
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "assumptionSemantics": "SEPARATE_HIGH_BAND_PLANNING_PRIOR_NOT_INTERPOLATED_OR_CALIBRATED",
+            "bulkAttenuationDbPerMeter": 3.0,
+            "empiricalGrazingReflectionLossDb": 2.2,
+            "maximumFrequencyGHz": 18.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 6.000001,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 2.5,
+            "profileId": "PROFILE_R24C_TIMBER_DOOR_6P000001_TO_18P0_GHZ_ASSUMED",
+            "reflectionLossDb": 7.7
+          }
+        ]
+      },
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "uncertaintyClass": "HIGH"
+    },
+    {
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "debugColorRgb": [
+        0.16,
+        0.62,
+        0.78
+      ],
+      "frequencyResponse": {
+        "conductivitySiemensPerMeter": [
+          0.0005,
+          0.0007,
+          0.0007,
+          0.001,
+          0.0015,
+          0.0015,
+          0.0025,
+          0.0025,
+          0.0025,
+          0.0025
+        ],
+        "frequencyGHz": [
+          0.43392,
+          0.868,
+          0.915,
+          1.28,
+          2.412,
+          2.462,
+          5.765,
+          5.825,
+          9.4,
+          18.0
+        ],
+        "knotSemantics": "TIGHTV1_PREFIX_PLUS_DISCRETE_UNCALIBRATED_HIGH_BAND_ASSUMPTIONS_NO_INTERPOLATION_VALIDATION",
+        "lossTangent": [
+          0.008,
+          0.008,
+          0.008,
+          0.009,
+          0.01,
+          0.01,
+          0.012,
+          0.012,
+          0.012,
+          0.012
+        ],
+        "relativePermittivityReal": [
+          6.2,
+          6.2,
+          6.2,
+          6.15,
+          6.1,
+          6.1,
+          6.0,
+          6.0,
+          6.0,
+          6.0
+        ]
+      },
+      "materialId": "MAT_RF_ARCHITECTURAL_GLASS_ASSUMED",
+      "modelClass": "FINITE_SLAB_DIELECTRIC",
+      "provenanceId": "GENERIC_UNCOATED_ARCHITECTURAL_GLASS_PRIOR_V1",
+      "rmsRoughnessMeters": 2e-05,
+      "runtimeInteractionProfileV2": {
+        "calibrationProvenanceId": "GENERIC_UNCOATED_ARCHITECTURAL_GLASS_PRIOR_V1",
+        "calibrationState": "UNCALIBRATED",
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "profiles": [
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "bulkAttenuationDbPerMeter": 1.0,
+            "empiricalGrazingReflectionLossDb": 2.0,
+            "maximumFrequencyGHz": 6.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 0.4,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 1.5,
+            "profileId": "PROFILE_ARCHITECTURAL_GLASS_0P4_TO_6P0_GHZ",
+            "reflectionLossDb": 4.0
+          },
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "assumptionSemantics": "SEPARATE_HIGH_BAND_PLANNING_PRIOR_NOT_INTERPOLATED_OR_CALIBRATED",
+            "bulkAttenuationDbPerMeter": 1.5,
+            "empiricalGrazingReflectionLossDb": 2.2,
+            "maximumFrequencyGHz": 18.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 6.000001,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 1.875,
+            "profileId": "PROFILE_R24C_ARCHITECTURAL_GLASS_6P000001_TO_18P0_GHZ_ASSUMED",
+            "reflectionLossDb": 4.4
+          }
+        ]
+      },
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "uncertaintyClass": "HIGH"
+    },
+    {
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "debugColorRgb": [
+        0.2,
+        0.22,
+        0.24
+      ],
+      "frequencyResponse": {
+        "conductivitySiemensPerMeter": [
+          30000000.0,
+          30000000.0,
+          30000000.0,
+          30000000.0,
+          30000000.0,
+          30000000.0,
+          30000000.0,
+          30000000.0,
+          30000000.0,
+          30000000.0
+        ],
+        "frequencyGHz": [
+          0.43392,
+          0.868,
+          0.915,
+          1.28,
+          2.412,
+          2.462,
+          5.765,
+          5.825,
+          9.4,
+          18.0
+        ],
+        "knotSemantics": "TIGHTV1_PREFIX_PLUS_DISCRETE_UNCALIBRATED_HIGH_BAND_ASSUMPTIONS_NO_INTERPOLATION_VALIDATION",
+        "lossTangent": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "relativePermittivityReal": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "materialId": "MAT_RF_METAL_LOUVRE_ASSUMED",
+      "modelClass": "BULK_CONDUCTOR",
+      "provenanceId": "GENERIC_PAINTED_ALUMINIUM_ENGINEERING_PRIOR_V1",
+      "rmsRoughnessMeters": 0.0003,
+      "runtimeInteractionProfileV2": {
+        "calibrationProvenanceId": "GENERIC_PAINTED_ALUMINIUM_ENGINEERING_PRIOR_V1",
+        "calibrationState": "UNCALIBRATED",
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "profiles": [
+          {
+            "allowsReflection": true,
+            "allowsTransmission": false,
+            "bulkAttenuationDbPerMeter": 0.0,
+            "empiricalGrazingReflectionLossDb": 1.0,
+            "maximumFrequencyGHz": 6.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 0.4,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 0.0,
+            "profileId": "PROFILE_METAL_LOUVRE_0P4_TO_6P0_GHZ",
+            "reflectionLossDb": 1.0
+          },
+          {
+            "allowsReflection": true,
+            "allowsTransmission": false,
+            "assumptionSemantics": "SEPARATE_HIGH_BAND_PLANNING_PRIOR_NOT_INTERPOLATED_OR_CALIBRATED",
+            "bulkAttenuationDbPerMeter": 0.0,
+            "empiricalGrazingReflectionLossDb": 1.1,
+            "maximumFrequencyGHz": 18.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 6.000001,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 0.0,
+            "profileId": "PROFILE_R24C_METAL_LOUVRE_6P000001_TO_18P0_GHZ_ASSUMED",
+            "reflectionLossDb": 1.1
+          }
+        ]
+      },
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "uncertaintyClass": "HIGH"
+    },
+    {
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "debugColorRgb": [
+        0.08,
+        0.1,
+        0.15
+      ],
+      "frequencyResponse": {
+        "conductivitySiemensPerMeter": [
+          0.004,
+          0.005,
+          0.005,
+          0.006,
+          0.009,
+          0.009,
+          0.014,
+          0.014,
+          0.014,
+          0.014
+        ],
+        "frequencyGHz": [
+          0.43392,
+          0.868,
+          0.915,
+          1.28,
+          2.412,
+          2.462,
+          5.765,
+          5.825,
+          9.4,
+          18.0
+        ],
+        "knotSemantics": "TIGHTV1_PREFIX_PLUS_DISCRETE_UNCALIBRATED_HIGH_BAND_ASSUMPTIONS_NO_INTERPOLATION_VALIDATION",
+        "lossTangent": [
+          0.025,
+          0.025,
+          0.025,
+          0.03,
+          0.035,
+          0.035,
+          0.045,
+          0.045,
+          0.045,
+          0.045
+        ],
+        "relativePermittivityReal": [
+          5.4,
+          5.4,
+          5.4,
+          5.3,
+          5.1,
+          5.1,
+          4.8,
+          4.8,
+          4.8,
+          4.8
+        ]
+      },
+      "materialId": "MAT_RF_SLATE_ROOF_ASSUMED",
+      "modelClass": "FINITE_SLAB_DIELECTRIC_EFFECTIVE_ROOF_BUILDUP",
+      "provenanceId": "GENERIC_SLATE_ROOF_BUILDUP_ENGINEERING_PRIOR_V1",
+      "rmsRoughnessMeters": 0.006,
+      "runtimeInteractionProfileV2": {
+        "calibrationProvenanceId": "GENERIC_SLATE_ROOF_BUILDUP_ENGINEERING_PRIOR_V1",
+        "calibrationState": "UNCALIBRATED",
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "profiles": [
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "bulkAttenuationDbPerMeter": 5.0,
+            "empiricalGrazingReflectionLossDb": 3.0,
+            "maximumFrequencyGHz": 6.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 0.4,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 3.0,
+            "profileId": "PROFILE_SLATE_ROOF_0P4_TO_6P0_GHZ",
+            "reflectionLossDb": 4.0
+          },
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "assumptionSemantics": "SEPARATE_HIGH_BAND_PLANNING_PRIOR_NOT_INTERPOLATED_OR_CALIBRATED",
+            "bulkAttenuationDbPerMeter": 7.5,
+            "empiricalGrazingReflectionLossDb": 3.3,
+            "maximumFrequencyGHz": 18.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 6.000001,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 3.75,
+            "profileId": "PROFILE_R24C_SLATE_ROOF_6P000001_TO_18P0_GHZ_ASSUMED",
+            "reflectionLossDb": 4.4
+          }
+        ]
+      },
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "uncertaintyClass": "HIGH"
+    },
+    {
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "debugColorRgb": [
+        0.42,
+        0.45,
+        0.48
+      ],
+      "frequencyResponse": {
+        "conductivitySiemensPerMeter": [
+          6000000.0,
+          6000000.0,
+          6000000.0,
+          6000000.0,
+          6000000.0,
+          6000000.0,
+          6000000.0,
+          6000000.0,
+          6000000.0,
+          6000000.0
+        ],
+        "frequencyGHz": [
+          0.43392,
+          0.868,
+          0.915,
+          1.28,
+          2.412,
+          2.462,
+          5.765,
+          5.825,
+          9.4,
+          18.0
+        ],
+        "knotSemantics": "TIGHTV1_PREFIX_PLUS_DISCRETE_UNCALIBRATED_HIGH_BAND_ASSUMPTIONS_NO_INTERPOLATION_VALIDATION",
+        "lossTangent": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "relativePermittivityReal": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "materialId": "MAT_RF_STEEL_MAST_ASSUMED",
+      "modelClass": "BULK_CONDUCTOR",
+      "provenanceId": "GENERIC_STEEL_ENGINEERING_PRIOR_V1",
+      "rmsRoughnessMeters": 0.0005,
+      "runtimeInteractionProfileV2": {
+        "calibrationProvenanceId": "GENERIC_STEEL_ENGINEERING_PRIOR_V1",
+        "calibrationState": "UNCALIBRATED",
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "profiles": [
+          {
+            "allowsReflection": true,
+            "allowsTransmission": false,
+            "bulkAttenuationDbPerMeter": 0.0,
+            "empiricalGrazingReflectionLossDb": 1.0,
+            "maximumFrequencyGHz": 6.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 0.4,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 0.0,
+            "profileId": "PROFILE_STEEL_MAST_0P4_TO_6P0_GHZ",
+            "reflectionLossDb": 1.0
+          },
+          {
+            "allowsReflection": true,
+            "allowsTransmission": false,
+            "assumptionSemantics": "SEPARATE_HIGH_BAND_PLANNING_PRIOR_NOT_INTERPOLATED_OR_CALIBRATED",
+            "bulkAttenuationDbPerMeter": 0.0,
+            "empiricalGrazingReflectionLossDb": 1.1,
+            "maximumFrequencyGHz": 18.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 6.000001,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 0.0,
+            "profileId": "PROFILE_R24C_STEEL_MAST_6P000001_TO_18P0_GHZ_ASSUMED",
+            "reflectionLossDb": 1.1
+          }
+        ]
+      },
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "uncertaintyClass": "MEDIUM"
+    },
+    {
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "debugColorRgb": [
+        0.52,
+        0.58,
+        0.64
+      ],
+      "frequencyResponse": {
+        "conductivitySiemensPerMeter": [
+          0.012,
+          0.018,
+          0.018,
+          0.023,
+          0.03,
+          0.03,
+          0.04,
+          0.04,
+          0.05,
+          0.065
+        ],
+        "frequencyGHz": [
+          0.43392,
+          0.868,
+          0.915,
+          1.28,
+          2.412,
+          2.462,
+          5.765,
+          5.825,
+          9.4,
+          18.0
+        ],
+        "knotSemantics": "DISCRETE_UNCALIBRATED_ASSUMPTION_KNOTS_NO_INTERPOLATION_VALIDATION",
+        "lossTangent": [
+          0.05,
+          0.05,
+          0.05,
+          0.055,
+          0.06,
+          0.06,
+          0.07,
+          0.07,
+          0.08,
+          0.09
+        ],
+        "relativePermittivityReal": [
+          5.0,
+          5.0,
+          5.0,
+          4.9,
+          4.8,
+          4.8,
+          4.6,
+          4.6,
+          4.5,
+          4.4
+        ]
+      },
+      "materialId": "MAT_RF_PUBLIC_SURROUNDING_ENVELOPE_ASSUMED",
+      "modelClass": "FINITE_SLAB_DIELECTRIC",
+      "provenanceId": "R24C_GENERIC_PUBLIC_BUILDING_ENVELOPE_PRIOR_V1",
+      "rmsRoughnessMeters": 0.02,
+      "runtimeInteractionProfileV2": {
+        "calibrationProvenanceId": "R24C_GENERIC_PUBLIC_BUILDING_ENVELOPE_PRIOR_V1",
+        "calibrationState": "UNCALIBRATED",
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "profiles": [
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "assumptionSemantics": "EXPLICIT_BAND_CONSTANT_NO_INTERPOLATION_OR_CALIBRATION_CLAIM",
+            "bulkAttenuationDbPerMeter": 5.0,
+            "empiricalGrazingReflectionLossDb": 3.0,
+            "maximumFrequencyGHz": 6.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 0.4,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 4.0,
+            "profileId": "PROFILE_R24C_PUBLIC_SURROUNDING_ENVELOPE_0P4_TO_6P0_GHZ_ASSUMED",
+            "reflectionLossDb": 5.0
+          },
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "assumptionSemantics": "EXPLICIT_BAND_CONSTANT_NO_INTERPOLATION_OR_CALIBRATION_CLAIM",
+            "bulkAttenuationDbPerMeter": 8.0,
+            "empiricalGrazingReflectionLossDb": 3.5,
+            "maximumFrequencyGHz": 18.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 6.000001,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 5.5,
+            "profileId": "PROFILE_R24C_PUBLIC_SURROUNDING_ENVELOPE_6P000001_TO_18P0_GHZ_ASSUMED",
+            "reflectionLossDb": 5.5
+          }
+        ]
+      },
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "uncertaintyClass": "HIGH"
+    },
+    {
+      "calibrationState": "UNCALIBRATED_ASSUMPTION",
+      "debugColorRgb": [
+        0.28,
+        0.22,
+        0.16
+      ],
+      "frequencyResponse": {
+        "conductivitySiemensPerMeter": [
+          0.03,
+          0.04,
+          0.04,
+          0.05,
+          0.07,
+          0.07,
+          0.1,
+          0.1,
+          0.13,
+          0.18
+        ],
+        "frequencyGHz": [
+          0.43392,
+          0.868,
+          0.915,
+          1.28,
+          2.412,
+          2.462,
+          5.765,
+          5.825,
+          9.4,
+          18.0
+        ],
+        "knotSemantics": "DISCRETE_UNCALIBRATED_ASSUMPTION_KNOTS_NO_INTERPOLATION_VALIDATION",
+        "lossTangent": [
+          0.08,
+          0.08,
+          0.08,
+          0.085,
+          0.09,
+          0.09,
+          0.1,
+          0.1,
+          0.11,
+          0.12
+        ],
+        "relativePermittivityReal": [
+          12.0,
+          12.0,
+          12.0,
+          11.5,
+          11.0,
+          11.0,
+          10.0,
+          10.0,
+          9.5,
+          9.0
+        ]
+      },
+      "materialId": "MAT_RF_FLAT_GROUND_PRIOR_ASSUMED",
+      "modelClass": "FINITE_SLAB_DIELECTRIC",
+      "provenanceId": "R24C_GENERIC_FLAT_GROUND_SLAB_PRIOR_V1",
+      "rmsRoughnessMeters": 0.02,
+      "runtimeInteractionProfileV2": {
+        "calibrationProvenanceId": "R24C_GENERIC_FLAT_GROUND_SLAB_PRIOR_V1",
+        "calibrationState": "UNCALIBRATED",
+        "modelSemantics": "PARAMETRIC_LOOKDEV_DIRECT_STRAIGHT_TRANSMISSION_SINGLE_SPECULAR_REFLECTION_V2_INCOHERENT_ONLY",
+        "profiles": [
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "assumptionSemantics": "EXPLICIT_BAND_CONSTANT_NO_INTERPOLATION_OR_CALIBRATION_CLAIM",
+            "bulkAttenuationDbPerMeter": 8.0,
+            "empiricalGrazingReflectionLossDb": 2.5,
+            "maximumFrequencyGHz": 6.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 0.4,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 6.0,
+            "profileId": "PROFILE_R24C_FLAT_GROUND_PRIOR_0P4_TO_6P0_GHZ_ASSUMED",
+            "reflectionLossDb": 4.0
+          },
+          {
+            "allowsReflection": true,
+            "allowsTransmission": true,
+            "assumptionSemantics": "EXPLICIT_BAND_CONSTANT_NO_INTERPOLATION_OR_CALIBRATION_CLAIM",
+            "bulkAttenuationDbPerMeter": 12.0,
+            "empiricalGrazingReflectionLossDb": 3.0,
+            "maximumFrequencyGHz": 18.0,
+            "maximumIncidenceCosine": 1.0,
+            "minimumFrequencyGHz": 6.000001,
+            "minimumIncidenceCosine": 1e-06,
+            "pairedBoundaryTransmissionLossDb": 8.0,
+            "profileId": "PROFILE_R24C_FLAT_GROUND_PRIOR_6P000001_TO_18P0_GHZ_ASSUMED",
+            "reflectionLossDb": 4.5
+          }
+        ]
+      },
+      "thicknessBinding": "GEOMETRY_ENTRY_EXIT",
+      "uncertaintyClass": "HIGH"
+    }
+  ],
+  "modelSemantics": "HOMOGENEOUS_ISOTROPIC_EFFECTIVE_MEDIA_INITIAL_PRIORS_FOR_FINITE_SLAB_AND_CONDUCTOR_MODELS",
+  "schemaVersion": "triad.rf_material_catalog.v1",
+  "status": "UNCALIBRATED_ASSUMPTION_PRIORS"
+}

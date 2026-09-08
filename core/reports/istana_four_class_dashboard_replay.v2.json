@@ -1,0 +1,1376 @@
+{
+  "schemaVersion": "triad.dashboard_replay.v1",
+  "replayId": "four-class-demo:f317112f6587",
+  "simulationOnly": true,
+  "detectionOnly": true,
+  "operationalUseAuthorized": false,
+  "siteAuthorizationInferred": false,
+  "calibratedProbabilities": false,
+  "actionsTaken": "none",
+  "map": {
+    "unrealPackage": "/Game/Maps/Istana_PublicView_Explore_v5d_hybrid",
+    "aoi": {
+      "id": "istana-1km-demo-adapter",
+      "center": {
+        "latitudeDegrees": 1.30709615,
+        "longitudeDegrees": 103.84288055,
+        "heightMeters": 0.0,
+        "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+      },
+      "radiusMeters": 1000.0,
+      "candidateBufferMeters": 0.0,
+      "centerProvenance": "Adapter-bound provisional public-reference Istana centre; the source demo ENU cache does not contain a surveyed origin.",
+      "surfaceHeightSource": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+    },
+    "coordinateBinding": {
+      "source": "ADAPTER_DECLARED_PROVISIONAL_ORIGIN",
+      "surveyRegistered": false,
+      "performanceInferenceAllowed": false
+    }
+  },
+  "scenario": {
+    "scenarioId": "four-versioned-demo-ingress-trajectories",
+    "weatherProfile": "PER_TRAJECTORY_VERSIONED_DEMO_FACTOR",
+    "rfEmitting": "PER_TRAJECTORY",
+    "trajectoryScenarioIds": [
+      "demo-clear-emitting",
+      "demo-clear-rf-silent",
+      "demo-haze-emitting",
+      "demo-monsoon-emitting"
+    ],
+    "runtimeConfigEnabledInSource": false,
+    "stage0Authorization": "BLOCKED_DEMO_STUDY_ONLY"
+  },
+  "stage0Scope": {
+    "allowedSensorClasses": [
+      "radar",
+      "passive_rf",
+      "rgb",
+      "event_camera"
+    ],
+    "prohibitedDeployedModalities": [
+      "thermal",
+      "depth"
+    ],
+    "representedSensorClasses": [
+      "event_camera",
+      "passive_rf",
+      "radar",
+      "rgb"
+    ],
+    "missingSensorClasses": [],
+    "filteredRecommendationModalities": [],
+    "legacyRecommendationScopeComplete": true,
+    "contractState": "DRAFT",
+    "executionClass": "DEMO_STUDY_ONLY",
+    "productionOptimizationAuthorized": false,
+    "physicalDeploymentAuthorized": false,
+    "blockers": [
+      "STAGE0_CONTRACT_NOT_FROZEN",
+      "UNVERIFIED_ARTIFACT_BINDINGS",
+      "READINESS_GATES_NOT_PASSED",
+      "NO_ELIGIBLE_MOUNT_REGION",
+      "GOVERNANCE_APPROVALS_INCOMPLETE",
+      "PRODUCTION_OPTIMIZER_NOT_AUTHORIZED",
+      "PHYSICAL_DEPLOYMENT_NOT_AUTHORIZED"
+    ],
+    "warnings": [
+      "Stage-0 is blocked; this is a synthetic four-class study replay only.",
+      "No displayed candidate is an approved physical mount.",
+      "No detection is live Unreal telemetry, measured performance, or a calibrated probability."
+    ]
+  },
+  "recommendation": {
+    "requestId": "four-class-demo-study",
+    "status": "OPTIMAL",
+    "algorithm": "deterministic_robust_branch_and_bound_v1",
+    "sourceRecommendationDigest": "f317112f6587428222447403d50ac03986b459d0cb254bd45cdded991f0f179f",
+    "sourcePrecomputeArtifactSha256": "fa974546812886cc81bfc920686d7c2a863d4d4e5bcb04c810b214f5d573b78a",
+    "totalCostUnits": 4.4,
+    "selectedSiteCount": 2,
+    "selectedCandidateIds": [
+      "demo-south",
+      "demo-west"
+    ],
+    "optimalityProvenForPrecomputedBinaryModel": true,
+    "solverProof": {
+      "schemaVersion": "triad.robust_static_solver_result.v2",
+      "terminationReason": "SEARCH_EXHAUSTED_OPTIMAL",
+      "incumbentObjectiveCostUnits": 4.4,
+      "objectiveCostLowerBoundUnits": 4.4,
+      "absoluteCostOptimalityGapUnits": 0.0,
+      "relativeCostOptimalityGap": 0.0,
+      "nodeLimitReached": false,
+      "exploredNodeCount": 17,
+      "nodeLimit": 100000,
+      "boundSemantics": "MATCHED_INCUMBENT_BY_EXHAUSTIVE_SEARCH"
+    },
+    "coverageMetricLabel": "Precomputed-model worst coverage",
+    "metrics": {
+      "coverageByScenario": {
+        "demo-clear-emitting": {
+          "coverageFraction": 1.0,
+          "progressFraction": 1.0
+        },
+        "demo-clear-rf-silent": {
+          "coverageFraction": 1.0,
+          "progressFraction": 1.0
+        },
+        "demo-haze-emitting": {
+          "coverageFraction": 1.0,
+          "progressFraction": 1.0
+        },
+        "demo-monsoon-emitting": {
+          "coverageFraction": 1.0,
+          "progressFraction": 1.0
+        }
+      },
+      "coverageFeasible": true,
+      "policy": {
+        "budgetUnits": 10.0,
+        "maximumSites": 4,
+        "minimumEvidenceFamilies": 2,
+        "minimumFailureDomainRedundancy": 2,
+        "minimumScenarioCoverageFraction": 1.0,
+        "minimumSiteRedundancy": 2
+      },
+      "selectedFailureDomainCount": 2,
+      "selectedSiteCount": 2,
+      "totalCostUnits": 4.4,
+      "uncoveredCriticalDemandIds": [],
+      "weightedCoverageFraction": 1.0,
+      "weightedProgressFraction": 1.0,
+      "worstScenarioCoverageFraction": 1.0,
+      "worstScenarioProgressFraction": 1.0
+    },
+    "rationale": "The dashboard maps exactly the completed robust branch-and-bound selection. Optimality applies only to the bound synthetic binary precompute model; site approval and field performance are not inferred."
+  },
+  "sensors": [
+    {
+      "nodeId": "PLACEMENT_demo_south",
+      "optionId": "demo-south",
+      "siteId": "demo-site-south",
+      "packageId": "four-class-demo-package",
+      "orientationId": "yaw-90",
+      "failureDomainId": "demo-domain-south",
+      "location": {
+        "latitudeDegrees": 1.3017062583,
+        "longitudeDegrees": 103.84288055,
+        "heightMeters": 18.0,
+        "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+      },
+      "modalities": [
+        {
+          "sensorId": "PLACEMENT_demo_south:event_camera",
+          "modality": "event_camera",
+          "sensorClass": "event_camera",
+          "family": "visual",
+          "nominalRangeMeters": 700.0,
+          "simulated": true,
+          "calibrated": false,
+          "evidenceClass": "SYNTHETIC_DEMO_ASSUMPTION",
+          "calibrationId": "demo-event-camera-v1"
+        },
+        {
+          "sensorId": "PLACEMENT_demo_south:passive_rf",
+          "modality": "passive_rf",
+          "sensorClass": "passive_rf",
+          "family": "passive_rf",
+          "nominalRangeMeters": 1500.0,
+          "simulated": true,
+          "calibrated": false,
+          "evidenceClass": "SYNTHETIC_DEMO_ASSUMPTION",
+          "calibrationId": "demo-passive-rf-v1"
+        },
+        {
+          "sensorId": "PLACEMENT_demo_south:radar",
+          "modality": "radar",
+          "sensorClass": "radar",
+          "family": "active_radar",
+          "nominalRangeMeters": 1200.0,
+          "simulated": true,
+          "calibrated": false,
+          "evidenceClass": "SYNTHETIC_DEMO_ASSUMPTION",
+          "calibrationId": "demo-radar-v1"
+        },
+        {
+          "sensorId": "PLACEMENT_demo_south:rgb",
+          "modality": "rgb",
+          "sensorClass": "rgb",
+          "family": "visual",
+          "nominalRangeMeters": 850.0,
+          "simulated": true,
+          "calibrated": false,
+          "evidenceClass": "SYNTHETIC_DEMO_ASSUMPTION",
+          "calibrationId": "demo-rgb-v1"
+        }
+      ],
+      "installedCostUnits": 2.3,
+      "rationale": {
+        "summary": "Exact member of the completed robust branch-and-bound selection over the bound synthetic precompute; mount approval and field performance are not inferred.",
+        "codes": [
+          "EXACT_ROBUST_SELECTION_MEMBER",
+          "FOUR_CLASS_DEMO_PACKAGE",
+          "STAGE0_BLOCKED"
+        ],
+        "families": [
+          "active_radar",
+          "passive_rf",
+          "visual"
+        ],
+        "marginalCoverageMetricAvailable": false
+      }
+    },
+    {
+      "nodeId": "PLACEMENT_demo_west",
+      "optionId": "demo-west",
+      "siteId": "demo-site-west",
+      "packageId": "four-class-demo-package",
+      "orientationId": "yaw-0",
+      "failureDomainId": "demo-domain-west",
+      "location": {
+        "latitudeDegrees": 1.30709615,
+        "longitudeDegrees": 103.8374892554,
+        "heightMeters": 18.0,
+        "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+      },
+      "modalities": [
+        {
+          "sensorId": "PLACEMENT_demo_west:event_camera",
+          "modality": "event_camera",
+          "sensorClass": "event_camera",
+          "family": "visual",
+          "nominalRangeMeters": 700.0,
+          "simulated": true,
+          "calibrated": false,
+          "evidenceClass": "SYNTHETIC_DEMO_ASSUMPTION",
+          "calibrationId": "demo-event-camera-v1"
+        },
+        {
+          "sensorId": "PLACEMENT_demo_west:passive_rf",
+          "modality": "passive_rf",
+          "sensorClass": "passive_rf",
+          "family": "passive_rf",
+          "nominalRangeMeters": 1500.0,
+          "simulated": true,
+          "calibrated": false,
+          "evidenceClass": "SYNTHETIC_DEMO_ASSUMPTION",
+          "calibrationId": "demo-passive-rf-v1"
+        },
+        {
+          "sensorId": "PLACEMENT_demo_west:radar",
+          "modality": "radar",
+          "sensorClass": "radar",
+          "family": "active_radar",
+          "nominalRangeMeters": 1200.0,
+          "simulated": true,
+          "calibrated": false,
+          "evidenceClass": "SYNTHETIC_DEMO_ASSUMPTION",
+          "calibrationId": "demo-radar-v1"
+        },
+        {
+          "sensorId": "PLACEMENT_demo_west:rgb",
+          "modality": "rgb",
+          "sensorClass": "rgb",
+          "family": "visual",
+          "nominalRangeMeters": 850.0,
+          "simulated": true,
+          "calibrated": false,
+          "evidenceClass": "SYNTHETIC_DEMO_ASSUMPTION",
+          "calibrationId": "demo-rgb-v1"
+        }
+      ],
+      "installedCostUnits": 2.1,
+      "rationale": {
+        "summary": "Exact member of the completed robust branch-and-bound selection over the bound synthetic precompute; mount approval and field performance are not inferred.",
+        "codes": [
+          "EXACT_ROBUST_SELECTION_MEMBER",
+          "FOUR_CLASS_DEMO_PACKAGE",
+          "STAGE0_BLOCKED"
+        ],
+        "families": [
+          "active_radar",
+          "passive_rf",
+          "visual"
+        ],
+        "marginalCoverageMetricAvailable": false
+      }
+    }
+  ],
+  "timeline": {
+    "timeBasis": "RELATIVE_SYNTHETIC_REPLAY_SECONDS",
+    "durationSeconds": 7.0,
+    "cadenceSeconds": 1.5,
+    "initialNoDetectionIntervalSeconds": 1.0,
+    "tracks": [
+      {
+        "trackId": "SIM-DEMO_INGRESS_EAST",
+        "displayName": "demo-ingress-east",
+        "scenarioKind": "SYNTHETIC_DEMO_UAS_INGRESS",
+        "scenarioId": "demo-haze-emitting",
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfEmitting": true,
+        "ingressCorridorId": "demo-ingress-east",
+        "inboundApproachScenario": true,
+        "trajectory": "VERSIONED_PRECOMPUTE_POLYLINE",
+        "samples": [
+          {
+            "tSeconds": 0.0,
+            "location": {
+              "latitudeDegrees": 1.30709615,
+              "longitudeDegrees": 103.8509674918,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 900.0,
+              "north": 0.0,
+              "up": 60.0
+            },
+            "headingDegrees": 270.0,
+            "speedMetersPerSecond": 0.0,
+            "distanceToAoiCenterMeters": 900.0,
+            "insideAoi": true,
+            "displayPhase": "INITIAL_NO_DETECTION_ACQUISITION_INTERVAL"
+          },
+          {
+            "tSeconds": 1.0,
+            "sourcePrecomputeTimeSeconds": 0.0,
+            "location": {
+              "latitudeDegrees": 1.30709615,
+              "longitudeDegrees": 103.8509674918,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 900.0,
+              "north": 0.0,
+              "up": 60.0
+            },
+            "headingDegrees": 270.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 900.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 2.5,
+            "sourcePrecomputeTimeSeconds": 1.5,
+            "location": {
+              "latitudeDegrees": 1.30709615,
+              "longitudeDegrees": 103.8491703937,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 700.0,
+              "north": 0.0,
+              "up": 60.0
+            },
+            "headingDegrees": 270.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 700.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 4.0,
+            "sourcePrecomputeTimeSeconds": 3.0,
+            "location": {
+              "latitudeDegrees": 1.30709615,
+              "longitudeDegrees": 103.8473732955,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 500.0,
+              "north": 0.0,
+              "up": 60.0
+            },
+            "headingDegrees": 270.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 500.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 5.5,
+            "sourcePrecomputeTimeSeconds": 4.5,
+            "location": {
+              "latitudeDegrees": 1.30709615,
+              "longitudeDegrees": 103.8455761973,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 300.0,
+              "north": 0.0,
+              "up": 60.0
+            },
+            "headingDegrees": 270.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 300.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 7.0,
+            "sourcePrecomputeTimeSeconds": 6.0,
+            "location": {
+              "latitudeDegrees": 1.30709615,
+              "longitudeDegrees": 103.8437790991,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 100.0,
+              "north": 0.0,
+              "up": 60.0
+            },
+            "headingDegrees": 270.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 100.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          }
+        ],
+        "outcome": {
+          "status": "DETECTED_IN_SYNTHETIC_PRECOMPUTE",
+          "firstDetectionSeconds": 1.0,
+          "firstCorroboratedDetectionSeconds": null,
+          "corroborationStatus": "NOT_DERIVED_AGGREGATE_ROWS_DO_NOT_PROVE_SIMULTANEOUS_FUSION",
+          "detectionEventCount": 4
+        }
+      },
+      {
+        "trackId": "SIM-DEMO_INGRESS_NORTH",
+        "displayName": "demo-ingress-north",
+        "scenarioKind": "SYNTHETIC_DEMO_UAS_INGRESS",
+        "scenarioId": "demo-clear-emitting",
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfEmitting": true,
+        "ingressCorridorId": "demo-ingress-north",
+        "inboundApproachScenario": true,
+        "trajectory": "VERSIONED_PRECOMPUTE_POLYLINE",
+        "samples": [
+          {
+            "tSeconds": 0.0,
+            "location": {
+              "latitudeDegrees": 1.3151809876,
+              "longitudeDegrees": 103.84288055,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 0.0,
+              "north": 900.0,
+              "up": 60.0
+            },
+            "headingDegrees": 180.0,
+            "speedMetersPerSecond": 0.0,
+            "distanceToAoiCenterMeters": 900.0,
+            "insideAoi": true,
+            "displayPhase": "INITIAL_NO_DETECTION_ACQUISITION_INTERVAL"
+          },
+          {
+            "tSeconds": 1.0,
+            "sourcePrecomputeTimeSeconds": 0.0,
+            "location": {
+              "latitudeDegrees": 1.3151809876,
+              "longitudeDegrees": 103.84288055,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 0.0,
+              "north": 900.0,
+              "up": 60.0
+            },
+            "headingDegrees": 180.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 900.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 2.5,
+            "sourcePrecomputeTimeSeconds": 1.5,
+            "location": {
+              "latitudeDegrees": 1.313384357,
+              "longitudeDegrees": 103.84288055,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 0.0,
+              "north": 700.0,
+              "up": 60.0
+            },
+            "headingDegrees": 180.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 700.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 4.0,
+            "sourcePrecomputeTimeSeconds": 3.0,
+            "location": {
+              "latitudeDegrees": 1.3115877264,
+              "longitudeDegrees": 103.84288055,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 0.0,
+              "north": 500.0,
+              "up": 60.0
+            },
+            "headingDegrees": 180.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 500.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 5.5,
+            "sourcePrecomputeTimeSeconds": 4.5,
+            "location": {
+              "latitudeDegrees": 1.3097910959,
+              "longitudeDegrees": 103.84288055,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 0.0,
+              "north": 300.0,
+              "up": 60.0
+            },
+            "headingDegrees": 180.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 300.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 7.0,
+            "sourcePrecomputeTimeSeconds": 6.0,
+            "location": {
+              "latitudeDegrees": 1.3079944653,
+              "longitudeDegrees": 103.84288055,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 0.0,
+              "north": 100.0,
+              "up": 60.0
+            },
+            "headingDegrees": 180.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 100.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          }
+        ],
+        "outcome": {
+          "status": "DETECTED_IN_SYNTHETIC_PRECOMPUTE",
+          "firstDetectionSeconds": 1.0,
+          "firstCorroboratedDetectionSeconds": null,
+          "corroborationStatus": "NOT_DERIVED_AGGREGATE_ROWS_DO_NOT_PROVE_SIMULTANEOUS_FUSION",
+          "detectionEventCount": 4
+        }
+      },
+      {
+        "trackId": "SIM-DEMO_INGRESS_SOUTH",
+        "displayName": "demo-ingress-south",
+        "scenarioKind": "SYNTHETIC_DEMO_UAS_INGRESS",
+        "scenarioId": "demo-monsoon-emitting",
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfEmitting": true,
+        "ingressCorridorId": "demo-ingress-south",
+        "inboundApproachScenario": true,
+        "trajectory": "VERSIONED_PRECOMPUTE_POLYLINE",
+        "samples": [
+          {
+            "tSeconds": 0.0,
+            "location": {
+              "latitudeDegrees": 1.2990113124,
+              "longitudeDegrees": 103.84288055,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 0.0,
+              "north": -900.0,
+              "up": 60.0
+            },
+            "headingDegrees": 0.0,
+            "speedMetersPerSecond": 0.0,
+            "distanceToAoiCenterMeters": 900.0,
+            "insideAoi": true,
+            "displayPhase": "INITIAL_NO_DETECTION_ACQUISITION_INTERVAL"
+          },
+          {
+            "tSeconds": 1.0,
+            "sourcePrecomputeTimeSeconds": 0.0,
+            "location": {
+              "latitudeDegrees": 1.2990113124,
+              "longitudeDegrees": 103.84288055,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 0.0,
+              "north": -900.0,
+              "up": 60.0
+            },
+            "headingDegrees": 0.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 900.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 2.5,
+            "sourcePrecomputeTimeSeconds": 1.5,
+            "location": {
+              "latitudeDegrees": 1.300807943,
+              "longitudeDegrees": 103.84288055,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 0.0,
+              "north": -700.0,
+              "up": 60.0
+            },
+            "headingDegrees": 0.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 700.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 4.0,
+            "sourcePrecomputeTimeSeconds": 3.0,
+            "location": {
+              "latitudeDegrees": 1.3026045736,
+              "longitudeDegrees": 103.84288055,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 0.0,
+              "north": -500.0,
+              "up": 60.0
+            },
+            "headingDegrees": 0.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 500.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 5.5,
+            "sourcePrecomputeTimeSeconds": 4.5,
+            "location": {
+              "latitudeDegrees": 1.3044012041,
+              "longitudeDegrees": 103.84288055,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 0.0,
+              "north": -300.0,
+              "up": 60.0
+            },
+            "headingDegrees": 0.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 300.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 7.0,
+            "sourcePrecomputeTimeSeconds": 6.0,
+            "location": {
+              "latitudeDegrees": 1.3061978347,
+              "longitudeDegrees": 103.84288055,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": 0.0,
+              "north": -100.0,
+              "up": 60.0
+            },
+            "headingDegrees": 0.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 100.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          }
+        ],
+        "outcome": {
+          "status": "DETECTED_IN_SYNTHETIC_PRECOMPUTE",
+          "firstDetectionSeconds": 1.0,
+          "firstCorroboratedDetectionSeconds": null,
+          "corroborationStatus": "NOT_DERIVED_AGGREGATE_ROWS_DO_NOT_PROVE_SIMULTANEOUS_FUSION",
+          "detectionEventCount": 6
+        }
+      },
+      {
+        "trackId": "SIM-DEMO_INGRESS_WEST_RF_SILENT",
+        "displayName": "demo-ingress-west-rf-silent",
+        "scenarioKind": "SYNTHETIC_DEMO_UAS_INGRESS",
+        "scenarioId": "demo-clear-rf-silent",
+        "partitionId": "DEMO_ONLY_NOT_BENCHMARK_PARTITION",
+        "rfEmitting": false,
+        "ingressCorridorId": "demo-ingress-west-rf-silent",
+        "inboundApproachScenario": true,
+        "trajectory": "VERSIONED_PRECOMPUTE_POLYLINE",
+        "samples": [
+          {
+            "tSeconds": 0.0,
+            "location": {
+              "latitudeDegrees": 1.30709615,
+              "longitudeDegrees": 103.8347936082,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": -900.0,
+              "north": 0.0,
+              "up": 60.0
+            },
+            "headingDegrees": 90.0,
+            "speedMetersPerSecond": 0.0,
+            "distanceToAoiCenterMeters": 900.0,
+            "insideAoi": true,
+            "displayPhase": "INITIAL_NO_DETECTION_ACQUISITION_INTERVAL"
+          },
+          {
+            "tSeconds": 1.0,
+            "sourcePrecomputeTimeSeconds": 0.0,
+            "location": {
+              "latitudeDegrees": 1.30709615,
+              "longitudeDegrees": 103.8347936082,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": -900.0,
+              "north": 0.0,
+              "up": 60.0
+            },
+            "headingDegrees": 90.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 900.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 2.5,
+            "sourcePrecomputeTimeSeconds": 1.5,
+            "location": {
+              "latitudeDegrees": 1.30709615,
+              "longitudeDegrees": 103.8365907063,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": -700.0,
+              "north": 0.0,
+              "up": 60.0
+            },
+            "headingDegrees": 90.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 700.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 4.0,
+            "sourcePrecomputeTimeSeconds": 3.0,
+            "location": {
+              "latitudeDegrees": 1.30709615,
+              "longitudeDegrees": 103.8383878045,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": -500.0,
+              "north": 0.0,
+              "up": 60.0
+            },
+            "headingDegrees": 90.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 500.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 5.5,
+            "sourcePrecomputeTimeSeconds": 4.5,
+            "location": {
+              "latitudeDegrees": 1.30709615,
+              "longitudeDegrees": 103.8401849027,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": -300.0,
+              "north": 0.0,
+              "up": 60.0
+            },
+            "headingDegrees": 90.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 300.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          },
+          {
+            "tSeconds": 7.0,
+            "sourcePrecomputeTimeSeconds": 6.0,
+            "location": {
+              "latitudeDegrees": 1.30709615,
+              "longitudeDegrees": 103.8419820009,
+              "heightMeters": 60.0,
+              "heightReference": "SYNTHETIC_LOCAL_UP_NOT_SURVEY_DATUM"
+            },
+            "offsetEnuMeters": {
+              "east": -100.0,
+              "north": 0.0,
+              "up": 60.0
+            },
+            "headingDegrees": 90.0,
+            "speedMetersPerSecond": 133.333333,
+            "distanceToAoiCenterMeters": 100.0,
+            "insideAoi": true,
+            "displayPhase": "VERSIONED_PRECOMPUTE_TRAJECTORY"
+          }
+        ],
+        "outcome": {
+          "status": "DETECTED_IN_SYNTHETIC_PRECOMPUTE",
+          "firstDetectionSeconds": 1.0,
+          "firstCorroboratedDetectionSeconds": null,
+          "corroborationStatus": "NOT_DERIVED_AGGREGATE_ROWS_DO_NOT_PROVE_SIMULTANEOUS_FUSION",
+          "detectionEventCount": 4
+        }
+      }
+    ],
+    "detections": [
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_EAST:demo-south:passive_rf",
+        "tSeconds": 1.0,
+        "sourcePrecomputeTimeSeconds": 0.0,
+        "trackId": "SIM-DEMO_INGRESS_EAST",
+        "nodeId": "PLACEMENT_demo_south",
+        "sensorId": "PLACEMENT_demo_south:passive_rf",
+        "modality": "passive_rf",
+        "sensorClass": "passive_rf",
+        "family": "passive_rf",
+        "rangeMeters": 1082.48,
+        "effectiveRangeMeters": 1500.0,
+        "confidence": 0.399045525,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 1.0,
+        "latencyMilliseconds": 1000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "1528b2464f80c1fa5094410da9cd1703c496c1d1006a9fc82d34c45c55ed8f6e",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_NORTH:demo-west:passive_rf",
+        "tSeconds": 1.0,
+        "sourcePrecomputeTimeSeconds": 0.0,
+        "trackId": "SIM-DEMO_INGRESS_NORTH",
+        "nodeId": "PLACEMENT_demo_west",
+        "sensorId": "PLACEMENT_demo_west:passive_rf",
+        "modality": "passive_rf",
+        "sensorClass": "passive_rf",
+        "family": "passive_rf",
+        "rangeMeters": 1082.48,
+        "effectiveRangeMeters": 1500.0,
+        "confidence": 0.424516516,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 1.0,
+        "latencyMilliseconds": 1000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "6828af4822277c626111ef98eb9b8bfc25e9cd6cf2865b985d6df2a17de96387",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_SOUTH:demo-south:passive_rf",
+        "tSeconds": 1.0,
+        "sourcePrecomputeTimeSeconds": 0.0,
+        "trackId": "SIM-DEMO_INGRESS_SOUTH",
+        "nodeId": "PLACEMENT_demo_south",
+        "sensorId": "PLACEMENT_demo_south:passive_rf",
+        "modality": "passive_rf",
+        "sensorClass": "passive_rf",
+        "family": "passive_rf",
+        "rangeMeters": 302.926,
+        "effectiveRangeMeters": 1500.0,
+        "confidence": 0.711206052,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 1.0,
+        "latencyMilliseconds": 1000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "956e3d8c3bfde8d919fd52b329452310c55895adaa14c57c40848ecdff9260ef",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_SOUTH:demo-south:radar",
+        "tSeconds": 1.0,
+        "sourcePrecomputeTimeSeconds": 0.0,
+        "trackId": "SIM-DEMO_INGRESS_SOUTH",
+        "nodeId": "PLACEMENT_demo_south",
+        "sensorId": "PLACEMENT_demo_south:radar",
+        "modality": "radar",
+        "sensorClass": "radar",
+        "family": "active_radar",
+        "rangeMeters": 302.926,
+        "effectiveRangeMeters": 1200.0,
+        "confidence": 0.589035071,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 1.0,
+        "latencyMilliseconds": 1000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "c228549ad49b08d6838bb06ab504dcfc650f92a3fee9d6cb1d496539de61be22",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_SOUTH:demo-west:passive_rf",
+        "tSeconds": 1.0,
+        "sourcePrecomputeTimeSeconds": 0.0,
+        "trackId": "SIM-DEMO_INGRESS_SOUTH",
+        "nodeId": "PLACEMENT_demo_west",
+        "sensorId": "PLACEMENT_demo_west:passive_rf",
+        "modality": "passive_rf",
+        "sensorClass": "passive_rf",
+        "family": "passive_rf",
+        "rangeMeters": 1082.48,
+        "effectiveRangeMeters": 1500.0,
+        "confidence": 0.373574534,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 1.0,
+        "latencyMilliseconds": 1000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "79de0c24892369022d3ddc5854a8e078c05c2545333cadcdd5529d0677f2bf74",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_WEST_RF_SILENT:demo-west:radar",
+        "tSeconds": 1.0,
+        "sourcePrecomputeTimeSeconds": 0.0,
+        "trackId": "SIM-DEMO_INGRESS_WEST_RF_SILENT",
+        "nodeId": "PLACEMENT_demo_west",
+        "sensorId": "PLACEMENT_demo_west:radar",
+        "modality": "radar",
+        "sensorClass": "radar",
+        "family": "active_radar",
+        "rangeMeters": 302.926,
+        "effectiveRangeMeters": 1200.0,
+        "confidence": 0.718335452,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 1.0,
+        "latencyMilliseconds": 1000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "286a2ac13694f5bb5a961917730f794f08c3d1c8997d3f9b1b313e80debf308c",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_EAST:demo-south:radar",
+        "tSeconds": 4.0,
+        "sourcePrecomputeTimeSeconds": 3.0,
+        "trackId": "SIM-DEMO_INGRESS_EAST",
+        "nodeId": "PLACEMENT_demo_south",
+        "sensorId": "PLACEMENT_demo_south:radar",
+        "modality": "radar",
+        "sensorClass": "radar",
+        "family": "active_radar",
+        "rangeMeters": 782.153,
+        "effectiveRangeMeters": 1200.0,
+        "confidence": 0.209042777,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 0.6,
+        "latencyMilliseconds": 4000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "134ecf4f39d2f1ec75cfa6346ae542c2cf85b6103bb3274bb1f264fb7fbf0383",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_EAST:demo-west:passive_rf",
+        "tSeconds": 4.0,
+        "sourcePrecomputeTimeSeconds": 3.0,
+        "trackId": "SIM-DEMO_INGRESS_EAST",
+        "nodeId": "PLACEMENT_demo_west",
+        "sensorId": "PLACEMENT_demo_west:passive_rf",
+        "modality": "passive_rf",
+        "sensorClass": "passive_rf",
+        "family": "passive_rf",
+        "rangeMeters": 1100.802,
+        "effectiveRangeMeters": 1500.0,
+        "confidence": 0.226732637,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 0.6,
+        "latencyMilliseconds": 4000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "a6cd25835a7c3263afcd3ba2c2baa8987f4e9f4b61bf663eefe5b0c324e128d8",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_NORTH:demo-south:passive_rf",
+        "tSeconds": 4.0,
+        "sourcePrecomputeTimeSeconds": 3.0,
+        "trackId": "SIM-DEMO_INGRESS_NORTH",
+        "nodeId": "PLACEMENT_demo_south",
+        "sensorId": "PLACEMENT_demo_south:passive_rf",
+        "modality": "passive_rf",
+        "sensorClass": "passive_rf",
+        "family": "passive_rf",
+        "rangeMeters": 1100.802,
+        "effectiveRangeMeters": 1500.0,
+        "confidence": 0.241204933,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 0.6,
+        "latencyMilliseconds": 4000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "9ea6598eac341a9e7be0dc69fe10c1aa38759fb427888c8b52020b864f6ccf94",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_NORTH:demo-west:radar",
+        "tSeconds": 4.0,
+        "sourcePrecomputeTimeSeconds": 3.0,
+        "trackId": "SIM-DEMO_INGRESS_NORTH",
+        "nodeId": "PLACEMENT_demo_west",
+        "sensorId": "PLACEMENT_demo_west:radar",
+        "modality": "radar",
+        "sensorClass": "radar",
+        "family": "active_radar",
+        "rangeMeters": 782.153,
+        "effectiveRangeMeters": 1200.0,
+        "confidence": 0.22722041,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 0.6,
+        "latencyMilliseconds": 4000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "423f43b880dc193c512a350474437809b2ff8f1a4a5802ab4342cb0b70378d26",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_SOUTH:demo-south:event_camera",
+        "tSeconds": 4.0,
+        "sourcePrecomputeTimeSeconds": 3.0,
+        "trackId": "SIM-DEMO_INGRESS_SOUTH",
+        "nodeId": "PLACEMENT_demo_south",
+        "sensorId": "PLACEMENT_demo_south:event_camera",
+        "modality": "event_camera",
+        "sensorClass": "event_camera",
+        "family": "visual",
+        "rangeMeters": 108.462,
+        "effectiveRangeMeters": 700.0,
+        "confidence": 0.171545665,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 0.4,
+        "latencyMilliseconds": 4000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "220f6609e386c34fbb7fc66b529b852eaaf7fd053e51a290ea3d095b048c592d",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_SOUTH:demo-south:rgb",
+        "tSeconds": 4.0,
+        "sourcePrecomputeTimeSeconds": 3.0,
+        "trackId": "SIM-DEMO_INGRESS_SOUTH",
+        "nodeId": "PLACEMENT_demo_south",
+        "sensorId": "PLACEMENT_demo_south:rgb",
+        "modality": "rgb",
+        "sensorClass": "rgb",
+        "family": "visual",
+        "rangeMeters": 108.462,
+        "effectiveRangeMeters": 850.0,
+        "confidence": 0.145058357,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 0.2,
+        "latencyMilliseconds": 4000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "4088d061235a58a7afc7fdf3158097e881811128e49048786718eb13bddbbce3",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_WEST_RF_SILENT:demo-south:radar",
+        "tSeconds": 4.0,
+        "sourcePrecomputeTimeSeconds": 3.0,
+        "trackId": "SIM-DEMO_INGRESS_WEST_RF_SILENT",
+        "nodeId": "PLACEMENT_demo_south",
+        "sensorId": "PLACEMENT_demo_south:radar",
+        "modality": "radar",
+        "sensorClass": "radar",
+        "family": "active_radar",
+        "rangeMeters": 782.153,
+        "effectiveRangeMeters": 1200.0,
+        "confidence": 0.22722041,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 0.6,
+        "latencyMilliseconds": 4000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "018fdefbff3c5e06a065311f961f02ba2d47aafbd0d2f6b412a14243818e686f",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_WEST_RF_SILENT:demo-west:event_camera",
+        "tSeconds": 4.0,
+        "sourcePrecomputeTimeSeconds": 3.0,
+        "trackId": "SIM-DEMO_INGRESS_WEST_RF_SILENT",
+        "nodeId": "PLACEMENT_demo_west",
+        "sensorId": "PLACEMENT_demo_west:event_camera",
+        "modality": "event_camera",
+        "sensorClass": "event_camera",
+        "family": "visual",
+        "rangeMeters": 108.462,
+        "effectiveRangeMeters": 700.0,
+        "confidence": 0.254551632,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 0.4,
+        "latencyMilliseconds": 4000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "3eba826951c1daa782870debf6954801b43372f0dca9397f12a317e61745e867",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_WEST_RF_SILENT:demo-west:rgb",
+        "tSeconds": 4.0,
+        "sourcePrecomputeTimeSeconds": 3.0,
+        "trackId": "SIM-DEMO_INGRESS_WEST_RF_SILENT",
+        "nodeId": "PLACEMENT_demo_west",
+        "sensorId": "PLACEMENT_demo_west:rgb",
+        "modality": "rgb",
+        "sensorClass": "rgb",
+        "family": "visual",
+        "rangeMeters": 108.462,
+        "effectiveRangeMeters": 850.0,
+        "confidence": 0.278028518,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 0.4,
+        "latencyMilliseconds": 4000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "b0b26a7a5e9ebf7bacbe7a130576e52d28ee1ae879fd83d924bb2cbfd683944e",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_SOUTH:demo-west:radar",
+        "tSeconds": 5.5,
+        "sourcePrecomputeTimeSeconds": 4.5,
+        "trackId": "SIM-DEMO_INGRESS_SOUTH",
+        "nodeId": "PLACEMENT_demo_west",
+        "sensorId": "PLACEMENT_demo_west:radar",
+        "modality": "radar",
+        "sensorClass": "radar",
+        "family": "active_radar",
+        "rangeMeters": 672.134,
+        "effectiveRangeMeters": 1200.0,
+        "confidence": 0.186320736,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 0.4,
+        "latencyMilliseconds": 5500.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "ebe0b3f419a296ba1f02d20ef33173c6191111a6cd02549b80b40838be5a64bc",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_EAST:demo-west:radar",
+        "tSeconds": 7.0,
+        "sourcePrecomputeTimeSeconds": 6.0,
+        "trackId": "SIM-DEMO_INGRESS_EAST",
+        "nodeId": "PLACEMENT_demo_west",
+        "sensorId": "PLACEMENT_demo_west:radar",
+        "modality": "radar",
+        "sensorClass": "radar",
+        "family": "active_radar",
+        "rangeMeters": 701.259,
+        "effectiveRangeMeters": 1200.0,
+        "confidence": 0.090789101,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 0.2,
+        "latencyMilliseconds": 7000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "b2739b87c0c3f15aa8d2c9a57bc772a2334322783bff651cb4dbb78dcaacd05a",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      },
+      {
+        "eventId": "det:SIM-DEMO_INGRESS_NORTH:demo-south:radar",
+        "tSeconds": 7.0,
+        "sourcePrecomputeTimeSeconds": 6.0,
+        "trackId": "SIM-DEMO_INGRESS_NORTH",
+        "nodeId": "PLACEMENT_demo_south",
+        "sensorId": "PLACEMENT_demo_south:radar",
+        "modality": "radar",
+        "sensorClass": "radar",
+        "family": "active_radar",
+        "rangeMeters": 701.259,
+        "effectiveRangeMeters": 1200.0,
+        "confidence": 0.098683806,
+        "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+        "confidenceSourceField": "meanQuality",
+        "detectionFraction": 0.2,
+        "latencyMilliseconds": 7000.0,
+        "latencySemantics": "DISPLAY_TIME_FROM_REPLAY_START_DERIVED_FROM_ACQUISITION_OFFSET_PLUS_PRECOMPUTE_FIRST_DETECTION_NOT_HARDWARE_LATENCY",
+        "source": "SYNTHETIC_DEMO_KINEMATIC_SURROGATE_V1",
+        "sourcePrecomputeRowSha256": "683c1630926a77fe067f1108d1659cab71e3e00b0448e78b0027791527da13f2",
+        "exactSimulatorReplay": false,
+        "measuredCalibration": false,
+        "rfGeometryQueried": false,
+        "detected": true,
+        "simulationOnly": true
+      }
+    ],
+    "successSummary": {
+      "simulatedTrackCount": 4,
+      "detectedTrackCount": 4,
+      "corroboratedTrackCount": 0,
+      "allTracksDetected": true,
+      "corroborationNotEvaluatedFromAggregateRows": true
+    }
+  },
+  "detectionPolicy": {
+    "eventEligibility": "VERSIONED_PRECOMPUTE_ROW_FIRST_DETECTION_SECONDS_IS_NOT_NULL",
+    "confidenceSourceField": "meanQuality",
+    "minimumIndependentFamilyCount": 2,
+    "minimumContributingSiteCount": 2,
+    "minimumFailureDomainCount": 2,
+    "confidenceThreshold": null,
+    "initialDisplayAcquisitionIntervalSeconds": 1.0,
+    "acquisitionIntervalSemantics": "DISPLAY_ONLY_TIMELINE_OFFSET_NOT_MEASURED_SENSOR_DWELL",
+    "simultaneousFusionClaimed": false
+  },
+  "modelCard": {
+    "modelId": "four_class_precompute_dashboard_adapter_v2",
+    "deterministic": true,
+    "confidenceSemantics": "deterministic range/weather evidence index in [0,1]; not a calibrated probability of detection",
+    "calibrated": false,
+    "limitations": [
+      "Offline synthetic study replay; not live Unreal telemetry.",
+      "Events expose only firstDetectionSeconds and meanQuality already present in each versioned precompute row.",
+      "The one-second initial acquisition interval is a display offset, not measured dwell or latency.",
+      "Aggregate rows do not prove simultaneous multi-family fusion, so corroboration is deliberately unset.",
+      "RF geometry was hash-loaded by the source study but was not queried by this kinematic surrogate.",
+      "The adapter binds a provisional public-reference ENU origin because the source demo cache is not survey registered."
+    ]
+  },
+  "provenance": {
+    "generator": "four_class_precompute_dashboard_adapter_v2",
+    "sourceStudyArtifactSha256": "6c6cad94da9ec4578227bfc596b3ea1748243a67d16779c0014772a4ce2e3975",
+    "sourcePrecomputeArtifactSha256": "fa974546812886cc81bfc920686d7c2a863d4d4e5bcb04c810b214f5d573b78a",
+    "sourceExactSolverResultSha256": "f317112f6587428222447403d50ac03986b459d0cb254bd45cdded991f0f179f",
+    "sourceCalibrationBundleSha256": "b2f3d729886fa1cb9246525ec56ddb50d76c6e81a25f2efb99e6a1450f3f92c5",
+    "eventTimingRule": "replay tSeconds = display acquisition interval + source row firstDetectionSeconds",
+    "sourceRowsRetainedBySha256": true
+  },
+  "replayDigest": "6949355f49492490752b453b49231db420446637818a2461e544254976524dab"
+}

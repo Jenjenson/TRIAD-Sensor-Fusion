@@ -1,0 +1,205 @@
+{
+  "schema": "triad.istana_public_view_unreal_settings.v1",
+  "destinationMap": "/Game/Maps/Istana_PublicView_Exterior_v1",
+  "assetRoot": "/Game/TRIAD/IstanaPublicView",
+  "generatedSource": "SourceAssets/IstanaPublicView/Generated",
+  "generatedOsmContextSource": "SourceAssets/IstanaPublicView/GeneratedOptional/OSMContext",
+  "generatedTextureSource": "SourceAssets/IstanaPublicView/Textures/Generated",
+  "materialSlotMapping": "SourceAssets/IstanaPublicView/Textures/material_slot_mapping.json",
+  "referenceEpoch": "2024-04",
+  "claimStatus": "PUBLIC_REFERENCE_VISUAL_APPROXIMATION_NOT_SURVEY_CONTROLLED",
+  "publicExteriorOnly": true,
+  "surveyControlled": false,
+  "arbitraryViewIndistinguishabilityClaimed": false,
+  "materialImplementationTier": "ORIGINAL_AI_ASSISTED_PBR_TEXTURES_INTEGRATED_PHOTO_QA_NOT_ACCEPTED",
+  "photorealMaterialAcceptance": false,
+  "pbrTexturePackIntegrationIncluded": true,
+  "pbrTextureContract": {
+    "schema": "triad.istana_public_view_pbr_manifest.v1",
+    "textureSetCount": 8,
+    "textureAssetCount": 24,
+    "outputSizePixels": 2048,
+    "mapConvention": "BaseColor=sRGB; Normal=DirectX tangent; ORM=R AO/G roughness/B metallic",
+    "measuredMaterialScan": false,
+    "exactSha256AndByteCountRequired": true
+  },
+  "photoQaEvidence": {
+    "root": "SourceAssets/IstanaDigitalTwin/IstanaPublicView",
+    "status": "NOT_READY",
+    "consumedByMapImport": false,
+    "reason": "No calibrated intrinsics, poses, or object-space controls; provenance evidence only."
+  },
+  "gameModeClass": "/Script/TRIADSensorFusion.TRIADIstanaAirSimGameMode",
+  "sourceCoordinateImportPolicy": {
+    "objUnits": "centimetres",
+    "convertScene": false,
+    "convertSceneUnit": false,
+    "forceFrontXAxis": false,
+    "ceremonialApproachAxis": "+Y",
+    "legacyObjExportContract": "UE55_LEGACY_OBJ_Y_MIRROR_WINDING_NORMAL_AND_UV_V_PRECONDITION",
+    "encodedObjPosition": "logical (x,-y,z)",
+    "encodedObjNormal": "logical (nx,-ny,nz)",
+    "encodedObjFaceTokensReversed": true,
+    "encodedObjUv0": "logical (u,1-v)",
+    "expectedLegacyImporterReadback": "logical positions, explicit normals, front winding, and continuous-metre UV0",
+    "buildScale3D": [1, 1, 1],
+    "negativeBuildScaleForbidden": true,
+    "exactManifestBoundsRequired": true,
+    "uvSet": "UV0",
+    "uvEncoding": "continuous source-metre projections; one UV unit equals one metre before material scaling",
+    "normalImportMethod": "ImportNormals",
+    "recomputeNormals": false,
+    "recomputeTangents": true,
+    "tangentSpace": "MikkTSpace",
+    "removeDegenerates": true,
+    "fullPrecisionUvs": true
+  },
+  "contextRadiusMeters": 1000,
+  "heroTreeRadiusMeters": 250,
+  "treeInstanceMinimum": 600,
+  "heroTreeInstanceMinimum": 120,
+  "anonymousContextBuildingMinimum": 160,
+  "osmOuterContext": {
+    "integratedByIsolatedUnrealImport": true,
+    "asset": "/Game/TRIAD/IstanaPublicView/Context/SM_IstanaPublicView_OSMContextBuildings",
+    "sourceClass": "LICENSED_ODBL_SNAPSHOT_DERIVED",
+    "sourceStatus": "OPTIONAL_MAPPING_GRADE_VISUAL_CONTEXT_NOT_ACCEPTED",
+    "alignmentStatus": "COORDINATE_CONTRACT_ALIGNED_NOT_VISUALLY_ACCEPTED",
+    "sceneStatus": "COORDINATE_CONTRACT_ALIGNED_MAPPING_GRADE_NOT_VISUALLY_OR_PHOTO_ACCEPTED",
+    "contractSha256": "413c9c215da8d48503e5d39fa5793c98fd02fb9ebde131bd5c99353bf9140b96",
+    "manifestSha256": "2733484bbc4a0598452e122f6bdc2a98a62bef50c6f84def15850d0d2d8c957c",
+    "meshSha256": "4026a4a99170eade125156b7b52e5b92d3e61215dbf0df38011a5432f93f1d77",
+    "meshBytes": 11784053,
+    "footprintCount": 1292,
+    "heroExclusionRadiusMeters": 300,
+    "outerRadiusMeters": 1000,
+    "collision": "NoCollision",
+    "visibilityResponse": "Ignore",
+    "overlapEvents": false,
+    "sensorTruth": false,
+    "navigationTruth": false,
+    "containsRoadsOrRoutes": false,
+    "attribution": "© OpenStreetMap contributors",
+    "databaseLicence": "ODbL-1.0",
+    "licenceUrl": "https://www.openstreetmap.org/copyright",
+    "legacySyntheticFallback": {
+      "asset": "/Game/TRIAD/IstanaPublicView/Context/SM_IstanaPublicView_ContextBuildings",
+      "retainedAndValidated": true,
+      "visible": false,
+      "active": false
+    }
+  },
+  "wholeTreeBillboardsAllowed": false,
+  "imagePlanesAllowed": false,
+  "panoramaCardsAllowed": false,
+  "routeGraphsAllowed": false,
+  "sensorOcclusionPolicy": {
+    "marker": "SYNTHETIC_CONTEXT_AND_VEGETATION_VISUAL_ONLY_NO_COLLISION",
+    "anonymousContextBuildingsCollision": "NoCollision",
+    "osmContextBuildingsCollision": "NoCollision",
+    "osmContextUsedForSensorTruth": false,
+    "syntheticContextFallbackVisible": false,
+    "vegetationHismCollision": "NoCollision",
+    "visibilityResponse": "Ignore",
+    "overlapEvents": false
+  },
+  "terrainBoundaryPolicy": {
+    "marker": "SYNTHETIC_DOWNWARD_VISUAL_ONLY_SKIRT_NO_COLLISION",
+    "asset": "/Game/TRIAD/IstanaPublicView/Ground/SM_IstanaPublicView_TerrainSkirt",
+    "collision": "NoCollision",
+    "visibilityResponse": "Ignore",
+    "representsBeyondOneKilometre": false
+  },
+  "weatherPolicy": {
+    "airsimWeatherEnabled": false,
+    "allEightVisualWeatherScalars": 0,
+    "exponentialHeightFogDensity": 0,
+    "volumetricFogEnabled": false
+  },
+  "runtimeStabilization": {
+    "attempts": 8,
+    "retrySeconds": 0.75,
+    "readinessRequiresFinalSettledPass": true,
+    "reassertsGameModeWeatherFogAndCameraEveryPass": true
+  },
+  "clearDayLighting": {
+    "directionalLightLux": 80000,
+    "directionalRotationDegrees": [-32, -145, 0],
+    "atmosphereSunLightIndex": 0,
+    "skyLightIntensity": 1,
+    "skyLightRealtimeCapture": true
+  },
+  "materialRoleMappings": {
+    "lawn": "M_IPV_Lawn",
+    "plantingAndSoil": "M_IPV_Planting",
+    "publicPathsAndRoadStone": "M_IPV_Stone",
+    "fountainWater": "M_IPV_Water",
+    "treeTrunksAndBranches": "M_IPV_Bark",
+    "treeCanopiesAndPalmFronds": [
+      "M_IPV_LeafDark",
+      "M_IPV_LeafMid",
+      "M_IPV_LeafLight"
+    ]
+  },
+  "displayColorPolicy": {
+    "marker": "NEUTRAL_CAMERA_LOCAL_EXPOSURE_DISABLED_EXTERNAL_SRGB_REC709_DISPLAY_NOT_OCIO_VALIDATED",
+    "acceptanceDisplayTarget": "SDR sRGB/Rec.709",
+    "cameraLocalExposureNeutralDisabled": true,
+    "editorViewportOcioProgrammaticallyControlled": false,
+    "inGameOcioDisplayExtensionInstalled": false,
+    "externalDisplayCalibrationRequired": true,
+    "externalOcioDisplayValidated": false
+  },
+  "fixedCameras": [
+    {
+      "tag": "TRIADIstanaPublicViewCamera_Primary",
+      "locationCentimeters": [0, 21000, 2400],
+      "lookAtCentimeters": [0, 0, 1300],
+      "fieldOfViewDegrees": 52,
+      "player0": true
+    },
+    {
+      "tag": "TRIADIstanaPublicViewCamera_FrontOblique",
+      "locationCentimeters": [16000, 16000, 1700],
+      "lookAtCentimeters": [0, 0, 1200],
+      "fieldOfViewDegrees": 48,
+      "player0": false
+    },
+    {
+      "tag": "TRIADIstanaPublicViewCamera_Arcade",
+      "locationCentimeters": [-4500, 6500, 950],
+      "lookAtCentimeters": [0, 0, 900],
+      "fieldOfViewDegrees": 60,
+      "player0": false
+    },
+    {
+      "tag": "TRIADIstanaPublicViewCamera_Tower",
+      "locationCentimeters": [0, 30000, 1800],
+      "lookAtCentimeters": [0, 0, 2200],
+      "fieldOfViewDegrees": 24,
+      "player0": false
+    }
+  ],
+  "cameraProfile": {
+    "aspectRatio": 1.7777777777777777,
+    "constrainAspectRatio": true,
+    "manualExposure": true,
+    "applyPhysicalCameraExposure": true,
+    "exposureBias": 0,
+    "shutterSpeed": 125,
+    "iso": 100,
+    "aperture": 8,
+    "depthOfFieldScale": 0,
+    "whiteBalanceKelvin": 6500,
+    "localExposureHighlightContrastScale": 1,
+    "localExposureShadowContrastScale": 1,
+    "localExposureDetailStrength": 1,
+    "localExposureMiddleGreyBias": 0,
+    "localExposureHighlightContrastCurve": null,
+    "localExposureShadowContrastCurve": null,
+    "bloom": 0,
+    "vignette": 0,
+    "motionBlur": 0,
+    "chromaticAberration": 0
+  }
+}
