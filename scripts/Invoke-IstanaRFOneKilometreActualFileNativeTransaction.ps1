@@ -32,8 +32,14 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-$repositoryUnrealRoot = [IO.Path]::GetFullPath(
-    'C:\Users\Lyz\Documents\Codex\2026-08-03\elston-need-ur-help-on-linking\work\TRIAD-Sensor-Fusion-Repo\unreal')
+if ($StaticSelfCheck) {
+    $repositoryUnrealRoot = [IO.Path]::GetFullPath(
+        (Join-Path (Split-Path -Parent $PSScriptRoot) 'unreal'))
+}
+else {
+    $repositoryUnrealRoot = [IO.Path]::GetFullPath(
+        'C:\Users\Lyz\Documents\Codex\2026-08-03\elston-need-ur-help-on-linking\work\TRIAD-Sensor-Fusion-Repo\unreal')
+}
 $nativeProjectRoot = [IO.Path]::GetFullPath('D:\triad\TRIAD')
 $nativeProjectFile = [IO.Path]::GetFullPath(
     (Join-Path $nativeProjectRoot 'TRIAD.uproject'))
